@@ -1,5 +1,5 @@
 """
-Core implementation of the meeting transcriber.
+Core implementation of the meeting transcriber with timestamp support.
 """
 
 import os
@@ -19,7 +19,8 @@ logger = setup_logger()
 class MeetingTranscriber:
     """
     A comprehensive tool for transcribing audio recordings of meetings with
-    support for multiple formats, speaker diarization using Whisper AI.
+    support for multiple formats, speaker diarization using Whisper AI,
+    and timestamp inclusion.
     """
 
     def __init__(
@@ -29,7 +30,8 @@ class MeetingTranscriber:
             language: str = "en",
             enable_speaker_diarization: bool = False,
             diarization_model: str = DEFAULT_DIARIZATION_MODEL,
-            custom_vocabulary: List[str] = None
+            custom_vocabulary: List[str] = None,
+            include_timestamps: bool = True
     ):
         """
         Initialize the MeetingTranscriber with Whisper and PyAnnote.
@@ -41,10 +43,12 @@ class MeetingTranscriber:
             enable_speaker_diarization: Whether to enable speaker diarization
             diarization_model: PyAnnote model to use for speaker diarization
             custom_vocabulary: List of domain-specific terms to improve recognition
+            include_timestamps: Whether to include timestamps in output (default: True)
         """
         self.language = language
         self.custom_vocabulary = custom_vocabulary
         self.enable_speaker_diarization = enable_speaker_diarization
+        self.include_timestamps = include_timestamps
 
         # Initialize Whisper model
         self.transcriber = WhisperTranscriber(
@@ -121,7 +125,7 @@ class MeetingTranscriber:
                     result["segments"]
                 )
 
-            # Format transcript (without timestamps)
+            # Format transcript (with timestamps)
             transcript = format_transcript(
                 result,
                 speaker_segments=speaker_segments
@@ -135,7 +139,8 @@ class MeetingTranscriber:
                     "duration": duration,
                     "model": f"whisper-{self.transcriber.model_name}",
                     "language": self.language,
-                    "processing_time": (datetime.now() - start_time).total_seconds()
+                    "processing_time": (datetime.now() - start_time).total_seconds(),
+                    "include_timestamps": self.include_timestamps
                 },
                 "transcript": transcript,
                 "full_text": result["text"]

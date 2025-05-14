@@ -6,9 +6,9 @@ transcriber = MeetingTranscriber(
 )
 
 result = transcribe_meeting(
-    "./samples/marketing_meeting.mp3",
+    "./samples/sample1.wav",
     model_name="medium",
     enable_speaker_diarization=True,
-    output_format="json",
-    output_file="./outputs/meeting_transcript2.json"
+    output_format="srt",
+    output_file="./outputs/meeting_transcript.srt"
 )
