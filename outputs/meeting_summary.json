@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "original_metadata": {
+      "file": "marketing_meeting.mp3",
+      "duration": 1227.874,
+      "model": "whisper-medium",
+      "language": "en",
+      "processing_time": 238.844438
+    },
+    "summary_generated": "yes",
+    "duration": 1227.874,
+    "language": "en",
+    "num_speakers": 5
+  },
+  "summary": {
+    "abstractive": "Failed to generate abstractive summary: CUDA error: device-side assert triggered\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+    "extractive": [
+      " Yeah, I think I was inclined to group some things to say, like",
+      " And at first, I was kind of like shy about calling out UX and bucketing some things there.",
+      " I like that.",
+      " Give it. Give this just like the rough like pass and",
+      " Like a lot of things are really important."
+    ],
+    "key_topics": [
+      "Like",
+      "Think",
+      "Yeah",
+      "Know",
+      "Just"
+    ],
+    "action_items": [
+      "Speaker_04: You should reserve a spot for plan, but I'm going to have to go through and do some aggregating after this just go through the list of what ship the last 12 months and re bucket that",
+      "Speaker_02: Let's, let's go with vulnerability management for now. I would agree on that one. And I would say that I'm",
+      "Speaker_02: It was like last spring or summer. And then we did another set of press around the integration of it because the PR team liked all the I mean we got a lot of attention on the acquisition. So they had me do a follow up.",
+      "Speaker_02: I mean, if I could have to, it would be vulnerability management and berserker probably"
+    ]
+  },
+  "speaker_stats": {
+    "Speaker_02": {
+      "speaking_time": 0,
+      "utterances": 30,
+      "avg_words_per_utterance": 13.533333333333333,
+      "total_words": 406
+    },
+    "Speaker_03": {
+      "speaking_time": 0,
+      "utterances": 18,
+      "avg_words_per_utterance": 10.722222222222221,
+      "total_words": 193
+    },
+    "Speaker_05": {
+      "speaking_time": 0,
+      "utterances": 7,
+      "avg_words_per_utterance": 8.428571428571429,
+      "total_words": 59
+    },
+    "Speaker_01": {
+      "speaking_time": 0,
+      "utterances": 42,
+      "avg_words_per_utterance": 12.285714285714286,
+      "total_words": 516
+    },
+    "Speaker_04": {
+      "speaking_time": 0,
+      "utterances": 14,
+      "avg_words_per_utterance": 12.857142857142858,
+      "total_words": 180
+    }
+  }
+}
