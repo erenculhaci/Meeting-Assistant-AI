@@ -17,7 +17,7 @@ The system streamlines virtual meeting productivity by:
 
 The system consists of several interconnected components:
 
-1. **Speech Recognition Module** - Transcribes audio to text using Wav2Vec2 models
+1. **Speech Recognition Module** - Transcribes audio to text using Whisper models
 2. **NLP Summarization Module** - Generates meeting summaries using BART models
 3. **Action Item Extraction Module** - Identifies tasks, assignees and deadlines
 4. **Task Integration Service** - Syncs action items with Jira
@@ -58,7 +58,7 @@ The system consists of several interconnected components:
 ## Technology Stack Details
 
 ### Speech Recognition
-- Uses Hugging Face's Wav2Vec2 model for state-of-the-art speech recognition
+- Uses Whisper model for state-of-the-art speech recognition
 - Processes audio in chunks for efficient memory usage
 - Timestamps words and phrases for synchronization with audio
 
