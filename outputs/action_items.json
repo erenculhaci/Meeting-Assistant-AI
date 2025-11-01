@@ -1,0 +1,264 @@
+{
+  "status": "success",
+  "task_count": 11,
+  "extracted_at": "2025-11-01T18:08:45.813257",
+  "tasks": [
+    {
+      "description": "gathering feedback from the beta testers",
+      "assignee": "Unassigned",
+      "speaker": "Speaker_02",
+      "priority": "high",
+      "type": "assignment",
+      "start_date": "2025-11-08T00:00:00",
+      "due_date": "2025-11-10T00:00:00",
+      "mentioned_dates": [
+        "2025-11-08",
+        "2025-11-10"
+      ],
+      "source_text": "Quick question — who’s responsible for gathering feedback from the beta testers?",
+      "confidence": 0.8,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 08, 2025",
+      "due_date_formatted": "November 10, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "take that one as part of onboarding usability testing",
+      "assignee": "Sarah",
+      "speaker": "Speaker_00",
+      "priority": "high",
+      "type": "request",
+      "start_date": "2025-11-08T00:00:00",
+      "due_date": "2025-11-10T00:00:00",
+      "mentioned_dates": [
+        "2025-11-08",
+        "2025-11-10"
+      ],
+      "source_text": "Good point. Sarah, can you take that one as part of onboarding usability testing?",
+      "confidence": 1.0,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 08, 2025",
+      "due_date_formatted": "November 10, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "give us enough time to iterate before the launch materials are locked.",
+      "assignee": "That",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "explicit",
+      "start_date": null,
+      "due_date": "2025-11-10T00:00:00",
+      "mentioned_dates": [
+        "2025-11-10"
+      ],
+      "source_text": "Perfect. That should give us enough time to iterate before the launch materials are locked.",
+      "confidence": 0.9500000000000001,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "due_date_formatted": "November 10, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "start with onboarding",
+      "assignee": "Alright",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "collaborative",
+      "start_date": "2025-11-01T18:08:45.808504",
+      "due_date": "2025-11-15T00:00:00",
+      "mentioned_dates": [
+        "2025-11-01",
+        "2025-11-05",
+        "2025-11-15"
+      ],
+      "source_text": "Let's start with onboarding. Sarah, I’d like you to lead the onboarding flow redesign.",
+      "confidence": 1.0,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 01, 2025",
+      "due_date_formatted": "November 15, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "the onboarding flow redesign.",
+      "assignee": "Alright",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "action",
+      "start_date": "2025-11-01T18:08:45.808504",
+      "due_date": "2025-11-15T00:00:00",
+      "mentioned_dates": [
+        "2025-11-01",
+        "2025-11-05",
+        "2025-11-15"
+      ],
+      "source_text": "Let's start with onboarding. Sarah, I’d like you to lead the onboarding flow redesign.",
+      "confidence": 1.0,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 01, 2025",
+      "due_date_formatted": "November 15, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "the wireframes by **November 5th**",
+      "assignee": "Alright",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "action",
+      "start_date": "2025-11-05T00:00:00",
+      "due_date": "2025-11-15T00:00:00",
+      "mentioned_dates": [
+        "2025-11-05",
+        "2025-11-15"
+      ],
+      "source_text": "Great. Your task is to complete the wireframes by **November 5th** and have the first prototype ready by **November 15th**.",
+      "confidence": 1.0,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 05, 2025",
+      "due_date_formatted": "November 15, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "your first benchmark report by **November 18th**.",
+      "assignee": "Yes",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "action",
+      "start_date": "2025-11-02T00:00:00",
+      "due_date": "2025-11-18T00:00:00",
+      "mentioned_dates": [
+        "2025-11-02",
+        "2025-11-18",
+        "2025-11-08"
+      ],
+      "source_text": "Yes, aim for at least a **15% improvement in API response times**. Start analysis by **November 2nd**, and deliver your first benchmark report by **November 18th**.",
+      "confidence": 1.0,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 02, 2025",
+      "due_date_formatted": "November 18, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "progress in our next sync on **November 8th**.",
+      "assignee": "Unassigned",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "action",
+      "start_date": "2025-11-02T00:00:00",
+      "due_date": "2025-11-18T00:00:00",
+      "mentioned_dates": [
+        "2025-11-08",
+        "2025-11-02",
+        "2025-11-18"
+      ],
+      "source_text": "Great. We’ll review progress in our next sync on **November 8th**.",
+      "confidence": 0.8,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 02, 2025",
+      "due_date_formatted": "November 18, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "marketing launch materials — landing page, blog post,",
+      "assignee": "Speaker_02",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "action",
+      "start_date": "2025-11-03T00:00:00",
+      "due_date": "2025-11-20T00:00:00",
+      "mentioned_dates": [
+        "2025-11-05",
+        "2025-11-15",
+        "2025-11-03",
+        "2025-11-20"
+      ],
+      "source_text": "Perfect. Next, Tom, I’d like you to handle marketing launch materials — landing page, blog post, and social assets.",
+      "confidence": 1.0,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 03, 2025",
+      "due_date_formatted": "November 20, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "be finalized by **November 20th**",
+      "assignee": "Unassigned",
+      "speaker": "Speaker_00",
+      "priority": "medium",
+      "type": "explicit",
+      "start_date": "2025-11-03T00:00:00",
+      "due_date": "2025-11-20T00:00:00",
+      "mentioned_dates": [
+        "2025-11-03",
+        "2025-11-20"
+      ],
+      "source_text": "Kickoff on **November 3rd**, and all materials should be finalized by **November 20th** so we can start pre-launch testing.",
+      "confidence": 0.8,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 03, 2025",
+      "due_date_formatted": "November 20, 2025",
+      "status": "pending"
+    },
+    {
+      "description": "with design for the visuals.",
+      "assignee": "Unassigned",
+      "speaker": "Speaker_02",
+      "priority": "medium",
+      "type": "action",
+      "start_date": "2025-11-03T00:00:00",
+      "due_date": "2025-11-20T00:00:00",
+      "mentioned_dates": [
+        "2025-11-03",
+        "2025-11-20"
+      ],
+      "source_text": "Copy that. I’ll coordinate with design for the visuals.",
+      "confidence": 0.8,
+      "meeting_metadata": {
+        "file": "product_strategy_meeting.mp3",
+        "duration": 865.342,
+        "language": "en"
+      },
+      "start_date_formatted": "November 03, 2025",
+      "due_date_formatted": "November 20, 2025",
+      "status": "pending"
+    }
+  ]
+}

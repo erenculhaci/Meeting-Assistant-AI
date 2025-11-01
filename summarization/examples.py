@@ -7,10 +7,10 @@ from summarization.core.meeting_summarizer import MeetingSummarizer
 
 # Method 1: Using the utility function (simplest approach)
 result = summarize_meeting(
-    "../outputs/transcript.json",
+    "outputs/transcript2.json",
     model_name="facebook/bart-large-cnn",  # Or path to your fine-tuned model
     output_format="md",
-    output_file="../outputs/meeting_summary.md",
+    output_file="outputs/meeting_summary_improved.md",
     extract_action_items=True,
     summary_length={"max": 150, "min": 30}
 )

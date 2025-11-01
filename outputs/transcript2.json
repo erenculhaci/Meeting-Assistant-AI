@@ -1,0 +1,137 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "product_strategy_meeting.mp3",
+    "duration": 865.342,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 198.552
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_01"
+    },
+    {
+      "text": "Hey, morning.",
+      "speaker": "Speaker_02"
+    },
+    {
+      "text": "Morning everyone.",
+      "speaker": "Speaker_03"
+    },
+    {
+      "text": "Alright, today’s focus is finalizing the product strategy for Q1 2026.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "We have three main deliverables: the new onboarding flow, marketing launch assets, and backend optimization.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Let's start with onboarding. Sarah, I’d like you to lead the onboarding flow redesign.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Sure, happy to.",
+      "speaker": "Speaker_01"
+    },
+    {
+      "text": "Great. Your task is to complete the wireframes by **November 5th** and have the first prototype ready by **November 15th**.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Got it. I’ll sync with the UX team right after this call.",
+      "speaker": "Speaker_01"
+    },
+    {
+      "text": "Perfect. Next, Tom, I’d like you to handle marketing launch materials — landing page, blog post, and social assets.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Sounds good. What’s the timeline?",
+      "speaker": "Speaker_02"
+    },
+    {
+      "text": "Kickoff on **November 3rd**, and all materials should be finalized by **November 20th** so we can start pre-launch testing.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Copy that. I’ll coordinate with design for the visuals.",
+      "speaker": "Speaker_02"
+    },
+    {
+      "text": "Excellent. Lastly, backend optimization — Maya, this one’s on you.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Understood. Are there specific targets for performance?",
+      "speaker": "Speaker_03"
+    },
+    {
+      "text": "Yes, aim for at least a **15% improvement in API response times**. Start analysis by **November 2nd**, and deliver your first benchmark report by **November 18th**.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Got it. I’ll work closely with DevOps on that.",
+      "speaker": "Speaker_03"
+    },
+    {
+      "text": "Great. We’ll review progress in our next sync on **November 8th**.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Quick question — who’s responsible for gathering feedback from the beta testers?",
+      "speaker": "Speaker_02"
+    },
+    {
+      "text": "Good point. Sarah, can you take that one as part of onboarding usability testing?",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Yes, I’ll include that in the prototype testing phase between November 10th and 12th.",
+      "speaker": "Speaker_01"
+    },
+    {
+      "text": "Perfect. That should give us enough time to iterate before the launch materials are locked.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_02"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_01"
+    },
+    {
+      "text": "Same here, all clear.",
+      "speaker": "Speaker_03"
+    },
+    {
+      "text": "Excellent. Thanks everyone — let’s make sure to post status updates in the project Slack channel every Friday.",
+      "speaker": "Speaker_00"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_02"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_01"
+    },
+    {
+      "text": "Bye all.",
+      "speaker": "Speaker_03"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Morning! Hey, morning. Morning everyone. Alright, today’s focus is finalizing the product strategy for Q1 2026. We have three main deliverables: the new onboarding flow, marketing launch assets, and backend optimization. Let's start with onboarding. Sarah will lead the onboarding redesign (Nov 1–15). Tom will handle marketing assets (Nov 3–20). Maya will work on backend optimization (Nov 2–18). We'll regroup on Nov 8 for updates."
+}

@@ -1,0 +1,199 @@
+"""
+Main interface for action item extraction.
+"""
+
+import json
+import os
+import logging
+from typing import Dict, List, Any, Optional
+from datetime import datetime
+
+from action_item_extraction.core.task_extractor import TaskExtractor
+
+logger = logging.getLogger(__name__)
+
+
+def extract_action_items(
+    transcript_file_path: str,
+    output_file: Optional[str] = None,
+    output_format: str = 'json',
+    reference_date: Optional[datetime] = None
+) -> List[Dict[str, Any]]:
+    """
+    Extract action items from a meeting transcript.
+    
+    Args:
+        transcript_file_path: Path to the transcript JSON file
+        output_file: Optional path to save the output
+        output_format: Format for output ('json', 'md', 'txt')
+        reference_date: Reference date for relative date parsing
+        
+    Returns:
+        List of extracted tasks
+    """
+    # Load transcript
+    logger.info(f"Loading transcript from {transcript_file_path}")
+    with open(transcript_file_path, 'r', encoding='utf-8') as f:
+        transcript_data = json.load(f)
+    
+    # Extract tasks
+    extractor = TaskExtractor(reference_date=reference_date)
+    tasks = extractor.extract_tasks(transcript_data)
+    
+    # Save if output file specified
+    if output_file:
+        if output_format == 'json':
+            save_tasks_json(tasks, output_file)
+        elif output_format == 'md':
+            save_tasks_markdown(tasks, output_file)
+        elif output_format == 'txt':
+            save_tasks_text(tasks, output_file)
+    
+    return tasks
+
+
+def save_tasks_json(tasks: List[Dict[str, Any]], output_path: str) -> None:
+    """Save tasks to JSON file."""
+    logger.info(f"Saving tasks to JSON: {output_path}")
+    
+    # Convert datetime objects to strings for JSON serialization
+    tasks_serializable = []
+    for task in tasks:
+        task_copy = task.copy()
+        if task_copy.get('start_date'):
+            task_copy['start_date'] = task_copy['start_date'].isoformat()
+        if task_copy.get('due_date'):
+            task_copy['due_date'] = task_copy['due_date'].isoformat()
+        tasks_serializable.append(task_copy)
+    
+    output_data = {
+        'status': 'success',
+        'task_count': len(tasks),
+        'extracted_at': datetime.now().isoformat(),
+        'tasks': tasks_serializable
+    }
+    
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, indent=2, ensure_ascii=False)
+    
+    logger.info(f"Saved {len(tasks)} tasks to {output_path}")
+
+
+def save_tasks_markdown(tasks: List[Dict[str, Any]], output_path: str) -> None:
+    """Save tasks to Markdown file."""
+    logger.info(f"Saving tasks to Markdown: {output_path}")
+    
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write("# Action Items & Tasks\n\n")
+        f.write(f"**Total Tasks**: {len(tasks)}\n\n")
+        f.write(f"**Extracted**: {datetime.now().strftime('%B %d, %Y at %H:%M')}\n\n")
+        f.write("---\n\n")
+        
+        if not tasks:
+            f.write("*No action items were identified in this meeting.*\n")
+            return
+        
+        # Group by priority
+        high_priority = [t for t in tasks if t['priority'] == 'high']
+        medium_priority = [t for t in tasks if t['priority'] == 'medium']
+        low_priority = [t for t in tasks if t['priority'] == 'low']
+        
+        # High priority tasks
+        if high_priority:
+            f.write("## 🔴 High Priority Tasks\n\n")
+            for i, task in enumerate(high_priority, 1):
+                _write_task_markdown(f, task, i)
+        
+        # Medium priority tasks
+        if medium_priority:
+            f.write("## 🟡 Medium Priority Tasks\n\n")
+            for i, task in enumerate(medium_priority, 1):
+                _write_task_markdown(f, task, i)
+        
+        # Low priority tasks
+        if low_priority:
+            f.write("## 🟢 Low Priority Tasks\n\n")
+            for i, task in enumerate(low_priority, 1):
+                _write_task_markdown(f, task, i)
+        
+        # Summary table
+        f.write("\n---\n\n")
+        f.write("## Task Summary\n\n")
+        f.write("| Task | Assignee | Due Date | Priority | Status |\n")
+        f.write("|------|----------|----------|----------|--------|\n")
+        
+        for task in tasks:
+            desc_short = task['description'][:50] + '...' if len(task['description']) > 50 else task['description']
+            due_date = task.get('due_date_formatted', 'Not specified')
+            assignee = task['assignee']
+            priority = task['priority'].capitalize()
+            status = task['status'].capitalize()
+            
+            f.write(f"| {desc_short} | {assignee} | {due_date} | {priority} | {status} |\n")
+    
+    logger.info(f"Saved {len(tasks)} tasks to {output_path}")
+
+
+def _write_task_markdown(f, task: Dict[str, Any], index: int) -> None:
+    """Write a single task in markdown format."""
+    f.write(f"### Task {index}\n\n")
+    f.write(f"**Description**: {task['description']}\n\n")
+    f.write(f"- **Assignee**: {task['assignee']}\n")
+    
+    if task.get('due_date_formatted'):
+        f.write(f"- **Due Date**: {task['due_date_formatted']}\n")
+    
+    if task.get('start_date_formatted'):
+        f.write(f"- **Start Date**: {task['start_date_formatted']}\n")
+    
+    f.write(f"- **Type**: {task['type'].replace('_', ' ').title()}\n")
+    f.write(f"- **Confidence**: {task['confidence']:.0%}\n")
+    f.write(f"- **Status**: {task['status'].capitalize()}\n")
+    
+    if task.get('mentioned_dates'):
+        f.write(f"- **Related Dates**: {', '.join(task['mentioned_dates'])}\n")
+    
+    f.write(f"\n**Source**: *\"{task['source_text']}\"*\n\n")
+    f.write("---\n\n")
+
+
+def save_tasks_text(tasks: List[Dict[str, Any]], output_path: str) -> None:
+    """Save tasks to plain text file."""
+    logger.info(f"Saving tasks to text: {output_path}")
+    
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write("=" * 80 + "\n")
+        f.write("ACTION ITEMS & TASKS\n")
+        f.write("=" * 80 + "\n\n")
+        f.write(f"Total Tasks: {len(tasks)}\n")
+        f.write(f"Extracted: {datetime.now().strftime('%B %d, %Y at %H:%M')}\n\n")
+        
+        if not tasks:
+            f.write("No action items were identified in this meeting.\n")
+            return
+        
+        for i, task in enumerate(tasks, 1):
+            f.write("-" * 80 + "\n")
+            f.write(f"TASK #{i}\n")
+            f.write("-" * 80 + "\n\n")
+            f.write(f"Description: {task['description']}\n")
+            f.write(f"Assignee: {task['assignee']}\n")
+            f.write(f"Priority: {task['priority'].upper()}\n")
+            f.write(f"Type: {task['type'].replace('_', ' ').title()}\n")
+            f.write(f"Status: {task['status'].capitalize()}\n")
+            
+            if task.get('due_date_formatted'):
+                f.write(f"Due Date: {task['due_date_formatted']}\n")
+            
+            if task.get('start_date_formatted'):
+                f.write(f"Start Date: {task['start_date_formatted']}\n")
+            
+            f.write(f"Confidence: {task['confidence']:.0%}\n")
+            f.write(f"\nSource: \"{task['source_text']}\"\n\n")
+    
+    logger.info(f"Saved {len(tasks)} tasks to {output_path}")
