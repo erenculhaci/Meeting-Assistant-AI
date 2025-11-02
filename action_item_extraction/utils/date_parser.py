@@ -9,6 +9,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# Try to import dateparser for advanced parsing
+try:
+    import dateparser
+    DATEPARSER_AVAILABLE = True
+except ImportError:
+    DATEPARSER_AVAILABLE = False
+    logger.warning("dateparser not installed. Advanced date parsing will be limited.")
+
 
 class DateParser:
     """Parse and normalize dates from natural language text."""
@@ -61,6 +69,11 @@ class DateParser:
         # Pattern 3: Day of week (Monday, next Friday)
         weekday_dates = self._extract_weekday_dates(text)
         dates.extend(weekday_dates)
+        
+        # Pattern 4: Advanced natural language dates (if dateparser available)
+        if DATEPARSER_AVAILABLE:
+            advanced_dates = self._extract_advanced_dates(text)
+            dates.extend(advanced_dates)
         
         return dates
     
@@ -159,6 +172,51 @@ class DateParser:
             days_until_sunday = (6 - self.reference_date.weekday()) % 7
             end_of_week = self.reference_date + timedelta(days=days_until_sunday)
             dates.append(('end of week', end_of_week, 'relative'))
+        
+        if re.search(r'\bend\s+of\s+(the\s+)?month\b', text_lower):
+            # Go to last day of current month
+            next_month = self.reference_date.replace(day=28) + timedelta(days=4)
+            end_of_month = next_month - timedelta(days=next_month.day)
+            dates.append(('end of month', end_of_month, 'relative'))
+        
+        # ASAP / As soon as possible (use today + 1 day as heuristic)
+        if re.search(r'\b(asap|as soon as possible)\b', text_lower):
+            asap_date = self.reference_date + timedelta(days=1)
+            dates.append(('ASAP', asap_date, 'relative'))
+        
+        return dates
+    
+    def _extract_advanced_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
+        """Extract dates using advanced dateparser library."""
+        dates = []
+        
+        # Common date phrases in meetings
+        phrases = [
+            r'\bby\s+([A-Z][a-z]+day)\b',  # by Friday
+            r'\bby\s+(next\s+\w+)\b',  # by next week
+            r'\bby\s+(end\s+of\s+\w+)\b',  # by end of month
+            r'\bby\s+(\w+\s+\d{1,2}(?:st|nd|rd|th)?)\b',  # by November 5th
+            r'\bdeadline\s+(?:is\s+)?(\w+\s+\d{1,2})\b',  # deadline is November 5
+            r'\bdue\s+(?:on\s+)?(\w+\s+\d{1,2})\b',  # due on November 5
+        ]
+        
+        for pattern in phrases:
+            matches = re.finditer(pattern, text, re.IGNORECASE)
+            for match in matches:
+                date_str = match.group(1) if match.lastindex else match.group(0)
+                
+                try:
+                    parsed = dateparser.parse(
+                        date_str,
+                        settings={
+                            'RELATIVE_BASE': self.reference_date,
+                            'PREFER_DATES_FROM': 'future'
+                        }
+                    )
+                    if parsed:
+                        dates.append((date_str, parsed, 'advanced'))
+                except Exception as e:
+                    logger.debug(f"Failed to parse '{date_str}': {e}")
         
         return dates
     

@@ -3,10 +3,18 @@ Person extraction utilities for identifying people in meeting transcripts.
 """
 
 import re
-from typing import List, Dict, Set, Tuple
+from typing import List, Dict, Set, Tuple, Optional
 import logging
 
 logger = logging.getLogger(__name__)
+
+# Try to import spacy for advanced NER
+try:
+    import spacy
+    SPACY_AVAILABLE = True
+except ImportError:
+    SPACY_AVAILABLE = False
+    logger.warning("spacy not installed. Advanced person extraction will be limited.")
 
 
 class PersonExtractor:
@@ -18,11 +26,25 @@ class PersonExtractor:
             'sarah', 'tom', 'maya', 'john', 'mike', 'david', 'james', 'robert',
             'mary', 'lisa', 'anna', 'emily', 'michael', 'chris', 'alex', 'sam',
             'jordan', 'taylor', 'morgan', 'casey', 'riley', 'jamie', 'drew',
-            'ben', 'dan', 'joe', 'bob', 'jim', 'tim', 'kim', 'pat', 'max'
+            'ben', 'dan', 'joe', 'bob', 'jim', 'tim', 'kim', 'pat', 'max',
+            'kate', 'nick', 'matt', 'mark', 'paul', 'eric', 'ryan', 'adam',
+            'brian', 'kevin', 'jason', 'jeff', 'steve', 'greg', 'scott', 'kyle'
         }
         
         # Map speaker IDs to actual names if mentioned
         self.speaker_name_map: Dict[str, str] = {}
+        
+        # Load spacy model if available
+        self.nlp = None
+        if SPACY_AVAILABLE:
+            try:
+                # Try to load small English model
+                self.nlp = spacy.load('en_core_web_sm')
+                logger.info("Spacy NER enabled for person extraction")
+            except OSError:
+                logger.warning("Spacy model 'en_core_web_sm' not found. Install with: python -m spacy download en_core_web_sm")
+                self.nlp = None
+
     
     def extract_persons(self, transcript_data: Dict) -> Dict[str, str]:
         """
@@ -36,7 +58,11 @@ class PersonExtractor:
         """
         transcript_segments = transcript_data.get('transcript', [])
         
-        # Try to find name mentions in the conversation
+        # Try spacy-based extraction first
+        if self.nlp:
+            self._extract_with_spacy(transcript_segments)
+        
+        # Fallback/supplement with pattern-based extraction
         for i, segment in enumerate(transcript_segments):
             text = segment.get('text', '')
             speaker = segment.get('speaker', 'Unknown')
@@ -51,6 +77,37 @@ class PersonExtractor:
             self._map_names_to_speakers(names, transcript_segments, i)
         
         return self.speaker_name_map
+    
+    def _extract_with_spacy(self, segments: List[Dict]) -> None:
+        """Extract person names using spacy NER."""
+        for i, segment in enumerate(segments):
+            text = segment.get('text', '')
+            speaker = segment.get('speaker', '')
+            
+            # Process with spacy
+            doc = self.nlp(text)
+            
+            # Extract PERSON entities
+            for ent in doc.ents:
+                if ent.label_ == 'PERSON':
+                    name = ent.text.strip()
+                    
+                    # Skip if it's a common word or too short
+                    if len(name) < 3 or name.lower() in ['speaker', 'everyone', 'someone', 'anyone']:
+                        continue
+                    
+                    # Check if this might be referring to a speaker
+                    # Look ahead for responses
+                    for j in range(i + 1, min(i + 3, len(segments))):
+                        next_segment = segments[j]
+                        next_speaker = next_segment.get('speaker', '')
+                        next_text = next_segment.get('text', '').lower()
+                        
+                        # Check for affirmative responses
+                        if re.search(r'\b(yes|yeah|sure|okay|will do|got it)\b', next_text):
+                            if next_speaker not in self.speaker_name_map:
+                                self.speaker_name_map[next_speaker] = name
+                            break
     
     def _extract_direct_address(self, text: str) -> List[str]:
         """Extract names from direct address patterns."""

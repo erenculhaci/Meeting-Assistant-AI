@@ -9,6 +9,10 @@ from datetime import datetime
 
 from action_item_extraction.utils.date_parser import DateParser
 from action_item_extraction.utils.person_extractor import PersonExtractor
+from action_item_extraction.utils.task_patterns import TaskPatternLibrary
+from action_item_extraction.utils.confidence_model import TaskConfidenceModel
+from action_item_extraction.utils.semantic_dedup import SemanticDeduplicator
+from action_item_extraction.utils.llm_fallback import LLMTaskClarifier
 
 logger = logging.getLogger(__name__)
 
@@ -22,42 +26,57 @@ class TaskExtractor:
     - Implicit tasks and commitments
     - Deadline extraction (explicit and relative dates)
     - Person/speaker assignment
-    - Task prioritization
+    - Task prioritization with urgency detection
     - Context-aware extraction
+    - Semantic deduplication
+    - LLM fallback (optional)
     """
     
-    def __init__(self, reference_date: Optional[datetime] = None):
+    def __init__(
+        self,
+        reference_date: Optional[datetime] = None,
+        use_semantic_dedup: bool = True,
+        similarity_threshold: float = 0.8,
+        use_llm_fallback: bool = False,
+        llm_model: str = "gpt-4o-mini",
+        llm_confidence_threshold: float = 0.7,
+        llm_provider: str = "auto"
+    ):
         """
         Initialize the task extractor.
         
         Args:
             reference_date: Reference date for date parsing (default: today)
+            use_semantic_dedup: Use semantic similarity for deduplication
+            similarity_threshold: Threshold for semantic duplicate detection (0-1)
+            use_llm_fallback: Use LLM to clarify ambiguous tasks
+            llm_model: LLM model to use (gpt-4o-mini, gpt-4, etc.)
+            llm_confidence_threshold: Use LLM for tasks below this confidence
+            llm_provider: LLM provider ("auto", "groq", "openai")
         """
         self.date_parser = DateParser(reference_date)
         self.person_extractor = PersonExtractor()
+        self.confidence_model = TaskConfidenceModel()
+        self.task_patterns = TaskPatternLibrary.get_task_patterns()
         
-        # Task indicator patterns (verb phrases that indicate tasks)
-        self.task_patterns = [
-            # Explicit assignments
-            (r'\b(?:need to|needs to|needed to)\s+(.{5,150})', 'high', 'explicit'),
-            (r'\b(?:should|ought to)\s+(.{5,150})', 'medium', 'explicit'),
-            (r'\b(?:will|\'ll)\s+(.{5,150})', 'medium', 'commitment'),
-            (r'\b(?:going to|gonna)\s+(.{5,150})', 'medium', 'commitment'),
-            (r'\b(?:have to|has to|had to|must|required to)\s+(.{5,150})', 'high', 'explicit'),
-            
-            # Action directives
-            (r'\b(?:please|can you|could you|would you)\s+(.{5,150})', 'high', 'request'),
-            (r'\b(?:let\'s|let us)\s+(.{5,150})', 'medium', 'collaborative'),
-            
-            # Specific action verbs
-            (r'\b(?:complete|finish|deliver|submit|send|provide|create|build|develop|implement|review|check|verify|analyze|prepare|organize|schedule|coordinate|handle|lead|work on|take care of)\s+(.{5,150})', 'medium', 'action'),
-            
-            # Responsibility assignment
-            (r'\b(?:responsible for|in charge of|assigned to|tasked with)\s+(.{5,150})', 'high', 'assignment'),
-            
-            # Future commitments
-            (r'\b(?:I\'ll|I will|I\'m going to|I can|I should)\s+(.{5,150})', 'medium', 'self_commitment'),
-        ]
+        # Semantic deduplication
+        self.use_semantic_dedup = use_semantic_dedup
+        if use_semantic_dedup:
+            self.deduplicator = SemanticDeduplicator(similarity_threshold=similarity_threshold)
+        else:
+            self.deduplicator = None
+        
+        # LLM fallback
+        self.use_llm_fallback = use_llm_fallback
+        if use_llm_fallback:
+            self.llm_clarifier = LLMTaskClarifier(
+                model=llm_model,
+                enabled=True,
+                confidence_threshold=llm_confidence_threshold,
+                provider=llm_provider
+            )
+        else:
+            self.llm_clarifier = None
         
         # Context indicators for task boundaries
         self.task_end_indicators = [
@@ -66,6 +85,8 @@ class TaskExtractor:
             r'\!',  # Exclamation
             r'\s+(?:and|but|or|so|because|if|when|where|who|what|how)\s+',  # Conjunctions
         ]
+        
+        logger.info(f"TaskExtractor initialized (semantic_dedup={use_semantic_dedup}, llm_fallback={use_llm_fallback})")
     
     def extract_tasks(self, transcript_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
@@ -106,8 +127,21 @@ class TaskExtractor:
             tasks.extend(segment_tasks)
         
         # Post-process: deduplicate and enhance tasks
-        tasks = self._deduplicate_tasks(tasks)
+        if self.use_semantic_dedup and self.deduplicator:
+            tasks = self.deduplicator.deduplicate_tasks(tasks)
+        else:
+            tasks = self._deduplicate_tasks(tasks)
+        
         tasks = self._enhance_tasks(tasks, transcript_data)
+        
+        # LLM clarification for ambiguous tasks
+        if self.use_llm_fallback and self.llm_clarifier:
+            speakers = self._extract_speaker_list(transcript_data)
+            tasks = self.llm_clarifier.batch_clarify(
+                tasks=tasks,
+                transcript_segments=transcript_segments,
+                speakers=speakers
+            )
         
         logger.info(f"Extracted {len(tasks)} tasks")
         
@@ -138,19 +172,32 @@ class TaskExtractor:
                 # Extract assignee
                 assignee = self._extract_assignee(text, speaker, task_type, all_segments, idx)
                 
+                # Detect urgency
+                urgency_level, urgency_boost = TaskPatternLibrary.detect_urgency_level(text)
+                
+                # Adjust priority based on urgency
+                adjusted_priority = self._adjust_priority(priority, urgency_boost)
+                
                 # Create task object
                 task = {
                     'description': task_description,
                     'assignee': assignee,
                     'speaker': speaker,
-                    'priority': priority,
+                    'priority': adjusted_priority,
+                    'urgency': urgency_level,
                     'type': task_type,
                     'start_date': dates.get('start'),
                     'due_date': dates.get('due'),
                     'mentioned_dates': dates.get('all_dates', []),
                     'source_text': text,
-                    'confidence': self._calculate_confidence(task_description, dates, assignee)
+                    'segment_index': idx,
                 }
+                
+                # Calculate confidence using the confidence model
+                task['confidence'] = self.confidence_model.calculate_confidence(
+                    task,
+                    context_segments=all_segments[max(0, idx-2):min(len(all_segments), idx+3)]
+                )
                 
                 tasks.append(task)
         
@@ -175,6 +222,17 @@ class TaskExtractor:
         description = re.sub(r'\s+(?:a|an|the|to|for|with|by|on|in|at)$', '', description, flags=re.IGNORECASE)
         
         return description
+    
+    def _adjust_priority(self, base_priority: str, urgency_boost: float) -> str:
+        """Adjust priority based on urgency indicators."""
+        if urgency_boost >= 1.4:
+            return 'high'
+        elif urgency_boost >= 1.2 and base_priority == 'medium':
+            return 'high'
+        elif urgency_boost >= 1.1 and base_priority == 'low':
+            return 'medium'
+        
+        return base_priority
     
     def _extract_task_dates(
         self, text: str, all_segments: List[Dict], current_idx: int
@@ -257,48 +315,18 @@ class TaskExtractor:
         # Default: unassigned
         return 'Unassigned'
     
-    def _calculate_confidence(
-        self, description: str, dates: Dict, assignee: str
-    ) -> float:
-        """Calculate confidence score for the extracted task."""
-        confidence = 0.5  # Base confidence
-        
-        # Has clear description
-        if len(description) > 20:
-            confidence += 0.1
-        
-        # Has assignee
-        if assignee and assignee != 'Unassigned':
-            confidence += 0.2
-        
-        # Has deadline
-        if dates.get('due'):
-            confidence += 0.15
-        
-        # Has start date
-        if dates.get('start'):
-            confidence += 0.05
-        
-        return min(confidence, 1.0)
-    
     def _is_greeting_or_closing(self, text: str) -> bool:
         """Check if text is a greeting or closing."""
         text_lower = text.lower().strip()
         
-        greetings = [
-            r'^(good\s+)?(morning|afternoon|evening|night)',
-            r'^(hi|hey|hello|howdy)',
-            r'^(bye|goodbye|see you|talk soon|thanks|thank you)',
-            r'^(great|perfect|excellent|sounds good)[\s!.]*$',
-        ]
+        # Use exclusion patterns from TaskPatternLibrary
+        exclusion_patterns = TaskPatternLibrary.get_exclusion_patterns()
         
-        for pattern in greetings:
+        for pattern in exclusion_patterns:
             if re.match(pattern, text_lower):
                 return True
         
-        return len(text_lower.split()) <= 3 and not any(
-            word in text_lower for word in ['will', 'should', 'need', 'must', 'task']
-        )
+        return False
     
     def _deduplicate_tasks(self, tasks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Remove duplicate or very similar tasks."""
@@ -358,14 +386,39 @@ class TaskExtractor:
             if task.get('due_date'):
                 task['due_date_formatted'] = task['due_date'].strftime('%B %d, %Y')
             
-            # Add status field
-            task['status'] = 'pending'
+            # Add status field based on urgency and confidence
+            if task.get('urgency') == 'critical':
+                task['status'] = 'urgent'
+            elif task.get('confidence', 0) < 0.5:
+                task['status'] = 'needs_review'
+            else:
+                task['status'] = 'pending'
+            
+            # Add importance flag
+            importance_keywords = TaskPatternLibrary.get_importance_keywords()
+            task['is_important'] = any(
+                keyword in task['source_text'].lower()
+                for keyword in importance_keywords
+            )
         
-        # Sort by priority and due date
+        # Sort by urgency, priority, confidence, and due date
         priority_order = {'high': 0, 'medium': 1, 'low': 2}
+        urgency_order = {'critical': 0, 'high': 1, 'elevated': 2, 'normal': 3}
+        
         tasks.sort(key=lambda x: (
+            urgency_order.get(x.get('urgency', 'normal'), 4),
             priority_order.get(x['priority'], 3),
+            -x.get('confidence', 0.5),  # Higher confidence first
             x['due_date'] or datetime(2099, 12, 31)
         ))
         
         return tasks
+    
+    def _extract_speaker_list(self, transcript_data: Dict[str, Any]) -> List[str]:
+        """Extract unique speaker names/IDs from transcript."""
+        speakers = set()
+        for segment in transcript_data.get('transcript', []):
+            speaker = segment.get('speaker')
+            if speaker:
+                speakers.add(speaker)
+        return list(speakers)

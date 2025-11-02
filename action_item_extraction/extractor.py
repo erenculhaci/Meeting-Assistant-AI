@@ -17,7 +17,10 @@ def extract_action_items(
     transcript_file_path: str,
     output_file: Optional[str] = None,
     output_format: str = 'json',
-    reference_date: Optional[datetime] = None
+    reference_date: Optional[datetime] = None,
+    use_llm_fallback: bool = False,
+    llm_model: str = "gpt-4o-mini",
+    llm_provider: str = "auto"  # "auto", "groq", "openai"
 ) -> List[Dict[str, Any]]:
     """
     Extract action items from a meeting transcript.
@@ -27,6 +30,9 @@ def extract_action_items(
         output_file: Optional path to save the output
         output_format: Format for output ('json', 'md', 'txt')
         reference_date: Reference date for relative date parsing
+        use_llm_fallback: Use LLM to clarify ambiguous tasks
+        llm_model: LLM model to use (gpt-4o-mini recommended)
+        llm_provider: LLM provider ("auto", "groq", "openai") - auto uses Groq if available
         
     Returns:
         List of extracted tasks
@@ -37,7 +43,12 @@ def extract_action_items(
         transcript_data = json.load(f)
     
     # Extract tasks
-    extractor = TaskExtractor(reference_date=reference_date)
+    extractor = TaskExtractor(
+        reference_date=reference_date,
+        use_llm_fallback=use_llm_fallback,
+        llm_model=llm_model,
+        llm_provider=llm_provider
+    )
     tasks = extractor.extract_tasks(transcript_data)
     
     # Save if output file specified
@@ -139,7 +150,14 @@ def save_tasks_markdown(tasks: List[Dict[str, Any]], output_path: str) -> None:
 
 def _write_task_markdown(f, task: Dict[str, Any], index: int) -> None:
     """Write a single task in markdown format."""
-    f.write(f"### Task {index}\n\n")
+    # Add urgency indicator
+    urgency_icon = ''
+    if task.get('urgency') == 'critical':
+        urgency_icon = ' ⚠️ **URGENT**'
+    elif task.get('urgency') == 'high':
+        urgency_icon = ' ⏰'
+    
+    f.write(f"### Task {index}{urgency_icon}\n\n")
     f.write(f"**Description**: {task['description']}\n\n")
     f.write(f"- **Assignee**: {task['assignee']}\n")
     
@@ -149,9 +167,17 @@ def _write_task_markdown(f, task: Dict[str, Any], index: int) -> None:
     if task.get('start_date_formatted'):
         f.write(f"- **Start Date**: {task['start_date_formatted']}\n")
     
+    f.write(f"- **Priority**: {task['priority'].capitalize()}\n")
+    
+    if task.get('urgency') != 'normal':
+        f.write(f"- **Urgency**: {task['urgency'].capitalize()}\n")
+    
     f.write(f"- **Type**: {task['type'].replace('_', ' ').title()}\n")
     f.write(f"- **Confidence**: {task['confidence']:.0%}\n")
-    f.write(f"- **Status**: {task['status'].capitalize()}\n")
+    f.write(f"- **Status**: {task['status'].replace('_', ' ').title()}\n")
+    
+    if task.get('is_important'):
+        f.write(f"- **⭐ Marked as Important**\n")
     
     if task.get('mentioned_dates'):
         f.write(f"- **Related Dates**: {', '.join(task['mentioned_dates'])}\n")
