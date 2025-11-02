@@ -156,10 +156,10 @@ class MeetingTranscriber:
             logger.error(f"Transcription failed: {str(e)}", exc_info=True)
             return create_error_response(str(e))
 
-    def transcribe_multiple(
+    def transcribe_batch(
             self,
             audio_files: List[str],
-            output_dir: Optional[str] = None,
+            output_dir: Optional[str] = "outputs/transcription",
             output_format: str = "json",
             **kwargs
     ) -> List[Dict[str, Any]]:

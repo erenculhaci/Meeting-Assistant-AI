@@ -11,8 +11,8 @@ print("Example 1: Basic Action Item Extraction")
 print("="*60)
 
 tasks = extract_action_items(
-    transcript_file_path="outputs/transcript2.json",
-    output_file="outputs/action_items.md",
+    transcript_file_path="outputs/transcription/transcript2.json",
+    output_file="outputs/action_items/action_items.md",
     output_format="md",
     reference_date=datetime(2025, 11, 1)  # Meeting date
 )
@@ -32,8 +32,8 @@ print("Example 2: Extracting to JSON")
 print("="*60)
 
 tasks_json = extract_action_items(
-    transcript_file_path="outputs/transcript2.json",
-    output_file="outputs/action_items.json",
+    transcript_file_path="outputs/transcription/transcript2.json",
+    output_file="outputs/action_items/action_items.json",
     output_format="json"
 )
 
@@ -47,7 +47,7 @@ print("="*60)
 from action_item_extraction.core.task_extractor import TaskExtractor
 import json
 
-with open("outputs/transcript2.json", 'r', encoding='utf-8') as f:
+with open("outputs/transcription/transcript2.json", 'r', encoding='utf-8') as f:
     transcript_data = json.load(f)
 
 extractor = TaskExtractor(reference_date=datetime(2025, 11, 1))

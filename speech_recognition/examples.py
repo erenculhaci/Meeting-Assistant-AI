@@ -10,5 +10,5 @@ result = transcribe_meeting(
     model_name="medium",
     enable_speaker_diarization=True,
     output_format="srt",
-    output_file="../outputs/meeting_transcript.srt"
+    output_file="outputs/transcription/meeting_transcript.srt"
 )

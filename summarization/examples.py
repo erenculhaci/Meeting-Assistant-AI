@@ -7,10 +7,10 @@ from summarization.core.meeting_summarizer import MeetingSummarizer
 
 # Method 1: Using the utility function (simplest approach)
 result = summarize_meeting(
-    "outputs/transcript2.json",
+    "outputs/transcription/transcript2.json",
     model_name="facebook/bart-large-cnn",  # Or path to your fine-tuned model
     output_format="md",
-    output_file="outputs/meeting_summary_improved.md",
+    output_file="outputs/summarization/meeting_summary_improved.md",
     extract_action_items=True,
     summary_length={"max": 150, "min": 30}
 )
@@ -24,7 +24,7 @@ print(f"Summary generated with {len(result['summary']['key_topics'])} key topics
 
 # Load transcript data
 import json
-with open("../outputs/transcript.json", 'r', encoding='utf-8') as f:
+with open("outputs/transcription/transcript.json", 'r', encoding='utf-8') as f:
     transcript_data = json.load(f)
 
 # Generate summary with custom parameters
@@ -37,8 +37,8 @@ summary_results = summarizer.summarize(
 )
 
 # Save in different formats
-summarizer.save_summary(summary_results, "./outputs/meeting_summary.json")
-summarizer.save_text_summary(summary_results, "./outputs/meeting_summary.txt")
-summarizer.save_markdown_summary(summary_results, "./outputs/meeting_summary.md")
+summarizer.save_summary(summary_results, "outputs/summarization/meeting_summary.json")
+summarizer.save_text_summary(summary_results, "outputs/summarization/meeting_summary.txt")
+summarizer.save_markdown_summary(summary_results, "outputs/summarization/meeting_summary.md")
 
 print("Summary generated and saved in multiple formats")'''

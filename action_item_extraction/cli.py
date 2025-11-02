@@ -46,8 +46,8 @@ def main():
     )
     parser.add_argument(
         "--output_dir",
-        default="outputs",
-        help="Directory to save the output files (default: outputs)"
+        default="outputs/action_items",
+        help="Directory to save the output files (default: outputs/action_items)"
     )
     
     args = parser.parse_args()
