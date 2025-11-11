@@ -1,0 +1,97 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_017.mp3",
+    "duration": 94.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 21.735
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Hi there!",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Let's dive into today's Team Building.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "John, I'd like you to follow up with stakeholders.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Please have this ready by in two weeks.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_John"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "We need someone to follow up with stakeholders.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "I'll handle that by month end.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Daniel, I'd like you to schedule a call with the client.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Will do!",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Kevin"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hi there! Good morning! Let's dive into today's Team Building. Next item is business. John, I'd like you to follow up with stakeholders. Please have this ready by in two weeks. Will do. Next item is business. We need someone to follow up with stakeholders. I'll handle that by month end. Great, thanks for taking that on. Moving on to business. Daniel, I'd like you to schedule a call with the client. Got it. Is there anything blocking anyone from starting? Nothing blocking me. All good here. Sounds good. Thanks team, looking forward to seeing the results. Will do! See you!"
+}

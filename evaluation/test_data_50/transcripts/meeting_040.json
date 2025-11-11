@@ -1,0 +1,153 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_040.mp3",
+    "duration": 157.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 36.225
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Alright, today's focus is our Retrospective.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "We need to follow up with stakeholders.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Eric and Melissa, could you both work together to follow up with stakeholders?",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Tim, I'd like you to update the project timeline.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "We need someone to send out the meeting invites.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "I'll handle that sometime this week.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Andrew, I'd like you to update the project timeline.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Please have this ready by by Friday.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Andrew"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "We need to document the meeting notes by 15th of next month.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Andrew and Eric, could you both work together to coordinate with other teams?",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Target completion is by end of next week.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Andrew"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Sounds good!",
+      "speaker": "Speaker_Eric"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Morning! Good morning! Alright, today's focus is our Retrospective. Moving on to business. We need to follow up with stakeholders. Next item is business. Eric and Melissa, could you both work together to follow up with stakeholders? Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. Tim, I'd like you to update the project timeline. Understood. On the business side, We need someone to send out the meeting invites. I'll handle that sometime this week. Great, thanks for taking that on. Next item is business. Andrew, I'd like you to update the project timeline. Please have this ready by by Friday. Got it. Moving on to business. We need to document the meeting notes by 15th of next month. Agreed, that's important. Moving on to business. Andrew and Eric, could you both work together to coordinate with other teams? Target completion is by end of next week. Yes, we can handle that. Sounds good to me. Is there anything blocking anyone from starting? We're good to go. Not from my side. Great, thanks all. Let's keep each other posted on progress. Thanks, talk soon! Sounds good!"
+}

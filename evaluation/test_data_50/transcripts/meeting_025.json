@@ -1,0 +1,189 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_025.mp3",
+    "duration": 198.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 45.54
+  },
+  "transcript": [
+    {
+      "text": "Hey everyone, thanks for joining.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Steven"
+    },
+    {
+      "text": "Hi there!",
+      "speaker": "Speaker_Kimberly"
+    },
+    {
+      "text": "Today we're covering the Infrastructure Planning.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "We need to send out the meeting invites by May 5th.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Steven"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "We need someone to negotiate the contract terms.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "I'll handle that early next week.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Laura and Steven, could you both work together to document the meeting notes?",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Target completion is by Friday.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Laura"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Steven"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Laura and Sandra, could you both work together to prepare the presentation slides?",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Target completion is tomorrow.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Laura"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "We need someone to prepare the quarterly report.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "I'll handle that by noon tomorrow.",
+      "speaker": "Speaker_Laura"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Matthew and Laura, could you both work together to schedule a call with the client?",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Target completion is 20th of this month.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Laura"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Sandra and Steven, could you both work together to follow up with stakeholders?",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Steven"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "We need someone to send out the meeting invites.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "I'll handle that in two weeks.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_Steven"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Kimberly"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Steven"
+    },
+    {
+      "text": "Will do!",
+      "speaker": "Speaker_Kimberly"
+    }
+  ],
+  "full_text": "Hey everyone, thanks for joining. Hello! Hi there! Today we're covering the Infrastructure Planning. On the business side, We need to send out the meeting invites by May 5th. Agreed, that's important. On the business side, We need someone to negotiate the contract terms. I'll handle that early next week. Great, thanks for taking that on. On the business side, Laura and Steven, could you both work together to document the meeting notes? Target completion is by Friday. Yes, we can handle that. Sounds good to me. On the business side, Laura and Sandra, could you both work together to prepare the presentation slides? Target completion is tomorrow. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. We need someone to prepare the quarterly report. I'll handle that by noon tomorrow. Great, thanks for taking that on. Moving on to business. Matthew and Laura, could you both work together to schedule a call with the client? Target completion is 20th of this month. Yes, we can handle that. Sounds good to me. Moving on to business. Sandra and Steven, could you both work together to follow up with stakeholders? Yes, we can handle that. Sounds good to me. On the business side, We need someone to send out the meeting invites. I'll handle that in two weeks. Great, thanks for taking that on. Is there anything blocking anyone from starting? No blockers. Not from my side. Sounds good. Thanks team, looking forward to seeing the results. Bye all! Will do!"
+}

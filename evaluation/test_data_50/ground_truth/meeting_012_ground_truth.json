@@ -1,0 +1,84 @@
+{
+  "meeting_file": "meeting_012.json",
+  "meeting_type": "Launch Planning",
+  "tasks": [
+    {
+      "description": "create content calendar",
+      "assignees": [
+        "Linda",
+        "Nancy"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the press release",
+      "assignees": [
+        "Linda"
+      ],
+      "deadline": "20th of this month",
+      "pattern_type": "explicit",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "analyze campaign performance",
+      "assignees": [
+        "Linda",
+        "Nancy"
+      ],
+      "deadline": "March 20th",
+      "pattern_type": "collaborative",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "analyze campaign performance",
+      "assignees": [],
+      "deadline": "by end of day",
+      "pattern_type": "implicit",
+      "category": "marketing",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Nancy",
+        "Linda"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Nancy"
+      ],
+      "deadline": "in the next few days",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "reach out to influencers",
+      "assignees": [
+        "Nancy"
+      ],
+      "deadline": "after lunch",
+      "pattern_type": "explicit",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

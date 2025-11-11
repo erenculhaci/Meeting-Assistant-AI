@@ -1,0 +1,40 @@
+{
+  "meeting_file": "meeting_018.json",
+  "meeting_type": "Technical Debt",
+  "tasks": [
+    {
+      "description": "write unit tests for the new feature",
+      "assignees": [
+        "Amy",
+        "John"
+      ],
+      "deadline": "this week",
+      "pattern_type": "collaborative",
+      "category": "technical",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Amy"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "profile the application performance",
+      "assignees": [
+        "Amy"
+      ],
+      "deadline": "after lunch",
+      "pattern_type": "commitment",
+      "category": "technical",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

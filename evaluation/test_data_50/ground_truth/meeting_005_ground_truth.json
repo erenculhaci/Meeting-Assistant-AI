@@ -1,0 +1,40 @@
+{
+  "meeting_file": "meeting_005.json",
+  "meeting_type": "Sales Strategy",
+  "tasks": [
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "Lisa",
+        "Justin"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Justin"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Lisa"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

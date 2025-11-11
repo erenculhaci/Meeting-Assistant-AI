@@ -1,0 +1,39 @@
+{
+  "meeting_file": "meeting_011.json",
+  "meeting_type": "Performance Review",
+  "tasks": [
+    {
+      "description": "prioritize the product backlog",
+      "assignees": [
+        "Jessica"
+      ],
+      "deadline": "in three weeks",
+      "pattern_type": "commitment",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "analyze the usage metrics",
+      "assignees": [
+        "Michelle"
+      ],
+      "deadline": "middle of next week",
+      "pattern_type": "commitment",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Jessica"
+      ],
+      "deadline": "15th of next month",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

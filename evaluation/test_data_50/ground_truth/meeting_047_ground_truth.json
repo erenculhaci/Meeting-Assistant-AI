@@ -1,0 +1,70 @@
+{
+  "meeting_file": "meeting_047.json",
+  "meeting_type": "Crisis Management",
+  "tasks": [
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Amy"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [],
+      "deadline": "before next sprint",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Tim"
+      ],
+      "deadline": "next Tuesday",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "Tim"
+      ],
+      "deadline": "this week",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Amy"
+      ],
+      "deadline": "on the 15th",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Melissa"
+      ],
+      "deadline": "next Wednesday",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "meeting_file": "meeting_040.json",
+  "meeting_type": "Retrospective",
+  "tasks": [
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Eric",
+        "Melissa"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Tim"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Melissa"
+      ],
+      "deadline": "sometime this week",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Andrew"
+      ],
+      "deadline": "by Friday",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [],
+      "deadline": "15th of next month",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Andrew",
+        "Eric"
+      ],
+      "deadline": "by end of next week",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

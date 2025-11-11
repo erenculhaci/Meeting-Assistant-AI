@@ -1,0 +1,93 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_005.mp3",
+    "duration": 90.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 20.7
+  },
+  "transcript": [
+    {
+      "text": "Good morning all, thanks for being here.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Hi there!",
+      "speaker": "Speaker_Justin"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Alright, today's focus is our Sales Strategy.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Lisa and Justin, could you both work together to document the meeting notes?",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Justin"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Justin, I'd like you to schedule a call with the client.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_Justin"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Lisa, I'd like you to prepare the quarterly report.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Justin"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Excellent. Thanks everyone, let's stay aligned on this.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Justin"
+    },
+    {
+      "text": "Sounds good!",
+      "speaker": "Speaker_Lisa"
+    }
+  ],
+  "full_text": "Good morning all, thanks for being here. Hi there! Morning! Alright, today's focus is our Sales Strategy. Let's talk about business for a moment. Lisa and Justin, could you both work together to document the meeting notes? Yes, we can handle that. Sounds good to me. Moving on to business. Justin, I'd like you to schedule a call with the client. Understood. Next item is business. Lisa, I'd like you to prepare the quarterly report. Got it. Is there anything blocking anyone from starting? Not from my side. Not from my side. Excellent. Thanks everyone, let's stay aligned on this. Thanks! Sounds good!"
+}

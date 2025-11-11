@@ -1,0 +1,161 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_026.mp3",
+    "duration": 166.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 38.295
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Today we're covering the Training Session.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "We need to review the budget proposal by next Friday.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "We need to send out the meeting invites.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Jeff, I'd like you to review the budget proposal.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "No problem.",
+      "speaker": "Speaker_Jeff"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "We need someone to send out the meeting invites.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "I'll handle that early next week.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Jeff and Patricia, could you both work together to update the project timeline?",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Jeff"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "We need someone to document the meeting notes.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "We need someone to update the project timeline.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Jeff"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Tim, I'd like you to document the meeting notes.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Sounds good!",
+      "speaker": "Speaker_Paul"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Hello! Hey! Today we're covering the Training Session. Next item is business. We need to review the budget proposal by next Friday. Agreed, that's important. Next item is business. We need to send out the meeting invites. Let's talk about business for a moment. Jeff, I'd like you to review the budget proposal. No problem. Moving on to business. We need someone to send out the meeting invites. I'll handle that early next week. Great, thanks for taking that on. Next item is business. Jeff and Patricia, could you both work together to update the project timeline? Yes, we can handle that. Sounds good to me. Moving on to business. We need someone to document the meeting notes. I'll handle that. Great, thanks for taking that on. Let's talk about business for a moment. We need someone to update the project timeline. I'll handle that. Great, thanks for taking that on. Next item is business. Tim, I'd like you to document the meeting notes. Got it. Is there anything blocking anyone from starting? Nothing blocking me. We're good to go. Great, thanks all. Let's keep each other posted on progress. See you! Sounds good!"
+}

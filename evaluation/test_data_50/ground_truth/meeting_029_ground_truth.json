@@ -1,0 +1,60 @@
+{
+  "meeting_file": "meeting_029.json",
+  "meeting_type": "Bug Triage",
+  "tasks": [
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Peter"
+      ],
+      "deadline": "by EOD",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Angela",
+        "Eric"
+      ],
+      "deadline": "no later than Friday",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [],
+      "deadline": "on the 15th",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Angela"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Peter"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

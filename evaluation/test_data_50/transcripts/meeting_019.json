@@ -1,0 +1,121 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_019.mp3",
+    "duration": 121.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 27.945
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Today we're covering the API Design.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Let's talk about technical for a moment.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Kevin and William, could you both work together to review the security vulnerabilities?",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_William"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "William, I'd like you to review the budget proposal.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Please have this ready by next Thursday.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_William"
+    },
+    {
+      "text": "Let's talk about technical for a moment.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "We need to create the architecture diagram.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "On the technical side,",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Kevin, I'd like you to write unit tests for the new feature.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Please have this ready by in two weeks.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "We need to review the budget proposal by by EOD.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Excellent. Thanks everyone, let's stay aligned on this.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Will do!",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Daniel"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hey! Hello! Today we're covering the API Design. Let's talk about technical for a moment. Kevin and William, could you both work together to review the security vulnerabilities? Yes, we can handle that. Sounds good to me. On the business side, William, I'd like you to review the budget proposal. Please have this ready by next Thursday. Understood. Let's talk about technical for a moment. We need to create the architecture diagram. On the technical side, Kevin, I'd like you to write unit tests for the new feature. Please have this ready by in two weeks. Got it. Moving on to business. We need to review the budget proposal by by EOD. Agreed, that's important. Is there anything blocking anyone from starting? Nothing blocking me. We're good to go. Excellent. Thanks everyone, let's stay aligned on this. Will do! See you!"
+}

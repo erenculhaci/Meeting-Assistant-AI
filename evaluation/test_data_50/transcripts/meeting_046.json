@@ -1,0 +1,145 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_046.mp3",
+    "duration": 148.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 34.155
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_James"
+    },
+    {
+      "text": "Alright, today's focus is our User Research.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Let's talk about product for a moment.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Rebecca, I'd like you to prioritize the product backlog.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Please have this ready by as soon as possible.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Karen and Rebecca, could you both work together to prepare the quarterly report?",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Target completion is in two weeks.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Amanda, I'd like you to update the project timeline.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Please have this ready by no later than Friday.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "James, I'd like you to document the meeting notes.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Sure, happy to.",
+      "speaker": "Speaker_James"
+    },
+    {
+      "text": "Next item is product.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Jeff and James, could you both work together to write user stories for the next sprint?",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Jeff"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_James"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Jeff, I'd like you to prepare the quarterly report.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Jeff"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_James"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Will do!",
+      "speaker": "Speaker_James"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hello! Hello! Alright, today's focus is our User Research. Let's talk about product for a moment. Rebecca, I'd like you to prioritize the product backlog. Please have this ready by as soon as possible. Got it. On the business side, Karen and Rebecca, could you both work together to prepare the quarterly report? Target completion is in two weeks. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. Amanda, I'd like you to update the project timeline. Please have this ready by no later than Friday. Got it. Moving on to business. James, I'd like you to document the meeting notes. Sure, happy to. Next item is product. Jeff and James, could you both work together to write user stories for the next sprint? Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. Jeff, I'd like you to prepare the quarterly report. Got it. Is there anything blocking anyone from starting? We're good to go. Nothing blocking me. Great, thanks all. Let's keep each other posted on progress. Thanks, talk soon! Will do!"
+}

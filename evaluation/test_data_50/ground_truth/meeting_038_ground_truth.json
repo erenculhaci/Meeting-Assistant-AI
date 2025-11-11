@@ -1,0 +1,93 @@
+{
+  "meeting_file": "meeting_038.json",
+  "meeting_type": "Design Review",
+  "tasks": [
+    {
+      "description": "write user stories for the next sprint",
+      "assignees": [
+        "Amanda"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Kevin"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "create the product roadmap",
+      "assignees": [
+        "Amanda",
+        "Kevin"
+      ],
+      "deadline": "urgent",
+      "pattern_type": "collaborative",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [],
+      "deadline": "by end of day",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "create wireframes for the dashboard",
+      "assignees": [
+        "Rachel",
+        "Amanda"
+      ],
+      "deadline": "by the end of this week",
+      "pattern_type": "collaborative",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Kevin",
+        "Amanda"
+      ],
+      "deadline": "early next week",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "create the product roadmap",
+      "assignees": [
+        "Amanda"
+      ],
+      "deadline": "middle of next week",
+      "pattern_type": "explicit",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

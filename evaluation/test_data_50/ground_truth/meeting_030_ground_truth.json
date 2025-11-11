@@ -1,0 +1,56 @@
+{
+  "meeting_file": "meeting_030.json",
+  "meeting_type": "Documentation Review",
+  "tasks": [
+    {
+      "description": "review competitor features",
+      "assignees": [
+        "Chris",
+        "Daniel"
+      ],
+      "deadline": "March 20th",
+      "pattern_type": "collaborative",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "define success metrics",
+      "assignees": [],
+      "deadline": "next week",
+      "pattern_type": "implicit",
+      "category": "product",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule user interviews",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "product",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Daniel"
+      ],
+      "deadline": "by end of day",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "create the product roadmap",
+      "assignees": [],
+      "deadline": "tomorrow",
+      "pattern_type": "implicit",
+      "category": "product",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    }
+  ]
+}

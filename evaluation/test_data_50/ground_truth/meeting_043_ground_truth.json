@@ -1,0 +1,59 @@
+{
+  "meeting_file": "meeting_043.json",
+  "meeting_type": "Performance Review",
+  "tasks": [
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Rachel",
+        "Chris"
+      ],
+      "deadline": "on the 20th",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prioritize the product backlog",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "product",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [],
+      "deadline": "tomorrow",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Rebecca"
+      ],
+      "deadline": "by Friday",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Rachel",
+        "Rebecca"
+      ],
+      "deadline": "urgent",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

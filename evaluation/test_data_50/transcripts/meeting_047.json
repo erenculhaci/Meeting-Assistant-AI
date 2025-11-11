@@ -1,0 +1,145 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_047.mp3",
+    "duration": 148.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 34.155
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Hi there!",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Let's dive into today's Crisis Management.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "We need someone to prepare the presentation slides.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "We need to send out the meeting invites by before next sprint.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Tim, I'd like you to prepare the presentation slides.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Please have this ready by next Tuesday.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Tim, I'd like you to document the meeting notes.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Please have this ready by this week.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "No problem.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "We need someone to review the budget proposal.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "I'll handle that on the 15th.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "We need someone to prepare the quarterly report.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "I'll handle that next Wednesday.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Tim"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Hi there! Hello! Let's dive into today's Crisis Management. Moving on to business. We need someone to prepare the presentation slides. I'll handle that. Great, thanks for taking that on. Next item is business. We need to send out the meeting invites by before next sprint. Agreed, that's important. Moving on to business. Tim, I'd like you to prepare the presentation slides. Please have this ready by next Tuesday. Will do. Moving on to business. Tim, I'd like you to document the meeting notes. Please have this ready by this week. No problem. Let's talk about business for a moment. We need someone to review the budget proposal. I'll handle that on the 15th. Great, thanks for taking that on. Let's talk about business for a moment. We need someone to prepare the quarterly report. I'll handle that next Wednesday. Great, thanks for taking that on. Is there anything blocking anyone from starting? Not from my side. We're good to go. Sounds good. Thanks team, looking forward to seeing the results. Thanks! See you!"
+}

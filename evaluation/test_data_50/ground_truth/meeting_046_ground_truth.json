@@ -1,0 +1,74 @@
+{
+  "meeting_file": "meeting_046.json",
+  "meeting_type": "User Research",
+  "tasks": [
+    {
+      "description": "prioritize the product backlog",
+      "assignees": [
+        "Rebecca"
+      ],
+      "deadline": "as soon as possible",
+      "pattern_type": "explicit",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Karen",
+        "Rebecca"
+      ],
+      "deadline": "in two weeks",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Amanda"
+      ],
+      "deadline": "no later than Friday",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "James"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "write user stories for the next sprint",
+      "assignees": [
+        "Jeff",
+        "James"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Jeff"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

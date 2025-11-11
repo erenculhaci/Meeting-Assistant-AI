@@ -1,0 +1,60 @@
+{
+  "meeting_file": "meeting_044.json",
+  "meeting_type": "Launch Planning",
+  "tasks": [
+    {
+      "description": "coordinate with other teams",
+      "assignees": [],
+      "deadline": "early next week",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Chris"
+      ],
+      "deadline": "sometime this week",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule social media posts",
+      "assignees": [
+        "Nicole",
+        "Chris"
+      ],
+      "deadline": "by end of next week",
+      "pattern_type": "collaborative",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Chris"
+      ],
+      "deadline": "on the 15th",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "Nicole"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

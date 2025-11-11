@@ -1,0 +1,78 @@
+{
+  "meeting_file": "meeting_027.json",
+  "meeting_type": "Beta Launch",
+  "tasks": [
+    {
+      "description": "prepare marketing materials",
+      "assignees": [
+        "Melissa"
+      ],
+      "deadline": "by end of next week",
+      "pattern_type": "explicit",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the press release",
+      "assignees": [
+        "Melissa"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "coordinate with the PR team",
+      "assignees": [
+        "Melissa",
+        "Laura"
+      ],
+      "deadline": "sometime this week",
+      "pattern_type": "collaborative",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "update the website copy",
+      "assignees": [],
+      "deadline": "by EOD",
+      "pattern_type": "implicit",
+      "category": "marketing",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the press release",
+      "assignees": [
+        "Laura"
+      ],
+      "deadline": "May 5th",
+      "pattern_type": "explicit",
+      "category": "marketing",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule social media posts",
+      "assignees": [],
+      "deadline": "sometime this week",
+      "pattern_type": "implicit",
+      "category": "marketing",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the press release",
+      "assignees": [],
+      "deadline": "on the 20th",
+      "pattern_type": "implicit",
+      "category": "marketing",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    }
+  ]
+}

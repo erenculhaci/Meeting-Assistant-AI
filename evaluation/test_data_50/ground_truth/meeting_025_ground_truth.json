@@ -1,0 +1,96 @@
+{
+  "meeting_file": "meeting_025.json",
+  "meeting_type": "Infrastructure Planning",
+  "tasks": [
+    {
+      "description": "send out the meeting invites",
+      "assignees": [],
+      "deadline": "May 5th",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Sandra"
+      ],
+      "deadline": "early next week",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "Laura",
+        "Steven"
+      ],
+      "deadline": "by Friday",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Laura",
+        "Sandra"
+      ],
+      "deadline": "tomorrow",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Laura"
+      ],
+      "deadline": "by noon tomorrow",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Matthew",
+        "Laura"
+      ],
+      "deadline": "20th of this month",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Sandra",
+        "Steven"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Sandra"
+      ],
+      "deadline": "in two weeks",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

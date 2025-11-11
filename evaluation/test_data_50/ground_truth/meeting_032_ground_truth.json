@@ -1,0 +1,44 @@
+{
+  "meeting_file": "meeting_032.json",
+  "meeting_type": "Sprint Planning",
+  "tasks": [
+    {
+      "description": "update the project timeline",
+      "assignees": [],
+      "deadline": "before the meeting",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "refactor the legacy code",
+      "assignees": [
+        "Kimberly"
+      ],
+      "deadline": "immediately",
+      "pattern_type": "explicit",
+      "category": "technical",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    }
+  ]
+}

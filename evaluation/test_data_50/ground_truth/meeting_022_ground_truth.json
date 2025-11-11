@@ -1,0 +1,75 @@
+{
+  "meeting_file": "meeting_022.json",
+  "meeting_type": "Customer Feedback",
+  "tasks": [
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Peter"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Steven"
+      ],
+      "deadline": "February 1st",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Peter",
+        "Tim"
+      ],
+      "deadline": "15th of next month",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Peter",
+        "Eric"
+      ],
+      "deadline": "next Thursday",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Peter"
+      ],
+      "deadline": "immediately",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Sandra",
+        "Eric"
+      ],
+      "deadline": "middle of next week",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

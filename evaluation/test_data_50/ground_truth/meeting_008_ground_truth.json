@@ -1,0 +1,49 @@
+{
+  "meeting_file": "meeting_008.json",
+  "meeting_type": "Retrospective",
+  "tasks": [
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Jessica"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Lisa",
+        "Robert"
+      ],
+      "deadline": "January 15th",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [],
+      "deadline": "on the 20th",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Nancy"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

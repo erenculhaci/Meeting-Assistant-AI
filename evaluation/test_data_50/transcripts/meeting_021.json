@@ -1,0 +1,157 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_021.mp3",
+    "duration": 162.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 37.260000000000005
+  },
+  "transcript": [
+    {
+      "text": "Good morning all, thanks for being here.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Today we're covering the Compliance Review.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Moving on to product.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need someone to create the product roadmap.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "I'll handle that next Friday.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need someone to review the budget proposal.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need someone to send out the meeting invites.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "I'll handle that in the next few days.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "On the product side,",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need someone to prioritize the product backlog.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "I'll handle that in three weeks.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need someone to schedule a call with the client.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "I'll handle that March 20th.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Let's talk about product for a moment.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need to prioritize the product backlog by January 15th.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "We need to negotiate the contract terms by early next week.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Karen"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Sounds good!",
+      "speaker": "Speaker_David"
+    }
+  ],
+  "full_text": "Good morning all, thanks for being here. Hey! Good morning! Today we're covering the Compliance Review. Moving on to product. We need someone to create the product roadmap. I'll handle that next Friday. Great, thanks for taking that on. Let's talk about business for a moment. We need someone to review the budget proposal. I'll handle that. Great, thanks for taking that on. Next item is business. We need someone to send out the meeting invites. I'll handle that in the next few days. Great, thanks for taking that on. On the product side, We need someone to prioritize the product backlog. I'll handle that in three weeks. Great, thanks for taking that on. Moving on to business. We need someone to schedule a call with the client. I'll handle that March 20th. Great, thanks for taking that on. Let's talk about product for a moment. We need to prioritize the product backlog by January 15th. Agreed, that's important. Next item is business. We need to negotiate the contract terms by early next week. Agreed, that's important. Is there anything blocking anyone from starting? All good here. Nothing blocking me. Sounds good. Thanks team, looking forward to seeing the results. Bye all! Sounds good!"
+}

@@ -1,0 +1,113 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_030.mp3",
+    "duration": 112.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 25.875
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "So, this is our Documentation Review session.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "On the product side,",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Chris and Daniel, could you both work together to review competitor features?",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Target completion is March 20th.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Next item is product.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "We need to define success metrics by next week.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Let's talk about product for a moment.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "We need to schedule user interviews.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Daniel, I'd like you to coordinate with other teams.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Please have this ready by by end of day.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Moving on to product.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "We need to create the product roadmap by tomorrow.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Chris"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Hey! Good morning! So, this is our Documentation Review session. On the product side, Chris and Daniel, could you both work together to review competitor features? Target completion is March 20th. Yes, we can handle that. Sounds good to me. Next item is product. We need to define success metrics by next week. Let's talk about product for a moment. We need to schedule user interviews. Moving on to business. Daniel, I'd like you to coordinate with other teams. Please have this ready by by end of day. Understood. Moving on to product. We need to create the product roadmap by tomorrow. Is there anything blocking anyone from starting? Not from my side. Not from my side. Great, thanks all. Let's keep each other posted on progress. Thanks, talk soon! Bye all!"
+}

@@ -1,0 +1,93 @@
+{
+  "meeting_file": "meeting_024.json",
+  "meeting_type": "Vendor Selection",
+  "tasks": [
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Nicole"
+      ],
+      "deadline": "in three weeks",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Scott"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Lisa"
+      ],
+      "deadline": "late next week",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Mark"
+      ],
+      "deadline": "before the meeting",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Patricia",
+        "Scott"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Scott"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [],
+      "deadline": "on the 20th",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Justin"
+      ],
+      "deadline": "by end of next week",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

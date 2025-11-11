@@ -1,0 +1,40 @@
+{
+  "meeting_file": "meeting_000.json",
+  "meeting_type": "Sprint Planning",
+  "tasks": [
+    {
+      "description": "profile the application performance",
+      "assignees": [
+        "Emily",
+        "Nancy"
+      ],
+      "deadline": "next Thursday",
+      "pattern_type": "collaborative",
+      "category": "technical",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "investigate the performance issues",
+      "assignees": [
+        "Emily"
+      ],
+      "deadline": "as soon as possible",
+      "pattern_type": "commitment",
+      "category": "technical",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Barbara"
+      ],
+      "deadline": "in the next few days",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_033.mp3",
+    "duration": 166.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 38.295
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Let's dive into today's Daily Standup.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "David and Stephanie, could you both work together to prepare the presentation slides?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "David and Stephanie, could you both work together to follow up with stakeholders?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Target completion is by month end.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "We need to send out the meeting invites by middle of next week.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Stephanie and David, could you both work together to negotiate the contract terms?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Target completion is by end of next week.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Stephanie, I'd like you to review the budget proposal.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "We need to update the project timeline.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Stephanie and David, could you both work together to negotiate the contract terms?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Stephanie"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_David"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Stephanie"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hey! Morning! Let's dive into today's Daily Standup. Let's talk about business for a moment. David and Stephanie, could you both work together to prepare the presentation slides? Yes, we can handle that. Sounds good to me. Next item is business. David and Stephanie, could you both work together to follow up with stakeholders? Target completion is by month end. Yes, we can handle that. Sounds good to me. On the business side, We need to send out the meeting invites by middle of next week. Agreed, that's important. On the business side, Stephanie and David, could you both work together to negotiate the contract terms? Target completion is by end of next week. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. Stephanie, I'd like you to review the budget proposal. Got it. Next item is business. We need to update the project timeline. Agreed, that's important. Moving on to business. Stephanie and David, could you both work together to negotiate the contract terms? Yes, we can handle that. Sounds good to me. Is there anything blocking anyone from starting? No blockers. Not from my side. Sounds good. Thanks team, looking forward to seeing the results. Bye all! Thanks!"
+}

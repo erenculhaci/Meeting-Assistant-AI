@@ -1,0 +1,125 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_043.mp3",
+    "duration": 126.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 28.98
+  },
+  "transcript": [
+    {
+      "text": "Hey everyone, thanks for joining.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Hi there!",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Let's dive into today's Performance Review.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Rachel and Chris, could you both work together to follow up with stakeholders?",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Target completion is on the 20th.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Let's talk about product for a moment.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "We need to prioritize the product backlog.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "We need to review the budget proposal by tomorrow.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "We need someone to follow up with stakeholders.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "I'll handle that by Friday.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Rachel and Rebecca, could you both work together to schedule a call with the client?",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Target completion is urgent.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Sarah"
+    },
+    {
+      "text": "Sounds good!",
+      "speaker": "Speaker_Chris"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Rebecca"
+    }
+  ],
+  "full_text": "Hey everyone, thanks for joining. Hi there! Good morning! Let's dive into today's Performance Review. On the business side, Rachel and Chris, could you both work together to follow up with stakeholders? Target completion is on the 20th. Yes, we can handle that. Sounds good to me. Let's talk about product for a moment. We need to prioritize the product backlog. Let's talk about business for a moment. We need to review the budget proposal by tomorrow. Next item is business. We need someone to follow up with stakeholders. I'll handle that by Friday. Great, thanks for taking that on. Next item is business. Rachel and Rebecca, could you both work together to schedule a call with the client? Target completion is urgent. Yes, we can handle that. Sounds good to me. Is there anything blocking anyone from starting? Nothing blocking me. Nothing blocking me. Sounds good. Thanks team, looking forward to seeing the results. Sounds good! Thanks!"
+}

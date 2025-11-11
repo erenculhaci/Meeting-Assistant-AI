@@ -1,0 +1,161 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_016.mp3",
+    "duration": 166.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 38.295
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Let's dive into today's Quarterly Planning.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "We need to prepare the presentation slides by late next week.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Sandra and Andrew, could you both work together to review the budget proposal?",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Andrew"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "We need to schedule a call with the client by by the sprint review.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Brian and Andrew, could you both work together to schedule a call with the client?",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Target completion is next Monday.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Andrew"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Andrew, I'd like you to follow up with stakeholders.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "No problem.",
+      "speaker": "Speaker_Andrew"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "We need someone to negotiate the contract terms.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Sandra, I'd like you to send out the meeting invites.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Please have this ready by immediately.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "We need to follow up with stakeholders by January 15th.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Brian"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hey! Hey! Let's dive into today's Quarterly Planning. Moving on to business. We need to prepare the presentation slides by late next week. Next item is business. Sandra and Andrew, could you both work together to review the budget proposal? Yes, we can handle that. Sounds good to me. Next item is business. We need to schedule a call with the client by by the sprint review. Moving on to business. Brian and Andrew, could you both work together to schedule a call with the client? Target completion is next Monday. Yes, we can handle that. Sounds good to me. Next item is business. Andrew, I'd like you to follow up with stakeholders. No problem. On the business side, We need someone to negotiate the contract terms. I'll handle that. Great, thanks for taking that on. Moving on to business. Sandra, I'd like you to send out the meeting invites. Please have this ready by immediately. Understood. Next item is business. We need to follow up with stakeholders by January 15th. Agreed, that's important. Is there anything blocking anyone from starting? Not from my side. We're good to go. Sounds good. Thanks team, looking forward to seeing the results. Bye all! See you!"
+}

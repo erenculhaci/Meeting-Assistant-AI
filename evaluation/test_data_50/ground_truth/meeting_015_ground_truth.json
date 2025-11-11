@@ -1,0 +1,39 @@
+{
+  "meeting_file": "meeting_015.json",
+  "meeting_type": "Crisis Management",
+  "tasks": [
+    {
+      "description": "schedule a call with the client",
+      "assignees": [],
+      "deadline": "sometime this week",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Sarah",
+        "Linda"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Linda",
+        "Sarah"
+      ],
+      "deadline": "sometime this week",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

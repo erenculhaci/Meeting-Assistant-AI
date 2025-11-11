@@ -1,0 +1,105 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_018.mp3",
+    "duration": 103.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 23.805
+  },
+  "transcript": [
+    {
+      "text": "Hey everyone, thanks for joining.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_John"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Today we're covering the Technical Debt.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Moving on to technical.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Amy and John, could you both work together to write unit tests for the new feature?",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Target completion is this week.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_John"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "We need someone to follow up with stakeholders.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "On the technical side,",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "We need someone to profile the application performance.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "I'll handle that after lunch.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_John"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Excellent. Thanks everyone, let's stay aligned on this.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_John"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Amy"
+    }
+  ],
+  "full_text": "Hey everyone, thanks for joining. Hey! Good morning! Today we're covering the Technical Debt. Moving on to technical. Amy and John, could you both work together to write unit tests for the new feature? Target completion is this week. Yes, we can handle that. Sounds good to me. On the business side, We need someone to follow up with stakeholders. I'll handle that. Great, thanks for taking that on. On the technical side, We need someone to profile the application performance. I'll handle that after lunch. Great, thanks for taking that on. Is there anything blocking anyone from starting? Not from my side. Not from my side. Excellent. Thanks everyone, let's stay aligned on this. See you! Bye all!"
+}

@@ -1,0 +1,81 @@
+{
+  "meeting_file": "meeting_031.json",
+  "meeting_type": "Release Planning",
+  "tasks": [
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Angela",
+        "Rachel"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Rachel",
+        "Angela"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "Angela"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Angela"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Angela"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    }
+  ]
+}

@@ -1,0 +1,620 @@
+"""
+Intelligent Evaluation Module for Action Item Extraction.
+
+This evaluator doesn't require exact matches but validates:
+1. Task extraction quality (did it find meaningful tasks?)
+2. Assignee accuracy (are assignees correct when specified?)
+3. Deadline accuracy (are dates reasonable and correct?)
+4. Overall extraction effectiveness
+
+Uses semantic similarity and flexible matching for realistic evaluation.
+"""
+
+import json
+import logging
+import sys
+from pathlib import Path
+from typing import Dict, List, Any, Tuple, Optional
+from datetime import datetime, timedelta
+from difflib import SequenceMatcher
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from action_item_extraction.extractor import extract_action_items
+
+logger = logging.getLogger(__name__)
+
+
+class TaskMatcher:
+    """Matches extracted tasks with ground truth using intelligent criteria."""
+    
+    @staticmethod
+    def calculate_text_similarity(text1: str, text2: str) -> float:
+        """Calculate similarity between two text strings."""
+        text1_lower = text1.lower().strip()
+        text2_lower = text2.lower().strip()
+        
+        # Check for substring matches
+        if text1_lower in text2_lower or text2_lower in text1_lower:
+            return 0.9
+        
+        # Use sequence matcher
+        return SequenceMatcher(None, text1_lower, text2_lower).ratio()
+    
+    @staticmethod
+    def extract_key_terms(text: str) -> set:
+        """Extract key terms from text."""
+        # Remove common words
+        stopwords = {
+            'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+            'of', 'with', 'by', 'from', 'about', 'as', 'into', 'through', 'during',
+            'before', 'after', 'above', 'below', 'up', 'down', 'out', 'off', 'over',
+            'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when',
+            'where', 'why', 'how', 'all', 'both', 'each', 'few', 'more', 'most',
+            'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same',
+            'so', 'than', 'too', 'very', 'can', 'will', 'just', 'should', 'now'
+        }
+        
+        words = text.lower().split()
+        key_terms = {w for w in words if len(w) > 3 and w not in stopwords}
+        return key_terms
+    
+    @staticmethod
+    def calculate_semantic_similarity(text1: str, text2: str) -> float:
+        """Calculate semantic similarity based on key terms overlap."""
+        terms1 = TaskMatcher.extract_key_terms(text1)
+        terms2 = TaskMatcher.extract_key_terms(text2)
+        
+        if not terms1 or not terms2:
+            return 0.0
+        
+        # Jaccard similarity
+        intersection = terms1 & terms2
+        union = terms1 | terms2
+        
+        return len(intersection) / len(union) if union else 0.0
+    
+    @staticmethod
+    def match_task(extracted_task: Dict, ground_truth_task: Dict) -> Tuple[bool, float, Dict]:
+        """
+        Match an extracted task with a ground truth task.
+        
+        Returns:
+            - is_match: Whether this is a valid match
+            - score: Matching score (0-1)
+            - details: Detailed matching information
+        """
+        # Compare task descriptions
+        text_sim = TaskMatcher.calculate_text_similarity(
+            extracted_task.get("task", ""),
+            ground_truth_task.get("description", "")
+        )
+        
+        semantic_sim = TaskMatcher.calculate_semantic_similarity(
+            extracted_task.get("task", ""),
+            ground_truth_task.get("description", "")
+        )
+        
+        # Combined similarity
+        description_score = max(text_sim, semantic_sim)
+        
+        # We consider it a match if description similarity > 0.5
+        is_match = description_score > 0.5
+        
+        details = {
+            "text_similarity": text_sim,
+            "semantic_similarity": semantic_sim,
+            "description_score": description_score,
+        }
+        
+        return is_match, description_score, details
+
+
+class ActionItemEvaluator:
+    """Evaluates action item extraction performance intelligently."""
+    
+    def __init__(self, reference_date: Optional[datetime] = None):
+        """Initialize evaluator."""
+        self.reference_date = reference_date or datetime.now()
+        self.matcher = TaskMatcher()
+    
+    def evaluate_single_meeting(
+        self,
+        transcript_file: Path,
+        ground_truth_file: Path,
+        use_llm: bool = False
+    ) -> Dict[str, Any]:
+        """
+        Evaluate extraction on a single meeting.
+        
+        Returns detailed metrics and analysis.
+        """
+        # Load ground truth
+        with open(ground_truth_file, 'r', encoding='utf-8') as f:
+            ground_truth_data = json.load(f)
+        ground_truth_tasks = ground_truth_data.get("tasks", [])
+        
+        # Extract tasks
+        try:
+            extracted_tasks = extract_action_items(
+                str(transcript_file),
+                use_llm_fallback=use_llm
+            )
+            # extract_action_items returns a list directly
+            if not isinstance(extracted_tasks, list):
+                extracted_tasks = []
+        except Exception as e:
+            logger.error(f"Error extracting tasks from {transcript_file}: {e}")
+            return {
+                "status": "error",
+                "error": str(e),
+                "ground_truth_count": len(ground_truth_tasks),
+                "extracted_count": 0
+            }
+        
+        # Match extracted tasks with ground truth
+        matches, unmatched_gt, unmatched_extracted = self._match_tasks(
+            extracted_tasks, ground_truth_tasks
+        )
+        
+        # Calculate metrics
+        metrics = self._calculate_metrics(
+            matches, ground_truth_tasks, extracted_tasks
+        )
+        
+        # Evaluate assignee accuracy
+        assignee_metrics = self._evaluate_assignees(matches, ground_truth_tasks)
+        
+        # Evaluate deadline accuracy
+        deadline_metrics = self._evaluate_deadlines(matches, ground_truth_tasks)
+        
+        # Overall quality assessment
+        quality = self._assess_quality(
+            metrics, assignee_metrics, deadline_metrics,
+            len(ground_truth_tasks), len(extracted_tasks)
+        )
+        
+        return {
+            "status": "success",
+            "transcript_file": transcript_file.name,
+            "meeting_type": ground_truth_data.get("meeting_type", "unknown"),
+            "metrics": metrics,
+            "assignee_accuracy": assignee_metrics,
+            "deadline_accuracy": deadline_metrics,
+            "quality_assessment": quality,
+            "ground_truth_count": len(ground_truth_tasks),
+            "extracted_count": len(extracted_tasks),
+            "matched_count": len(matches),
+            "false_negatives": len(unmatched_gt),
+            "false_positives": len(unmatched_extracted),
+            "detailed_matches": matches[:5]  # First 5 for inspection
+        }
+    
+    def _match_tasks(
+        self,
+        extracted_tasks: List[Dict],
+        ground_truth_tasks: List[Dict]
+    ) -> Tuple[List[Dict], List[Dict], List[Dict]]:
+        """
+        Match extracted tasks with ground truth.
+        
+        Returns:
+            - matches: List of matched pairs with scores
+            - unmatched_gt: Ground truth tasks not matched
+            - unmatched_extracted: Extracted tasks not matched
+        """
+        matches = []
+        matched_gt_indices = set()
+        matched_extracted_indices = set()
+        
+        # Try to match each extracted task
+        for ext_idx, ext_task in enumerate(extracted_tasks):
+            best_match = None
+            best_score = 0.0
+            best_gt_idx = None
+            
+            for gt_idx, gt_task in enumerate(ground_truth_tasks):
+                if gt_idx in matched_gt_indices:
+                    continue
+                
+                is_match, score, details = self.matcher.match_task(ext_task, gt_task)
+                
+                if is_match and score > best_score:
+                    best_score = score
+                    best_match = {
+                        "extracted": ext_task,
+                        "ground_truth": gt_task,
+                        "score": score,
+                        "details": details
+                    }
+                    best_gt_idx = gt_idx
+            
+            if best_match:
+                matches.append(best_match)
+                matched_gt_indices.add(best_gt_idx)
+                matched_extracted_indices.add(ext_idx)
+        
+        # Find unmatched
+        unmatched_gt = [
+            gt_task for idx, gt_task in enumerate(ground_truth_tasks)
+            if idx not in matched_gt_indices
+        ]
+        
+        unmatched_extracted = [
+            ext_task for idx, ext_task in enumerate(extracted_tasks)
+            if idx not in matched_extracted_indices
+        ]
+        
+        return matches, unmatched_gt, unmatched_extracted
+    
+    def _calculate_metrics(
+        self,
+        matches: List[Dict],
+        ground_truth_tasks: List[Dict],
+        extracted_tasks: List[Dict]
+    ) -> Dict[str, float]:
+        """Calculate precision, recall, F1 score."""
+        true_positives = len(matches)
+        false_negatives = len(ground_truth_tasks) - true_positives
+        false_positives = len(extracted_tasks) - true_positives
+        
+        precision = true_positives / len(extracted_tasks) if extracted_tasks else 0.0
+        recall = true_positives / len(ground_truth_tasks) if ground_truth_tasks else 0.0
+        f1 = (2 * precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
+        
+        # Average matching score
+        avg_match_score = sum(m["score"] for m in matches) / len(matches) if matches else 0.0
+        
+        return {
+            "precision": precision,
+            "recall": recall,
+            "f1_score": f1,
+            "average_match_score": avg_match_score,
+            "true_positives": true_positives,
+            "false_positives": false_positives,
+            "false_negatives": false_negatives
+        }
+    
+    def _evaluate_assignees(
+        self,
+        matches: List[Dict],
+        ground_truth_tasks: List[Dict]
+    ) -> Dict[str, Any]:
+        """Evaluate assignee extraction accuracy."""
+        total_with_assignees = 0
+        correct_assignees = 0
+        partial_correct = 0
+        
+        for match in matches:
+            gt_assignees = set(match["ground_truth"].get("assignees", []))
+            # Check both 'assignee' and 'assigned_to' fields
+            ext_assignee = match["extracted"].get("assignee", match["extracted"].get("assigned_to", ""))
+            ext_assignees_raw = str(ext_assignee).lower()
+            
+            if not gt_assignees:
+                continue  # Skip tasks without ground truth assignees
+            
+            total_with_assignees += 1
+            
+            # Check if any ground truth assignee is mentioned in extracted
+            found_assignees = set()
+            for assignee in gt_assignees:
+                if assignee.lower() in ext_assignees_raw:
+                    found_assignees.add(assignee)
+            
+            if found_assignees == gt_assignees:
+                correct_assignees += 1
+            elif found_assignees:
+                partial_correct += 1
+        
+        accuracy = correct_assignees / total_with_assignees if total_with_assignees > 0 else 0.0
+        partial_accuracy = (correct_assignees + partial_correct) / total_with_assignees if total_with_assignees > 0 else 0.0
+        
+        return {
+            "exact_match_accuracy": accuracy,
+            "partial_match_accuracy": partial_accuracy,
+            "tasks_with_assignees": total_with_assignees,
+            "exact_matches": correct_assignees,
+            "partial_matches": partial_correct
+        }
+    
+    def _evaluate_deadlines(
+        self,
+        matches: List[Dict],
+        ground_truth_tasks: List[Dict]
+    ) -> Dict[str, Any]:
+        """Evaluate deadline extraction accuracy."""
+        total_with_deadlines = 0
+        deadlines_extracted = 0
+        reasonable_deadlines = 0
+        
+        for match in matches:
+            gt_deadline = match["ground_truth"].get("deadline")
+            # Check both 'deadline' and 'due_date' fields
+            ext_deadline = match["extracted"].get("deadline") or match["extracted"].get("due_date")
+            
+            if not gt_deadline:
+                continue  # Skip tasks without ground truth deadlines
+            
+            total_with_deadlines += 1
+            
+            if ext_deadline:
+                deadlines_extracted += 1
+                
+                # Check if deadline is reasonable (not checking exact match)
+                # We consider it reasonable if a deadline was extracted
+                reasonable_deadlines += 1
+        
+        extraction_rate = deadlines_extracted / total_with_deadlines if total_with_deadlines > 0 else 0.0
+        reasonableness_rate = reasonable_deadlines / total_with_deadlines if total_with_deadlines > 0 else 0.0
+        
+        return {
+            "deadline_extraction_rate": extraction_rate,
+            "reasonable_deadline_rate": reasonableness_rate,
+            "tasks_with_deadlines": total_with_deadlines,
+            "deadlines_extracted": deadlines_extracted,
+            "reasonable_deadlines": reasonable_deadlines
+        }
+    
+    def _assess_quality(
+        self,
+        metrics: Dict,
+        assignee_metrics: Dict,
+        deadline_metrics: Dict,
+        gt_count: int,
+        ext_count: int
+    ) -> Dict[str, Any]:
+        """Provide overall quality assessment."""
+        f1 = metrics["f1_score"]
+        
+        # Quality levels
+        if f1 >= 0.8:
+            quality_level = "Excellent"
+            rating = 5
+        elif f1 >= 0.65:
+            quality_level = "Good"
+            rating = 4
+        elif f1 >= 0.5:
+            quality_level = "Fair"
+            rating = 3
+        elif f1 >= 0.35:
+            quality_level = "Poor"
+            rating = 2
+        else:
+            quality_level = "Very Poor"
+            rating = 1
+        
+        # Strengths and weaknesses
+        strengths = []
+        weaknesses = []
+        
+        if metrics["precision"] >= 0.8:
+            strengths.append("High precision - few false positives")
+        elif metrics["precision"] < 0.5:
+            weaknesses.append("Low precision - many false positives")
+        
+        if metrics["recall"] >= 0.8:
+            strengths.append("High recall - finds most tasks")
+        elif metrics["recall"] < 0.5:
+            weaknesses.append("Low recall - misses many tasks")
+        
+        if assignee_metrics["exact_match_accuracy"] >= 0.7:
+            strengths.append("Good assignee extraction")
+        elif assignee_metrics["exact_match_accuracy"] < 0.4:
+            weaknesses.append("Poor assignee extraction")
+        
+        if deadline_metrics["deadline_extraction_rate"] >= 0.7:
+            strengths.append("Good deadline extraction")
+        elif deadline_metrics["deadline_extraction_rate"] < 0.4:
+            weaknesses.append("Poor deadline extraction")
+        
+        return {
+            "overall_quality": quality_level,
+            "rating": rating,
+            "f1_score": f1,
+            "strengths": strengths,
+            "weaknesses": weaknesses,
+            "extraction_balance": "balanced" if abs(gt_count - ext_count) / max(gt_count, 1) < 0.3 else "imbalanced"
+        }
+    
+    def evaluate_batch(
+        self,
+        test_data_dir: Path,
+        use_llm: bool = False,
+        max_meetings: Optional[int] = None
+    ) -> Dict[str, Any]:
+        """
+        Evaluate on multiple meetings.
+        
+        Returns aggregated metrics and per-meeting results.
+        """
+        transcripts_dir = test_data_dir / "transcripts"
+        ground_truth_dir = test_data_dir / "ground_truth"
+        
+        if not transcripts_dir.exists() or not ground_truth_dir.exists():
+            raise ValueError(f"Invalid test data directory: {test_data_dir}")
+        
+        # Get all transcript files
+        transcript_files = sorted(transcripts_dir.glob("meeting_*.json"))
+        if max_meetings:
+            transcript_files = transcript_files[:max_meetings]
+        
+        print(f"\n🔍 Evaluating {len(transcript_files)} meetings...")
+        print(f"   LLM Fallback: {'Enabled' if use_llm else 'Disabled'}\n")
+        
+        results = []
+        for idx, transcript_file in enumerate(transcript_files, 1):
+            # Find corresponding ground truth
+            gt_file = ground_truth_dir / f"{transcript_file.stem}_ground_truth.json"
+            
+            if not gt_file.exists():
+                logger.warning(f"Ground truth not found for {transcript_file.name}")
+                continue
+            
+            print(f"  [{idx}/{len(transcript_files)}] Evaluating {transcript_file.name}...")
+            
+            result = self.evaluate_single_meeting(transcript_file, gt_file, use_llm)
+            results.append(result)
+            
+            # Show quick summary
+            if result["status"] == "success":
+                f1 = result["metrics"]["f1_score"]
+                quality = result["quality_assessment"]["overall_quality"]
+                print(f"      ✓ F1: {f1:.2%} | Quality: {quality}")
+        
+        # Aggregate metrics
+        aggregate = self._aggregate_results(results)
+        
+        return {
+            "summary": aggregate,
+            "individual_results": results,
+            "evaluation_date": datetime.now().isoformat(),
+            "llm_enabled": use_llm,
+            "total_meetings": len(results)
+        }
+    
+    def _aggregate_results(self, results: List[Dict]) -> Dict[str, Any]:
+        """Aggregate metrics across all meetings."""
+        successful_results = [r for r in results if r["status"] == "success"]
+        
+        if not successful_results:
+            return {"status": "no_successful_evaluations"}
+        
+        # Average metrics
+        avg_precision = sum(r["metrics"]["precision"] for r in successful_results) / len(successful_results)
+        avg_recall = sum(r["metrics"]["recall"] for r in successful_results) / len(successful_results)
+        avg_f1 = sum(r["metrics"]["f1_score"] for r in successful_results) / len(successful_results)
+        avg_match_score = sum(r["metrics"]["average_match_score"] for r in successful_results) / len(successful_results)
+        
+        # Assignee accuracy
+        avg_assignee_exact = sum(
+            r["assignee_accuracy"]["exact_match_accuracy"] for r in successful_results
+        ) / len(successful_results)
+        
+        avg_assignee_partial = sum(
+            r["assignee_accuracy"]["partial_match_accuracy"] for r in successful_results
+        ) / len(successful_results)
+        
+        # Deadline accuracy
+        avg_deadline_extraction = sum(
+            r["deadline_accuracy"]["deadline_extraction_rate"] for r in successful_results
+        ) / len(successful_results)
+        
+        # Total counts
+        total_gt = sum(r["ground_truth_count"] for r in successful_results)
+        total_extracted = sum(r["extracted_count"] for r in successful_results)
+        total_matched = sum(r["matched_count"] for r in successful_results)
+        
+        # Quality distribution
+        quality_dist = {}
+        for result in successful_results:
+            quality = result["quality_assessment"]["overall_quality"]
+            quality_dist[quality] = quality_dist.get(quality, 0) + 1
+        
+        return {
+            "average_metrics": {
+                "precision": avg_precision,
+                "recall": avg_recall,
+                "f1_score": avg_f1,
+                "match_score": avg_match_score
+            },
+            "assignee_accuracy": {
+                "exact_match": avg_assignee_exact,
+                "partial_match": avg_assignee_partial
+            },
+            "deadline_accuracy": {
+                "extraction_rate": avg_deadline_extraction
+            },
+            "totals": {
+                "ground_truth_tasks": total_gt,
+                "extracted_tasks": total_extracted,
+                "matched_tasks": total_matched,
+                "meetings_evaluated": len(successful_results)
+            },
+            "quality_distribution": quality_dist
+        }
+    
+    def generate_report(self, evaluation_results: Dict, output_file: Path):
+        """Generate a detailed evaluation report."""
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write("# Action Item Extraction - Evaluation Report\n\n")
+            f.write(f"**Evaluation Date:** {evaluation_results['evaluation_date']}\n")
+            f.write(f"**LLM Enabled:** {evaluation_results['llm_enabled']}\n")
+            f.write(f"**Total Meetings:** {evaluation_results['total_meetings']}\n\n")
+            
+            summary = evaluation_results['summary']
+            
+            f.write("## Overall Performance\n\n")
+            f.write("### Key Metrics\n\n")
+            metrics = summary['average_metrics']
+            f.write(f"- **Precision:** {metrics['precision']:.2%}\n")
+            f.write(f"- **Recall:** {metrics['recall']:.2%}\n")
+            f.write(f"- **F1 Score:** {metrics['f1_score']:.2%}\n")
+            f.write(f"- **Average Match Score:** {metrics['match_score']:.2%}\n\n")
+            
+            f.write("### Assignee Accuracy\n\n")
+            assignee = summary['assignee_accuracy']
+            f.write(f"- **Exact Match:** {assignee['exact_match']:.2%}\n")
+            f.write(f"- **Partial Match:** {assignee['partial_match']:.2%}\n\n")
+            
+            f.write("### Deadline Accuracy\n\n")
+            deadline = summary['deadline_accuracy']
+            f.write(f"- **Extraction Rate:** {deadline['extraction_rate']:.2%}\n\n")
+            
+            f.write("### Task Counts\n\n")
+            totals = summary['totals']
+            f.write(f"- **Ground Truth Tasks:** {totals['ground_truth_tasks']}\n")
+            f.write(f"- **Extracted Tasks:** {totals['extracted_tasks']}\n")
+            f.write(f"- **Successfully Matched:** {totals['matched_tasks']}\n\n")
+            
+            f.write("### Quality Distribution\n\n")
+            for quality, count in sorted(summary['quality_distribution'].items()):
+                f.write(f"- **{quality}:** {count} meetings\n")
+            
+            f.write("\n## Detailed Results\n\n")
+            for result in evaluation_results['individual_results']:
+                if result['status'] != 'success':
+                    continue
+                
+                f.write(f"### {result['transcript_file']} ({result['meeting_type']})\n\n")
+                f.write(f"- **F1 Score:** {result['metrics']['f1_score']:.2%}\n")
+                f.write(f"- **Quality:** {result['quality_assessment']['overall_quality']}\n")
+                f.write(f"- **Tasks:** {result['ground_truth_count']} GT / {result['extracted_count']} Extracted / {result['matched_count']} Matched\n")
+                
+                if result['quality_assessment']['strengths']:
+                    f.write(f"- **Strengths:** {', '.join(result['quality_assessment']['strengths'])}\n")
+                if result['quality_assessment']['weaknesses']:
+                    f.write(f"- **Weaknesses:** {', '.join(result['quality_assessment']['weaknesses'])}\n")
+                
+                f.write("\n")
+        
+        print(f"\n📄 Report saved to: {output_file}")
+
+
+if __name__ == "__main__":
+    import sys
+    
+    # Usage: python action_item_evaluator.py [test_data_dir] [--llm]
+    test_data_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("evaluation/test_data_50")
+    use_llm = "--llm" in sys.argv
+    
+    evaluator = ActionItemEvaluator()
+    results = evaluator.evaluate_batch(test_data_dir, use_llm=use_llm)
+    
+    # Generate report
+    report_file = test_data_dir / f"evaluation_report_{'with_llm' if use_llm else 'no_llm'}.md"
+    evaluator.generate_report(results, report_file)
+    
+    print(f"\n✅ Evaluation complete!")
+    print(f"\n📊 Summary:")
+    summary = results['summary']
+    print(f"   F1 Score: {summary['average_metrics']['f1_score']:.2%}")
+    print(f"   Precision: {summary['average_metrics']['precision']:.2%}")
+    print(f"   Recall: {summary['average_metrics']['recall']:.2%}")
+    print(f"   Assignee Accuracy: {summary['assignee_accuracy']['exact_match']:.2%}")
+    print(f"   Deadline Extraction: {summary['deadline_accuracy']['extraction_rate']:.2%}")
+    print(f"\n📈 Quality Distribution:")
+    for quality, count in sorted(summary['quality_distribution'].items(), key=lambda x: x[1], reverse=True):
+        print(f"   {quality}: {count} meetings")
+    print(f"\n📁 Detailed report: {report_file}")

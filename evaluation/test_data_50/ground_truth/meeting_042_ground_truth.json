@@ -1,0 +1,88 @@
+{
+  "meeting_file": "meeting_042.json",
+  "meeting_type": "Security Audit",
+  "tasks": [
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Peter"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Sarah",
+        "Peter"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [],
+      "deadline": "immediately",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [],
+      "deadline": "urgent",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Kimberly",
+        "Tom"
+      ],
+      "deadline": "April 10th",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Tom"
+      ],
+      "deadline": "first thing Monday morning",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    }
+  ]
+}

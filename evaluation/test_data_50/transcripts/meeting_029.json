@@ -1,0 +1,133 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_029.mp3",
+    "duration": 135.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 31.05
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Let's dive into today's Bug Triage.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "We need someone to update the project timeline.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "I'll handle that by EOD.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Angela and Eric, could you both work together to schedule a call with the client?",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Target completion is no later than Friday.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Eric"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "We need to document the meeting notes by on the 15th.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "We need someone to coordinate with other teams.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "We need someone to prepare the presentation slides.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Perfect. Thanks everyone, let's make this happen.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Angela"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Morning! Hey! Let's dive into today's Bug Triage. On the business side, We need someone to update the project timeline. I'll handle that by EOD. Great, thanks for taking that on. Let's talk about business for a moment. Angela and Eric, could you both work together to schedule a call with the client? Target completion is no later than Friday. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. We need to document the meeting notes by on the 15th. Agreed, that's important. On the business side, We need someone to coordinate with other teams. I'll handle that. Great, thanks for taking that on. Moving on to business. We need someone to prepare the presentation slides. I'll handle that. Great, thanks for taking that on. Is there anything blocking anyone from starting? All good here. We're good to go. Perfect. Thanks everyone, let's make this happen. See you! Thanks!"
+}

@@ -1,0 +1,40 @@
+{
+  "meeting_file": "meeting_048.json",
+  "meeting_type": "Quarterly Planning",
+  "tasks": [
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Kimberly"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "document the meeting notes",
+      "assignees": [
+        "Nicole",
+        "Michelle"
+      ],
+      "deadline": "by end of day",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [
+        "Karen"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

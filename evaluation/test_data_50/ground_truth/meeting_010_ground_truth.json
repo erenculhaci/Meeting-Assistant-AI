@@ -1,0 +1,71 @@
+{
+  "meeting_file": "meeting_010.json",
+  "meeting_type": "Security Audit",
+  "tasks": [
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Robert"
+      ],
+      "deadline": "February 1st",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Amy"
+      ],
+      "deadline": "immediately",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Jessica"
+      ],
+      "deadline": "next Tuesday",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Michael"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Michael",
+        "Jessica"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

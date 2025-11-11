@@ -1,0 +1,141 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_002.mp3",
+    "duration": 144.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 33.120000000000005
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Today we're covering the Product Review.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Linda, I'd like you to prepare the presentation slides.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Please have this ready by tomorrow.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Sure, happy to.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Moving on to product.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "We need someone to update the feature specifications.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "I'll handle that first thing Monday morning.",
+      "speaker": "Speaker_Justin"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Daniel, I'd like you to coordinate with other teams.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Please have this ready by by Friday.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Moving on to product.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "We need to create the product roadmap by early next week.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Kevin, I'd like you to review the budget proposal.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Please have this ready by first thing Monday morning.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "No problem.",
+      "speaker": "Speaker_Kevin"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "We need someone to negotiate the contract terms.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "I'll handle that tomorrow.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Excellent. Thanks everyone, let's stay aligned on this.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Jessica"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Morning! Morning! Today we're covering the Product Review. On the business side, Linda, I'd like you to prepare the presentation slides. Please have this ready by tomorrow. Sure, happy to. Moving on to product. We need someone to update the feature specifications. I'll handle that first thing Monday morning. Great, thanks for taking that on. Next item is business. Daniel, I'd like you to coordinate with other teams. Please have this ready by by Friday. Will do. Moving on to product. We need to create the product roadmap by early next week. Let's talk about business for a moment. Kevin, I'd like you to review the budget proposal. Please have this ready by first thing Monday morning. No problem. Next item is business. We need someone to negotiate the contract terms. I'll handle that tomorrow. Great, thanks for taking that on. Is there anything blocking anyone from starting? All good here. No blockers. Excellent. Thanks everyone, let's stay aligned on this. Thanks! See you!"
+}

@@ -1,0 +1,58 @@
+{
+  "meeting_file": "meeting_023.json",
+  "meeting_type": "Partnership Discussion",
+  "tasks": [
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [
+        "Laura",
+        "Andrew"
+      ],
+      "deadline": "by end of next week",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "negotiate the contract terms",
+      "assignees": [],
+      "deadline": "in three weeks",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "Andrew"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Laura"
+      ],
+      "deadline": "January 15th",
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    }
+  ]
+}
