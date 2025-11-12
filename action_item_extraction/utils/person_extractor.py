@@ -23,12 +23,55 @@ class PersonExtractor:
     def __init__(self):
         """Initialize the person extractor."""
         self.common_names = {
-            'sarah', 'tom', 'maya', 'john', 'mike', 'david', 'james', 'robert',
-            'mary', 'lisa', 'anna', 'emily', 'michael', 'chris', 'alex', 'sam',
-            'jordan', 'taylor', 'morgan', 'casey', 'riley', 'jamie', 'drew',
-            'ben', 'dan', 'joe', 'bob', 'jim', 'tim', 'kim', 'pat', 'max',
-            'kate', 'nick', 'matt', 'mark', 'paul', 'eric', 'ryan', 'adam',
-            'brian', 'kevin', 'jason', 'jeff', 'steve', 'greg', 'scott', 'kyle'
+            # Male names
+            'alex', 'andrew', 'adam', 'aaron', 'anthony', 'austin',
+            'ben', 'bob', 'brian', 'brandon', 'brad', 'blake',
+            'chris', 'christian', 'carlos', 'connor', 'cole', 'caleb',
+            'dan', 'daniel', 'david', 'derek', 'drew', 'dylan',
+            'eric', 'ethan', 'evan', 'elijah',
+            'frank', 'fred',
+            'greg', 'grant', 'garrett', 'george',
+            'henry', 'hunter',
+            'ian', 'isaac',
+            'jack', 'james', 'jason', 'jeff', 'john', 'jordan', 'josh', 'justin', 'jacob',
+            'kevin', 'kyle', 'keith', 'kenneth',
+            'luke', 'logan', 'liam', 'lucas',
+            'mark', 'matt', 'michael', 'mike', 'max', 'mason', 'matthew',
+            'nick', 'noah', 'nathan', 'nathaniel',
+            'owen', 'oliver',
+            'paul', 'peter', 'patrick',
+            'robert', 'ryan', 'richard', 'raymond',
+            'sam', 'scott', 'steve', 'sean', 'seth', 'sebastian',
+            'tim', 'tom', 'tyler', 'travis', 'troy', 'taylor',
+            'victor', 'vincent',
+            'will', 'william', 'wyatt',
+            'zachary', 'zach',
+            
+            # Female names
+            'abby', 'abigail', 'amanda', 'amy', 'anna', 'andrea', 'angela', 'alice', 'ashley', 'alexis',
+            'barbara', 'betty', 'brenda', 'brittany', 'brooke',
+            'carol', 'catherine', 'christine', 'christina', 'chloe', 'claire',
+            'deborah', 'debbie', 'diana', 'donna',
+            'elizabeth', 'emily', 'emma', 'erin', 'evelyn',
+            'grace', 'gabrielle',
+            'hannah', 'helen', 'heather',
+            'isabel', 'isabella',
+            'jennifer', 'jessica', 'julia', 'julie', 'janet', 'jane',
+            'karen', 'kate', 'katie', 'katherine', 'kimberly', 'kim', 'kelly',
+            'laura', 'lauren', 'linda', 'lisa', 'lucy',
+            'mary', 'maria', 'margaret', 'megan', 'melissa', 'michelle', 'maya',
+            'nancy', 'natalie', 'nicole', 'nina',
+            'olivia',
+            'pamela', 'patricia', 'rachel', 'rebecca',
+            'sandra', 'sarah', 'samantha', 'shannon', 'sophia', 'stephanie', 'susan', 'sara',
+            'tiffany', 'teresa',
+            'victoria', 'vanessa',
+            'wendy',
+            'zoe',
+            
+            # Unisex names
+            'alex', 'jordan', 'taylor', 'morgan', 'casey', 'riley', 'jamie', 'drew',
+            'pat', 'charlie', 'skyler', 'avery', 'harper', 'parker', 'quinn', 'rowan'
         }
         
         # Map speaker IDs to actual names if mentioned
@@ -191,7 +234,7 @@ class PersonExtractor:
     
     def extract_assignee_from_text(self, text: str, context_segments: List[Dict] = None) -> List[str]:
         """
-        Extract potential assignees from a single text segment.
+        Extract potential assignees from a single text segment with comprehensive patterns.
         
         Args:
             text: Text to analyze
@@ -202,19 +245,126 @@ class PersonExtractor:
         """
         assignees = []
         
-        # Pattern 1: Explicit assignment "Sarah, you will/should/need to..."
-        pattern1 = r'\b([A-Z][a-z]+),?\s+(?:you\s+)?(?:will|should|need to|have to|can you|could you|please)'
+        # Pattern 1: Direct assignment "Name, you will/should/need to..."
+        pattern1 = r'\b([A-Z][a-z]+),?\s+(?:you\s+)?(?:will|should|need to|have to|must|can you|could you|please|would you)'
         matches = re.finditer(pattern1, text)
         for match in matches:
             name = match.group(1)
             if name.lower() in self.common_names or len(name) >= 3:
                 assignees.append(name)
         
-        # Pattern 2: "I'll/I will..." (speaker is assignee)
-        if re.search(r"\b(?:I'll|I will|I'm going to|I can|I should)\b", text):
+        # Pattern 2: "Name is/will be responsible for..."
+        pattern2 = r'\b([A-Z][a-z]+)\s+(?:is|will be|is going to be|has been)\s+(?:responsible for|in charge of|handling|leading|managing)'
+        matches = re.finditer(pattern2, text)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+        
+        # Pattern 3: "Let's have Name..." or "Let's have Name and Name..."
+        pattern3 = r"\blet'?s\s+have\s+([A-Z][a-z]+)(?:\s+and\s+([A-Z][a-z]+))?"
+        matches = re.finditer(pattern3, text, re.IGNORECASE)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+            if match.group(2):
+                name2 = match.group(2)
+                if name2.lower() in self.common_names or len(name2) >= 3:
+                    assignees.append(name2)
+        
+        # Pattern 4: "I want Name to..."
+        pattern4 = r'\bI\s+(?:want|need|would like|\'d like)\s+([A-Z][a-z]+)\s+to\b'
+        matches = re.finditer(pattern4, text)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+        
+        # Pattern 5: "Name will/should/can..."
+        pattern5 = r'\b([A-Z][a-z]+)\s+(?:will|should|can|could|would)\s+(?:handle|take care of|work on|do|complete|finish|deliver)'
+        matches = re.finditer(pattern5, text)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+        
+        # Pattern 6: "Assign/Delegate Name to..." or "Assigned to Name" or "Assign this to Name and Name"
+        pattern6 = r'\b(?:assign|assigned|delegate|delegated)(?:\s+this)?\s+to\s+([A-Z][a-z]+)(?:\s+and\s+([A-Z][a-z]+))?'
+        matches = re.finditer(pattern6, text, re.IGNORECASE)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+            if match.group(2):
+                name2 = match.group(2)
+                if name2.lower() in self.common_names or len(name2) >= 3:
+                    assignees.append(name2)
+        
+        # Pattern 7: Collaborative assignments "Name and Name" or "Name & Name"
+        # First check for "Name and Name, you/both/all..." pattern
+        collab_pattern1 = r'\b([A-Z][a-z]+)\s+and\s+([A-Z][a-z]+),?\s+(?:you\s+)?(?:both|all|will|should|can)'
+        matches = re.finditer(collab_pattern1, text)
+        for match in matches:
+            name1 = match.group(1)
+            name2 = match.group(2)
+            if name1.lower() in self.common_names or len(name1) >= 3:
+                assignees.append(name1)
+            if name2.lower() in self.common_names or len(name2) >= 3:
+                assignees.append(name2)
+        
+        # Then check for "Name & Name" pattern
+        collab_pattern2 = r'\b([A-Z][a-z]+)\s+&\s+([A-Z][a-z]+)'
+        matches = re.finditer(collab_pattern2, text)
+        for match in matches:
+            name1 = match.group(1)
+            name2 = match.group(2)
+            if name1.lower() in self.common_names or len(name1) >= 3:
+                assignees.append(name1)
+            if name2.lower() in self.common_names or len(name2) >= 3:
+                assignees.append(name2)
+        
+        # Pattern 8: "Name, Name, and Name" (list of assignees)
+        list_pattern = r'\b([A-Z][a-z]+)(?:,\s+([A-Z][a-z]+))*(?:,?\s+and\s+([A-Z][a-z]+))?\s+(?:will|should|can|to|all)'
+        matches = re.finditer(list_pattern, text)
+        for match in matches:
+            for i in range(1, 4):
+                if match.group(i):
+                    name = match.group(i)
+                    if name.lower() in self.common_names or len(name) >= 3:
+                        assignees.append(name)
+        
+        # Pattern 9: "I'll/I will..." (speaker is assignee)
+        if re.search(r"\b(?:I'll|I will|I'm going to|I can|I should|I'm gonna|I'll handle|Let me)\b", text):
             assignees.append('SPEAKER')  # Special marker for current speaker
         
-        # Pattern 3: Third person assignment
+        # Pattern 10: "We'll" when in response context (speaker included)
+        if re.search(r"\b(?:We'll|We will|We can|We should)\b", text):
+            if context_segments:
+                # Check if this is a response to an assignment
+                assignees.append('SPEAKER')
+        
+        # Pattern 11: Third person assignment "Have Name do..." or "Have Name and Name..."
+        pattern11 = r'\bhave\s+([A-Z][a-z]+)(?:\s+and\s+([A-Z][a-z]+))?\s+(?:do|work on|handle|take care of|complete)'
+        matches = re.finditer(pattern11, text, re.IGNORECASE)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+            if match.group(2):
+                name2 = match.group(2)
+                if name2.lower() in self.common_names or len(name2) >= 3:
+                    assignees.append(name2)
+        
+        # Pattern 12: "Name's task is..." or "Name's responsibility"
+        pattern12 = r"\b([A-Z][a-z]+)'s\s+(?:task|responsibility|job|role)\s+(?:is|will be)"
+        matches = re.finditer(pattern12, text)
+        for match in matches:
+            name = match.group(1)
+            if name.lower() in self.common_names or len(name) >= 3:
+                assignees.append(name)
+        
+        # Third person mentions (existing method)
         third_person_names = self._extract_third_person_mention(text)
         assignees.extend(third_person_names)
         

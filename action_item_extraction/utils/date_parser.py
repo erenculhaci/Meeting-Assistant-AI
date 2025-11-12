@@ -124,7 +124,7 @@ class DateParser:
         return dates
     
     def _extract_relative_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
-        """Extract relative date expressions."""
+        """Extract relative date expressions with comprehensive patterns."""
         dates = []
         text_lower = text.lower()
         
@@ -137,13 +137,38 @@ class DateParser:
             tomorrow = self.reference_date + timedelta(days=1)
             dates.append(('tomorrow', tomorrow, 'relative'))
         
+        # Day after tomorrow
+        if re.search(r'\bday\s+after\s+tomorrow\b', text_lower):
+            day_after = self.reference_date + timedelta(days=2)
+            dates.append(('day after tomorrow', day_after, 'relative'))
+        
         # Yesterday
         if re.search(r'\byesterday\b', text_lower):
             yesterday = self.reference_date - timedelta(days=1)
             dates.append(('yesterday', yesterday, 'relative'))
         
-        # In X days/weeks/months
-        pattern = r'\bin\s+(\d+)\s+(day|days|week|weeks|month|months)\b'
+        # In X days/weeks/months/hours
+        pattern = r'\bin\s+(\d+)\s+(hour|hours|day|days|week|weeks|month|months|year|years)\b'
+        for match in re.finditer(pattern, text_lower):
+            count = int(match.group(1))
+            unit = match.group(2)
+            
+            if 'hour' in unit:
+                target_date = self.reference_date + timedelta(hours=count)
+            elif 'day' in unit:
+                target_date = self.reference_date + timedelta(days=count)
+            elif 'week' in unit:
+                target_date = self.reference_date + timedelta(weeks=count)
+            elif 'month' in unit:
+                # More accurate month calculation
+                target_date = self.reference_date + timedelta(days=count * 30)
+            elif 'year' in unit:
+                target_date = self.reference_date.replace(year=self.reference_date.year + count)
+            
+            dates.append((match.group(0), target_date, 'relative'))
+        
+        # Within X days/weeks (deadline meaning)
+        pattern = r'\bwithin\s+(\d+)\s+(day|days|week|weeks|month|months)\b'
         for match in re.finditer(pattern, text_lower):
             count = int(match.group(1))
             unit = match.group(2)
@@ -153,27 +178,44 @@ class DateParser:
             elif 'week' in unit:
                 target_date = self.reference_date + timedelta(weeks=count)
             elif 'month' in unit:
-                # Approximate: 30 days per month
                 target_date = self.reference_date + timedelta(days=count * 30)
             
             dates.append((match.group(0), target_date, 'relative'))
         
-        # Next week/month
+        # Next/This week/month/year
         if re.search(r'\bnext\s+week\b', text_lower):
             next_week = self.reference_date + timedelta(weeks=1)
             dates.append(('next week', next_week, 'relative'))
+        
+        if re.search(r'\bthis\s+week\b', text_lower):
+            dates.append(('this week', self.reference_date, 'relative'))
         
         if re.search(r'\bnext\s+month\b', text_lower):
             next_month = self.reference_date + timedelta(days=30)
             dates.append(('next month', next_month, 'relative'))
         
-        # End of week/month
+        if re.search(r'\bthis\s+month\b', text_lower):
+            dates.append(('this month', self.reference_date, 'relative'))
+        
+        if re.search(r'\bnext\s+year\b', text_lower):
+            next_year = self.reference_date.replace(year=self.reference_date.year + 1)
+            dates.append(('next year', next_year, 'relative'))
+        
+        # End of week/month/year variants
         if re.search(r'\b(by\s+)?(the\s+)?end\s+of\s+(the\s+)?(this\s+)?week\b', text_lower):
             days_until_sunday = (6 - self.reference_date.weekday()) % 7
             if days_until_sunday == 0:
                 days_until_sunday = 7
             end_of_week = self.reference_date + timedelta(days=days_until_sunday)
             dates.append(('end of week', end_of_week, 'relative'))
+        
+        # "by Friday" pattern (end of this week essentially)
+        if re.search(r'\b(by\s+)?end\s+of\s+this\s+week\b', text_lower):
+            days_until_friday = (4 - self.reference_date.weekday()) % 7
+            if days_until_friday == 0:
+                days_until_friday = 7
+            end_of_week = self.reference_date + timedelta(days=days_until_friday)
+            dates.append(('end of this week', end_of_week, 'relative'))
         
         if re.search(r'\b(by\s+)?month\s+end\b', text_lower):
             # Go to last day of current month
@@ -187,14 +229,84 @@ class DateParser:
             end_of_month = next_month - timedelta(days=next_month.day)
             dates.append(('end of month', end_of_month, 'relative'))
         
-        # End of day / EOD
-        if re.search(r'\b(by\s+)?(end\s+of\s+day|eod)\b', text_lower):
+        if re.search(r'\b(by\s+)?(the\s+)?end\s+of\s+(the\s+)?year\b', text_lower):
+            end_of_year = self.reference_date.replace(month=12, day=31)
+            dates.append(('end of year', end_of_year, 'relative'))
+        
+        # End of day / EOD / Close of business (COB)
+        if re.search(r'\b(by\s+)?(end\s+of\s+day|eod|close\s+of\s+business|cob)\b', text_lower):
             eod = self.reference_date.replace(hour=17, minute=0, second=0, microsecond=0)
             dates.append(('end of day', eod, 'relative'))
         
-        # ASAP / As soon as possible (use today + 1 day as heuristic)
-        if re.search(r'\b(asap|as soon as possible)\b', text_lower):
-            asap_date = self.reference_date + timedelta(days=1)
+        # Start/Beginning of week/month
+        if re.search(r'\b(by\s+)?(the\s+)?(start|beginning)\s+of\s+(the\s+)?(next\s+)?week\b', text_lower):
+            is_next = 'next' in text_lower
+            days_until_monday = (7 - self.reference_date.weekday()) % 7
+            if days_until_monday == 0 and not is_next:
+                days_until_monday = 0
+            elif is_next:
+                days_until_monday = (7 - self.reference_date.weekday())
+            start_of_week = self.reference_date + timedelta(days=days_until_monday)
+            dates.append(('start of week', start_of_week, 'relative'))
+        
+        if re.search(r'\b(by\s+)?(the\s+)?(start|beginning)\s+of\s+(the\s+)?(next\s+)?month\b', text_lower):
+            is_next = 'next' in text_lower
+            if is_next:
+                # First day of next month
+                next_month = (self.reference_date.replace(day=28) + timedelta(days=4)).replace(day=1)
+                dates.append(('start of next month', next_month, 'relative'))
+            else:
+                start_of_month = self.reference_date.replace(day=1)
+                dates.append(('start of month', start_of_month, 'relative'))
+        
+        # Early/Mid/Late week/month
+        if re.search(r'\bearly\s+(next\s+)?week\b', text_lower):
+            is_next = 'next' in text_lower
+            days_ahead = 7 if is_next else 0
+            early_week = self.reference_date + timedelta(days=days_ahead + 2)
+            dates.append(('early week', early_week, 'relative'))
+        
+        if re.search(r'\bmid[\s-]?week\b', text_lower):
+            days_until_wednesday = (2 - self.reference_date.weekday()) % 7
+            mid_week = self.reference_date + timedelta(days=days_until_wednesday)
+            dates.append(('mid-week', mid_week, 'relative'))
+        
+        if re.search(r'\blate\s+(next\s+)?week\b', text_lower):
+            is_next = 'next' in text_lower
+            days_ahead = 7 if is_next else 0
+            late_week = self.reference_date + timedelta(days=days_ahead + 5)
+            dates.append(('late week', late_week, 'relative'))
+        
+        # First thing [tomorrow/Monday/etc]
+        if re.search(r'\bfirst\s+thing\s+(tomorrow|monday|tuesday|wednesday|thursday|friday)\b', text_lower):
+            if 'tomorrow' in text_lower:
+                first_thing = self.reference_date + timedelta(days=1)
+                dates.append(('first thing tomorrow', first_thing.replace(hour=9, minute=0), 'relative'))
+        
+        # Before/After lunch
+        if re.search(r'\bbefore\s+lunch\b', text_lower):
+            before_lunch = self.reference_date.replace(hour=11, minute=30, second=0, microsecond=0)
+            dates.append(('before lunch', before_lunch, 'relative'))
+        
+        if re.search(r'\bafter\s+lunch\b', text_lower):
+            after_lunch = self.reference_date.replace(hour=14, minute=0, second=0, microsecond=0)
+            dates.append(('after lunch', after_lunch, 'relative'))
+        
+        # No later than [timeframe]
+        if re.search(r'\bno\s+later\s+than\s+(tomorrow|next\s+week|next\s+month)\b', text_lower):
+            if 'tomorrow' in text_lower:
+                deadline = self.reference_date + timedelta(days=1)
+                dates.append(('no later than tomorrow', deadline, 'relative'))
+            elif 'next week' in text_lower:
+                deadline = self.reference_date + timedelta(weeks=1)
+                dates.append(('no later than next week', deadline, 'relative'))
+            elif 'next month' in text_lower:
+                deadline = self.reference_date + timedelta(days=30)
+                dates.append(('no later than next month', deadline, 'relative'))
+        
+        # ASAP / As soon as possible / Urgent / Immediately
+        if re.search(r'\b(asap|as\s+soon\s+as\s+possible|urgent|urgently|immediately|right\s+away)\b', text_lower):
+            asap_date = self.reference_date + timedelta(hours=24)
             dates.append(('ASAP', asap_date, 'relative'))
         
         return dates
