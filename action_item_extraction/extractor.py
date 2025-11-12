@@ -10,6 +10,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 from action_item_extraction.core.task_extractor import TaskExtractor
+from action_item_extraction.ml_extractor import LLMActionItemExtractor
 
 # Load environment variables
 load_dotenv()
@@ -18,73 +19,100 @@ logger = logging.getLogger(__name__)
 
 
 def extract_action_items(
-    transcript_file_path: str,
+    transcript_file_path: str = None,
+    transcript_data: Dict = None,
     output_file: Optional[str] = None,
     output_format: str = 'json',
     reference_date: Optional[datetime] = None,
-    use_llm_fallback: bool = False,
-    llm_model: str = "gpt-4o-mini",
+    use_llm: bool = False,  # NEW: Use pure LLM extraction
+    use_llm_fallback: bool = False,  # OLD: Use LLM for clarification only
+    llm_model: str = "llama-3.3-70b-versatile",
     llm_provider: str = "auto"  # "auto", "groq", "openai"
-) -> List[Dict[str, Any]]:
+) -> Dict[str, Any]:
     """
     Extract action items from a meeting transcript.
     
     Args:
         transcript_file_path: Path to the transcript JSON file
+        transcript_data: Direct transcript data (alternative to file path)
         output_file: Optional path to save the output
         output_format: Format for output ('json', 'md', 'txt')
         reference_date: Reference date for relative date parsing
-        use_llm_fallback: Use LLM to clarify ambiguous tasks
-        llm_model: LLM model to use (gpt-4o-mini recommended)
-        llm_provider: LLM provider ("auto", "groq", "openai") - auto uses Groq if available
+        use_llm: Use pure LLM-based extraction (recommended)
+        use_llm_fallback: Use LLM to clarify ambiguous tasks (rule-based + LLM)
+        llm_model: LLM model to use
+        llm_provider: LLM provider ("auto", "groq", "openai")
         
     Returns:
-        List of extracted tasks
+        Dictionary with extraction results
     """
     # Load transcript
-    logger.info(f"Loading transcript from {transcript_file_path}")
-    with open(transcript_file_path, 'r', encoding='utf-8') as f:
-        transcript_data = json.load(f)
+    if transcript_data is None:
+        if transcript_file_path is None:
+            raise ValueError("Either transcript_file_path or transcript_data must be provided")
+        logger.info(f"Loading transcript from {transcript_file_path}")
+        with open(transcript_file_path, 'r', encoding='utf-8') as f:
+            transcript_data = json.load(f)
     
-    # Extract tasks
-    extractor = TaskExtractor(
-        reference_date=reference_date,
-        use_llm_fallback=use_llm_fallback,
-        llm_model=llm_model,
-        llm_provider=llm_provider
-    )
-    tasks = extractor.extract_tasks(transcript_data)
+    # Choose extraction method
+    if use_llm:
+        # Pure LLM extraction (few-shot learning)
+        logger.info("Using LLM-based extraction (few-shot learning)")
+        extractor = LLMActionItemExtractor(model=llm_model)
+        result = extractor.extract_action_items(transcript_data)
+        tasks = result.get('action_items', [])
+    else:
+        # Rule-based extraction with optional LLM clarification
+        logger.info("Using rule-based extraction" + (" with LLM fallback" if use_llm_fallback else ""))
+        extractor = TaskExtractor(
+            reference_date=reference_date,
+            use_llm_fallback=use_llm_fallback,
+            llm_model=llm_model,
+            llm_provider=llm_provider
+        )
+        tasks = extractor.extract_tasks(transcript_data)
+        result = {
+            'status': 'success',
+            'action_items': tasks,
+            'total_items': len(tasks),
+            'extraction_method': 'rule_based' + ('_with_llm' if use_llm_fallback else '')
+        }
     
     # Save if output file specified
     if output_file:
         if output_format == 'json':
-            save_tasks_json(tasks, output_file)
+            save_tasks_json(result, output_file)
         elif output_format == 'md':
             save_tasks_markdown(tasks, output_file)
         elif output_format == 'txt':
             save_tasks_text(tasks, output_file)
     
-    return tasks
+    return result
 
 
-def save_tasks_json(tasks: List[Dict[str, Any]], output_path: str) -> None:
+def save_tasks_json(result: Dict[str, Any], output_path: str) -> None:
     """Save tasks to JSON file."""
     logger.info(f"Saving tasks to JSON: {output_path}")
+    
+    tasks = result.get('action_items', [])
     
     # Convert datetime objects to strings for JSON serialization
     tasks_serializable = []
     for task in tasks:
         task_copy = task.copy()
         if task_copy.get('start_date'):
-            task_copy['start_date'] = task_copy['start_date'].isoformat()
+            if isinstance(task_copy['start_date'], datetime):
+                task_copy['start_date'] = task_copy['start_date'].isoformat()
         if task_copy.get('due_date'):
-            task_copy['due_date'] = task_copy['due_date'].isoformat()
+            if isinstance(task_copy['due_date'], datetime):
+                task_copy['due_date'] = task_copy['due_date'].isoformat()
         tasks_serializable.append(task_copy)
     
     output_data = {
-        'status': 'success',
+        'status': result.get('status', 'success'),
         'task_count': len(tasks),
         'extracted_at': datetime.now().isoformat(),
+        'extraction_method': result.get('extraction_method', 'unknown'),
         'tasks': tasks_serializable
     }
     

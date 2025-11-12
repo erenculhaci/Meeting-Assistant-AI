@@ -135,15 +135,28 @@ class ActionItemEvaluator:
             ground_truth_data = json.load(f)
         ground_truth_tasks = ground_truth_data.get("tasks", [])
         
+        # Load transcript data
+        with open(transcript_file, 'r', encoding='utf-8') as f:
+            transcript_data = json.load(f)
+        
         # Extract tasks
         try:
-            extracted_tasks = extract_action_items(
-                str(transcript_file),
-                use_llm_fallback=use_llm
+            # Check if we should use pure LLM extraction
+            use_pure_llm = getattr(self, 'use_pure_llm', False)
+            use_llm_fallback = getattr(self, 'use_llm_fallback', use_llm)
+            
+            result = extract_action_items(
+                transcript_data=transcript_data,
+                use_llm=use_pure_llm,
+                use_llm_fallback=use_llm_fallback
             )
-            # extract_action_items returns a list directly
-            if not isinstance(extracted_tasks, list):
-                extracted_tasks = []
+            
+            # Extract action items list from result
+            if isinstance(result, dict):
+                extracted_tasks = result.get('action_items', [])
+            else:
+                extracted_tasks = result if isinstance(result, list) else []
+                
         except Exception as e:
             logger.error(f"Error extracting tasks from {transcript_file}: {e}")
             return {
@@ -649,15 +662,31 @@ class ActionItemEvaluator:
 if __name__ == "__main__":
     import sys
     
-    # Usage: python action_item_evaluator.py [test_data_dir] [--llm]
+    # Usage: python action_item_evaluator.py [test_data_dir] [--llm | --pure-llm]
     test_data_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("evaluation/test_data_50")
-    use_llm = "--llm" in sys.argv
+    
+    # Check extraction method
+    if "--pure-llm" in sys.argv:
+        use_llm = True  # Pure LLM extraction
+        use_llm_fallback = False
+        method_name = "pure_llm"
+    elif "--llm" in sys.argv:
+        use_llm = False  # Rule-based with LLM fallback
+        use_llm_fallback = True
+        method_name = "with_llm"
+    else:
+        use_llm = False  # Pure rule-based
+        use_llm_fallback = False
+        method_name = "no_llm"
     
     evaluator = ActionItemEvaluator()
-    results = evaluator.evaluate_batch(test_data_dir, use_llm=use_llm)
+    evaluator.use_pure_llm = use_llm  # Add attribute to pass to extraction
+    evaluator.use_llm_fallback = use_llm_fallback
+    
+    results = evaluator.evaluate_batch(test_data_dir, use_llm=use_llm_fallback)
     
     # Generate report
-    report_file = test_data_dir / f"evaluation_report_{'with_llm' if use_llm else 'no_llm'}.md"
+    report_file = test_data_dir / f"evaluation_report_{method_name}.md"
     evaluator.generate_report(results, report_file)
     
     print(f"\n✅ Evaluation complete!")
