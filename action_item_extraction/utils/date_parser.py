@@ -168,16 +168,29 @@ class DateParser:
             dates.append(('next month', next_month, 'relative'))
         
         # End of week/month
-        if re.search(r'\bend\s+of\s+(the\s+)?week\b', text_lower):
+        if re.search(r'\b(by\s+)?(the\s+)?end\s+of\s+(the\s+)?(this\s+)?week\b', text_lower):
             days_until_sunday = (6 - self.reference_date.weekday()) % 7
+            if days_until_sunday == 0:
+                days_until_sunday = 7
             end_of_week = self.reference_date + timedelta(days=days_until_sunday)
             dates.append(('end of week', end_of_week, 'relative'))
         
-        if re.search(r'\bend\s+of\s+(the\s+)?month\b', text_lower):
+        if re.search(r'\b(by\s+)?month\s+end\b', text_lower):
+            # Go to last day of current month
+            next_month = self.reference_date.replace(day=28) + timedelta(days=4)
+            end_of_month = next_month - timedelta(days=next_month.day)
+            dates.append(('month end', end_of_month, 'relative'))
+        
+        if re.search(r'\b(by\s+)?(the\s+)?end\s+of\s+(the\s+)?(this\s+)?month\b', text_lower):
             # Go to last day of current month
             next_month = self.reference_date.replace(day=28) + timedelta(days=4)
             end_of_month = next_month - timedelta(days=next_month.day)
             dates.append(('end of month', end_of_month, 'relative'))
+        
+        # End of day / EOD
+        if re.search(r'\b(by\s+)?(end\s+of\s+day|eod)\b', text_lower):
+            eod = self.reference_date.replace(hour=17, minute=0, second=0, microsecond=0)
+            dates.append(('end of day', eod, 'relative'))
         
         # ASAP / As soon as possible (use today + 1 day as heuristic)
         if re.search(r'\b(asap|as soon as possible)\b', text_lower):

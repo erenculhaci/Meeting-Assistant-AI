@@ -288,7 +288,24 @@ class TaskExtractor:
             if 'SPEAKER' in assignees:
                 return self.person_extractor.get_person_for_speaker(speaker)
             
-            # Otherwise, use the first mentioned name
+            # Handle multiple assignees (collaborative tasks)
+            # Join all names with "and" for multiple assignees
+            if len(assignees) > 1:
+                valid_assignees = []
+                for assignee in assignees:
+                    # Try to map name to a speaker
+                    mapped_name = None
+                    for speaker_id, name in self.person_extractor.speaker_name_map.items():
+                        if name.lower() == assignee.lower():
+                            mapped_name = name
+                            break
+                    
+                    valid_assignees.append(mapped_name or assignee)
+                
+                # Return all assignees joined with "and"
+                return " and ".join(valid_assignees)
+            
+            # Single assignee - use the first mentioned name
             first_assignee = assignees[0]
             
             # Try to map name to a speaker

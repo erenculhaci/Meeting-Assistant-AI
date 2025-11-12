@@ -1,6 +1,6 @@
 # Action Item Extraction - Evaluation Report
 
-**Evaluation Date:** 2025-11-12T20:08:10.709403
+**Evaluation Date:** 2025-11-12T20:20:51.563464
 **LLM Enabled:** True
 **Total Meetings:** 10
 
@@ -13,7 +13,7 @@
 | **Precision** | 74.28% | Proportion of extracted tasks that are correct (TP / (TP + FP)) |
 | **Recall** | 98.57% | Proportion of ground truth tasks found (TP / (TP + FN)) |
 | **F1 Score** | 84.27% | Harmonic mean of precision and recall |
-| **Match Quality** | 90.16% | Average semantic similarity of matched tasks |
+| **Match Quality** | 88.91% | Average semantic similarity of matched tasks |
 
 ### Confusion Matrix
 
@@ -26,8 +26,8 @@
 
 | Entity Type | Exact Match | Partial Match | Notes |
 |-------------|-------------|---------------|-------|
-| **Assignee** | 64.75% | 80.50% | Person extraction accuracy |
-| **Deadline** | 71.90% | N/A | Date extraction rate |
+| **Assignee** | 68.42% | 80.50% | Person extraction accuracy |
+| **Deadline** | 80.24% | N/A | Date extraction rate |
 
 ### Task Counts
 
