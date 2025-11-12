@@ -1,0 +1,19 @@
+{
+  "total_transcripts": 10,
+  "total_tasks": 55,
+  "tasks_with_assignees": 39,
+  "tasks_with_deadlines": 33,
+  "pattern_types": {
+    "commitment": 14,
+    "explicit": 12,
+    "collaborative": 13,
+    "implicit": 16
+  },
+  "categories": {
+    "business": 43,
+    "technical": 4,
+    "product": 6,
+    "marketing": 2
+  },
+  "generation_date": "2025-11-12T19:59:29.309236"
+}

@@ -1,0 +1,75 @@
+{
+  "meeting_file": "meeting_007.json",
+  "meeting_type": "Budget Planning",
+  "tasks": [
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [
+        "Amy"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Amy",
+        "Michelle"
+      ],
+      "deadline": "by end of day",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Alex",
+        "Michelle"
+      ],
+      "deadline": "next Wednesday",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Alex",
+        "Amy"
+      ],
+      "deadline": "by the sprint review",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "schedule a call with the client",
+      "assignees": [
+        "Alex"
+      ],
+      "deadline": "next Wednesday",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Alex"
+      ],
+      "deadline": null,
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

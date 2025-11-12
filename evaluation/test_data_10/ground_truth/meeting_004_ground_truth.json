@@ -1,0 +1,54 @@
+{
+  "meeting_file": "meeting_004.json",
+  "meeting_type": "Marketing Campaign",
+  "tasks": [
+    {
+      "description": "prepare the press release",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "marketing",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "update the project timeline",
+      "assignees": [],
+      "deadline": "by noon tomorrow",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the presentation slides",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "coordinate with other teams",
+      "assignees": [
+        "John",
+        "Peter"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "schedule social media posts",
+      "assignees": [],
+      "deadline": "next Wednesday",
+      "pattern_type": "implicit",
+      "category": "marketing",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    }
+  ]
+}

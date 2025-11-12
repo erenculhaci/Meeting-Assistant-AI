@@ -1,0 +1,153 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_005.mp3",
+    "duration": 157.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 36.225
+  },
+  "transcript": [
+    {
+      "text": "Hey everyone, thanks for joining.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Alright, today's focus is our Sales Strategy.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Alex, I'd like you to coordinate with other teams.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "We need someone to document the meeting notes.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "We need to prepare the presentation slides.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "We need someone to prepare the quarterly report.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Tim"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "We need to prepare the presentation slides by no later than Friday.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "We need someone to prepare the quarterly report.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "I'll handle that April 10th.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Rachel and Alex, could you both work together to send out the meeting invites?",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Target completion is this week.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Rachel"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Robert"
+    }
+  ],
+  "full_text": "Hey everyone, thanks for joining. Morning! Hello! Alright, today's focus is our Sales Strategy. Next item is business. Alex, I'd like you to coordinate with other teams. Understood. Let's talk about business for a moment. We need someone to document the meeting notes. I'll handle that. Great, thanks for taking that on. Next item is business. We need to prepare the presentation slides. Let's talk about business for a moment. We need someone to prepare the quarterly report. I'll handle that. Great, thanks for taking that on. Let's talk about business for a moment. We need to prepare the presentation slides by no later than Friday. Agreed, that's important. Let's talk about business for a moment. We need someone to prepare the quarterly report. I'll handle that April 10th. Great, thanks for taking that on. Let's talk about business for a moment. Rachel and Alex, could you both work together to send out the meeting invites? Target completion is this week. Yes, we can handle that. Sounds good to me. Is there anything blocking anyone from starting? We're good to go. No blockers. Great, thanks all. Let's keep each other posted on progress. Bye all! Bye all!"
+}

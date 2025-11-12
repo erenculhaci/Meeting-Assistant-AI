@@ -1,0 +1,125 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_009.mp3",
+    "duration": 126.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 28.98
+  },
+  "transcript": [
+    {
+      "text": "Good morning all, thanks for being here.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "So, this is our Client Kickoff session.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "We need to prepare the presentation slides.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "We need someone to review the budget proposal.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Nancy, I'd like you to document the meeting notes.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Please have this ready by next Thursday.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Understood.",
+      "speaker": "Speaker_Nancy"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "We need to follow up with stakeholders by on the 15th.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "We need someone to document the meeting notes.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "I'll handle that immediately.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Melissa"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Robert"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Linda"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Melissa"
+    }
+  ],
+  "full_text": "Good morning all, thanks for being here. Good morning! Morning! So, this is our Client Kickoff session. On the business side, We need to prepare the presentation slides. Agreed, that's important. Let's talk about business for a moment. We need someone to review the budget proposal. I'll handle that. Great, thanks for taking that on. On the business side, Nancy, I'd like you to document the meeting notes. Please have this ready by next Thursday. Understood. Next item is business. We need to follow up with stakeholders by on the 15th. Agreed, that's important. Let's talk about business for a moment. We need someone to document the meeting notes. I'll handle that immediately. Great, thanks for taking that on. Is there anything blocking anyone from starting? All good here. Nothing blocking me. Sounds good. Thanks team, looking forward to seeing the results. Thanks! Thanks!"
+}

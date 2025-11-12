@@ -1,0 +1,157 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_007.mp3",
+    "duration": 162.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 37.260000000000005
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Today we're covering the Budget Planning.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Amy, I'd like you to prepare the presentation slides.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Amy and Michelle, could you both work together to prepare the quarterly report?",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Target completion is by end of day.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Michelle"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Alex and Michelle, could you both work together to review the budget proposal?",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Target completion is next Wednesday.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Michelle"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Alex and Amy, could you both work together to prepare the quarterly report?",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Target completion is by the sprint review.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "We need someone to schedule a call with the client.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "I'll handle that next Wednesday.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "We need someone to follow up with stakeholders.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "We're good to go.",
+      "speaker": "Speaker_Amy"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Lisa"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Bye all!",
+      "speaker": "Speaker_Amy"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Hello! Good morning! Today we're covering the Budget Planning. Moving on to business. Amy, I'd like you to prepare the presentation slides. Will do. Let's talk about business for a moment. Amy and Michelle, could you both work together to prepare the quarterly report? Target completion is by end of day. Yes, we can handle that. Sounds good to me. Moving on to business. Alex and Michelle, could you both work together to review the budget proposal? Target completion is next Wednesday. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. Alex and Amy, could you both work together to prepare the quarterly report? Target completion is by the sprint review. Yes, we can handle that. Sounds good to me. Next item is business. We need someone to schedule a call with the client. I'll handle that next Wednesday. Great, thanks for taking that on. Next item is business. We need someone to follow up with stakeholders. I'll handle that. Great, thanks for taking that on. Is there anything blocking anyone from starting? Nothing blocking me. We're good to go. Sounds good. Thanks team, looking forward to seeing the results. See you! Bye all!"
+}

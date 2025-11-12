@@ -85,14 +85,14 @@ class TaskMatcher:
             - score: Matching score (0-1)
             - details: Detailed matching information
         """
-        # Compare task descriptions
+        # Compare task descriptions - extracted uses 'description' field
         text_sim = TaskMatcher.calculate_text_similarity(
-            extracted_task.get("task", ""),
+            extracted_task.get("description", ""),
             ground_truth_task.get("description", "")
         )
         
         semantic_sim = TaskMatcher.calculate_semantic_similarity(
-            extracted_task.get("task", ""),
+            extracted_task.get("description", ""),
             ground_truth_task.get("description", "")
         )
         
@@ -288,19 +288,25 @@ class ActionItemEvaluator:
         
         for match in matches:
             gt_assignees = set(match["ground_truth"].get("assignees", []))
-            # Check both 'assignee' and 'assigned_to' fields
-            ext_assignee = match["extracted"].get("assignee", match["extracted"].get("assigned_to", ""))
-            ext_assignees_raw = str(ext_assignee).lower()
+            # Extracted tasks use 'assignee' field
+            ext_assignee = match["extracted"].get("assignee", "Unassigned")
             
             if not gt_assignees:
                 continue  # Skip tasks without ground truth assignees
             
             total_with_assignees += 1
             
-            # Check if any ground truth assignee is mentioned in extracted
+            # Clean extracted assignee (remove "Speaker_" prefix if present)
+            ext_assignee_clean = ext_assignee.replace("Speaker_", "").strip()
+            
+            # Check if any ground truth assignee matches
             found_assignees = set()
             for assignee in gt_assignees:
-                if assignee.lower() in ext_assignees_raw:
+                # Case-insensitive match
+                if assignee.lower() == ext_assignee_clean.lower():
+                    found_assignees.add(assignee)
+                # Also check if GT assignee is contained in extracted
+                elif assignee.lower() in ext_assignee_clean.lower():
                     found_assignees.add(assignee)
             
             if found_assignees == gt_assignees:
@@ -331,8 +337,8 @@ class ActionItemEvaluator:
         
         for match in matches:
             gt_deadline = match["ground_truth"].get("deadline")
-            # Check both 'deadline' and 'due_date' fields
-            ext_deadline = match["extracted"].get("deadline") or match["extracted"].get("due_date")
+            # Extracted tasks use 'due_date' field
+            ext_deadline = match["extracted"].get("due_date")
             
             if not gt_deadline:
                 continue  # Skip tasks without ground truth deadlines
@@ -536,58 +542,106 @@ class ActionItemEvaluator:
         }
     
     def generate_report(self, evaluation_results: Dict, output_file: Path):
-        """Generate a detailed evaluation report."""
+        """Generate a detailed evaluation report with academic metrics."""
+        summary = evaluation_results['summary']
+        
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write("# Action Item Extraction - Evaluation Report\n\n")
             f.write(f"**Evaluation Date:** {evaluation_results['evaluation_date']}\n")
             f.write(f"**LLM Enabled:** {evaluation_results['llm_enabled']}\n")
             f.write(f"**Total Meetings:** {evaluation_results['total_meetings']}\n\n")
             
-            summary = evaluation_results['summary']
-            
             f.write("## Overall Performance\n\n")
-            f.write("### Key Metrics\n\n")
+            f.write("### Key Metrics (Academic Standard)\n\n")
             metrics = summary['average_metrics']
-            f.write(f"- **Precision:** {metrics['precision']:.2%}\n")
-            f.write(f"- **Recall:** {metrics['recall']:.2%}\n")
-            f.write(f"- **F1 Score:** {metrics['f1_score']:.2%}\n")
-            f.write(f"- **Average Match Score:** {metrics['match_score']:.2%}\n\n")
             
-            f.write("### Assignee Accuracy\n\n")
+            # Academic metrics table
+            f.write("| Metric | Value | Description |\n")
+            f.write("|--------|-------|-------------|\n")
+            f.write(f"| **Precision** | {metrics['precision']:.2%} | Proportion of extracted tasks that are correct (TP / (TP + FP)) |\n")
+            f.write(f"| **Recall** | {metrics['recall']:.2%} | Proportion of ground truth tasks found (TP / (TP + FN)) |\n")
+            f.write(f"| **F1 Score** | {metrics['f1_score']:.2%} | Harmonic mean of precision and recall |\n")
+            f.write(f"| **Match Quality** | {metrics['match_score']:.2%} | Average semantic similarity of matched tasks |\n\n")
+            
+            # Calculate additional academic metrics
+            totals = summary['totals']
+            tp = totals['matched_tasks']
+            fp = totals['extracted_tasks'] - totals['matched_tasks']
+            fn = totals['ground_truth_tasks'] - totals['matched_tasks']
+            
+            f.write("### Confusion Matrix\n\n")
+            f.write("| | Predicted Positive | Predicted Negative |\n")
+            f.write("|---|---|---|\n")
+            f.write(f"| **Actual Positive** | TP = {tp} | FN = {fn} |\n")
+            f.write(f"| **Actual Negative** | FP = {fp} | TN = N/A |\n\n")
+            
+            f.write("### Entity-Level Accuracy\n\n")
             assignee = summary['assignee_accuracy']
-            f.write(f"- **Exact Match:** {assignee['exact_match']:.2%}\n")
-            f.write(f"- **Partial Match:** {assignee['partial_match']:.2%}\n\n")
-            
-            f.write("### Deadline Accuracy\n\n")
             deadline = summary['deadline_accuracy']
-            f.write(f"- **Extraction Rate:** {deadline['extraction_rate']:.2%}\n\n")
+            
+            f.write("| Entity Type | Exact Match | Partial Match | Notes |\n")
+            f.write("|-------------|-------------|---------------|-------|\n")
+            f.write(f"| **Assignee** | {assignee['exact_match']:.2%} | {assignee['partial_match']:.2%} | Person extraction accuracy |\n")
+            f.write(f"| **Deadline** | {deadline['extraction_rate']:.2%} | N/A | Date extraction rate |\n\n")
             
             f.write("### Task Counts\n\n")
-            totals = summary['totals']
             f.write(f"- **Ground Truth Tasks:** {totals['ground_truth_tasks']}\n")
             f.write(f"- **Extracted Tasks:** {totals['extracted_tasks']}\n")
-            f.write(f"- **Successfully Matched:** {totals['matched_tasks']}\n\n")
+            f.write(f"- **Successfully Matched:** {totals['matched_tasks']}\n")
+            f.write(f"- **False Positives:** {fp}\n")
+            f.write(f"- **False Negatives:** {fn}\n\n")
             
             f.write("### Quality Distribution\n\n")
             for quality, count in sorted(summary['quality_distribution'].items()):
-                f.write(f"- **{quality}:** {count} meetings\n")
+                percentage = (count / totals['meetings_evaluated']) * 100
+                f.write(f"- **{quality}:** {count} meetings ({percentage:.1f}%)\n")
             
-            f.write("\n## Detailed Results\n\n")
+            # Performance analysis
+            f.write("\n## Performance Analysis\n\n")
+            
+            if metrics['precision'] < 0.5:
+                f.write("⚠️ **Low Precision Alert**: The system is extracting too many false positives. ")
+                f.write("Consider increasing confidence thresholds or improving task pattern matching.\n\n")
+            elif metrics['precision'] >= 0.8:
+                f.write("✅ **High Precision**: The system has few false positives. ")
+                f.write("Extracted tasks are highly reliable.\n\n")
+            
+            if metrics['recall'] < 0.5:
+                f.write("⚠️ **Low Recall Alert**: The system is missing many ground truth tasks. ")
+                f.write("Consider expanding pattern coverage or reducing confidence thresholds.\n\n")
+            elif metrics['recall'] >= 0.8:
+                f.write("✅ **High Recall**: The system finds most ground truth tasks effectively.\n\n")
+            
+            if assignee['exact_match'] < 0.4:
+                f.write("⚠️ **Assignee Extraction Issue**: Low accuracy in extracting correct assignees. ")
+                f.write("Review person name extraction logic and speaker diarization.\n\n")
+            
+            if deadline['extraction_rate'] < 0.5:
+                f.write("⚠️ **Deadline Extraction Issue**: Low rate of deadline extraction. ")
+                f.write("Review date parsing and temporal expression recognition.\n\n")
+            
+            f.write("\n## Detailed Results by Meeting\n\n")
+            f.write("| Meeting | Type | F1 | Precision | Recall | Quality | GT/Ext/Match |\n")
+            f.write("|---------|------|----|-----------| -------|---------|-------------|\n")
+            
             for result in evaluation_results['individual_results']:
                 if result['status'] != 'success':
                     continue
                 
-                f.write(f"### {result['transcript_file']} ({result['meeting_type']})\n\n")
-                f.write(f"- **F1 Score:** {result['metrics']['f1_score']:.2%}\n")
-                f.write(f"- **Quality:** {result['quality_assessment']['overall_quality']}\n")
-                f.write(f"- **Tasks:** {result['ground_truth_count']} GT / {result['extracted_count']} Extracted / {result['matched_count']} Matched\n")
+                name = result['transcript_file']
+                mtype = result['meeting_type'][:15]  # Truncate for table
+                f1 = result['metrics']['f1_score']
+                prec = result['metrics']['precision']
+                rec = result['metrics']['recall']
+                qual = result['quality_assessment']['overall_quality']
+                gt = result['ground_truth_count']
+                ext = result['extracted_count']
+                match = result['matched_count']
                 
-                if result['quality_assessment']['strengths']:
-                    f.write(f"- **Strengths:** {', '.join(result['quality_assessment']['strengths'])}\n")
-                if result['quality_assessment']['weaknesses']:
-                    f.write(f"- **Weaknesses:** {', '.join(result['quality_assessment']['weaknesses'])}\n")
-                
-                f.write("\n")
+                f.write(f"| {name} | {mtype} | {f1:.2f} | {prec:.2f} | {rec:.2f} | {qual} | {gt}/{ext}/{match} |\n")
+            
+            f.write("\n---\n\n")
+            f.write("*This report uses standard academic metrics for information extraction evaluation.*\n")
         
         print(f"\n📄 Report saved to: {output_file}")
 

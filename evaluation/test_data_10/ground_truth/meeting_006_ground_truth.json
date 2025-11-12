@@ -1,0 +1,58 @@
+{
+  "meeting_file": "meeting_006.json",
+  "meeting_type": "Design Review",
+  "tasks": [
+    {
+      "description": "write user stories for the next sprint",
+      "assignees": [],
+      "deadline": null,
+      "pattern_type": "implicit",
+      "category": "product",
+      "has_explicit_assignee": false,
+      "has_deadline": false
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [],
+      "deadline": "in two weeks",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "analyze the usage metrics",
+      "assignees": [
+        "Jessica"
+      ],
+      "deadline": "next Monday",
+      "pattern_type": "explicit",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "prepare the quarterly report",
+      "assignees": [
+        "Jessica"
+      ],
+      "deadline": "ASAP",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "gather user feedback on the new feature",
+      "assignees": [
+        "Jessica",
+        "Amanda"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "product",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

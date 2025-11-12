@@ -1,0 +1,101 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_004.mp3",
+    "duration": 99.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 22.77
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Good morning!",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Alright, today's focus is our Marketing Campaign.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "On the marketing side,",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "We need to prepare the press release.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "We need to update the project timeline by by noon tomorrow.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "We need to prepare the presentation slides.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "John and Peter, could you both work together to coordinate with other teams?",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_John"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Next item is marketing.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "We need to schedule social media posts by next Wednesday.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Peter"
+    },
+    {
+      "text": "Excellent. Thanks everyone, let's stay aligned on this.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Will do!",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_Peter"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Good morning! Morning! Alright, today's focus is our Marketing Campaign. On the marketing side, We need to prepare the press release. On the business side, We need to update the project timeline by by noon tomorrow. Next item is business. We need to prepare the presentation slides. Next item is business. John and Peter, could you both work together to coordinate with other teams? Yes, we can handle that. Sounds good to me. Next item is marketing. We need to schedule social media posts by next Wednesday. Is there anything blocking anyone from starting? Nothing blocking me. Not from my side. Excellent. Thanks everyone, let's stay aligned on this. Will do! Thanks, talk soon!"
+}

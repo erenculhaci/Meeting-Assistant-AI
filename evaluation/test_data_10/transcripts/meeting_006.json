@@ -1,0 +1,121 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_006.mp3",
+    "duration": 121.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 27.945
+  },
+  "transcript": [
+    {
+      "text": "Good morning all, thanks for being here.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_William"
+    },
+    {
+      "text": "Morning!",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Alright, today's focus is our Design Review.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Moving on to product.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "We need to write user stories for the next sprint.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "We need to follow up with stakeholders by in two weeks.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_William"
+    },
+    {
+      "text": "Next item is product.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Jessica, I'd like you to analyze the usage metrics.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Please have this ready by next Monday.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "We need someone to prepare the quarterly report.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "I'll handle that ASAP.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "On the product side,",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Jessica and Amanda, could you both work together to gather user feedback on the new feature?",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Amanda"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_William"
+    },
+    {
+      "text": "Nothing blocking me.",
+      "speaker": "Speaker_Alex"
+    },
+    {
+      "text": "Sounds good. Thanks team, looking forward to seeing the results.",
+      "speaker": "Speaker_Tom"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_William"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_Alex"
+    }
+  ],
+  "full_text": "Good morning all, thanks for being here. Hey! Morning! Alright, today's focus is our Design Review. Moving on to product. We need to write user stories for the next sprint. Moving on to business. We need to follow up with stakeholders by in two weeks. Agreed, that's important. Next item is product. Jessica, I'd like you to analyze the usage metrics. Please have this ready by next Monday. Got it. On the business side, We need someone to prepare the quarterly report. I'll handle that ASAP. Great, thanks for taking that on. On the product side, Jessica and Amanda, could you both work together to gather user feedback on the new feature? Yes, we can handle that. Sounds good to me. Is there anything blocking anyone from starting? No blockers. Nothing blocking me. Sounds good. Thanks team, looking forward to seeing the results. See you! Thanks, talk soon!"
+}

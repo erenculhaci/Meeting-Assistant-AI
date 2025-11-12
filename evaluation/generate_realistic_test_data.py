@@ -432,7 +432,7 @@ class MeetingScenarioGenerator:
         
         return segments, task
     
-    def generate_all_transcripts(self, output_dir: Path, num_transcripts: int = 50):
+    def generate_all_transcripts(self, output_dir: Path, num_transcripts: int = 10):
         """Generate all test transcripts and ground truth data."""
         output_dir.mkdir(parents=True, exist_ok=True)
         transcripts_dir = output_dir / "transcripts"
@@ -502,6 +502,6 @@ class MeetingScenarioGenerator:
 
 
 if __name__ == "__main__":
-    output_dir = Path(__file__).parent / "test_data_50"
+    output_dir = Path(__file__).parent / "test_data_10"
     generator = MeetingScenarioGenerator()
-    generator.generate_all_transcripts(output_dir, num_transcripts=50)
+    generator.generate_all_transcripts(output_dir, num_transcripts=10)

@@ -1,0 +1,37 @@
+{
+  "meeting_file": "meeting_003.json",
+  "meeting_type": "Engineering Sync",
+  "tasks": [
+    {
+      "description": "update the project timeline",
+      "assignees": [],
+      "deadline": "by Friday",
+      "pattern_type": "implicit",
+      "category": "business",
+      "has_explicit_assignee": false,
+      "has_deadline": true
+    },
+    {
+      "description": "send out the meeting invites",
+      "assignees": [
+        "Paul"
+      ],
+      "deadline": "first thing Monday morning",
+      "pattern_type": "commitment",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "fix the authentication bug",
+      "assignees": [
+        "Paul"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "technical",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_003.mp3",
+    "duration": 85.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 19.665
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Nicole"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "So, this is our Engineering Sync session.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "We need to update the project timeline by by Friday.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "On the business side,",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "We need someone to send out the meeting invites.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "I'll handle that first thing Monday morning.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Let's talk about technical for a moment.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Paul, I'd like you to fix the authentication bug.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_Nicole"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Sandra"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Nicole"
+    },
+    {
+      "text": "See you!",
+      "speaker": "Speaker_Paul"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hello! Hey! So, this is our Engineering Sync session. Moving on to business. We need to update the project timeline by by Friday. On the business side, We need someone to send out the meeting invites. I'll handle that first thing Monday morning. Great, thanks for taking that on. Let's talk about technical for a moment. Paul, I'd like you to fix the authentication bug. Got it. Is there anything blocking anyone from starting? No blockers. All good here. Great, thanks all. Let's keep each other posted on progress. See you! See you!"
+}

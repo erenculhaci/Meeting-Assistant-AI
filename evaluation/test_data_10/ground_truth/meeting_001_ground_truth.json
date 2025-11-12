@@ -1,0 +1,53 @@
+{
+  "meeting_file": "meeting_001.json",
+  "meeting_type": "Daily Standup",
+  "tasks": [
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Jeff"
+      ],
+      "deadline": null,
+      "pattern_type": "explicit",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Jessica",
+        "Jeff"
+      ],
+      "deadline": "next Thursday",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    },
+    {
+      "description": "review the budget proposal",
+      "assignees": [
+        "Sarah",
+        "Jessica"
+      ],
+      "deadline": null,
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": false
+    },
+    {
+      "description": "follow up with stakeholders",
+      "assignees": [
+        "Jessica",
+        "Jeff"
+      ],
+      "deadline": "early next week",
+      "pattern_type": "collaborative",
+      "category": "business",
+      "has_explicit_assignee": true,
+      "has_deadline": true
+    }
+  ]
+}

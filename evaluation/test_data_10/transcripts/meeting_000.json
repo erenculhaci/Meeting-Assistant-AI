@@ -1,0 +1,181 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_000.mp3",
+    "duration": 189.0,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 43.47
+  },
+  "transcript": [
+    {
+      "text": "Alright team, let's kick this off.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Hey!",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "So, this is our Sprint Planning session.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "We need someone to prepare the quarterly report.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "I'll handle that next Monday.",
+      "speaker": "Speaker_Laura"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Let's talk about technical for a moment.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Brian, I'd like you to create the architecture diagram.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Next item is technical.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "We need someone to review the security vulnerabilities.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "I'll handle that by month end.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "We need someone to negotiate the contract terms.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "I'll handle that.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Brian, I'd like you to prepare the presentation slides.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Please have this ready by tomorrow.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Moving on to technical.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "We need someone to review the API documentation.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "I'll handle that next Wednesday.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Paul and Laura, could you both work together to schedule a call with the client?",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Target completion is no later than Friday.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Paul"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Laura"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Brian, I'd like you to follow up with stakeholders.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Please have this ready by by the end of this week.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Got it.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "All good here.",
+      "speaker": "Speaker_Angela"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Sounds good!",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Will do!",
+      "speaker": "Speaker_Angela"
+    }
+  ],
+  "full_text": "Alright team, let's kick this off. Hello! Hey! So, this is our Sprint Planning session. Moving on to business. We need someone to prepare the quarterly report. I'll handle that next Monday. Great, thanks for taking that on. Let's talk about technical for a moment. Brian, I'd like you to create the architecture diagram. Got it. Next item is technical. We need someone to review the security vulnerabilities. I'll handle that by month end. Great, thanks for taking that on. Moving on to business. We need someone to negotiate the contract terms. I'll handle that. Great, thanks for taking that on. Moving on to business. Brian, I'd like you to prepare the presentation slides. Please have this ready by tomorrow. Will do. Moving on to technical. We need someone to review the API documentation. I'll handle that next Wednesday. Great, thanks for taking that on. Next item is business. Paul and Laura, could you both work together to schedule a call with the client? Target completion is no later than Friday. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. Brian, I'd like you to follow up with stakeholders. Please have this ready by by the end of this week. Got it. Is there anything blocking anyone from starting? No blockers. All good here. Great, thanks all. Let's keep each other posted on progress. Sounds good! Will do!"
+}

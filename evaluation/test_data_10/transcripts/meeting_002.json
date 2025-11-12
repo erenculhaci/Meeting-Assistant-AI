@@ -1,0 +1,177 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "test_meeting_002.mp3",
+    "duration": 184.5,
+    "model": "whisper-medium",
+    "language": "en",
+    "processing_time": 42.435
+  },
+  "transcript": [
+    {
+      "text": "Good morning everyone, let's get started.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Hello!",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Hi there!",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "So, this is our Product Review session.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Next item is product.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Daniel, I'd like you to create wireframes for the dashboard.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Please have this ready by by noon tomorrow.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Will do.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "We need to update the project timeline by by the sprint review.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Brian, I'd like you to coordinate with other teams.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Please have this ready by May 5th.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Sure, happy to.",
+      "speaker": "Speaker_Brian"
+    },
+    {
+      "text": "Next item is business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Matthew and Daniel, could you both work together to update the project timeline?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Daniel"
+    },
+    {
+      "text": "Moving on to business.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Matthew and Jessica, could you both work together to prepare the quarterly report?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Target completion is tomorrow.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Matthew"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Let's talk about business for a moment.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "We need someone to negotiate the contract terms.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "I'll handle that no later than Friday.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Great, thanks for taking that on.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Let's talk about product for a moment.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "We need to schedule user interviews by next Tuesday.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Agreed, that's important.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Moving on to product.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Rebecca and Scott, could you both work together to schedule user interviews?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Target completion is first thing Monday morning.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Yes, we can handle that.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Sounds good to me.",
+      "speaker": "Speaker_Scott"
+    },
+    {
+      "text": "Is there anything blocking anyone from starting?",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Not from my side.",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "No blockers.",
+      "speaker": "Speaker_Rebecca"
+    },
+    {
+      "text": "Great, thanks all. Let's keep each other posted on progress.",
+      "speaker": "Speaker_Patricia"
+    },
+    {
+      "text": "Thanks, talk soon!",
+      "speaker": "Speaker_Jessica"
+    },
+    {
+      "text": "Thanks!",
+      "speaker": "Speaker_Rebecca"
+    }
+  ],
+  "full_text": "Good morning everyone, let's get started. Hello! Hi there! So, this is our Product Review session. Next item is product. Daniel, I'd like you to create wireframes for the dashboard. Please have this ready by by noon tomorrow. Will do. Next item is business. We need to update the project timeline by by the sprint review. Next item is business. Brian, I'd like you to coordinate with other teams. Please have this ready by May 5th. Sure, happy to. Next item is business. Matthew and Daniel, could you both work together to update the project timeline? Yes, we can handle that. Sounds good to me. Moving on to business. Matthew and Jessica, could you both work together to prepare the quarterly report? Target completion is tomorrow. Yes, we can handle that. Sounds good to me. Let's talk about business for a moment. We need someone to negotiate the contract terms. I'll handle that no later than Friday. Great, thanks for taking that on. Let's talk about product for a moment. We need to schedule user interviews by next Tuesday. Agreed, that's important. Moving on to product. Rebecca and Scott, could you both work together to schedule user interviews? Target completion is first thing Monday morning. Yes, we can handle that. Sounds good to me. Is there anything blocking anyone from starting? Not from my side. No blockers. Great, thanks all. Let's keep each other posted on progress. Thanks, talk soon! Thanks!"
+}

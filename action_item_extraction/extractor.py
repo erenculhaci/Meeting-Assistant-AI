@@ -7,8 +7,12 @@ import os
 import logging
 from typing import Dict, List, Any, Optional
 from datetime import datetime
+from dotenv import load_dotenv
 
 from action_item_extraction.core.task_extractor import TaskExtractor
+
+# Load environment variables
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
