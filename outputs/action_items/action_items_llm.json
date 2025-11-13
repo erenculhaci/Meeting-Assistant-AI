@@ -1,0 +1,128 @@
+{
+  "status": "success",
+  "task_count": 12,
+  "extracted_at": "2025-11-13T19:07:03.723107",
+  "extraction_method": "llm_few_shot",
+  "tasks": [
+    {
+      "description": "lead the onboarding flow redesign",
+      "assignee": "Sarah",
+      "speaker": "Unknown",
+      "due_date": null,
+      "confidence": 0.95,
+      "source": "lead the onboarding flow redesign",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "complete the wireframes",
+      "assignee": "Sarah",
+      "speaker": "Unknown",
+      "due_date": "November 5th",
+      "confidence": 0.95,
+      "source": "complete the wireframes",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "have the first prototype ready",
+      "assignee": "Sarah",
+      "speaker": "Unknown",
+      "due_date": "November 15th",
+      "confidence": 0.95,
+      "source": "have the first prototype ready",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "handle marketing launch materials",
+      "assignee": "Tom",
+      "speaker": "Unknown",
+      "due_date": null,
+      "confidence": 0.95,
+      "source": "handle marketing launch materials",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "finalize marketing launch materials",
+      "assignee": "Tom",
+      "speaker": "Unknown",
+      "due_date": "November 20th",
+      "confidence": 0.95,
+      "source": "finalize marketing launch materials",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "coordinate with design for the visuals",
+      "assignee": "Tom",
+      "speaker": "Unknown",
+      "due_date": null,
+      "confidence": 0.9,
+      "source": "coordinate with design for the visuals",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "start analysis for backend optimization",
+      "assignee": "Maya",
+      "speaker": "Unknown",
+      "due_date": "November 2nd",
+      "confidence": 0.95,
+      "source": "start analysis for backend optimization",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "deliver the first benchmark report",
+      "assignee": "Maya",
+      "speaker": "Unknown",
+      "due_date": "November 18th",
+      "confidence": 0.95,
+      "source": "deliver the first benchmark report",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "work closely with DevOps",
+      "assignee": "Maya",
+      "speaker": "Unknown",
+      "due_date": null,
+      "confidence": 0.9,
+      "source": "work closely with DevOps",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "gather feedback from the beta testers",
+      "assignee": "Sarah",
+      "speaker": "Unknown",
+      "due_date": null,
+      "confidence": 0.95,
+      "source": "gather feedback from the beta testers",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "include feedback in the prototype testing phase",
+      "assignee": "Sarah",
+      "speaker": "Unknown",
+      "due_date": "between November 10th and 12th",
+      "confidence": 0.95,
+      "source": "include feedback in the prototype testing phase",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "post status updates in the project Slack channel",
+      "assignee": "Unassigned",
+      "speaker": "Unknown",
+      "due_date": "every Friday",
+      "confidence": 0.7,
+      "source": "post status updates in the project Slack channel",
+      "extraction_method": "llm",
+      "priority": "medium"
+    }
+  ]
+}
