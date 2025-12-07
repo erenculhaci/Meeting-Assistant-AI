@@ -1,0 +1,63 @@
+{
+  "status": "success",
+  "task_count": 5,
+  "extracted_at": "2025-11-13T19:16:37.183003",
+  "extraction_method": "llm_few_shot",
+  "tasks": [
+    {
+      "description": "work with GTM teams to support events",
+      "assignee": "Unassigned",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "work with GTM teams to support events",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "comment on the issue to commit to event support",
+      "assignee": "Unassigned",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "comment on the issue to commit to event support",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "identify top five product announcements for commit",
+      "assignee": "Unassigned",
+      "speaker": "00",
+      "due_date": "Tuesday",
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "identify top five product announcements for commit",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "aggregate and re-bucket features shipped in the last 12 months",
+      "assignee": "04",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.9,
+      "source": "aggregate and re-bucket features shipped in the last 12 months",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "add VS code integration to the list of features",
+      "assignee": "01",
+      "speaker": "04",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.9,
+      "source": "add VS code integration to the list of features",
+      "extraction_method": "llm",
+      "priority": "medium"
+    }
+  ]
+}

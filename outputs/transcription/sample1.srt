@@ -1,0 +1,355 @@
+1
+00:00:00,000 --> 00:00:05,259
+[Speaker_00]  Listen to the dialogue and practice your speaking, listening, and pronunciation skills.
+
+2
+00:00:06,700 --> 00:00:09,320
+[Speaker_00]  Hey Emily, how's it going?
+
+3
+00:00:11,720 --> 00:00:14,800
+[Speaker_01]  Hey Alex, great to see you.
+
+4
+00:00:15,720 --> 00:00:18,620
+[Speaker_01]  I'm doing well, thanks for asking.
+
+5
+00:00:19,620 --> 00:00:21,100
+[Speaker_01]  How about you?
+
+6
+00:00:23,539 --> 00:00:27,379
+[Speaker_02]  Not bad, just a bit busy with work lately.
+
+7
+00:00:27,379 --> 00:00:31,600
+[Speaker_02]  But I'm always happy to catch up with you.
+
+8
+00:00:34,460 --> 00:00:35,179
+[Speaker_00]  Me too.
+
+9
+00:00:36,659 --> 00:00:38,759
+[Speaker_00]  So, what's new with you?
+
+10
+00:00:41,179 --> 00:00:45,079
+[Speaker_01]  Well, I've been trying to get into gardening recently.
+
+11
+00:00:47,719 --> 00:00:49,719
+[Speaker_02]  Oh, that's cool.
+
+12
+00:00:50,659 --> 00:00:52,460
+[Speaker_02]  What have you been planting?
+
+13
+00:00:52,460 --> 00:01:00,000
+[Speaker_02]  I've started with some herbs like basil, rosemary, and thyme.
+
+14
+00:01:00,759 --> 00:01:04,560
+[Speaker_02]  And I'm also growing a few tomatoes and peppers.
+
+15
+00:01:07,159 --> 00:01:09,060
+[Speaker_00]  That sounds delicious.
+
+16
+00:01:10,420 --> 00:01:15,780
+[Speaker_00]  I've always wanted to try gardening, but I'm not sure I have a green thumb.
+
+17
+00:01:18,319 --> 00:01:21,140
+[Speaker_01]  Don't worry, it's not that hard.
+
+18
+00:01:22,459 --> 00:01:24,799
+[Speaker_01]  And it's actually quite relaxing.
+
+19
+00:01:26,400 --> 00:01:29,819
+[Speaker_02]  Plus, it's a great way to get some fresh produce.
+
+20
+00:01:32,299 --> 00:01:34,760
+[Speaker_00]  Yeah, I might give it a try.
+
+21
+00:01:35,819 --> 00:01:37,700
+[Speaker_00]  What else have you been up to?
+
+22
+00:01:40,140 --> 00:01:44,620
+[Speaker_01]  I've also been taking some online courses in photography.
+
+23
+00:01:45,719 --> 00:01:52,200
+[Speaker_01]  I've always been interested in it, and I'm really enjoying learning about different techniques.
+
+24
+00:01:52,459 --> 00:02:01,799
+[Speaker_01]  That's great. I've seen some of your photos on Instagram, and they're amazing.
+
+25
+00:02:04,620 --> 00:02:10,960
+[Speaker_02]  Thanks. I'm still practicing, but I'm getting better all the time.
+
+26
+00:02:13,159 --> 00:02:30,087
+[Speaker_00]  I sure you are What kind of photography do you like most I like to take pictures of nature in landscapes But I also interested in portrait photography
+
+27
+00:02:33,267 --> 00:02:35,687
+[Speaker_01]  I love nature photography, too.
+
+28
+00:02:37,147 --> 00:02:43,047
+[Speaker_01]  There's something so calming about being in nature and capturing its beauty on camera.
+
+29
+00:02:45,227 --> 00:02:46,747
+[Speaker_02]  I agree.
+
+30
+00:02:47,667 --> 00:02:55,027
+[Speaker_02]  And I find that portrait photography is a great way to capture people's personalities and emotions.
+
+31
+00:02:57,527 --> 00:02:58,807
+[Speaker_00]  That's true.
+
+32
+00:03:00,007 --> 00:03:02,967
+[Speaker_00]  So, what are your plans for the weekend?
+
+33
+00:03:05,607 --> 00:03:09,787
+[Speaker_01]  I'm planning to go hiking with some friends on Saturday.
+
+34
+00:03:10,787 --> 00:03:14,927
+[Speaker_01]  And then on Sunday, I'm going to visit my family.
+
+35
+00:03:17,667 --> 00:03:19,667
+[Speaker_02]  Sounds like a fun weekend.
+
+36
+00:03:20,907 --> 00:03:25,067
+[Speaker_02]  I'm going to a concert on Saturday night with my boyfriend.
+
+37
+00:03:25,067 --> 00:03:32,447
+[Speaker_02]  And then on Sunday, I'm just going to relax at home and catch up on some reading.
+
+38
+00:03:35,267 --> 00:03:39,747
+[Speaker_00]  Nice. I'm sure you'll have a great time.
+
+39
+00:03:42,367 --> 00:03:46,927
+[Speaker_01]  Thanks. I'll see you soon, Alex.
+
+40
+00:03:47,667 --> 00:03:51,727
+[Speaker_01]  See you later, Emily!
+
+41
+00:03:56,827 --> 00:04:01,867
+[Speaker_02]  To get into means to become involved or interested in something.
+
+42
+00:04:02,667 --> 00:04:08,867
+[Speaker_02]  It's like starting to participate in or enjoy a particular activity or hobby.
+
+43
+00:04:08,867 --> 00:04:19,787
+[Speaker_02]  For example, if you decide to get into hiking, it means you start to explore hiking trails and spend time outdoors enjoying nature.
+
+44
+00:04:21,227 --> 00:04:28,047
+[Speaker_02]  Capturing means recording or taking a picture of something, often to preserve a moment or image.
+
+45
+00:04:29,367 --> 00:04:31,947
+[Speaker_02]  It's like freezing a moment in time.
+
+46
+00:04:31,947 --> 00:04:56,355
+[Speaker_02]  For example if you capturing a sunset with your camera you taking a photograph to remember the beauty of the scene A green thumb is an idiom used to describe someone who has a natural talent or ability for gardening and growing plants successfully It like being skilled at nurturing and caring
+
+47
+00:04:56,355 --> 00:05:04,075
+[Speaker_02]  for plants, so they thrive under your care. For example, if someone has a green thumb,
+
+48
+00:05:04,075 --> 00:05:08,095
+[Speaker_02]  they can make even the most difficult plants grow beautifully.
+
+49
+00:05:08,915 --> 00:05:12,235
+[Speaker_02]  Let's listen carefully to the dialogue one more time.
+
+50
+00:05:13,775 --> 00:05:15,815
+[Speaker_00]  Hey Emily, how's it going?
+
+51
+00:05:18,255 --> 00:05:21,315
+[Speaker_01]  Hey Alex, great to see you.
+
+52
+00:05:22,635 --> 00:05:25,135
+[Speaker_01]  I'm doing well, thanks for asking.
+
+53
+00:05:26,155 --> 00:05:27,615
+[Speaker_01]  How about you?
+
+54
+00:05:30,095 --> 00:05:33,855
+[Speaker_02]  Not bad, just a bit busy with work lately.
+
+55
+00:05:34,075 --> 00:05:38,075
+[Speaker_02]  But I'm always happy to catch up with you.
+
+56
+00:05:40,335 --> 00:05:41,655
+[Speaker_00]  Me too.
+
+57
+00:05:42,895 --> 00:05:45,235
+[Speaker_00]  So, what's new with you?
+
+58
+00:05:47,615 --> 00:05:51,555
+[Speaker_01]  Well, I've been trying to get into gardening recently.
+
+59
+00:05:54,135 --> 00:05:56,215
+[Speaker_02]  Oh, that's cool.
+
+60
+00:05:57,115 --> 00:05:58,935
+[Speaker_02]  What have you been planting?
+
+61
+00:05:58,935 --> 00:06:06,475
+[Speaker_02]  I've started with some herbs like basil, rosemary, and thyme.
+
+62
+00:06:07,235 --> 00:06:11,035
+[Speaker_02]  And I'm also growing a few tomatoes and peppers.
+
+63
+00:06:13,635 --> 00:06:15,535
+[Speaker_00]  That sounds delicious.
+
+64
+00:06:16,895 --> 00:06:22,275
+[Speaker_00]  I've always wanted to try gardening, but I'm not sure I have a green thumb.
+
+65
+00:06:24,795 --> 00:06:27,615
+[Speaker_01]  Don't worry, it's not that hard.
+
+66
+00:06:28,935 --> 00:06:31,295
+[Speaker_01]  And it's actually quite relaxing.
+
+67
+00:06:32,895 --> 00:06:36,315
+[Speaker_02]  Plus, it's a great way to get some fresh produce.
+
+68
+00:06:38,775 --> 00:06:41,235
+[Speaker_00]  Yeah, I might give it a try.
+
+69
+00:06:42,295 --> 00:06:44,195
+[Speaker_00]  What else have you been up to?
+
+70
+00:06:46,615 --> 00:06:51,115
+[Speaker_01]  I've also been taking some online courses in photography.
+
+71
+00:06:52,195 --> 00:06:58,675
+[Speaker_01]  I've always been interested in it, and I'm really enjoying learning about different techniques.
+
+72
+00:06:58,935 --> 00:07:17,383
+[Speaker_01]  That great I seen some of your photos on Instagram and they amazing Thanks I still practicing but I getting better all the time
+
+73
+00:07:19,643 --> 00:07:25,463
+[Speaker_02]  I'm sure you are. What kind of photography do you like most?
+
+74
+00:07:27,823 --> 00:07:31,603
+[Speaker_00]  I like to take pictures of nature in landscapes.
+
+75
+00:07:33,003 --> 00:07:36,483
+[Speaker_00]  But I'm also interested in portrait photography.
+
+76
+00:07:38,923 --> 00:07:42,103
+[Speaker_01]  I love nature photography too.
+
+77
+00:07:43,583 --> 00:07:49,483
+[Speaker_01]  There's something so calming about being in nature and capturing its beauty on camera.
+
+78
+00:07:51,683 --> 00:07:53,043
+[Speaker_02]  I agree.
+
+79
+00:07:54,163 --> 00:08:01,363
+[Speaker_02]  And I find that portrait photography is a great way to capture people's personalities and emotions.
+
+80
+00:08:04,003 --> 00:08:09,423
+[Speaker_00]  That's true. So, what are your plans for the weekend?
+
+81
+00:08:12,083 --> 00:08:16,223
+[Speaker_01]  I'm planning to go hiking with some friends on Saturday.
+
+82
+00:08:17,263 --> 00:08:21,363
+[Speaker_01]  And then on Sunday, I'm going to visit my family.
+
+83
+00:08:23,943 --> 00:08:26,123
+[Speaker_02]  Sounds like a fun weekend.
+
+84
+00:08:27,163 --> 00:08:31,523
+[Speaker_02]  I'm going to a concert on Saturday night with my boyfriend.
+
+85
+00:08:33,003 --> 00:08:38,883
+[Speaker_02]  And then on Sunday, I'm just going to relax at home and catch up on some reading.
+
+86
+00:08:41,743 --> 00:08:46,183
+[Speaker_00]  Nice. I'm sure you'll have a great time.
+
+87
+00:08:48,843 --> 00:08:53,463
+[Speaker_01]  Thanks. I'll see you soon, Alex.
+
+88
+00:08:56,083 --> 00:08:58,163
+[Speaker_02]  See you later, Emily.
+
+89
+00:09:03,003 --> 00:09:32,983
+[Speaker_00]  Thank you.

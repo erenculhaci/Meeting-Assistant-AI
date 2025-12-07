@@ -83,8 +83,8 @@ class LLMActionItemExtractor:
         
         segments = transcript_data.get('transcript', [])
         
-        # Build conversation context
-        conversation = self._build_conversation_text(segments)
+        # Build conversation context with segment tracking
+        conversation, segment_map = self._build_conversation_text_with_map(segments)
         
         # Extract speakers
         speakers = list(set(seg.get('speaker', '').replace('Speaker_', '') 
@@ -92,7 +92,7 @@ class LLMActionItemExtractor:
         
         # Call LLM with few-shot examples
         try:
-            action_items = self._extract_with_llm(conversation, speakers)
+            action_items = self._extract_with_llm(conversation, speakers, segments, segment_map)
             
             return {
                 'status': 'success',
@@ -119,10 +119,29 @@ class LLMActionItemExtractor:
                 lines.append(f"{speaker}: {text}")
         return '\n'.join(lines)
     
+    def _build_conversation_text_with_map(self, segments: List[Dict]) -> tuple:
+        """
+        Build formatted conversation text with segment mapping.
+        Returns (conversation_text, segment_map) where segment_map maps line numbers to segment indices.
+        """
+        lines = []
+        segment_map = {}  # line_number -> segment_index
+        
+        for idx, seg in enumerate(segments):
+            speaker = seg.get('speaker', 'Unknown').replace('Speaker_', '')
+            text = seg.get('text', '').strip()
+            if text:
+                segment_map[len(lines)] = idx
+                lines.append(f"{speaker}: {text}")
+        
+        return '\n'.join(lines), segment_map
+    
     def _extract_with_llm(
         self,
         conversation: str,
-        speakers: List[str]
+        speakers: List[str],
+        segments: List[Dict],
+        segment_map: Dict[int, int]
     ) -> List[Dict[str, Any]]:
         """Extract action items using LLM with few-shot prompting."""
         
@@ -133,7 +152,7 @@ class LLMActionItemExtractor:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an expert at extracting action items from meeting transcripts. You identify tasks, assignees, and deadlines accurately."
+                    "content": "You are an expert at extracting action items from meeting transcripts. You identify tasks, assignees, deadlines, and start dates accurately."
                 },
                 {
                     "role": "user",
@@ -161,10 +180,10 @@ class LLMActionItemExtractor:
             result = json.loads(result_text)
             action_items = result.get('action_items', [])
             
-            # Post-process: clean and validate
+            # Post-process: clean, validate, and find speakers from transcript
             cleaned_items = []
             for item in action_items:
-                cleaned = self._clean_action_item(item)
+                cleaned = self._clean_action_item(item, segments, conversation)
                 if cleaned:
                     cleaned_items.append(cleaned)
             
@@ -198,6 +217,7 @@ Extract all action items and return them as JSON in this exact format:
       "description": "clear, actionable task description",
       "assignee": "Name" or "Name1 and Name2" or "Unassigned",
       "due_date": "specific deadline" or null,
+      "start_date": "when task should start" or null,
       "confidence": 0.0-1.0
     }}
   ]
@@ -216,11 +236,16 @@ CRITICAL RULES:
    - NOT fragments like "for the visuals" or "that thing"
 
 3. DUE_DATE:
-   - Extract exact deadline mentioned (e.g., "next Monday", "by end of month")
+   - Extract exact deadline mentioned (e.g., "next Monday", "by end of month", "November 20th")
    - If no deadline mentioned: null
    - Keep original format from conversation
 
-4. CONFIDENCE:
+4. START_DATE:
+   - Extract when task should start (e.g., "starting November 2nd", "begin on Monday")
+   - If no start date mentioned: null
+   - Keep original format from conversation
+
+5. CONFIDENCE:
    - 0.9-1.0: Explicit assignment with clear task
    - 0.7-0.9: Clear task, implicit assignment
    - 0.5-0.7: Ambiguous or general statement
@@ -241,6 +266,7 @@ OUTPUT:
       "description": "prepare the quarterly report",
       "assignee": "Laura",
       "due_date": "next Monday",
+      "start_date": null,
       "confidence": 0.95
     }}
   ]
@@ -261,12 +287,32 @@ OUTPUT:
       "description": "create the architecture diagram",
       "assignee": "Brian",
       "due_date": null,
+      "start_date": null,
       "confidence": 0.95
     }},
     {{
       "description": "work on the security audit",
       "assignee": "Laura and Paul",
       "due_date": "by month end",
+      "start_date": null,
+      "confidence": 0.95
+    }}
+  ]
+}}
+
+Example 3:
+TRANSCRIPT:
+Manager: Maya, you should start the backend analysis on November 2nd and deliver the report by November 18th.
+Maya: Understood, I'll begin on the 2nd.
+
+OUTPUT:
+{{
+  "action_items": [
+    {{
+      "description": "start backend analysis and deliver report",
+      "assignee": "Maya",
+      "due_date": "November 18th",
+      "start_date": "November 2nd",
       "confidence": 0.95
     }}
   ]
@@ -292,11 +338,12 @@ OUTPUT:
 
 Now extract action items from the given transcript above. Return ONLY the JSON, no additional text."""
     
-    def _clean_action_item(self, item: Dict) -> Optional[Dict]:
-        """Clean and validate an action item."""
+    def _clean_action_item(self, item: Dict, segments: List[Dict], conversation: str) -> Optional[Dict]:
+        """Clean and validate an action item, find speaker from transcript."""
         description = item.get('description', '').strip()
         assignee = item.get('assignee', 'Unassigned').strip()
         due_date = item.get('due_date')
+        start_date = item.get('start_date')
         confidence = item.get('confidence', 0.7)
         
         # Validate description
@@ -310,16 +357,70 @@ Now extract action items from the given transcript above. Return ONLY the JSON, 
         if confidence < 0.5:
             return None
         
+        # Find speaker from transcript by matching description or assignee
+        speaker = self._find_speaker_from_transcript(description, assignee, segments, conversation)
+        
         return {
             'description': description,
             'assignee': assignee,
-            'speaker': 'Unknown',  # LLM doesn't track which segment
+            'speaker': speaker,
             'due_date': due_date,
+            'start_date': start_date,
             'confidence': confidence,
             'source': description,  # Use description as source
             'extraction_method': 'llm',
             'priority': 'medium'
         }
+    
+    def _find_speaker_from_transcript(
+        self,
+        description: str,
+        assignee: str,
+        segments: List[Dict],
+        conversation: str
+    ) -> str:
+        """
+        Find the speaker who mentioned this action item.
+        
+        Strategy:
+        1. Look for segment where assignee is mentioned
+        2. Look for segment containing key words from description
+        3. Return the speaker of that segment
+        """
+        desc_lower = description.lower()
+        assignee_lower = assignee.lower()
+        
+        # Get key words from description (verbs and nouns)
+        key_words = [w for w in desc_lower.split() if len(w) > 3][:3]
+        
+        # Search segments for best match
+        best_speaker = 'Unknown'
+        best_score = 0
+        
+        for seg in segments:
+            text = seg.get('text', '').lower()
+            speaker = seg.get('speaker', 'Unknown').replace('Speaker_', '')
+            
+            score = 0
+            
+            # Check if assignee is mentioned (strong signal)
+            if assignee_lower in text and assignee_lower != 'unassigned':
+                score += 10
+            
+            # Check if key words from description are in text
+            for word in key_words:
+                if word in text:
+                    score += 2
+            
+            # Prefer segments from people assigning tasks (not the assignee themselves)
+            if speaker.lower() != assignee_lower:
+                score += 1
+            
+            if score > best_score:
+                best_score = score
+                best_speaker = speaker
+        
+        return best_speaker if best_speaker != 'Unknown' else segments[0].get('speaker', 'Unknown').replace('Speaker_', '') if segments else 'Unknown'
 
 
 def main():

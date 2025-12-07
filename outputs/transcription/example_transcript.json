@@ -1,0 +1,434 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "sample1.wav",
+    "duration": 570.6304375,
+    "model": "whisper-base",
+    "language": "en",
+    "processing_time": 310.290555,
+    "include_timestamps": true
+  },
+  "transcript": [
+    {
+      "text": " Listen to the dialogue and practice your speaking, listening, and pronunciation skills.",
+      "start": 0.0,
+      "end": 7.0
+    },
+    {
+      "text": " Hey Emily, how's it going?",
+      "start": 7.0,
+      "end": 12.0
+    },
+    {
+      "text": " Hey Alex, great to see you.",
+      "start": 12.0,
+      "end": 16.0
+    },
+    {
+      "text": " I'm doing well, thanks for asking.",
+      "start": 16.0,
+      "end": 20.0
+    },
+    {
+      "text": " How about you?",
+      "start": 20.0,
+      "end": 24.0
+    },
+    {
+      "text": " Not bad, just a bit busy with work lately.",
+      "start": 24.0,
+      "end": 28.0
+    },
+    {
+      "text": " But I'm always happy to catch up with you.",
+      "start": 28.0,
+      "end": 34.0
+    },
+    {
+      "text": " Me too.",
+      "start": 34.0,
+      "end": 36.0
+    },
+    {
+      "text": " So, what's new with you?",
+      "start": 36.0,
+      "end": 41.0
+    },
+    {
+      "text": " Well, I've been trying to get into gardening recently.",
+      "start": 41.0,
+      "end": 47.0
+    },
+    {
+      "text": " Oh, that's cool.",
+      "start": 47.0,
+      "end": 51.0
+    },
+    {
+      "text": " What have you been planting?",
+      "start": 51.0,
+      "end": 55.0
+    },
+    {
+      "text": " I've started with some herbs like basil, rosemary, and thyme.",
+      "start": 55.0,
+      "end": 61.0
+    },
+    {
+      "text": " And I'm also growing a few tomatoes and peppers.",
+      "start": 61.0,
+      "end": 67.0
+    },
+    {
+      "text": " That sounds delicious.",
+      "start": 67.0,
+      "end": 70.0
+    },
+    {
+      "text": " I've always wanted to try gardening, but I'm not sure I have a green thumb.",
+      "start": 70.0,
+      "end": 78.0
+    },
+    {
+      "text": " Don't worry, it's not that hard.",
+      "start": 78.0,
+      "end": 82.0
+    },
+    {
+      "text": " And it's actually quite relaxing.",
+      "start": 82.0,
+      "end": 86.0
+    },
+    {
+      "text": " Plus, it's a great way to get some fresh produce.",
+      "start": 86.0,
+      "end": 92.0
+    },
+    {
+      "text": " Yeah, I might give it a try.",
+      "start": 92.0,
+      "end": 96.0
+    },
+    {
+      "text": " What else have you been up to?",
+      "start": 96.0,
+      "end": 100.0
+    },
+    {
+      "text": " I've also been taking some online courses in photography.",
+      "start": 100.0,
+      "end": 106.0
+    },
+    {
+      "text": " I've always been interested in it, and I'm really enjoying learning about different techniques.",
+      "start": 106.0,
+      "end": 115.0
+    },
+    {
+      "text": " That's great.",
+      "start": 115.0,
+      "end": 117.0
+    },
+    {
+      "text": " I've seen some of your photos on Instagram, and they're amazing.",
+      "start": 117.0,
+      "end": 125.0
+    },
+    {
+      "text": " Thanks.",
+      "start": 125.0,
+      "end": 127.0
+    },
+    {
+      "text": " I'm still practicing, but I'm getting better all the time.",
+      "start": 127.0,
+      "end": 133.0
+    },
+    {
+      "text": " I'm sure you are.",
+      "start": 133.0,
+      "end": 136.0
+    },
+    {
+      "text": " What kind of photography do you like most?",
+      "start": 136.0,
+      "end": 141.0
+    },
+    {
+      "text": " I like to take pictures of nature in landscapes, but I'm also interested in portrait photography.",
+      "start": 141.0,
+      "end": 153.0
+    },
+    {
+      "text": " I love nature photography, too.",
+      "start": 153.0,
+      "end": 157.0
+    },
+    {
+      "text": " There's something so calming about being in nature and capturing its beauty on camera.",
+      "start": 157.0,
+      "end": 165.0
+    },
+    {
+      "text": " I agree.",
+      "start": 165.0,
+      "end": 168.0
+    },
+    {
+      "text": " And I find that portrait photography is a great way to capture people's personalities and emotions.",
+      "start": 168.0,
+      "end": 177.0
+    },
+    {
+      "text": " That's true.",
+      "start": 177.0,
+      "end": 180.0
+    },
+    {
+      "text": " So, what are your plans for the weekend?",
+      "start": 180.0,
+      "end": 186.0
+    },
+    {
+      "text": " I'm planning to go hiking with some friends on Saturday.",
+      "start": 186.0,
+      "end": 191.0
+    },
+    {
+      "text": " And then on Sunday, I'm going to visit my family.",
+      "start": 191.0,
+      "end": 197.0
+    },
+    {
+      "text": " Sounds like a fun weekend.",
+      "start": 197.0,
+      "end": 201.0
+    },
+    {
+      "text": " I'm going to a concert on Saturday night with my boyfriend.",
+      "start": 201.0,
+      "end": 206.0
+    },
+    {
+      "text": " And then on Sunday, I'm just going to relax at home and catch up on some reading.",
+      "start": 206.0,
+      "end": 215.0
+    },
+    {
+      "text": " Nice.",
+      "start": 215.0,
+      "end": 217.0
+    },
+    {
+      "text": " I'm sure you'll have a great time.",
+      "start": 217.0,
+      "end": 222.0
+    },
+    {
+      "text": " Thanks.",
+      "start": 222.0,
+      "end": 224.0
+    },
+    {
+      "text": " I'll see you soon, Alex.",
+      "start": 224.0,
+      "end": 229.0
+    },
+    {
+      "text": " See you later, Emily.",
+      "start": 229.0,
+      "end": 237.0
+    },
+    {
+      "text": " To get into means to become involved or interested in something.",
+      "start": 237.0,
+      "end": 243.0
+    },
+    {
+      "text": " It's like starting to participate in or enjoy a particular activity or hobby.",
+      "start": 243.0,
+      "end": 250.0
+    },
+    {
+      "text": " For example, if you decide to get into hiking, it means you start to explore hiking trails and spend time outdoors enjoying nature.",
+      "start": 250.0,
+      "end": 261.0
+    },
+    {
+      "text": " Capturing means recording or taking a picture of something, often to preserve a moment or image.",
+      "start": 261.0,
+      "end": 269.0
+    },
+    {
+      "text": " It's like freezing a moment in time.",
+      "start": 269.0,
+      "end": 273.0
+    },
+    {
+      "text": " For example, if you're capturing a sunset with your camera, you're taking a photograph to remember the beauty of the scene.",
+      "start": 273.0,
+      "end": 282.0
+    },
+    {
+      "text": " A green thumb is an idiom used to describe someone who has a natural talent or ability for gardening and growing plants successfully.",
+      "start": 282.0,
+      "end": 293.0
+    },
+    {
+      "text": " It's like being skilled at nurturing and caring for plants, so they thrive under your care.",
+      "start": 293.0,
+      "end": 300.0
+    },
+    {
+      "text": " For example, if someone has a green thumb, they can make even the most difficult plants grow beautifully.",
+      "start": 300.0,
+      "end": 309.0
+    },
+    {
+      "text": " Let's listen carefully to the dialogue one more time.",
+      "start": 309.0,
+      "end": 313.0
+    },
+    {
+      "text": " Hey, Emily, how's it going?",
+      "start": 313.0,
+      "end": 318.0
+    },
+    {
+      "text": " Hey, Alex. Great to see you.",
+      "start": 318.0,
+      "end": 322.0
+    },
+    {
+      "text": " I'm doing well, thanks for asking. How about you?",
+      "start": 322.0,
+      "end": 330.0
+    },
+    {
+      "text": " Not bad, just a bit busy with work lately.",
+      "start": 330.0,
+      "end": 335.0
+    },
+    {
+      "text": " But I'm always happy to catch up with you.",
+      "start": 335.0,
+      "end": 340.0
+    },
+    {
+      "text": " Me too. So, what's new with you?",
+      "start": 340.0,
+      "end": 347.0
+    },
+    {
+      "text": " Well, I've been trying to get into gardening recently.",
+      "start": 348.0,
+      "end": 354.0
+    },
+    {
+      "text": " Oh, that's cool. What have you been planting?",
+      "start": 354.0,
+      "end": 361.0
+    },
+    {
+      "text": " I've started with some herbs like basil, rosemary, and thyme. And I'm also growing a few tomatoes and peppers.",
+      "start": 361.0,
+      "end": 374.0
+    },
+    {
+      "text": " That sounds delicious. I've always wanted to try gardening, but I'm not sure I have a green thumb.",
+      "start": 374.0,
+      "end": 385.0
+    },
+    {
+      "text": " Don't worry, it's not that hard. And it's actually quite relaxing.",
+      "start": 385.0,
+      "end": 392.0
+    },
+    {
+      "text": " Plus, it's a great way to get some fresh produce.",
+      "start": 392.0,
+      "end": 399.0
+    },
+    {
+      "text": " Yeah, I might give it a try. What else have you been up to?",
+      "start": 399.0,
+      "end": 407.0
+    },
+    {
+      "text": " I've also been taking some online courses in photography. I've always been interested in it, and I'm really enjoying learning about different techniques.",
+      "start": 407.0,
+      "end": 421.0
+    },
+    {
+      "text": " That's great. I've seen some of your photos on Instagram, and they're amazing.",
+      "start": 421.0,
+      "end": 431.0
+    },
+    {
+      "text": " Thanks. I'm still practicing, but I'm getting better all the time.",
+      "start": 431.0,
+      "end": 440.0
+    },
+    {
+      "text": " I'm sure you are. What kind of photography do you like most?",
+      "start": 440.0,
+      "end": 448.0
+    },
+    {
+      "text": " I like to take pictures of nature in landscapes, but I'm also interested in portrait photography.",
+      "start": 448.0,
+      "end": 459.0
+    },
+    {
+      "text": " I love nature photography, too. There's something so calming about being in nature and capturing its beauty on camera.",
+      "start": 459.0,
+      "end": 472.0
+    },
+    {
+      "text": " I agree. And I find that portrait photography is a great way to capture people's personalities and emotions.",
+      "start": 472.0,
+      "end": 484.0
+    },
+    {
+      "text": " That's true. So, what are your plans for the weekend?",
+      "start": 484.0,
+      "end": 492.0
+    },
+    {
+      "text": " I'm planning to go hiking with some friends on Saturday. And then on Sunday, I'm going to visit my family.",
+      "start": 492.0,
+      "end": 504.0
+    },
+    {
+      "text": " Sounds like a fun weekend. I'm going to a concert on Saturday night with my boyfriend.",
+      "start": 504.0,
+      "end": 513.0
+    },
+    {
+      "text": " And then on Sunday, I'm just going to relax at home and catch up on some reading.",
+      "start": 513.0,
+      "end": 521.0
+    },
+    {
+      "text": " Nice. I'm sure you'll have a great time.",
+      "start": 521.0,
+      "end": 528.0
+    },
+    {
+      "text": " Thanks. I'll see you soon, Alex.",
+      "start": 528.0,
+      "end": 536.0
+    },
+    {
+      "text": " See you later, Emily.",
+      "start": 536.0,
+      "end": 540.0
+    },
+    {
+      "text": " Bye.",
+      "start": 566.0,
+      "end": 570.0
+    }
+  ],
+  "full_text": " Listen to the dialogue and practice your speaking, listening, and pronunciation skills. Hey Emily, how's it going? Hey Alex, great to see you. I'm doing well, thanks for asking. How about you? Not bad, just a bit busy with work lately. But I'm always happy to catch up with you. Me too. So, what's new with you? Well, I've been trying to get into gardening recently. Oh, that's cool. What have you been planting? I've started with some herbs like basil, rosemary, and thyme. And I'm also growing a few tomatoes and peppers. That sounds delicious. I've always wanted to try gardening, but I'm not sure I have a green thumb. Don't worry, it's not that hard. And it's actually quite relaxing. Plus, it's a great way to get some fresh produce. Yeah, I might give it a try. What else have you been up to? I've also been taking some online courses in photography. I've always been interested in it, and I'm really enjoying learning about different techniques. That's great. I've seen some of your photos on Instagram, and they're amazing. Thanks. I'm still practicing, but I'm getting better all the time. I'm sure you are. What kind of photography do you like most? I like to take pictures of nature in landscapes, but I'm also interested in portrait photography. I love nature photography, too. There's something so calming about being in nature and capturing its beauty on camera. I agree. And I find that portrait photography is a great way to capture people's personalities and emotions. That's true. So, what are your plans for the weekend? I'm planning to go hiking with some friends on Saturday. And then on Sunday, I'm going to visit my family. Sounds like a fun weekend. I'm going to a concert on Saturday night with my boyfriend. And then on Sunday, I'm just going to relax at home and catch up on some reading. Nice. I'm sure you'll have a great time. Thanks. I'll see you soon, Alex. See you later, Emily. To get into means to become involved or interested in something. It's like starting to participate in or enjoy a particular activity or hobby. For example, if you decide to get into hiking, it means you start to explore hiking trails and spend time outdoors enjoying nature. Capturing means recording or taking a picture of something, often to preserve a moment or image. It's like freezing a moment in time. For example, if you're capturing a sunset with your camera, you're taking a photograph to remember the beauty of the scene. A green thumb is an idiom used to describe someone who has a natural talent or ability for gardening and growing plants successfully. It's like being skilled at nurturing and caring for plants, so they thrive under your care. For example, if someone has a green thumb, they can make even the most difficult plants grow beautifully. Let's listen carefully to the dialogue one more time. Hey, Emily, how's it going? Hey, Alex. Great to see you. I'm doing well, thanks for asking. How about you? Not bad, just a bit busy with work lately. But I'm always happy to catch up with you. Me too. So, what's new with you? Well, I've been trying to get into gardening recently. Oh, that's cool. What have you been planting? I've started with some herbs like basil, rosemary, and thyme. And I'm also growing a few tomatoes and peppers. That sounds delicious. I've always wanted to try gardening, but I'm not sure I have a green thumb. Don't worry, it's not that hard. And it's actually quite relaxing. Plus, it's a great way to get some fresh produce. Yeah, I might give it a try. What else have you been up to? I've also been taking some online courses in photography. I've always been interested in it, and I'm really enjoying learning about different techniques. That's great. I've seen some of your photos on Instagram, and they're amazing. Thanks. I'm still practicing, but I'm getting better all the time. I'm sure you are. What kind of photography do you like most? I like to take pictures of nature in landscapes, but I'm also interested in portrait photography. I love nature photography, too. There's something so calming about being in nature and capturing its beauty on camera. I agree. And I find that portrait photography is a great way to capture people's personalities and emotions. That's true. So, what are your plans for the weekend? I'm planning to go hiking with some friends on Saturday. And then on Sunday, I'm going to visit my family. Sounds like a fun weekend. I'm going to a concert on Saturday night with my boyfriend. And then on Sunday, I'm just going to relax at home and catch up on some reading. Nice. I'm sure you'll have a great time. Thanks. I'll see you soon, Alex. See you later, Emily. Bye."
+}

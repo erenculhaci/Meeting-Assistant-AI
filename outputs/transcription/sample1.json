@@ -1,0 +1,547 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "sample1.wav",
+    "duration": 570.63,
+    "model": "whisper-large-v3-turbo",
+    "language": "English",
+    "processing_time": 5.9159181118011475,
+    "include_timestamps": true
+  },
+  "transcript": [
+    {
+      "text": "Listen to the dialogue and practice your speaking, listening, and pronunciation skills.",
+      "speaker": "Speaker_00",
+      "start": 0,
+      "end": 5.26
+    },
+    {
+      "text": "Hey Emily, how's it going?",
+      "speaker": "Speaker_00",
+      "start": 6.7,
+      "end": 9.32
+    },
+    {
+      "text": "Hey Alex, great to see you.",
+      "speaker": "Speaker_01",
+      "start": 11.72,
+      "end": 14.8
+    },
+    {
+      "text": "I'm doing well, thanks for asking.",
+      "speaker": "Speaker_01",
+      "start": 15.72,
+      "end": 18.62
+    },
+    {
+      "text": "How about you?",
+      "speaker": "Speaker_01",
+      "start": 19.62,
+      "end": 21.1
+    },
+    {
+      "text": "Not bad, just a bit busy with work lately.",
+      "speaker": "Speaker_02",
+      "start": 23.54,
+      "end": 27.38
+    },
+    {
+      "text": "But I'm always happy to catch up with you.",
+      "speaker": "Speaker_02",
+      "start": 27.38,
+      "end": 31.6
+    },
+    {
+      "text": "Me too.",
+      "speaker": "Speaker_00",
+      "start": 34.46,
+      "end": 35.18
+    },
+    {
+      "text": "So, what's new with you?",
+      "speaker": "Speaker_00",
+      "start": 36.66,
+      "end": 38.76
+    },
+    {
+      "text": "Well, I've been trying to get into gardening recently.",
+      "speaker": "Speaker_01",
+      "start": 41.18,
+      "end": 45.08
+    },
+    {
+      "text": "Oh, that's cool.",
+      "speaker": "Speaker_02",
+      "start": 47.72,
+      "end": 49.72
+    },
+    {
+      "text": "What have you been planting?",
+      "speaker": "Speaker_02",
+      "start": 50.66,
+      "end": 52.46
+    },
+    {
+      "text": "I've started with some herbs like basil, rosemary, and thyme.",
+      "speaker": "Speaker_02",
+      "start": 52.46,
+      "end": 60
+    },
+    {
+      "text": "And I'm also growing a few tomatoes and peppers.",
+      "speaker": "Speaker_02",
+      "start": 60.76,
+      "end": 64.56
+    },
+    {
+      "text": "That sounds delicious.",
+      "speaker": "Speaker_00",
+      "start": 67.16,
+      "end": 69.06
+    },
+    {
+      "text": "I've always wanted to try gardening, but I'm not sure I have a green thumb.",
+      "speaker": "Speaker_00",
+      "start": 70.42,
+      "end": 75.78
+    },
+    {
+      "text": "Don't worry, it's not that hard.",
+      "speaker": "Speaker_01",
+      "start": 78.32,
+      "end": 81.14
+    },
+    {
+      "text": "And it's actually quite relaxing.",
+      "speaker": "Speaker_01",
+      "start": 82.46,
+      "end": 84.8
+    },
+    {
+      "text": "Plus, it's a great way to get some fresh produce.",
+      "speaker": "Speaker_02",
+      "start": 86.4,
+      "end": 89.82
+    },
+    {
+      "text": "Yeah, I might give it a try.",
+      "speaker": "Speaker_00",
+      "start": 92.3,
+      "end": 94.76
+    },
+    {
+      "text": "What else have you been up to?",
+      "speaker": "Speaker_00",
+      "start": 95.82,
+      "end": 97.7
+    },
+    {
+      "text": "I've also been taking some online courses in photography.",
+      "speaker": "Speaker_01",
+      "start": 100.14,
+      "end": 104.62
+    },
+    {
+      "text": "I've always been interested in it, and I'm really enjoying learning about different techniques.",
+      "speaker": "Speaker_01",
+      "start": 105.72,
+      "end": 112.2
+    },
+    {
+      "text": "That's great. I've seen some of your photos on Instagram, and they're amazing.",
+      "speaker": "Speaker_01",
+      "start": 112.46,
+      "end": 121.8
+    },
+    {
+      "text": "Thanks. I'm still practicing, but I'm getting better all the time.",
+      "speaker": "Speaker_02",
+      "start": 124.62,
+      "end": 130.96
+    },
+    {
+      "text": "I sure you are What kind of photography do you like most I like to take pictures of nature in landscapes But I also interested in portrait photography",
+      "speaker": "Speaker_00",
+      "start": 133.16,
+      "end": 150.08775
+    },
+    {
+      "text": "I love nature photography, too.",
+      "speaker": "Speaker_01",
+      "start": 153.26776,
+      "end": 155.68776
+    },
+    {
+      "text": "There's something so calming about being in nature and capturing its beauty on camera.",
+      "speaker": "Speaker_01",
+      "start": 157.14775,
+      "end": 163.04776
+    },
+    {
+      "text": "I agree.",
+      "speaker": "Speaker_02",
+      "start": 165.22775,
+      "end": 166.74776
+    },
+    {
+      "text": "And I find that portrait photography is a great way to capture people's personalities and emotions.",
+      "speaker": "Speaker_02",
+      "start": 167.66776,
+      "end": 175.02776
+    },
+    {
+      "text": "That's true.",
+      "speaker": "Speaker_00",
+      "start": 177.52776,
+      "end": 178.80775
+    },
+    {
+      "text": "So, what are your plans for the weekend?",
+      "speaker": "Speaker_00",
+      "start": 180.00775,
+      "end": 182.96776
+    },
+    {
+      "text": "I'm planning to go hiking with some friends on Saturday.",
+      "speaker": "Speaker_01",
+      "start": 185.60776,
+      "end": 189.78775
+    },
+    {
+      "text": "And then on Sunday, I'm going to visit my family.",
+      "speaker": "Speaker_01",
+      "start": 190.78775,
+      "end": 194.92775
+    },
+    {
+      "text": "Sounds like a fun weekend.",
+      "speaker": "Speaker_02",
+      "start": 197.66776,
+      "end": 199.66776
+    },
+    {
+      "text": "I'm going to a concert on Saturday night with my boyfriend.",
+      "speaker": "Speaker_02",
+      "start": 200.90776,
+      "end": 205.06775
+    },
+    {
+      "text": "And then on Sunday, I'm just going to relax at home and catch up on some reading.",
+      "speaker": "Speaker_02",
+      "start": 205.06775,
+      "end": 212.44775
+    },
+    {
+      "text": "Nice. I'm sure you'll have a great time.",
+      "speaker": "Speaker_00",
+      "start": 215.26776,
+      "end": 219.74776
+    },
+    {
+      "text": "Thanks. I'll see you soon, Alex.",
+      "speaker": "Speaker_01",
+      "start": 222.36775,
+      "end": 226.92776
+    },
+    {
+      "text": "See you later, Emily!",
+      "speaker": "Speaker_01",
+      "start": 227.66776,
+      "end": 231.72775
+    },
+    {
+      "text": "To get into means to become involved or interested in something.",
+      "speaker": "Speaker_02",
+      "start": 236.82776,
+      "end": 241.86775
+    },
+    {
+      "text": "It's like starting to participate in or enjoy a particular activity or hobby.",
+      "speaker": "Speaker_02",
+      "start": 242.66776,
+      "end": 248.86775
+    },
+    {
+      "text": "For example, if you decide to get into hiking, it means you start to explore hiking trails and spend time outdoors enjoying nature.",
+      "speaker": "Speaker_02",
+      "start": 248.86775,
+      "end": 259.78775
+    },
+    {
+      "text": "Capturing means recording or taking a picture of something, often to preserve a moment or image.",
+      "speaker": "Speaker_02",
+      "start": 261.22775,
+      "end": 268.04776
+    },
+    {
+      "text": "It's like freezing a moment in time.",
+      "speaker": "Speaker_02",
+      "start": 269.36774,
+      "end": 271.94775
+    },
+    {
+      "text": "For example if you capturing a sunset with your camera you taking a photograph to remember the beauty of the scene A green thumb is an idiom used to describe someone who has a natural talent or ability for gardening and growing plants successfully It like being skilled at nurturing and caring",
+      "speaker": "Speaker_02",
+      "start": 271.94775,
+      "end": 296.3555
+    },
+    {
+      "text": "for plants, so they thrive under your care. For example, if someone has a green thumb,",
+      "speaker": "Speaker_02",
+      "start": 296.3555,
+      "end": 304.0755
+    },
+    {
+      "text": "they can make even the most difficult plants grow beautifully.",
+      "speaker": "Speaker_02",
+      "start": 304.0755,
+      "end": 308.09552
+    },
+    {
+      "text": "Let's listen carefully to the dialogue one more time.",
+      "speaker": "Speaker_02",
+      "start": 308.9155,
+      "end": 312.2355
+    },
+    {
+      "text": "Hey Emily, how's it going?",
+      "speaker": "Speaker_00",
+      "start": 313.7755,
+      "end": 315.81552
+    },
+    {
+      "text": "Hey Alex, great to see you.",
+      "speaker": "Speaker_01",
+      "start": 318.2555,
+      "end": 321.31552
+    },
+    {
+      "text": "I'm doing well, thanks for asking.",
+      "speaker": "Speaker_01",
+      "start": 322.6355,
+      "end": 325.1355
+    },
+    {
+      "text": "How about you?",
+      "speaker": "Speaker_01",
+      "start": 326.15552,
+      "end": 327.6155
+    },
+    {
+      "text": "Not bad, just a bit busy with work lately.",
+      "speaker": "Speaker_02",
+      "start": 330.09552,
+      "end": 333.8555
+    },
+    {
+      "text": "But I'm always happy to catch up with you.",
+      "speaker": "Speaker_02",
+      "start": 334.0755,
+      "end": 338.0755
+    },
+    {
+      "text": "Me too.",
+      "speaker": "Speaker_00",
+      "start": 340.3355,
+      "end": 341.65552
+    },
+    {
+      "text": "So, what's new with you?",
+      "speaker": "Speaker_00",
+      "start": 342.8955,
+      "end": 345.2355
+    },
+    {
+      "text": "Well, I've been trying to get into gardening recently.",
+      "speaker": "Speaker_01",
+      "start": 347.6155,
+      "end": 351.5555
+    },
+    {
+      "text": "Oh, that's cool.",
+      "speaker": "Speaker_02",
+      "start": 354.1355,
+      "end": 356.2155
+    },
+    {
+      "text": "What have you been planting?",
+      "speaker": "Speaker_02",
+      "start": 357.1155,
+      "end": 358.93552
+    },
+    {
+      "text": "I've started with some herbs like basil, rosemary, and thyme.",
+      "speaker": "Speaker_02",
+      "start": 358.93552,
+      "end": 366.47552
+    },
+    {
+      "text": "And I'm also growing a few tomatoes and peppers.",
+      "speaker": "Speaker_02",
+      "start": 367.2355,
+      "end": 371.03552
+    },
+    {
+      "text": "That sounds delicious.",
+      "speaker": "Speaker_00",
+      "start": 373.6355,
+      "end": 375.53552
+    },
+    {
+      "text": "I've always wanted to try gardening, but I'm not sure I have a green thumb.",
+      "speaker": "Speaker_00",
+      "start": 376.8955,
+      "end": 382.2755
+    },
+    {
+      "text": "Don't worry, it's not that hard.",
+      "speaker": "Speaker_01",
+      "start": 384.7955,
+      "end": 387.6155
+    },
+    {
+      "text": "And it's actually quite relaxing.",
+      "speaker": "Speaker_01",
+      "start": 388.93552,
+      "end": 391.2955
+    },
+    {
+      "text": "Plus, it's a great way to get some fresh produce.",
+      "speaker": "Speaker_02",
+      "start": 392.8955,
+      "end": 396.31552
+    },
+    {
+      "text": "Yeah, I might give it a try.",
+      "speaker": "Speaker_00",
+      "start": 398.7755,
+      "end": 401.2355
+    },
+    {
+      "text": "What else have you been up to?",
+      "speaker": "Speaker_00",
+      "start": 402.2955,
+      "end": 404.1955
+    },
+    {
+      "text": "I've also been taking some online courses in photography.",
+      "speaker": "Speaker_01",
+      "start": 406.6155,
+      "end": 411.1155
+    },
+    {
+      "text": "I've always been interested in it, and I'm really enjoying learning about different techniques.",
+      "speaker": "Speaker_01",
+      "start": 412.1955,
+      "end": 418.6755
+    },
+    {
+      "text": "That great I seen some of your photos on Instagram and they amazing Thanks I still practicing but I getting better all the time",
+      "speaker": "Speaker_01",
+      "start": 418.93552,
+      "end": 437.38327
+    },
+    {
+      "text": "I'm sure you are. What kind of photography do you like most?",
+      "speaker": "Speaker_02",
+      "start": 439.64325,
+      "end": 445.46326
+    },
+    {
+      "text": "I like to take pictures of nature in landscapes.",
+      "speaker": "Speaker_00",
+      "start": 447.82327,
+      "end": 451.60327
+    },
+    {
+      "text": "But I'm also interested in portrait photography.",
+      "speaker": "Speaker_00",
+      "start": 453.00327,
+      "end": 456.48328
+    },
+    {
+      "text": "I love nature photography too.",
+      "speaker": "Speaker_01",
+      "start": 458.92328,
+      "end": 462.10327
+    },
+    {
+      "text": "There's something so calming about being in nature and capturing its beauty on camera.",
+      "speaker": "Speaker_01",
+      "start": 463.58325,
+      "end": 469.48328
+    },
+    {
+      "text": "I agree.",
+      "speaker": "Speaker_02",
+      "start": 471.68326,
+      "end": 473.04327
+    },
+    {
+      "text": "And I find that portrait photography is a great way to capture people's personalities and emotions.",
+      "speaker": "Speaker_02",
+      "start": 474.16327,
+      "end": 481.36328
+    },
+    {
+      "text": "That's true. So, what are your plans for the weekend?",
+      "speaker": "Speaker_00",
+      "start": 484.00327,
+      "end": 489.42328
+    },
+    {
+      "text": "I'm planning to go hiking with some friends on Saturday.",
+      "speaker": "Speaker_01",
+      "start": 492.08325,
+      "end": 496.22327
+    },
+    {
+      "text": "And then on Sunday, I'm going to visit my family.",
+      "speaker": "Speaker_01",
+      "start": 497.26328,
+      "end": 501.36328
+    },
+    {
+      "text": "Sounds like a fun weekend.",
+      "speaker": "Speaker_02",
+      "start": 503.94327,
+      "end": 506.12326
+    },
+    {
+      "text": "I'm going to a concert on Saturday night with my boyfriend.",
+      "speaker": "Speaker_02",
+      "start": 507.16327,
+      "end": 511.52325
+    },
+    {
+      "text": "And then on Sunday, I'm just going to relax at home and catch up on some reading.",
+      "speaker": "Speaker_02",
+      "start": 513.0033,
+      "end": 518.88324
+    },
+    {
+      "text": "Nice. I'm sure you'll have a great time.",
+      "speaker": "Speaker_00",
+      "start": 521.7433,
+      "end": 526.1833
+    },
+    {
+      "text": "Thanks. I'll see you soon, Alex.",
+      "speaker": "Speaker_01",
+      "start": 528.84326,
+      "end": 533.46326
+    },
+    {
+      "text": "See you later, Emily.",
+      "speaker": "Speaker_02",
+      "start": 536.08325,
+      "end": 538.16327
+    },
+    {
+      "text": "Thank you.",
+      "speaker": "Speaker_00",
+      "start": 543.0033,
+      "end": 572.9833
+    }
+  ]
+}

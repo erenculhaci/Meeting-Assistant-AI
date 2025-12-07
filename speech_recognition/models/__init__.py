@@ -1,3 +1,0 @@
-"""
-Speech recognition model implementations.
-"""

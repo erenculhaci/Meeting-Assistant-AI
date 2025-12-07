@@ -1,0 +1,107 @@
+{
+  "status": "success",
+  "task_count": 9,
+  "extracted_at": "2025-11-13T19:18:36.806170",
+  "extraction_method": "llm_few_shot",
+  "tasks": [
+    {
+      "description": "lead the onboarding flow redesign",
+      "assignee": "Sarah",
+      "speaker": "00",
+      "due_date": "November 15th",
+      "start_date": null,
+      "confidence": 0.95,
+      "source": "lead the onboarding flow redesign",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "complete the wireframes",
+      "assignee": "Sarah",
+      "speaker": "00",
+      "due_date": "November 5th",
+      "start_date": null,
+      "confidence": 0.95,
+      "source": "complete the wireframes",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "handle marketing launch materials",
+      "assignee": "Tom",
+      "speaker": "00",
+      "due_date": "November 20th",
+      "start_date": "November 3rd",
+      "confidence": 0.95,
+      "source": "handle marketing launch materials",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "coordinate with design for visuals",
+      "assignee": "Tom",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "coordinate with design for visuals",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "work on backend optimization",
+      "assignee": "Maya",
+      "speaker": "00",
+      "due_date": "November 18th",
+      "start_date": "November 2nd",
+      "confidence": 0.95,
+      "source": "work on backend optimization",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "deliver first benchmark report",
+      "assignee": "Maya",
+      "speaker": "00",
+      "due_date": "November 18th",
+      "start_date": "November 2nd",
+      "confidence": 0.95,
+      "source": "deliver first benchmark report",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "gather feedback from beta testers",
+      "assignee": "Sarah",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.95,
+      "source": "gather feedback from beta testers",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "include feedback in prototype testing",
+      "assignee": "Sarah",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": "November 10th",
+      "confidence": 0.7,
+      "source": "include feedback in prototype testing",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "post status updates in project Slack channel",
+      "assignee": "Unassigned",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "post status updates in project Slack channel",
+      "extraction_method": "llm",
+      "priority": "medium"
+    }
+  ]
+}
