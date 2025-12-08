@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "original_metadata": {
+      "file": "marketing_meeting.mp3",
+      "duration": 1227.874,
+      "model": "whisper-large-v3-turbo",
+      "language": "English",
+      "processing_time": 15.742587327957153,
+      "include_timestamps": true
+    },
+    "summary_generated": "yes",
+    "duration": 1227.874,
+    "language": "English",
+    "num_speakers": 2
+  },
+  "summary": {
+    "abstractive": "GitLab is having a beta program this year, and last year would be announcing as GA program. The company is trying to get more corporate events support. Cormac: I was looking at maybe MAU as a metric to perhaps measure whether customers have started using that.",
+    "extractive": [
+      "last I heard cool so then I think um I think we can we can help the corp events team they do they",
+      "comment on the issue that yes i can commit to this etc etc etc you know um so that just so that they",
+      "maybe we can do like a five minutes kind of like um just just time box and uh kind of look at these",
+      "here what do what do you all think is a top would be a top five out of the list of you know",
+      "what I've been struggling with a little bit is I'd like to kind of group the,"
+    ],
+    "key_topics": [
+      "Vulnerability Management",
+      "Past Year",
+      "Gtm Teams",
+      "Stack Rank",
+      "Incident Management"
+    ],
+    "action_items": []
+  },
+  "speaker_stats": {
+    "Speaker_01": {
+      "speaking_time": 386.4981799999997,
+      "utterances": 84,
+      "avg_words_per_utterance": 11.666666666666666,
+      "total_words": 980
+    },
+    "Speaker_02": {
+      "speaking_time": 315.6959599999999,
+      "utterances": 76,
+      "avg_words_per_utterance": 11.43421052631579,
+      "total_words": 869
+    }
+  }
+}

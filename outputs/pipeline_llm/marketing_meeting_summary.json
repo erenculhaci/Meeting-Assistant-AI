@@ -1,0 +1,46 @@
+{
+  "status": "success",
+  "title": "Corporate Events Support",
+  "overview": "The meeting discusses corporate events support, product announcements, and feature updates. The team reviews the current state of event support and assigns tasks to work with GTM teams. They also discuss product announcements, focusing on features that have reached a level of maturity and are now exciting, despite being available for a while.",
+  "key_points": [
+    "Speaker_00 mentions that event support needs to be nailed down and assigns tasks to work with GTM teams",
+    "The team discusses product announcements, considering features that have reached a level of maturity",
+    "Speaker_01 suggests using MAU as a metric to measure excitement levels for features",
+    "Speaker_02 mentions that having a full-fledged feature is more important than just releasing small updates"
+  ],
+  "decisions": [
+    "To work with GTM teams to assign event support",
+    "To focus on product announcements for features that have reached a level of maturity"
+  ],
+  "discussion_topics": [
+    {
+      "topic": "Corporate Events Support",
+      "summary": "The team discusses the current state of event support and assigns tasks to work with GTM teams"
+    },
+    {
+      "topic": "Product Announcements",
+      "summary": "The team discusses product announcements, focusing on features that have reached a level of maturity and are now exciting"
+    },
+    {
+      "topic": "Feature Updates",
+      "summary": "The team reviews feature updates, considering what features to highlight in product announcements"
+    }
+  ],
+  "next_steps": [
+    "To assign event support tasks to GTM teams",
+    "To finalize product announcements for the commit event",
+    "To review and stack rank features for product announcements"
+  ],
+  "participants": [
+    "Speaker_00",
+    "Speaker_01",
+    "Speaker_02"
+  ],
+  "metadata": {
+    "duration": 1227.874,
+    "model": "llama-3.3-70b-versatile",
+    "processing_time": 1.975835,
+    "source_file": "marketing_meeting.mp3",
+    "transcript_segments": 238
+  }
+}

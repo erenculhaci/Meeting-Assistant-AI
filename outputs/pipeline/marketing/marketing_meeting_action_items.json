@@ -1,0 +1,96 @@
+{
+  "status": "success",
+  "task_count": 8,
+  "extracted_at": "2025-12-08T17:26:40.024533",
+  "extraction_method": "llm_few_shot",
+  "tasks": [
+    {
+      "description": "work with GTM teams to support corporate events",
+      "assignee": "Unassigned",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "work with GTM teams to support corporate events",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "comment on the issue to commit to event support",
+      "assignee": "Unassigned",
+      "speaker": "01",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "comment on the issue to commit to event support",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "identify top five overall product announcements",
+      "assignee": "Unassigned",
+      "speaker": "01",
+      "due_date": "Tuesday",
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "identify top five overall product announcements",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "stack rank and prioritize product announcements",
+      "assignee": "Unassigned",
+      "speaker": "02",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "stack rank and prioritize product announcements",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "add VS code integration to the list of product announcements",
+      "assignee": "00",
+      "speaker": "02",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.9,
+      "source": "add VS code integration to the list of product announcements",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "review and provide feedback on product announcements",
+      "assignee": "Unassigned",
+      "speaker": "00",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.7,
+      "source": "review and provide feedback on product announcements",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "reserve a spot for plan in product announcements",
+      "assignee": "02",
+      "speaker": "02",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.9,
+      "source": "reserve a spot for plan in product announcements",
+      "extraction_method": "llm",
+      "priority": "medium"
+    },
+    {
+      "description": "aggregate and re-bucket product announcements",
+      "assignee": "02",
+      "speaker": "01",
+      "due_date": null,
+      "start_date": null,
+      "confidence": 0.9,
+      "source": "aggregate and re-bucket product announcements",
+      "extraction_method": "llm",
+      "priority": "medium"
+    }
+  ]
+}

@@ -1,0 +1,1459 @@
+{
+  "status": "success",
+  "metadata": {
+    "file": "marketing_meeting.mp3",
+    "duration": 1227.874,
+    "model": "whisper-large-v3-turbo",
+    "language": "English",
+    "processing_time": 15.742587327957153,
+    "include_timestamps": true
+  },
+  "transcript": [
+    {
+      "text": "I can record and we don't have a ton of items to get to and I might be able to do one that might be fun if we have a little bit of time.",
+      "speaker": "Speaker_00",
+      "start": 0,
+      "end": 14.72
+    },
+    {
+      "text": "So corporate events, they, I think I saw a little, I put this in Slack and I saw a little bit of kind of noise around it, which was good.",
+      "speaker": "Speaker_00",
+      "start": 16.1,
+      "end": 29.46
+    },
+    {
+      "text": "you know the the nutshell here is as we've kind of restructured and tried different things",
+      "speaker": "Speaker_00",
+      "start": 30,
+      "end": 37.82
+    },
+    {
+      "text": "the event support that we need isn't as nailed down as it needs to be so the current tactic",
+      "speaker": "Speaker_00",
+      "start": 37.82,
+      "end": 47.5
+    },
+    {
+      "text": "that we're going with is go to market team signs up and kind of sponsors that event so",
+      "speaker": "Speaker_00",
+      "start": 47.5,
+      "end": 55.8
+    },
+    {
+      "text": "you support as a PMM your campaign manager does the campaigns for that event etc etc etc uh I don't",
+      "speaker": "Speaker_00",
+      "start": 55.8,
+      "end": 63.52
+    },
+    {
+      "text": "see anyone in the uh maybe there are comments in the issue I don't see the the header updated yet",
+      "speaker": "Speaker_00",
+      "start": 63.52,
+      "end": 71.36
+    },
+    {
+      "text": "I thought we had in Slack sort of farmed each one of them out that's so I guess the the next",
+      "speaker": "Speaker_00",
+      "start": 71.36,
+      "end": 78.92
+    },
+    {
+      "text": "So it looks like Ty put in some folks.",
+      "speaker": "Speaker_00",
+      "start": 78.92,
+      "end": 86.42
+    },
+    {
+      "text": "It looks like this looks good.",
+      "speaker": "Speaker_00",
+      "start": 86.66,
+      "end": 89.16
+    },
+    {
+      "text": "So the, let's see, need support from GTM teams.",
+      "speaker": "Speaker_00",
+      "start": 90.56,
+      "end": 95.5
+    },
+    {
+      "text": "So I guess the ask would be to work with your GTM teams.",
+      "speaker": "Speaker_00",
+      "start": 95.82,
+      "end": 103.52
+    },
+    {
+      "text": "So let me ask, I saw some Slack, I think in our Slack,",
+      "speaker": "Speaker_00",
+      "start": 103.52,
+      "end": 107.92
+    },
+    {
+      "text": "but did you all uh were you all able to connect with like your gtm teams",
+      "speaker": "Speaker_00",
+      "start": 107.92,
+      "end": 113.9
+    },
+    {
+      "text": "uh on slack only and on the issue actually yeah same not in not in real time but you know source",
+      "speaker": "Speaker_00",
+      "start": 113.9,
+      "end": 123.9
+    },
+    {
+      "text": "feedback i got one person to respond so far so it may end up cindy being you and i just picking",
+      "speaker": "Speaker_00",
+      "start": 123.9,
+      "end": 129.28
+    },
+    {
+      "text": "the one that we want to do and then they can back us up um if we don't get any more feedback",
+      "speaker": "Speaker_00",
+      "start": 129.28,
+      "end": 136.02
+    },
+    {
+      "text": "Yeah, do you all, does anybody have like a regular sync still? Are those all been canceled or is there?",
+      "speaker": "Speaker_00",
+      "start": 136.02,
+      "end": 146.52
+    },
+    {
+      "text": "Yeah, we're on like a two week cadence.",
+      "speaker": "Speaker_01",
+      "start": 150.92,
+      "end": 153.48
+    },
+    {
+      "text": "Okay.",
+      "speaker": "Speaker_01",
+      "start": 153.94,
+      "end": 154.2
+    },
+    {
+      "text": "Yeah, GitOps has been canceled after the enablement.",
+      "speaker": "Speaker_01",
+      "start": 155.06,
+      "end": 159.7
+    },
+    {
+      "text": "cool so i'm just trying to catch up with the thread um",
+      "speaker": "Speaker_01",
+      "start": 159.7,
+      "end": 167.08
+    },
+    {
+      "text": "so it looks like maybe a platform on reinvent",
+      "speaker": "Speaker_01",
+      "start": 167.08,
+      "end": 174
+    },
+    {
+      "text": "cicd on google next and get ops on kubecon does that sound right yeah yep that's where we were",
+      "speaker": "Speaker_01",
+      "start": 174,
+      "end": 182.2
+    },
+    {
+      "text": "last I heard cool so then I think um I think we can we can help the corp events team they do they",
+      "speaker": "Speaker_01",
+      "start": 182.2,
+      "end": 192.5
+    },
+    {
+      "text": "do a lot of like uh cat herding and you know keep on tracking people down so I think if if this team",
+      "speaker": "Speaker_01",
+      "start": 192.5,
+      "end": 199.96
+    },
+    {
+      "text": "can take the mission to like try to help track that down so if you you know get the commitment",
+      "speaker": "Speaker_01",
+      "start": 199.96,
+      "end": 208.42
+    },
+    {
+      "text": "specifically from your campaign managers hey like we're signing up for kubecon you know can you",
+      "speaker": "Speaker_01",
+      "start": 208.42,
+      "end": 214.34
+    },
+    {
+      "text": "comment on the issue that yes i can commit to this etc etc etc you know um so that just so that they",
+      "speaker": "Speaker_01",
+      "start": 214.34,
+      "end": 222.44
+    },
+    {
+      "text": "can get that that event support but that looks good and i appreciate uh thanks for the link to",
+      "speaker": "Speaker_01",
+      "start": 222.44,
+      "end": 229.18
+    },
+    {
+      "text": "on the rolls uh product announcements so i appreciate brian for adding this i uh i probably",
+      "speaker": "Speaker_01",
+      "start": 229.18,
+      "end": 239.32
+    },
+    {
+      "text": "should have added it but i had two questions about that one one is over what time frame are we looking",
+      "speaker": "Speaker_01",
+      "start": 239.32,
+      "end": 247.84
+    },
+    {
+      "text": "at so uh so in theory this is this could be the same as the git lab 14 launch where we're saying",
+      "speaker": "Speaker_01",
+      "start": 247.84,
+      "end": 257.62
+    },
+    {
+      "text": "basically since 13.0, what kind of big improvements have we made?",
+      "speaker": "Speaker_01",
+      "start": 257.62,
+      "end": 263.4
+    },
+    {
+      "text": "Candidly, this is always a little bit tough, and I'm not totally sure of all of the",
+      "speaker": "Speaker_02",
+      "start": 267.2,
+      "end": 273.98
+    },
+    {
+      "text": "interplay here, but I think this is the general gist of this assignment.",
+      "speaker": "Speaker_02",
+      "start": 274.68,
+      "end": 281.86
+    },
+    {
+      "text": "is, okay, we have commit coming up.",
+      "speaker": "Speaker_02",
+      "start": 281.86,
+      "end": 284.3
+    },
+    {
+      "text": "We have some amount of, like, we have a stage,",
+      "speaker": "Speaker_02",
+      "start": 285,
+      "end": 287.8
+    },
+    {
+      "text": "you know, a metaphorical stage",
+      "speaker": "Speaker_02",
+      "start": 288.7,
+      "end": 290.52
+    },
+    {
+      "text": "to say something to the world",
+      "speaker": "Speaker_02",
+      "start": 290.52,
+      "end": 292.56
+    },
+    {
+      "text": "and we'll get some amount of press attention",
+      "speaker": "Speaker_02",
+      "start": 292.56,
+      "end": 295.14
+    },
+    {
+      "text": "because we're having an event, right?",
+      "speaker": "Speaker_02",
+      "start": 295.14,
+      "end": 297.24
+    },
+    {
+      "text": "What kind of announcements do we make?",
+      "speaker": "Speaker_02",
+      "start": 297.8,
+      "end": 299.4
+    },
+    {
+      "text": "At GitLab it really really tough to make product announcements because our entire roadmap is completely public yada yada yada So the thought here is to but also because our entire roadmap is",
+      "speaker": "Speaker_02",
+      "start": 300.86,
+      "end": 314.51797
+    },
+    {
+      "text": "completely public and because we ship these tiny little MVCs, a new feature will come out,",
+      "speaker": "Speaker_02",
+      "start": 314.51797,
+      "end": 319.53796
+    },
+    {
+      "text": "but it'll be not really usable, right? So it takes a while. So if you look back over the past year",
+      "speaker": "Speaker_02",
+      "start": 319.61798,
+      "end": 325.81796
+    },
+    {
+      "text": "and say, okay, like what started in the last year, but now is really like a full-fledged feature",
+      "speaker": "Speaker_02",
+      "start": 325.81796,
+      "end": 331.87796
+    },
+    {
+      "text": "what would be coming out of beta, right?",
+      "speaker": "Speaker_02",
+      "start": 331.87796,
+      "end": 334.77795
+    },
+    {
+      "text": "Like if we were any other company",
+      "speaker": "Speaker_02",
+      "start": 335.09796,
+      "end": 336.53796
+    },
+    {
+      "text": "when we started a beta program in this last year,",
+      "speaker": "Speaker_02",
+      "start": 336.53796,
+      "end": 339.21796
+    },
+    {
+      "text": "what would we be announcing as GA at commit?",
+      "speaker": "Speaker_02",
+      "start": 339.57797,
+      "end": 342.91797
+    },
+    {
+      "text": "That's kind of my thought on it.",
+      "speaker": "Speaker_02",
+      "start": 343.37796,
+      "end": 345.67798
+    },
+    {
+      "text": "I see a couple of head nods.",
+      "speaker": "Speaker_02",
+      "start": 346.43796,
+      "end": 347.87796
+    },
+    {
+      "text": "What do you think, Cindy?",
+      "speaker": "Speaker_02",
+      "start": 347.89795,
+      "end": 348.39795
+    },
+    {
+      "text": "Yeah, I think I was inclined to group some things",
+      "speaker": "Speaker_00",
+      "start": 350.09796,
+      "end": 354.09796
+    },
+    {
+      "text": "to say like vulnerability management",
+      "speaker": "Speaker_00",
+      "start": 354.09796,
+      "end": 356.91797
+    },
+    {
+      "text": "because there were tiny little MVCs all the way along.",
+      "speaker": "Speaker_00",
+      "start": 356.91797,
+      "end": 359.71796
+    },
+    {
+      "text": "But if you look at over the course of the year,",
+      "speaker": "Speaker_00",
+      "start": 359.71796,
+      "end": 361.81796
+    },
+    {
+      "text": "we went from this to this it makes more sense to me to highlight that than in any individual",
+      "speaker": "Speaker_00",
+      "start": 361.87796,
+      "end": 368.63797
+    },
+    {
+      "text": "little thing and then the other point was we just had 14.0 can we just can we reuse some of those",
+      "speaker": "Speaker_00",
+      "start": 368.63797,
+      "end": 378.15796
+    },
+    {
+      "text": "things and plug them in here absolutely yeah yeah and vulnerability management was was one of the",
+      "speaker": "Speaker_00",
+      "start": 378.15796,
+      "end": 384.35797
+    },
+    {
+      "text": "you know the features out of we we looked at 14.0 so i think yeah this is like let's take the stuff",
+      "speaker": "Speaker_00",
+      "start": 384.35797,
+      "end": 390.15796
+    },
+    {
+      "text": "from 14.0 and then maybe add a few more so that we can hit kind of different areas of press or",
+      "speaker": "Speaker_00",
+      "start": 390.15796,
+      "end": 396.65796
+    },
+    {
+      "text": "give give our PR team this is kind of like input into our PR team to give them fodder to go out",
+      "speaker": "Speaker_00",
+      "start": 396.65796,
+      "end": 402.15796
+    },
+    {
+      "text": "with and are we trying to hit three per stage I yeah ideally there's just you know three you know",
+      "speaker": "Speaker_00",
+      "start": 402.15796,
+      "end": 409.57797
+    },
+    {
+      "text": "uh three items per stage and then I think y'all made some good notes that okay we need to add",
+      "speaker": "Speaker_00",
+      "start": 409.57797,
+      "end": 415.85797
+    },
+    {
+      "text": "manage so i see manage in here that's excellent um and uh integrations we don't",
+      "speaker": "Speaker_00",
+      "start": 415.85797,
+      "end": 422.57797
+    },
+    {
+      "text": "well actually we have some pretty exciting integrations so we have the jira stuff is",
+      "speaker": "Speaker_00",
+      "start": 423.37796,
+      "end": 428.03796
+    },
+    {
+      "text": "pretty good there's a couple of things in uh integrations with vs code that could be notable but",
+      "speaker": "Speaker_00",
+      "start": 428.03796,
+      "end": 433.95795
+    },
+    {
+      "text": "i can i show what i did for scm just to get some general feedback on it and",
+      "speaker": "Speaker_00",
+      "start": 433.95795,
+      "end": 441.57797
+    },
+    {
+      "text": "If someone hasn't done it, maybe that'll also kick them.",
+      "speaker": "Speaker_00",
+      "start": 441.57797,
+      "end": 444.85797
+    },
+    {
+      "text": "I was going Cindy's direction here, which was thinking, you know, a lot of,",
+      "speaker": "Speaker_00",
+      "start": 444.998,
+      "end": 450.59796
+    },
+    {
+      "text": "and then I called them key iterations, the sort of specific things.",
+      "speaker": "Speaker_00",
+      "start": 450.69797,
+      "end": 453.81796
+    },
+    {
+      "text": "So I listed a few specific things, like three or four per each as key iterations,",
+      "speaker": "Speaker_00",
+      "start": 454.11798,
+      "end": 458.83795
+    },
+    {
+      "text": "but I called them something overall.",
+      "speaker": "Speaker_00",
+      "start": 459.05798,
+      "end": 461.03796
+    },
+    {
+      "text": "So we would have like one thing to call them.",
+      "speaker": "Speaker_00",
+      "start": 461.17798,
+      "end": 462.91797
+    },
+    {
+      "text": "There are several key iterations aligned with Gittaway cluster,",
+      "speaker": "Speaker_01",
+      "start": 464.75797,
+      "end": 468.35797
+    },
+    {
+      "text": "several that roll up to a research-based user experience and I was thinking like",
+      "speaker": "Speaker_01",
+      "start": 468.35797,
+      "end": 474.85797
+    },
+    {
+      "text": "I was shy on calling out UX as a bucket except that actually that's that's super typical right",
+      "speaker": "Speaker_01",
+      "start": 474.85797,
+      "end": 482.23798
+    },
+    {
+      "text": "like Windows 11 or anybody who's rolling stuff out they almost always have UX as one of their",
+      "speaker": "Speaker_01",
+      "start": 482.23798,
+      "end": 486.71796
+    },
+    {
+      "text": "three things and then they mention a laundry list of stuff that aligns to that so I you know forgave",
+      "speaker": "Speaker_01",
+      "start": 486.71796,
+      "end": 493.61798
+    },
+    {
+      "text": "myself for doing something at first I was kind of like shy about calling out UX and bucketing some",
+      "speaker": "Speaker_01",
+      "start": 493.61798,
+      "end": 498.79797
+    },
+    {
+      "text": "things there but actually when I looked around that's pretty much how everybody does a big launch",
+      "speaker": "Speaker_01",
+      "start": 498.79797,
+      "end": 503.59796
+    },
+    {
+      "text": "and in terms of the excitement level that also like I went in thinking this is just a two",
+      "speaker": "Speaker_01",
+      "start": 503.59796,
+      "end": 508.61798
+    },
+    {
+      "text": "I guess part of it is like I feel like we're almost fixing something that's broken and that's",
+      "speaker": "Speaker_01",
+      "start": 508.61798,
+      "end": 513.558
+    },
+    {
+      "text": "not something you want to shout from the rooftops about but actually some of that stuff's really",
+      "speaker": "Speaker_01",
+      "start": 513.558,
+      "end": 518.03796
+    },
+    {
+      "text": "cool so I gave it a three excitement level I wasn't sure exactly where to place things",
+      "speaker": "Speaker_01",
+      "start": 518.03796,
+      "end": 522.65796
+    },
+    {
+      "text": "but I figured I wouldn't like the Cindy's comment have something that's a one here anyway",
+      "speaker": "Speaker_01",
+      "start": 522.65796,
+      "end": 528.89795
+    },
+    {
+      "text": "but I the only way I could make sense of like the iterations was to to bucket them as something",
+      "speaker": "Speaker_01",
+      "start": 528.89795,
+      "end": 535.578
+    },
+    {
+      "text": "and so that's kind of how I came down on it and what everyone thinks about that",
+      "speaker": "Speaker_01",
+      "start": 535.578,
+      "end": 540.498
+    },
+    {
+      "text": "I like that.",
+      "speaker": "Speaker_01",
+      "start": 540.498,
+      "end": 545.798
+    },
+    {
+      "text": "Go ahead.",
+      "speaker": "Speaker_01",
+      "start": 546.53796,
+      "end": 547.3779
+    },
+    {
+      "text": "No, no, no.",
+      "speaker": "Speaker_01",
+      "start": 547.698,
+      "end": 548.09796
+    },
+    {
+      "text": "I've done a similar, I've taken a similar approach for monitor.",
+      "speaker": "Speaker_02",
+      "start": 549.858,
+      "end": 554.298
+    },
+    {
+      "text": "With incident management, there were a bunch of things that we released.",
+      "speaker": "Speaker_02",
+      "start": 555.13794,
+      "end": 558.77795
+    },
+    {
+      "text": "Although the core of incident management was part of 12.x, I think.",
+      "speaker": "Speaker_02",
+      "start": 559.83795,
+      "end": 564.65796
+    },
+    {
+      "text": "So I did the same over there as well.",
+      "speaker": "Speaker_02",
+      "start": 564.8779,
+      "end": 568.3779
+    },
+    {
+      "text": "Yeah.",
+      "speaker": "Speaker_02",
+      "start": 568.678,
+      "end": 568.798
+    },
+    {
+      "text": "I think that makes sense.",
+      "speaker": "Speaker_02",
+      "start": 568.798,
+      "end": 570.558
+    },
+    {
+      "text": "Yeah, and that would help me with the planned stuff as well, because there are some things",
+      "speaker": "Speaker_02",
+      "start": 571.09796,
+      "end": 575.458
+    },
+    {
+      "text": "like Epic boards that people have been asking for for years now, and they finally have,",
+      "speaker": "Speaker_02",
+      "start": 575.458,
+      "end": 580.578
+    },
+    {
+      "text": "and that's great.",
+      "speaker": "Speaker_02",
+      "start": 580.678,
+      "end": 581.238
+    },
+    {
+      "text": "But I think, you know, like the milestone burn-up charts, that was a two, and that's",
+      "speaker": "Speaker_02",
+      "start": 581.39795,
+      "end": 588.03796
+    },
+    {
+      "text": "helpful.",
+      "speaker": "Speaker_02",
+      "start": 588.03796,
+      "end": 588.698
+    },
+    {
+      "text": "And I was looking through features and, you know, actual monthly features that were released",
+      "speaker": "Speaker_02",
+      "start": 588.938,
+      "end": 594.058
+    },
+    {
+      "text": "in a given month.",
+      "speaker": "Speaker_02",
+      "start": 594.058,
+      "end": 594.858
+    },
+    {
+      "text": "I mean, that was one of the more important ones, but it's not very exciting.",
+      "speaker": "Speaker_02",
+      "start": 594.91797,
+      "end": 597.798
+    },
+    {
+      "text": "but we can bundle that with some other things and, and, and up level it.",
+      "speaker": "Speaker_02",
+      "start": 597.798,
+      "end": 602.01794
+    },
+    {
+      "text": "So that, that would be helpful there.",
+      "speaker": "Speaker_02",
+      "start": 602.178,
+      "end": 604.01794
+    },
+    {
+      "text": "And also Brian about the VS code thing.",
+      "speaker": "Speaker_02",
+      "start": 604.058,
+      "end": 605.83795
+    },
+    {
+      "text": "One other cool thing about that is both of those VS code integrations that hit the same month were community contributions which is also kind of cool Is that do we have VS code listed on here",
+      "speaker": "Speaker_02",
+      "start": 606.13794,
+      "end": 621.85596
+    },
+    {
+      "text": "I didn't add it, but I can add that in. I've got good notes on that.",
+      "speaker": "Speaker_00",
+      "start": 623.6959,
+      "end": 627.83594
+    },
+    {
+      "text": "The extension that had been around for a while became official, was kind of one of the things,",
+      "speaker": "Speaker_00",
+      "start": 628.53595,
+      "end": 632.8759
+    },
+    {
+      "text": "but there's some other stuff that's a little juicier than that.",
+      "speaker": "Speaker_00",
+      "start": 632.97595,
+      "end": 635.1359
+    },
+    {
+      "text": "and that i think that's a that's a pretty good note as well um we did that with like our our",
+      "speaker": "Speaker_00",
+      "start": 635.1359,
+      "end": 646.2559
+    },
+    {
+      "text": "terraform module right there was like a community module but now it's officially supported so that's",
+      "speaker": "Speaker_00",
+      "start": 646.2559,
+      "end": 652.71594
+    },
+    {
+      "text": "that's the you know that can be the line yes or no whether you can use the thing",
+      "speaker": "Speaker_00",
+      "start": 652.71594,
+      "end": 657.5559
+    },
+    {
+      "text": "for a lot of businesses so i think that's a good one too how are we measuring excitement levels",
+      "speaker": "Speaker_00",
+      "start": 657.5559,
+      "end": 664.8759
+    },
+    {
+      "text": "one, two, and three is there?",
+      "speaker": "Speaker_00",
+      "start": 664.8759,
+      "end": 666.79596
+    },
+    {
+      "text": "I was looking at maybe MAU as a metric",
+      "speaker": "Speaker_01",
+      "start": 668.41595,
+      "end": 674.09595
+    },
+    {
+      "text": "to perhaps measure whether customers",
+      "speaker": "Speaker_01",
+      "start": 674.09595,
+      "end": 676.5559
+    },
+    {
+      "text": "have started using that,",
+      "speaker": "Speaker_01",
+      "start": 676.5559,
+      "end": 678.0759
+    },
+    {
+      "text": "are interested in using that or not.",
+      "speaker": "Speaker_01",
+      "start": 678.5759,
+      "end": 680.7559
+    },
+    {
+      "text": "We probably may not have it for everything,",
+      "speaker": "Speaker_01",
+      "start": 681.2959,
+      "end": 683.5559
+    },
+    {
+      "text": "but at least some of it,",
+      "speaker": "Speaker_01",
+      "start": 683.6959,
+      "end": 685.11597
+    },
+    {
+      "text": "wherever we have it,",
+      "speaker": "Speaker_01",
+      "start": 685.2559,
+      "end": 686.1359
+    },
+    {
+      "text": "it's probably something we can use.",
+      "speaker": "Speaker_01",
+      "start": 686.39594,
+      "end": 690.0759
+    },
+    {
+      "text": "But of course, we need a benchmark level",
+      "speaker": "Speaker_01",
+      "start": 690.41595,
+      "end": 692.8159
+    },
+    {
+      "text": "of what MAU we want to call one, two, or three?",
+      "speaker": "Speaker_01",
+      "start": 692.8159,
+      "end": 696.23596
+    },
+    {
+      "text": "I think it's a little bit of a judgment call.",
+      "speaker": "Speaker_01",
+      "start": 697.59595,
+      "end": 700.73596
+    },
+    {
+      "text": "Like, you know, for example,",
+      "speaker": "Speaker_01",
+      "start": 701.45593,
+      "end": 704.5559
+    },
+    {
+      "text": "Cormac was saying like Epic boards",
+      "speaker": "Speaker_01",
+      "start": 704.6959,
+      "end": 707.5559
+    },
+    {
+      "text": "is something that was asked for for a long time.",
+      "speaker": "Speaker_01",
+      "start": 707.5559,
+      "end": 709.7559
+    },
+    {
+      "text": "Now, depending on how it's asked for,",
+      "speaker": "Speaker_01",
+      "start": 710.39594,
+      "end": 713.4959
+    },
+    {
+      "text": "maybe that means it's exciting or it's not, right?",
+      "speaker": "Speaker_01",
+      "start": 713.59595,
+      "end": 715.6359
+    },
+    {
+      "text": "But usually when something gets a lot of upvotes",
+      "speaker": "Speaker_02",
+      "start": 717.1959,
+      "end": 720.6359
+    },
+    {
+      "text": "or when there's a lot of demand for it,",
+      "speaker": "Speaker_02",
+      "start": 720.6359,
+      "end": 722.9359
+    },
+    {
+      "text": "then I would bump the excitement level",
+      "speaker": "Speaker_02",
+      "start": 722.97595,
+      "end": 724.7559
+    },
+    {
+      "text": "on something like that.",
+      "speaker": "Speaker_02",
+      "start": 724.7559,
+      "end": 725.71594
+    },
+    {
+      "text": "Certainly, if something's shipped",
+      "speaker": "Speaker_00",
+      "start": 727.6959,
+      "end": 729.27594
+    },
+    {
+      "text": "and a lot of people are using it,",
+      "speaker": "Speaker_00",
+      "start": 729.27594,
+      "end": 730.6759
+    },
+    {
+      "text": "the MAU, that's another good measure.",
+      "speaker": "Speaker_00",
+      "start": 731.3759,
+      "end": 733.5759
+    },
+    {
+      "text": "I don't know that any one of those",
+      "speaker": "Speaker_00",
+      "start": 733.71594,
+      "end": 735.9959
+    },
+    {
+      "text": "needs to kind of be exclusive.",
+      "speaker": "Speaker_00",
+      "start": 735.9959,
+      "end": 736.9359
+    },
+    {
+      "text": "I think it's a bit of an individual judgment call",
+      "speaker": "Speaker_00",
+      "start": 737.1359,
+      "end": 739.45593
+    },
+    {
+      "text": "on just like what is your feeling based on,",
+      "speaker": "Speaker_00",
+      "start": 739.45593,
+      "end": 742.5159
+    },
+    {
+      "text": "you know, could be anecdotal,",
+      "speaker": "Speaker_00",
+      "start": 742.5159,
+      "end": 745.3159
+    },
+    {
+      "text": "like you talk to customers",
+      "speaker": "Speaker_00",
+      "start": 745.39594,
+      "end": 746.2559
+    },
+    {
+      "text": "and they're like really hyper excited about this.",
+      "speaker": "Speaker_00",
+      "start": 746.2559,
+      "end": 748.41595
+    },
+    {
+      "text": "or, you know, maybe not, which is, which is okay. I think it's okay.",
+      "speaker": "Speaker_01",
+      "start": 750.6359,
+      "end": 757.89594
+    },
+    {
+      "text": "Harsh responded to my comment about why we have the low excitement ones and just said something",
+      "speaker": "Speaker_02",
+      "start": 760.11597,
+      "end": 766.09595
+    },
+    {
+      "text": "about having them sort of stack ranked. Yeah, I might, I might even constrain us as we're not",
+      "speaker": "Speaker_02",
+      "start": 766.09595,
+      "end": 776.2559
+    },
+    {
+      "text": "going to highlight loc segments, but we want to see the full spectrum, especially in the case we",
+      "speaker": "Speaker_02",
+      "start": 776.2559,
+      "end": 781.1359
+    },
+    {
+      "text": "have slim pickings. Alternately, if there are double digit entries, then we can stack rank.",
+      "speaker": "Speaker_02",
+      "start": 781.1359,
+      "end": 786.6759
+    },
+    {
+      "text": "So that's kind of also helpful there. So if we have three for all of these, that, I mean,",
+      "speaker": "Speaker_00",
+      "start": 790.53595,
+      "end": 797.15594
+    },
+    {
+      "text": "it looks like we're going to get there and that's going to be quite a lot of features.",
+      "speaker": "Speaker_00",
+      "start": 797.21594,
+      "end": 801.0759
+    },
+    {
+      "text": "so um i might constrain it like this maybe you can only give out one one two or three",
+      "speaker": "Speaker_00",
+      "start": 801.0759,
+      "end": 811.33594
+    },
+    {
+      "text": "and and treat it as a stack rank rather than just like a raw excitement level that doesn't",
+      "speaker": "Speaker_00",
+      "start": 811.33594,
+      "end": 818.0559
+    },
+    {
+      "text": "necessarily hard somebody's one or somebody's three may be more important than somebody else's",
+      "speaker": "Speaker_00",
+      "start": 818.0559,
+      "end": 825.45593
+    },
+    {
+      "text": "one. I started by just looking at what was considered a key feature over the past year",
+      "speaker": "Speaker_00",
+      "start": 825.45593,
+      "end": 832.95593
+    },
+    {
+      "text": "from Create. And there are at least a dozen things that I'm not mentioning",
+      "speaker": "Speaker_00",
+      "start": 832.95593,
+      "end": 839.03595
+    },
+    {
+      "text": "that could be on the list. I could give you 10 things instead of three.",
+      "speaker": "Speaker_00",
+      "start": 839.03595,
+      "end": 843.7559
+    },
+    {
+      "text": "Give this just the rough pass. And like a lot of things recently, I've been moving between docs",
+      "speaker": "Speaker_00",
+      "start": 844.65594,
+      "end": 854.1359
+    },
+    {
+      "text": "and spreadsheet and the spreadsheet to docs,",
+      "speaker": "Speaker_00",
+      "start": 854.1359,
+      "end": 855.97595
+    },
+    {
+      "text": "this might end up or some iteration of this",
+      "speaker": "Speaker_00",
+      "start": 857.21594,
+      "end": 860.1959
+    },
+    {
+      "text": "might end up in a spreadsheet",
+      "speaker": "Speaker_00",
+      "start": 860.1959,
+      "end": 861.1759
+    },
+    {
+      "text": "where we then try to stack rank and PR is like,",
+      "speaker": "Speaker_00",
+      "start": 861.1759,
+      "end": 863.5759
+    },
+    {
+      "text": "okay, out of all of the,",
+      "speaker": "Speaker_00",
+      "start": 863.65594,
+      "end": 865.11597
+    },
+    {
+      "text": "there's maybe 10 boxes here and three,",
+      "speaker": "Speaker_00",
+      "start": 865.996,
+      "end": 868.97595
+    },
+    {
+      "text": "each out of the 30 items, which are the top five.",
+      "speaker": "Speaker_00",
+      "start": 869.09595,
+      "end": 871.2559
+    },
+    {
+      "text": "Actually, let's actually just do that.",
+      "speaker": "Speaker_01",
+      "start": 873.496,
+      "end": 875.9159
+    },
+    {
+      "text": "Let's just do this like top five overall.",
+      "speaker": "Speaker_01",
+      "start": 875.9159,
+      "end": 879.85596
+    },
+    {
+      "text": "This one is a PR driven to some degree.",
+      "speaker": "Speaker_01",
+      "start": 880.9359,
+      "end": 883.95593
+    },
+    {
+      "text": "What about like a Noop and Christie's product keynote at commit?",
+      "speaker": "Speaker_01",
+      "start": 884.1359,
+      "end": 887.85596
+    },
+    {
+      "text": "Are we dovetailing this with that?",
+      "speaker": "Speaker_01",
+      "start": 888.0759,
+      "end": 889.89594
+    },
+    {
+      "text": "So this is exactly where this is headed to,",
+      "speaker": "Speaker_01",
+      "start": 890.5559,
+      "end": 893.4359
+    },
+    {
+      "text": "is the idea that during the product keynote,",
+      "speaker": "Speaker_01",
+      "start": 893.6759,
+      "end": 898.1959
+    },
+    {
+      "text": "and then ideally during Sid's keynote as well,",
+      "speaker": "Speaker_01",
+      "start": 898.39594,
+      "end": 901.21594
+    },
+    {
+      "text": "that there's some level of like an announcement that we make",
+      "speaker": "Speaker_01",
+      "start": 901.6959,
+      "end": 904.996
+    },
+    {
+      "text": "that then the press cares about that announcement.",
+      "speaker": "Speaker_01",
+      "start": 904.996,
+      "end": 907.9359
+    },
+    {
+      "text": "Again, really tough to do at GitLab",
+      "speaker": "Speaker_01",
+      "start": 909.23596,
+      "end": 911.35596
+    },
+    {
+      "text": "because it's all been around for a while.",
+      "speaker": "Speaker_01",
+      "start": 911.35596,
+      "end": 913.0359
+    },
+    {
+      "text": "So this is our attempt to head to that area is to say like these are the announcements of the event And yeah maybe it some things that have been around for a while but like now they at a level of maturity now you know there there",
+      "speaker": "Speaker_01",
+      "start": 913.0359,
+      "end": 927.8539
+    },
+    {
+      "text": "reason to be excited about this so that's kind of where it's coming from so i put uh a top five",
+      "speaker": "Speaker_01",
+      "start": 927.8539,
+      "end": 937.1539
+    },
+    {
+      "text": "overall, maybe we can just, you know.",
+      "speaker": "Speaker_01",
+      "start": 937.1539,
+      "end": 943.7539
+    },
+    {
+      "text": "We should reserve a spot for plan, but I'm going to have to go through and do some aggregating",
+      "speaker": "Speaker_02",
+      "start": 948.8539,
+      "end": 953.9739
+    },
+    {
+      "text": "after this. Just go through the list of what's shipped in the last 12 months and re-bucket that.",
+      "speaker": "Speaker_02",
+      "start": 953.9739,
+      "end": 958.8539
+    },
+    {
+      "text": "so uh",
+      "speaker": "Speaker_02",
+      "start": 958.8539,
+      "end": 962.8539
+    },
+    {
+      "text": "maybe we can do like a five minutes kind of like um just just time box and uh kind of look at these",
+      "speaker": "Speaker_02",
+      "start": 962.8539,
+      "end": 974.3339
+    },
+    {
+      "text": "here what do what do you all think is a top would be a top five out of the list of you know",
+      "speaker": "Speaker_02",
+      "start": 974.3339,
+      "end": 981.0939
+    },
+    {
+      "text": "20 or 30.",
+      "speaker": "Speaker_02",
+      "start": 981.0939,
+      "end": 983.8739
+    },
+    {
+      "text": "I would say if UX does end up being a flag that we fly,",
+      "speaker": "Speaker_00",
+      "start": 986.4539,
+      "end": 990.9339
+    },
+    {
+      "text": "that's an easy one because there's more than just maps to the create stage",
+      "speaker": "Speaker_00",
+      "start": 991.0539,
+      "end": 995.0939
+    },
+    {
+      "text": "that would be considered UX improvement.",
+      "speaker": "Speaker_00",
+      "start": 995.0939,
+      "end": 997.3139
+    },
+    {
+      "text": "Okay.",
+      "speaker": "Speaker_00",
+      "start": 997.9139,
+      "end": 998.1939
+    },
+    {
+      "text": "What else?",
+      "speaker": "Speaker_01",
+      "start": 1006.4139,
+      "end": 1007.3339
+    },
+    {
+      "text": "We need to have a security one in there.",
+      "speaker": "Speaker_01",
+      "start": 1007.8939,
+      "end": 1009.8939
+    },
+    {
+      "text": "We could have either vulnerability management or I was,",
+      "speaker": "Speaker_01",
+      "start": 1009.8939,
+      "end": 1014.8939
+    },
+    {
+      "text": "what I've been struggling with a little bit is I'd like to kind of group the,",
+      "speaker": "Speaker_01",
+      "start": 1015.0139,
+      "end": 1019.8739
+    },
+    {
+      "text": "some of this, the proprietary scanning",
+      "speaker": "Speaker_01",
+      "start": 1019.8739,
+      "end": 1024.0339
+    },
+    {
+      "text": "without making it sound like they're scanning improvements,",
+      "speaker": "Speaker_01",
+      "start": 1024.0339,
+      "end": 1031.1539
+    },
+    {
+      "text": "because that sounds like they weren't good before.",
+      "speaker": "Speaker_01",
+      "start": 1031.1539,
+      "end": 1034.054
+    },
+    {
+      "text": "Yeah.",
+      "speaker": "Speaker_01",
+      "start": 1034.7139,
+      "end": 1035.2339
+    },
+    {
+      "text": "I let's let's go with vulnerability management for now I I would agree on that one and I would",
+      "speaker": "Speaker_01",
+      "start": 1035.2339,
+      "end": 1042.4739
+    },
+    {
+      "text": "say that um some of these we did do some press around and the the fuzzing acquisitions was one",
+      "speaker": "Speaker_01",
+      "start": 1042.4739,
+      "end": 1049.174
+    },
+    {
+      "text": "thing so we might not get that's kind of old I I was I mean we did the fuzzing acquisitions",
+      "speaker": "Speaker_01",
+      "start": 1049.174,
+      "end": 1056.6938
+    },
+    {
+      "text": "a long time ago.",
+      "speaker": "Speaker_01",
+      "start": 1056.6938,
+      "end": 1058.3539
+    },
+    {
+      "text": "Was it within the past year or longer?",
+      "speaker": "Speaker_01",
+      "start": 1059.814,
+      "end": 1062.5339
+    },
+    {
+      "text": "I thought it was within the past year.",
+      "speaker": "Speaker_02",
+      "start": 1064.0939,
+      "end": 1066.1938
+    },
+    {
+      "text": "I think it was in the last little over six months or so.",
+      "speaker": "Speaker_02",
+      "start": 1066.3739,
+      "end": 1070.2339
+    },
+    {
+      "text": "It was last summer, right?",
+      "speaker": "Speaker_02",
+      "start": 1070.8339,
+      "end": 1071.9539
+    },
+    {
+      "text": "It was like last spring or summer.",
+      "speaker": "Speaker_02",
+      "start": 1072.2739,
+      "end": 1074.8939
+    },
+    {
+      "text": "And then we did another set of press around the integration of it",
+      "speaker": "Speaker_02",
+      "start": 1074.8939,
+      "end": 1079.054
+    },
+    {
+      "text": "because the PR team liked all the, I mean,",
+      "speaker": "Speaker_02",
+      "start": 1079.054,
+      "end": 1082.0739
+    },
+    {
+      "text": "we got a lot of attention on the acquisition.",
+      "speaker": "Speaker_02",
+      "start": 1082.0939,
+      "end": 1084.0339
+    },
+    {
+      "text": "So they had me do a follow-up on the integration.",
+      "speaker": "Speaker_02",
+      "start": 1084.0339,
+      "end": 1089.054
+    },
+    {
+      "text": "I just feel like it's kind of worn out now.",
+      "speaker": "Speaker_02",
+      "start": 1089.794,
+      "end": 1092.1139
+    },
+    {
+      "text": "Right.",
+      "speaker": "Speaker_02",
+      "start": 1092.8739,
+      "end": 1093.314
+    },
+    {
+      "text": "That's what I was saying is that the fuzzing we already did press on",
+      "speaker": "Speaker_02",
+      "start": 1093.4338,
+      "end": 1096.7339
+    },
+    {
+      "text": "probably will not get another chomp at that.",
+      "speaker": "Speaker_02",
+      "start": 1096.7339,
+      "end": 1099.174
+    },
+    {
+      "text": "So I think let's go with vulnerability management.",
+      "speaker": "Speaker_02",
+      "start": 1099.294,
+      "end": 1101.2339
+    },
+    {
+      "text": "Unreviewed.",
+      "speaker": "Speaker_02",
+      "start": 1102.5939,
+      "end": 1103.1139
+    },
+    {
+      "text": "Well, we also have, in terms of proprietary stuff,",
+      "speaker": "Speaker_02",
+      "start": 1103.2539,
+      "end": 1106.4338
+    },
+    {
+      "text": "we've also got, we replaced one of our scanners with SEMGRIP.",
+      "speaker": "Speaker_02",
+      "start": 1106.4338,
+      "end": 1111.4338
+    },
+    {
+      "text": "And we did, we have our own proprietary DAST scanner now that's in, it's in beta called Browserker. So it's our answer to scanning single page applications, which represent a unique challenge. I think, I mean, if I could have to, it would be vulnerability management and Browserker probably.",
+      "speaker": "Speaker_02",
+      "start": 1111.4338,
+      "end": 1135.8539
+    },
+    {
+      "text": "okay semgrep that get picked up as a online item and a couple of the pieces about get back 14",
+      "speaker": "Speaker_02",
+      "start": 1135.8539,
+      "end": 1142.4939
+    },
+    {
+      "text": "which uh between between the the proprietary ships of the vulnerability management which",
+      "speaker": "Speaker_02",
+      "start": 1142.4939,
+      "end": 1153.4338
+    },
+    {
+      "text": "would you pick as the number one out of those two probably vulnerability management okay",
+      "speaker": "Speaker_02",
+      "start": 1153.4338,
+      "end": 1159.6139
+    },
+    {
+      "text": "I'm just kind of scanning the list.",
+      "speaker": "Speaker_02",
+      "start": 1159.6139,
+      "end": 1163.6339
+    },
+    {
+      "text": "I would probably say like Kubernetes agent is something that we've made a lot of investment in.",
+      "speaker": "Speaker_02",
+      "start": 1163.8939,
+      "end": 1169.9939
+    },
+    {
+      "text": "Although.",
+      "speaker": "Speaker_02",
+      "start": 1170.8539,
+      "end": 1171.5339
+    },
+    {
+      "text": "I think the Kubernetes agent and from an integration point of view.",
+      "speaker": "Speaker_00",
+      "start": 1176.1738,
+      "end": 1181.4338
+    },
+    {
+      "text": "Perhaps the Terraform integration.",
+      "speaker": "Speaker_01",
+      "start": 1183.3939,
+      "end": 1185.3539
+    },
+    {
+      "text": "I think we have a lot of customers actually using that already.",
+      "speaker": "Speaker_01",
+      "start": 1185.3539,
+      "end": 1190.4739
+    },
+    {
+      "text": "I'm just going to call those GitOps.",
+      "speaker": "Speaker_01",
+      "start": 1191.6738,
+      "end": 1195.554
+    },
+    {
+      "text": "And I'm going to put like KDS agent plus Heshi corp integrations.",
+      "speaker": "Speaker_01",
+      "start": 1196.8939,
+      "end": 1205.7339
+    },
+    {
+      "text": "It's like a bucket of capabilities that is probably worth talking about.",
+      "speaker": "Speaker_01",
+      "start": 1206.3539,
+      "end": 1210.7339
+    },
+    {
+      "text": "Ah.",
+      "speaker": "Speaker_01",
+      "start": 1210.7339,
+      "end": 1210.794
+    },
+    {
+      "text": "I forgot.",
+      "speaker": "Speaker_02",
+      "start": 1213.0139,
+      "end": 1213.8339
+    },
+    {
+      "text": "Cool.",
+      "speaker": "Speaker_00",
+      "start": 1215.3539,
+      "end": 1222.3539
+    },
+    {
+      "text": "Well, let's try to, this is due Tuesday, I think.",
+      "speaker": "Speaker_00",
+      "start": 1222.3539,
+      "end": 1227.7739
+    }
+  ]
+}
