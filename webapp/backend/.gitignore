@@ -1,0 +1,13 @@
+# Uploads directory
+uploads/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Config files with secrets
+config.json
+
+# Virtual environment
+venv/
