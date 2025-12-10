@@ -57,24 +57,24 @@ export default function Dashboard() {
   return (
     <div className="animate-fadeIn">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
-        <p className="text-gray-600">Welcome back! Here's an overview of your meeting analysis.</p>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
+        <p className="text-sm md:text-base text-gray-600">Welcome back! Here's an overview of your meeting analysis.</p>
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
         <Link
           to="/upload"
-          className="group bg-gradient-to-br from-sky-500 via-blue-500 to-cyan-500 rounded-2xl p-6 text-white shadow-xl shadow-sky-200 hover:shadow-2xl hover:shadow-blue-300 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]"
+          className="group bg-gradient-to-br from-sky-500 via-blue-500 to-cyan-500 rounded-2xl p-4 md:p-6 text-white shadow-xl shadow-sky-200 hover:shadow-2xl hover:shadow-blue-300 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]"
         >
           <div className="flex items-start justify-between">
             <div>
-              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
-                <Upload className="w-6 h-6" />
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-3 md:mb-4">
+                <Upload className="w-5 h-5 md:w-6 md:h-6" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Upload New Meeting</h3>
-              <p className="text-sky-100 text-sm">
+              <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Upload New Meeting</h3>
+              <p className="text-sky-100 text-xs md:text-sm">
                 Upload audio or video files to transcribe and analyze
               </p>
             </div>
@@ -84,7 +84,7 @@ export default function Dashboard() {
 
         <Link
           to="/settings"
-          className={`group rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+          className={`group rounded-2xl p-4 md:p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 ${
             jiraStatus?.configured
               ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-emerald-200 hover:shadow-2xl hover:shadow-emerald-300'
               : 'bg-white border-2 border-dashed border-gray-300 hover:border-sky-400 text-gray-700 hover:shadow-lg'
@@ -92,15 +92,15 @@ export default function Dashboard() {
         >
           <div className="flex items-start justify-between">
             <div>
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center mb-3 md:mb-4 ${
                 jiraStatus?.configured ? 'bg-white/20' : 'bg-gray-100'
               }`}>
-                <Sparkles className={`w-6 h-6 ${jiraStatus?.configured ? 'text-white' : 'text-gray-500'}`} />
+                <Sparkles className={`w-5 h-5 md:w-6 md:h-6 ${jiraStatus?.configured ? 'text-white' : 'text-gray-500'}`} />
               </div>
-              <h3 className="text-xl font-bold mb-2">
+              <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">
                 {jiraStatus?.configured ? 'Jira Connected' : 'Connect Jira'}
               </h3>
-              <p className={`text-sm ${jiraStatus?.configured ? 'text-emerald-100' : 'text-gray-500'}`}>
+              <p className={`text-xs md:text-sm ${jiraStatus?.configured ? 'text-emerald-100' : 'text-gray-500'}`}>
                 {jiraStatus?.configured
                   ? `Connected to ${jiraStatus.domain}`
                   : 'Set up Jira integration to create tasks automatically'}
@@ -114,39 +114,39 @@ export default function Dashboard() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-              <FileAudio className="w-6 h-6 text-blue-600" />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+              <FileAudio className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Total Meetings</p>
-              <p className="text-2xl font-bold text-gray-900">{meetings.length}</p>
+              <p className="text-xs md:text-sm text-gray-500">Total Meetings</p>
+              <p className="text-xl md:text-2xl font-bold text-gray-900">{meetings.length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center">
-              <ListTodo className="w-6 h-6 text-cyan-600" />
+        <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-cyan-100 rounded-xl flex items-center justify-center">
+              <ListTodo className="w-5 h-5 md:w-6 md:h-6 text-cyan-600" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Tasks Extracted</p>
-              <p className="text-2xl font-bold text-gray-900">{totalTasks}</p>
+              <p className="text-xs md:text-sm text-gray-500">Tasks Extracted</p>
+              <p className="text-xl md:text-2xl font-bold text-gray-900">{totalTasks}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-              <Clock className="w-6 h-6 text-emerald-600" />
+        <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+              <Clock className="w-5 h-5 md:w-6 md:h-6 text-emerald-600" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Total Duration</p>
-              <p className="text-2xl font-bold text-gray-900">{formatDuration(totalDuration)}</p>
+              <p className="text-xs md:text-sm text-gray-500">Total Duration</p>
+              <p className="text-xl md:text-2xl font-bold text-gray-900">{formatDuration(totalDuration)}</p>
             </div>
           </div>
         </div>
@@ -154,30 +154,30 @@ export default function Dashboard() {
 
       {/* Recent Meetings */}
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Meetings</h2>
+        <div className="px-4 md:px-6 py-3 md:py-4 border-b border-gray-100 flex items-center justify-between">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900">Recent Meetings</h2>
           {meetings.length > 0 && (
-            <Link to="/meetings" className="text-sm text-sky-600 hover:text-sky-700 font-medium">
+            <Link to="/meetings" className="text-xs md:text-sm text-sky-600 hover:text-sky-700 font-medium">
               View all →
             </Link>
           )}
         </div>
 
         {loading ? (
-          <div className="p-12 text-center">
+          <div className="p-8 md:p-12 text-center">
             <div className="w-8 h-8 border-4 border-sky-200 border-t-sky-600 rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-500">Loading meetings...</p>
+            <p className="text-gray-500 text-sm md:text-base">Loading meetings...</p>
           </div>
         ) : meetings.length === 0 ? (
-          <div className="p-12 text-center">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FileText className="w-8 h-8 text-gray-400" />
+          <div className="p-8 md:p-12 text-center">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <FileText className="w-6 h-6 md:w-8 md:h-8 text-gray-400" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No meetings yet</h3>
-            <p className="text-gray-500 mb-4">Upload your first meeting to get started</p>
+            <h3 className="text-base md:text-lg font-medium text-gray-900 mb-2">No meetings yet</h3>
+            <p className="text-sm md:text-base text-gray-500 mb-4">Upload your first meeting to get started</p>
             <Link
               to="/upload"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors text-sm"
             >
               <Upload className="w-4 h-4" />
               Upload Meeting
@@ -189,23 +189,23 @@ export default function Dashboard() {
               <Link
                 key={meeting.job_id}
                 to={`/meetings/${meeting.job_id}`}
-                className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 md:gap-4 px-4 md:px-6 py-3 md:py-4 hover:bg-gray-50 transition-colors"
               >
-                <div className="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center">
-                  <FileAudio className="w-5 h-5 text-sky-600" />
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-sky-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <FileAudio className="w-4 h-4 md:w-5 md:h-5 text-sky-600" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 truncate">{meeting.filename}</p>
-                  <p className="text-sm text-gray-500">{formatDate(meeting.created_at)}</p>
+                  <p className="font-medium text-gray-900 truncate text-sm md:text-base">{meeting.filename}</p>
+                  <p className="text-xs md:text-sm text-gray-500">{formatDate(meeting.created_at)}</p>
                 </div>
-                <div className="flex items-center gap-4 text-sm">
+                <div className="hidden sm:flex items-center gap-4 text-sm">
                   <span className="text-gray-500">{formatDuration(meeting.duration)}</span>
                   <span className="flex items-center gap-1 text-emerald-600">
                     <CheckCircle2 className="w-4 h-4" />
                     {meeting.task_count} tasks
                   </span>
                 </div>
-                <ArrowRight className="w-5 h-5 text-gray-400" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-400 flex-shrink-0" />
               </Link>
             ))}
           </div>

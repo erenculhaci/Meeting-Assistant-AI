@@ -54,14 +54,14 @@ export default function MeetingsList() {
   return (
     <div className="animate-fadeIn">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Meetings</h1>
-          <p className="text-gray-600">View and manage your processed meetings</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1 md:mb-2">Meetings</h1>
+          <p className="text-sm md:text-base text-gray-600">View and manage your processed meetings</p>
         </div>
         <Link
           to="/upload"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors shadow-lg shadow-sky-200"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors shadow-lg shadow-sky-200 text-sm md:text-base"
         >
           <FileAudio className="w-4 h-4" />
           Upload New
@@ -69,34 +69,34 @@ export default function MeetingsList() {
       </div>
 
       {/* Search */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 mb-6">
+      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-3 md:p-4 mb-4 md:mb-6">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400" />
           <input
             type="text"
             placeholder="Search meetings..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+            className="w-full pl-9 md:pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm md:text-base"
           />
         </div>
       </div>
 
       {/* Meetings Grid */}
       {loading ? (
-        <div className="text-center py-12">
+        <div className="text-center py-8 md:py-12">
           <div className="w-8 h-8 border-4 border-sky-200 border-t-sky-600 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading meetings...</p>
+          <p className="text-gray-500 text-sm md:text-base">Loading meetings...</p>
         </div>
       ) : filteredMeetings.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-12 text-center">
-          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FileText className="w-8 h-8 text-gray-400" />
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-12 text-center">
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <FileText className="w-6 h-6 md:w-8 md:h-8 text-gray-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <h3 className="text-base md:text-lg font-medium text-gray-900 mb-2">
             {searchQuery ? 'No meetings found' : 'No meetings yet'}
           </h3>
-          <p className="text-gray-500 mb-4">
+          <p className="text-sm md:text-base text-gray-500 mb-4">
             {searchQuery
               ? 'Try a different search term'
               : 'Upload your first meeting to get started'}
@@ -104,48 +104,48 @@ export default function MeetingsList() {
           {!searchQuery && (
             <Link
               to="/upload"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors text-sm"
             >
               Upload Meeting
             </Link>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredMeetings.map((meeting) => (
             <Link
               key={meeting.job_id}
               to={`/meetings/${meeting.job_id}`}
               className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="p-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-sky-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <FileAudio className="w-6 h-6 text-sky-600" />
+              <div className="p-4 md:p-6">
+                <div className="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-sky-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <FileAudio className="w-5 h-5 md:w-6 md:h-6 text-sky-600" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-gray-900 truncate group-hover:text-sky-600 transition-colors">
+                    <h3 className="font-semibold text-gray-900 truncate group-hover:text-sky-600 transition-colors text-sm md:text-base">
                       {meeting.filename}
                     </h3>
-                    <p className="text-sm text-gray-500 flex items-center gap-1 mt-1">
+                    <p className="text-xs md:text-sm text-gray-500 flex items-center gap-1 mt-1">
                       <Calendar className="w-3 h-3" />
                       {formatDate(meeting.created_at)}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-4">
+                <div className="flex items-center justify-between text-xs md:text-sm">
+                  <div className="flex items-center gap-3 md:gap-4">
                     <span className="flex items-center gap-1 text-gray-500">
-                      <Clock className="w-4 h-4" />
+                      <Clock className="w-3 h-3 md:w-4 md:h-4" />
                       {formatDuration(meeting.duration)}
                     </span>
                     <span className="flex items-center gap-1 text-emerald-600 font-medium">
-                      <ListTodo className="w-4 h-4" />
+                      <ListTodo className="w-3 h-3 md:w-4 md:h-4" />
                       {meeting.task_count} tasks
                     </span>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-300 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
 

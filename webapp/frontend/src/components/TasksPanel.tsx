@@ -160,30 +160,30 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
   if (tasks.length === 0) {
     return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle2 className="w-8 h-8 text-gray-400" />
+      <div className="text-center py-8 md:py-12">
+        <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-gray-400" />
         </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No Action Items</h3>
-        <p className="text-gray-500">No tasks were extracted from this meeting.</p>
+        <h3 className="text-base md:text-lg font-medium text-gray-900 mb-2">No Action Items</h3>
+        <p className="text-sm md:text-base text-gray-500">No tasks were extracted from this meeting.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Jira Integration Banner */}
       {!jiraConfig?.configured && (
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 md:gap-3">
           <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
           <div className="flex-1">
-            <p className="text-sm text-amber-800">
+            <p className="text-xs md:text-sm text-amber-800">
               Connect Jira to create tasks directly from extracted action items.
             </p>
           </div>
           <a
             href="/settings"
-            className="text-sm font-medium text-amber-700 hover:text-amber-800"
+            className="text-xs md:text-sm font-medium text-amber-700 hover:text-amber-800"
           >
             Configure →
           </a>
@@ -192,18 +192,18 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
       {/* Bulk Actions */}
       {jiraConfig?.configured && (
-        <div className="flex items-center justify-between bg-gray-50 rounded-xl p-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-gray-50 rounded-xl p-3 md:p-4">
           <div className="flex items-center gap-3">
             <button
               onClick={selectAllTasks}
-              className="text-sm text-sky-600 hover:text-sky-700 font-medium"
+              className="text-xs md:text-sm text-sky-600 hover:text-sky-700 font-medium"
             >
               {selectedTasks.size === tasks.filter(t => !t.jira_created).length
                 ? 'Deselect All'
                 : 'Select All'}
             </button>
             {selectedTasks.size > 0 && (
-              <span className="text-sm text-gray-500">
+              <span className="text-xs md:text-sm text-gray-500">
                 {selectedTasks.size} selected
               </span>
             )}
@@ -213,7 +213,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
             onClick={handleCreateJiraIssues}
             disabled={selectedTasks.size === 0 || isCreatingJira}
             className={clsx(
-              'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors',
+              'inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-colors w-full sm:w-auto justify-center',
               selectedTasks.size > 0 && !isCreatingJira
                 ? 'bg-sky-600 text-white hover:bg-sky-700'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -269,54 +269,54 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
           >
             {editingTask === task.id && editedTask ? (
               /* Edit Mode */
-              <div className="p-4 space-y-4">
+              <div className="p-3 md:p-4 space-y-3 md:space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                     Description
                   </label>
                   <textarea
                     value={editedTask.description}
                     onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm"
                     rows={3}
                   />
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                       Assignee
                     </label>
                     <input
                       type="text"
                       value={editedTask.assignee || ''}
                       onChange={(e) => setEditedTask({ ...editedTask, assignee: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                       Due Date
                     </label>
                     <input
                       type="date"
                       value={editedTask.due_date || ''}
                       onChange={(e) => setEditedTask({ ...editedTask, due_date: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                       Priority
                     </label>
                     <select
                       value={editedTask.priority || 'Medium'}
                       onChange={(e) => setEditedTask({ ...editedTask, priority: e.target.value as TaskItem['priority'] })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm"
                     >
                       <option value="Low">Low</option>
                       <option value="Medium">Medium</option>
@@ -327,13 +327,13 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
                   {jiraConfig?.configured && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                         Jira Assignee
                       </label>
                       <select
                         value={editedTask.jira_assignee_id || ''}
                         onChange={(e) => setEditedTask({ ...editedTask, jira_assignee_id: e.target.value || undefined })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm"
                       >
                         <option value="">Unassigned</option>
                         {jiraUsers.map(user => (
@@ -349,14 +349,14 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                 <div className="flex justify-end gap-2">
                   <button
                     onClick={handleCancelEdit}
-                    className="inline-flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800"
+                    className="inline-flex items-center gap-2 px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-gray-800"
                   >
                     <X className="w-4 h-4" />
                     Cancel
                   </button>
                   <button
                     onClick={handleSaveTask}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 text-sm"
+                    className="inline-flex items-center gap-2 px-3 md:px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 text-xs md:text-sm"
                   >
                     <Save className="w-4 h-4" />
                     Save
@@ -365,13 +365,13 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
               </div>
             ) : (
               /* View Mode */
-              <div className="p-4">
-                <div className="flex items-start gap-3">
+              <div className="p-3 md:p-4">
+                <div className="flex items-start gap-2 md:gap-3">
                   {/* Selection Checkbox */}
                   {jiraConfig?.configured && !task.jira_created && (
                     <button
                       onClick={() => toggleTaskSelection(task.id)}
-                      className="mt-0.5"
+                      className="mt-0.5 flex-shrink-0"
                     >
                       {selectedTasks.has(task.id) ? (
                         <CheckCircle2 className="w-5 h-5 text-sky-600" />
@@ -383,18 +383,18 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
                   {/* Task Content */}
                   <div className="flex-1 min-w-0">
-                    <p className="text-gray-900 mb-2">{task.description}</p>
+                    <p className="text-sm md:text-base text-gray-900 mb-2">{task.description}</p>
                     
-                    <div className="flex flex-wrap items-center gap-2 text-sm">
+                    <div className="flex flex-wrap items-center gap-1.5 md:gap-2 text-xs md:text-sm">
                       {task.assignee && (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded">
+                        <span className="inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 md:py-1 bg-gray-100 text-gray-700 rounded">
                           <User className="w-3 h-3" />
-                          {task.assignee}
+                          <span className="truncate max-w-[80px] md:max-w-none">{task.assignee}</span>
                         </span>
                       )}
                       
                       {task.due_date && (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded">
+                        <span className="inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 md:py-1 bg-gray-100 text-gray-700 rounded">
                           <Calendar className="w-3 h-3" />
                           {task.due_date}
                         </span>
@@ -402,7 +402,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                       
                       {task.priority && (
                         <span className={clsx(
-                          'px-2 py-1 rounded text-xs font-medium',
+                          'px-1.5 md:px-2 py-0.5 md:py-1 rounded text-xs font-medium',
                           priorityColors[task.priority]
                         )}>
                           {task.priority}
@@ -414,7 +414,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                           href={`https://${jiraConfig?.domain}/browse/${task.jira_key}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-100 text-emerald-700 rounded hover:bg-emerald-200"
+                          className="inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 md:py-1 bg-emerald-100 text-emerald-700 rounded hover:bg-emerald-200"
                         >
                           <ExternalLink className="w-3 h-3" />
                           {task.jira_key}
@@ -427,7 +427,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                   {!task.jira_created && (
                     <button
                       onClick={() => handleEditTask(task)}
-                      className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
+                      className="p-1.5 md:p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg flex-shrink-0"
                     >
                       <Edit2 className="w-4 h-4" />
                     </button>
