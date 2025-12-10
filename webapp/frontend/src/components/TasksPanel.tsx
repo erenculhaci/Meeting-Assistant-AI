@@ -10,8 +10,7 @@ import {
   Save,
   X,
   Send,
-  Loader2,
-  ChevronDown
+  Loader2
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { 
@@ -197,7 +196,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
           <div className="flex items-center gap-3">
             <button
               onClick={selectAllTasks}
-              className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+              className="text-sm text-sky-600 hover:text-sky-700 font-medium"
             >
               {selectedTasks.size === tasks.filter(t => !t.jira_created).length
                 ? 'Deselect All'
@@ -216,7 +215,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
             className={clsx(
               'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors',
               selectedTasks.size > 0 && !isCreatingJira
-                ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+                ? 'bg-sky-600 text-white hover:bg-sky-700'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             )}
           >
@@ -264,7 +263,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
               task.jira_created
                 ? 'border-emerald-200 bg-emerald-50/50'
                 : selectedTasks.has(task.id)
-                ? 'border-indigo-300 bg-indigo-50/50'
+                ? 'border-sky-300 bg-sky-50/50'
                 : 'border-gray-200 hover:border-gray-300'
             )}
           >
@@ -278,7 +277,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                   <textarea
                     value={editedTask.description}
                     onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     rows={3}
                   />
                 </div>
@@ -292,7 +291,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                       type="text"
                       value={editedTask.assignee || ''}
                       onChange={(e) => setEditedTask({ ...editedTask, assignee: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     />
                   </div>
                   
@@ -304,7 +303,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                       type="date"
                       value={editedTask.due_date || ''}
                       onChange={(e) => setEditedTask({ ...editedTask, due_date: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -317,7 +316,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                     <select
                       value={editedTask.priority || 'Medium'}
                       onChange={(e) => setEditedTask({ ...editedTask, priority: e.target.value as TaskItem['priority'] })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     >
                       <option value="Low">Low</option>
                       <option value="Medium">Medium</option>
@@ -334,7 +333,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                       <select
                         value={editedTask.jira_assignee_id || ''}
                         onChange={(e) => setEditedTask({ ...editedTask, jira_assignee_id: e.target.value || undefined })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                       >
                         <option value="">Unassigned</option>
                         {jiraUsers.map(user => (
@@ -357,7 +356,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                   </button>
                   <button
                     onClick={handleSaveTask}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 text-sm"
                   >
                     <Save className="w-4 h-4" />
                     Save
@@ -375,9 +374,9 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                       className="mt-0.5"
                     >
                       {selectedTasks.has(task.id) ? (
-                        <CheckCircle2 className="w-5 h-5 text-indigo-600" />
+                        <CheckCircle2 className="w-5 h-5 text-sky-600" />
                       ) : (
-                        <Circle className="w-5 h-5 text-gray-300 hover:text-indigo-400" />
+                        <Circle className="w-5 h-5 text-gray-300 hover:text-sky-400" />
                       )}
                     </button>
                   )}

@@ -19,9 +19,9 @@ import type { JobStatus } from '../types';
 const ALLOWED_EXTENSIONS = ['.mp3', '.mp4', '.wav', '.m4a', '.webm', '.ogg', '.flac'];
 
 const stepInfo = {
-  upload: { icon: UploadIcon, label: 'Uploading', color: 'text-blue-600' },
-  transcription: { icon: Mic, label: 'Transcribing', color: 'text-purple-600' },
-  summarization: { icon: FileText, label: 'Summarizing', color: 'text-indigo-600' },
+  upload: { icon: UploadIcon, label: 'Uploading', color: 'text-sky-600' },
+  transcription: { icon: Mic, label: 'Transcribing', color: 'text-cyan-600' },
+  summarization: { icon: FileText, label: 'Summarizing', color: 'text-blue-600' },
   extraction: { icon: ListTodo, label: 'Extracting Tasks', color: 'text-emerald-600' },
   done: { icon: CheckCircle2, label: 'Complete', color: 'text-green-600' },
 };
@@ -145,10 +145,10 @@ export default function UploadPage() {
             className={clsx(
               'relative p-12 border-2 border-dashed rounded-xl m-6 transition-all duration-200',
               dragActive
-                ? 'border-indigo-500 bg-indigo-50'
+                ? 'border-sky-500 bg-sky-50'
                 : file
                 ? 'border-emerald-300 bg-emerald-50'
-                : 'border-gray-200 hover:border-indigo-300 hover:bg-gray-50'
+                : 'border-gray-200 hover:border-sky-300 hover:bg-gray-50'
             )}
           >
             <input
@@ -182,8 +182,8 @@ export default function UploadPage() {
                 </>
               ) : (
                 <>
-                  <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <UploadIcon className="w-8 h-8 text-indigo-600" />
+                  <div className="w-16 h-16 bg-sky-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <UploadIcon className="w-8 h-8 text-sky-600" />
                   </div>
                   <p className="text-lg font-medium text-gray-900 mb-1">
                     Drop your file here or click to browse
@@ -212,7 +212,7 @@ export default function UploadPage() {
               className={clsx(
                 'w-full py-4 rounded-xl font-semibold text-lg transition-all duration-200',
                 file && !isProcessing
-                  ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300 hover:-translate-y-0.5'
+                  ? 'bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 text-white shadow-lg shadow-sky-200 hover:shadow-xl hover:shadow-blue-300 hover:-translate-y-0.5'
                   : 'bg-gray-100 text-gray-400 cursor-not-allowed'
               )}
             >
@@ -224,11 +224,11 @@ export default function UploadPage() {
         /* Processing View */
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4">
               {jobStatus?.status === 'completed' ? (
                 <CheckCircle2 className="w-10 h-10 text-green-600" />
               ) : (
-                <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
+                <Loader2 className="w-10 h-10 text-sky-600 animate-spin" />
               )}
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -245,7 +245,7 @@ export default function UploadPage() {
             </div>
             <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 rounded-full transition-all duration-500"
                 style={{ width: `${jobStatus?.progress || 0}%` }}
               />
             </div>
@@ -265,14 +265,14 @@ export default function UploadPage() {
                   key={step}
                   className={clsx(
                     'text-center p-4 rounded-xl transition-all',
-                    isActive && 'bg-indigo-50',
+                    isActive && 'bg-sky-50',
                     isPast && 'opacity-50'
                   )}
                 >
                   <div
                     className={clsx(
                       'w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2',
-                      isActive ? 'bg-indigo-100' : 'bg-gray-100'
+                      isActive ? 'bg-sky-100' : 'bg-gray-100'
                     )}
                   >
                     <StepIcon
@@ -307,12 +307,12 @@ export default function UploadPage() {
       {/* Info Cards */}
       <div className="grid grid-cols-3 gap-4 mt-8">
         <div className="bg-white rounded-xl p-4 shadow border border-gray-100">
-          <Mic className="w-6 h-6 text-purple-600 mb-2" />
+          <Mic className="w-6 h-6 text-cyan-600 mb-2" />
           <h3 className="font-medium text-gray-900 mb-1">Transcription</h3>
           <p className="text-sm text-gray-500">Fast and accurate speech-to-text</p>
         </div>
         <div className="bg-white rounded-xl p-4 shadow border border-gray-100">
-          <FileText className="w-6 h-6 text-indigo-600 mb-2" />
+          <FileText className="w-6 h-6 text-sky-600 mb-2" />
           <h3 className="font-medium text-gray-900 mb-1">Summarization</h3>
           <p className="text-sm text-gray-500">AI-powered meeting summaries</p>
         </div>

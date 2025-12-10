@@ -61,7 +61,7 @@ export default function MeetingsList() {
         </div>
         <Link
           to="/upload"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors shadow-lg shadow-sky-200"
         >
           <FileAudio className="w-4 h-4" />
           Upload New
@@ -77,7 +77,7 @@ export default function MeetingsList() {
             placeholder="Search meetings..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
           />
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function MeetingsList() {
       {/* Meetings Grid */}
       {loading ? (
         <div className="text-center py-12">
-          <div className="w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-8 h-8 border-4 border-sky-200 border-t-sky-600 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500">Loading meetings...</p>
         </div>
       ) : filteredMeetings.length === 0 ? (
@@ -104,7 +104,7 @@ export default function MeetingsList() {
           {!searchQuery && (
             <Link
               to="/upload"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors"
             >
               Upload Meeting
             </Link>
@@ -120,11 +120,11 @@ export default function MeetingsList() {
             >
               <div className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <FileAudio className="w-6 h-6 text-indigo-600" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-sky-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <FileAudio className="w-6 h-6 text-sky-600" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-gray-900 truncate group-hover:text-indigo-600 transition-colors">
+                    <h3 className="font-semibold text-gray-900 truncate group-hover:text-sky-600 transition-colors">
                       {meeting.filename}
                     </h3>
                     <p className="text-sm text-gray-500 flex items-center gap-1 mt-1">
@@ -145,12 +145,12 @@ export default function MeetingsList() {
                       {meeting.task_count} tasks
                     </span>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
 
               {/* Bottom accent */}
-              <div className="h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              <div className="h-1 bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </Link>
           ))}
         </div>

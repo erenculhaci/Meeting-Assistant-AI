@@ -9,8 +9,7 @@ import {
   Loader2,
   Trash2,
   Plus,
-  Save,
-  ExternalLink
+  Save
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import {
@@ -157,7 +156,7 @@ export default function JiraSettings() {
     return (
       <div className="animate-fadeIn flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-4 border-sky-200 border-t-sky-600 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500">Loading settings...</p>
         </div>
       </div>
@@ -252,7 +251,7 @@ export default function JiraSettings() {
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
                 placeholder="yourcompany.atlassian.net"
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               />
             </div>
@@ -267,7 +266,7 @@ export default function JiraSettings() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               required
             />
           </div>
@@ -279,7 +278,7 @@ export default function JiraSettings() {
                 href="https://id.atlassian.com/manage-profile/security/api-tokens"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-2 text-indigo-600 hover:text-indigo-700 font-normal"
+                className="ml-2 text-sky-600 hover:text-sky-700 font-normal"
               >
                 Get token →
               </a>
@@ -289,7 +288,7 @@ export default function JiraSettings() {
               value={apiToken}
               onChange={(e) => setApiToken(e.target.value)}
               placeholder={config?.configured ? '••••••••••••••••' : 'Enter your API token'}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               required={!config?.configured}
             />
           </div>
@@ -302,7 +301,7 @@ export default function JiraSettings() {
               <select
                 value={projectKey}
                 onChange={(e) => setProjectKey(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               >
                 {projects.map(project => (
@@ -317,7 +316,7 @@ export default function JiraSettings() {
                 value={projectKey}
                 onChange={(e) => setProjectKey(e.target.value.toUpperCase())}
                 placeholder="PROJECT"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               />
             )}
@@ -330,7 +329,7 @@ export default function JiraSettings() {
               'w-full py-3 rounded-xl font-semibold transition-all duration-200',
               saving
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-200 hover:shadow-xl'
+                : 'bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 text-white shadow-lg shadow-sky-200 hover:shadow-xl'
             )}
           >
             {saving ? (
@@ -402,12 +401,12 @@ export default function JiraSettings() {
                 value={newMeetingName}
                 onChange={(e) => setNewMeetingName(e.target.value)}
                 placeholder="Meeting name (e.g., Speaker_00, John)"
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               />
               <select
                 value={newJiraUserId}
                 onChange={(e) => setNewJiraUserId(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               >
                 <option value="">Select Jira user...</option>
                 {users.map(user => (
@@ -422,7 +421,7 @@ export default function JiraSettings() {
                 className={clsx(
                   'px-4 py-2 rounded-lg transition-colors',
                   newMeetingName && newJiraUserId
-                    ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+                    ? 'bg-sky-600 text-white hover:bg-sky-700'
                     : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 )}
               >

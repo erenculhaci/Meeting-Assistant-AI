@@ -11,12 +11,11 @@ import {
   CheckCircle2,
   ChevronDown,
   ChevronUp,
-  ExternalLink,
   Play
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { getResults } from '../api';
-import type { MeetingResult, TranscriptSegment } from '../types';
+import type { MeetingResult, TaskItem } from '../types';
 import TasksPanel from '../components/TasksPanel';
 
 function formatTime(seconds: number): string {
@@ -70,7 +69,7 @@ export default function MeetingDetail() {
     return (
       <div className="animate-fadeIn flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-4 border-sky-200 border-t-sky-600 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500">Loading meeting details...</p>
         </div>
       </div>
@@ -145,7 +144,7 @@ export default function MeetingDetail() {
                 className={clsx(
                   'flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors',
                   activeTab === tab.id
-                    ? 'border-indigo-600 text-indigo-600'
+                    ? 'border-sky-600 text-sky-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 )}
               >
@@ -155,7 +154,7 @@ export default function MeetingDetail() {
                   <span className={clsx(
                     'px-2 py-0.5 text-xs rounded-full',
                     activeTab === tab.id
-                      ? 'bg-indigo-100 text-indigo-700'
+                      ? 'bg-sky-100 text-sky-700'
                       : 'bg-gray-100 text-gray-600'
                   )}>
                     {tab.badge}
@@ -182,14 +181,14 @@ export default function MeetingDetail() {
               {summary.participants && summary.participants.length > 0 && (
                 <div>
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-3">
-                    <Users className="w-5 h-5 text-indigo-600" />
+                    <Users className="w-5 h-5 text-sky-600" />
                     Participants
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {summary.participants.map((participant, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium"
+                        className="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-sm font-medium"
                       >
                         {participant}
                       </span>
@@ -275,13 +274,13 @@ export default function MeetingDetail() {
               {summary.next_steps && summary.next_steps.length > 0 && (
                 <div>
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-3">
-                    <Play className="w-5 h-5 text-purple-500" />
+                    <Play className="w-5 h-5 text-teal-500" />
                     Next Steps
                   </h3>
                   <ul className="space-y-2">
                     {summary.next_steps.map((step, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <span className="w-6 h-6 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0">
+                        <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0">
                           {i + 1}
                         </span>
                         <span className="text-gray-600">{step}</span>
@@ -304,7 +303,7 @@ export default function MeetingDetail() {
                     </span>
                   </div>
                   <div className="flex-1">
-                    <span className="inline-block px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs font-medium rounded mb-1">
+                    <span className="inline-block px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-medium rounded mb-1">
                       {segment.speaker}
                     </span>
                     <p className="text-gray-700">{segment.text}</p>
@@ -319,7 +318,7 @@ export default function MeetingDetail() {
             <TasksPanel 
               jobId={result.job_id} 
               tasks={result.tasks}
-              onTasksUpdate={(updatedTasks) => {
+              onTasksUpdate={(updatedTasks: TaskItem[]) => {
                 setResult({ ...result, tasks: updatedTasks });
               }}
             />
