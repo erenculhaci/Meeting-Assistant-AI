@@ -303,7 +303,9 @@ export default function MeetingDetail() {
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="inline-block px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-medium rounded mb-1">
+                    <span 
+                      className="inline-block px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-medium rounded mb-1"
+                    >
                       {segment.speaker}
                     </span>
                     <p className="text-sm md:text-base text-gray-700">{segment.text}</p>

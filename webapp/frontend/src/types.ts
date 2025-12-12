@@ -129,3 +129,10 @@ export interface JiraCreateResult {
   success_count: number;
   error_count: number;
 }
+
+export interface AssigneeMappings {
+  [name: string]: string | null;  // e.g., { "Emily": "emily22", "John": "john_doe" }
+}
+
+// Keep SpeakerMappings as alias for backward compatibility
+export type SpeakerMappings = AssigneeMappings;

@@ -11,6 +11,7 @@ import type {
   JiraCreateResult,
   TaskItem,
   UserMapping,
+  SpeakerMappings,
 } from './types';
 
 const api = axios.create({
@@ -43,6 +44,11 @@ export async function getResults(jobId: string): Promise<MeetingResult> {
 
 export async function listResults(): Promise<MeetingListItem[]> {
   const response = await api.get<MeetingListItem[]>('/results');
+  return response.data;
+}
+
+export async function deleteMeeting(jobId: string): Promise<{ status: string; message: string }> {
+  const response = await api.delete<{ status: string; message: string }>(`/results/${jobId}`);
   return response.data;
 }
 
@@ -99,5 +105,20 @@ export async function createJiraIssues(request: JiraCreateRequest): Promise<Jira
   const response = await api.post<JiraCreateResult>('/jira/create-issues', request);
   return response.data;
 }
+
+// Assignee Mappings (for task assignee nicknames)
+export async function getAssigneeMappings(jobId: string): Promise<SpeakerMappings> {
+  const response = await api.get<SpeakerMappings>(`/meetings/${jobId}/assignees`);
+  return response.data;
+}
+
+export async function updateAssigneeMappings(jobId: string, mappings: SpeakerMappings): Promise<{ status: string; mappings: SpeakerMappings }> {
+  const response = await api.put<{ status: string; mappings: SpeakerMappings }>(`/meetings/${jobId}/assignees`, mappings);
+  return response.data;
+}
+
+// Legacy aliases
+export const getSpeakerMappings = getAssigneeMappings;
+export const updateSpeakerMappings = updateAssigneeMappings;
 
 export default api;

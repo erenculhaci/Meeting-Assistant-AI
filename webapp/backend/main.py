@@ -25,9 +25,10 @@ import httpx
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from speech_recognition import Transcriber
+from speech_recognition import MeetingTranscriber
 from summarization.llm_summarizer import LLMSummarizer
 from action_item_extraction.ml_extractor import LLMActionItemExtractor
+from llm_diarization import LLMDiarizer
 
 # Load environment variables
 load_dotenv(Path(__file__).parent.parent.parent / ".env")
@@ -37,6 +38,7 @@ jobs: Dict[str, Dict] = {}
 results: Dict[str, Dict] = {}
 jira_config: Dict[str, Any] = {}
 user_mappings: Dict[str, str] = {}  # meeting_name -> jira_account_id
+assignee_mappings: Dict[str, Dict[str, str]] = {}  # job_id -> {extracted_name: nickname}
 
 # Temp directory for uploads
 UPLOAD_DIR = Path(__file__).parent / "uploads"
@@ -53,12 +55,14 @@ async def lifespan(app: FastAPI):
             data = json.load(f)
             jira_config.update(data.get('jira_config', {}))
             user_mappings.update(data.get('user_mappings', {}))
+            assignee_mappings.update(data.get('assignee_mappings', {}))
     yield
     # Save configs on shutdown
     with open(config_file, 'w') as f:
         json.dump({
             'jira_config': jira_config,
-            'user_mappings': user_mappings
+            'user_mappings': user_mappings,
+            'assignee_mappings': assignee_mappings
         }, f, indent=2)
 
 
@@ -165,60 +169,80 @@ class JiraCreateRequest(BaseModel):
 # Processing Functions
 # ============================================================================
 
+# Note: LLM-based speaker name extraction is disabled
+# Users can manually map speaker names via the UI
+
 def process_meeting(job_id: str, file_path: Path, filename: str):
     """Background task to process meeting file"""
     start_time = datetime.now()
     
     try:
-        # Step 1: Transcription
+        # Step 1: Transcription with local Whisper (no diarization)
         jobs[job_id]["step"] = "transcription"
         jobs[job_id]["progress"] = 10
-        jobs[job_id]["message"] = "Transcribing audio..."
+        jobs[job_id]["message"] = "Transcribing audio with Whisper..."
         
-        transcriber = Transcriber()
-        transcript_result = transcriber.transcribe(str(file_path))
+        # Use MeetingTranscriber with local Whisper model only
+        # model_name options: "tiny", "base", "small", "medium", "large", "large-v3"
+        transcriber = MeetingTranscriber(
+            model_name=os.getenv("WHISPER_MODEL", "base"),
+            language=None,  # Auto-detect language
+            enable_speaker_diarization=False  # Diarization disabled
+        )
         
-        jobs[job_id]["progress"] = 40
+        # Transcribe without speaker diarization
+        transcript_result = transcriber.transcribe_audio(
+            str(file_path),
+            segment_by_speaker=False
+        )
+        
+        if transcript_result.get("status") == "error":
+            raise Exception(transcript_result.get("message", "Transcription failed"))
+        
+        jobs[job_id]["progress"] = 35
         jobs[job_id]["message"] = "Transcription complete. Generating summary..."
         
-        # Convert to dict format
+        # Convert to standard format (without speaker for task extraction)
+        raw_transcript = [
+            {
+                "text": seg.get("text", ""),
+                "start": seg.get("start", 0),
+                "end": seg.get("end", 0)
+            }
+            for seg in transcript_result["transcript"]
+        ]
+        
         transcript_data = {
             "metadata": {
                 "file": filename,
-                "duration": transcript_result.duration,
-                "language": transcript_result.language
+                "duration": transcript_result["metadata"]["duration"],
+                "language": transcript_result["metadata"].get("language") or "unknown"
             },
-            "transcript": [
-                {
-                    "speaker": f"Speaker_{i % 3:02d}",  # Assign speakers
-                    "text": seg.text,
-                    "start": seg.start,
-                    "end": seg.end
-                }
-                for i, seg in enumerate(transcript_result.segments)
-            ]
+            "transcript": raw_transcript
         }
         
         # Step 2: Summarization
         jobs[job_id]["step"] = "summarization"
-        jobs[job_id]["progress"] = 50
+        jobs[job_id]["progress"] = 40
+        jobs[job_id]["message"] = "Generating summary..."
         
         summarizer = LLMSummarizer()
         summary_result = summarizer.summarize(transcript_data)
         summary_dict = summarizer.to_dict(summary_result)
         
-        jobs[job_id]["progress"] = 70
+        jobs[job_id]["progress"] = 55
         jobs[job_id]["message"] = "Summary generated. Extracting tasks..."
         
-        # Step 3: Task Extraction
+        # Step 3: Task Extraction (without speaker field - LLM extracts names from text)
         jobs[job_id]["step"] = "extraction"
-        jobs[job_id]["progress"] = 80
+        jobs[job_id]["progress"] = 60
         
         extractor = LLMActionItemExtractor()
         tasks_result = extractor.extract_action_items(transcript_data)
         
         # Convert tasks to our format with IDs
         tasks = []
+        unique_assignees = set()
         for i, task in enumerate(tasks_result.get('action_items', [])):
             task_item = TaskItem(
                 id=f"{job_id}-task-{i}",
@@ -229,12 +253,43 @@ def process_meeting(job_id: str, file_path: Path, filename: str):
                 speaker=task.get('speaker'),
                 confidence=task.get('confidence')
             )
+            # Track unique assignees for mapping
+            if task_item.assignee and task_item.assignee.lower() != 'unassigned':
+                unique_assignees.add(task_item.assignee)
             # Try to auto-map assignee
             if task_item.assignee and task_item.assignee in user_mappings:
                 task_item.jira_assignee_id = user_mappings[task_item.assignee]
             tasks.append(task_item)
         
-        # Step 4: Complete
+        # Initialize assignee mappings for this job
+        assignee_mappings[job_id] = {name: None for name in unique_assignees}
+        
+        jobs[job_id]["progress"] = 80
+        jobs[job_id]["message"] = "Tasks extracted. Identifying speakers..."
+        
+        # Step 4: LLM-based Speaker Diarization (for transcript display only)
+        jobs[job_id]["step"] = "diarization"
+        jobs[job_id]["progress"] = 90
+        jobs[job_id]["message"] = "Analyzing speakers with AI..."
+        
+        # Add speaker field for diarization
+        transcript_for_diarization = [
+            {
+                "speaker": "Unknown",
+                "text": seg.get("text", ""),
+                "start": seg.get("start", 0),
+                "end": seg.get("end", 0)
+            }
+            for seg in raw_transcript
+        ]
+        
+        diarizer = LLMDiarizer()
+        diarized_transcript = diarizer.diarize_transcript(transcript_for_diarization)
+        
+        # Update transcript_data with diarized version
+        transcript_data["transcript"] = diarized_transcript
+        
+        # Step 5: Complete
         jobs[job_id]["step"] = "done"
         jobs[job_id]["progress"] = 100
         jobs[job_id]["status"] = "completed"
@@ -247,8 +302,8 @@ def process_meeting(job_id: str, file_path: Path, filename: str):
         results[job_id] = MeetingResult(
             job_id=job_id,
             filename=filename,
-            duration=transcript_result.duration,
-            language=transcript_result.language,
+            duration=transcript_data["metadata"]["duration"],
+            language=transcript_data["metadata"]["language"],
             transcript=[TranscriptSegment(**seg) for seg in transcript_data["transcript"]],
             summary=summary_dict,
             tasks=tasks,
@@ -353,6 +408,33 @@ async def list_results():
     ]
 
 
+@app.delete("/api/results/{job_id}")
+async def delete_meeting(job_id: str):
+    """Delete a meeting and its associated files"""
+    if job_id not in results:
+        raise HTTPException(status_code=404, detail="Meeting not found")
+    
+    # Delete the result data
+    del results[job_id]
+    
+    # Delete from jobs if exists
+    if job_id in jobs:
+        del jobs[job_id]
+    
+    # Delete assignee mappings if exists
+    if job_id in assignee_mappings:
+        del assignee_mappings[job_id]
+    
+    # Delete uploaded files
+    for file_path in UPLOAD_DIR.glob(f"{job_id}.*"):
+        try:
+            file_path.unlink()
+        except Exception as e:
+            print(f"Warning: Failed to delete file {file_path}: {e}")
+    
+    return {"status": "success", "message": "Meeting deleted"}
+
+
 @app.put("/api/results/{job_id}/tasks/{task_id}")
 async def update_task(job_id: str, task_id: str, task: TaskItem):
     """Update a task item"""
@@ -365,6 +447,52 @@ async def update_task(job_id: str, task_id: str, task: TaskItem):
             return task
     
     raise HTTPException(status_code=404, detail="Task not found")
+
+
+# ============================================================================
+# Assignee Mapping Endpoints (for task assignee nicknames)
+# ============================================================================
+
+@app.get("/api/meetings/{job_id}/assignees")
+async def get_assignee_mappings(job_id: str):
+    """Get assignee name mappings for a meeting's tasks"""
+    if job_id not in results:
+        raise HTTPException(status_code=404, detail="Meeting not found")
+    
+    # Get unique assignees from tasks
+    assignees = set()
+    for task in results[job_id]["tasks"]:
+        assignee = task.get("assignee")
+        if assignee and assignee.lower() != 'unassigned':
+            assignees.add(assignee)
+    
+    # Return mappings with current nicknames
+    mappings = {}
+    for assignee in sorted(assignees):
+        mappings[assignee] = assignee_mappings.get(job_id, {}).get(assignee, None)
+    
+    return mappings
+
+
+@app.put("/api/meetings/{job_id}/assignees")
+async def update_assignee_mappings(job_id: str, mappings: Dict[str, Optional[str]]):
+    """Update assignee name mappings for a meeting's tasks (e.g., Emily -> emily22)"""
+    if job_id not in results:
+        raise HTTPException(status_code=404, detail="Meeting not found")
+    
+    # Update mappings
+    if job_id not in assignee_mappings:
+        assignee_mappings[job_id] = {}
+    
+    # Update only non-null values
+    for name, nickname in mappings.items():
+        if nickname is not None and nickname.strip():
+            assignee_mappings[job_id][name] = nickname
+        elif name in assignee_mappings[job_id]:
+            # Remove mapping if cleared
+            del assignee_mappings[job_id][name]
+    
+    return {"status": "success", "mappings": assignee_mappings[job_id]}
 
 
 # ============================================================================

@@ -3,7 +3,8 @@ import {
   CheckCircle2, 
   Circle, 
   Calendar, 
-  User, 
+  User,
+  UserCircle,
   AlertCircle,
   ExternalLink,
   Edit2,
@@ -18,9 +19,11 @@ import {
   getJiraUsers, 
   getUserMappings,
   updateTask,
-  createJiraIssues
+  createJiraIssues,
+  getAssigneeMappings,
+  updateAssigneeMappings
 } from '../api';
-import type { TaskItem, JiraUser, JiraConfigStatus, JiraTaskDraft } from '../types';
+import type { TaskItem, JiraUser, JiraConfigStatus, JiraTaskDraft, AssigneeMappings } from '../types';
 
 interface TasksPanelProps {
   jobId: string;
@@ -44,24 +47,32 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
   const [selectedTasks, setSelectedTasks] = useState<Set<string>>(new Set());
   const [isCreatingJira, setIsCreatingJira] = useState(false);
   const [jiraResults, setJiraResults] = useState<{ created: string[]; errors: string[] } | null>(null);
+  
+  // Assignee nickname mappings (e.g., Emily → emily22 for Jira)
+  const [assigneeMappings, setAssigneeMappings] = useState<AssigneeMappings>({});
+  const [editingAssignees, setEditingAssignees] = useState(false);
+  const [editedMappings, setEditedMappings] = useState<AssigneeMappings>({});
+  const [savingAssignees, setSavingAssignees] = useState(false);
 
   useEffect(() => {
     async function loadJiraData() {
       try {
-        const [config, users, mappings] = await Promise.all([
+        const [config, users, mappings, assignees] = await Promise.all([
           getJiraConfig(),
           getJiraConfig().then(c => c.configured ? getJiraUsers() : []),
           getUserMappings(),
+          getAssigneeMappings(jobId).catch(() => ({})),
         ]);
         setJiraConfig(config);
         setJiraUsers(users);
         setUserMappings(mappings);
+        setAssigneeMappings(assignees);
       } catch (error) {
         console.error('Failed to load Jira data:', error);
       }
     }
     loadJiraData();
-  }, []);
+  }, [jobId]);
 
   const handleEditTask = (task: TaskItem) => {
     setEditingTask(task.id);
@@ -85,6 +96,29 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
   const handleCancelEdit = () => {
     setEditingTask(null);
     setEditedTask(null);
+  };
+
+  // Assignee mapping handlers
+  const updateAssigneeName = (name: string, nickname: string) => {
+    setEditedMappings({ ...editedMappings, [name]: nickname });
+  };
+
+  const handleSaveAssignees = async () => {
+    setSavingAssignees(true);
+    try {
+      await updateAssigneeMappings(jobId, editedMappings);
+      setAssigneeMappings(editedMappings);
+      setEditingAssignees(false);
+    } catch (error) {
+      console.error('Failed to save assignee mappings:', error);
+    } finally {
+      setSavingAssignees(false);
+    }
+  };
+
+  const handleCancelAssignees = () => {
+    setEditedMappings(assigneeMappings);
+    setEditingAssignees(false);
   };
 
   const toggleTaskSelection = (taskId: string) => {
@@ -172,6 +206,76 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
   return (
     <div className="space-y-4 md:space-y-6">
+      {/* Assignee Mappings - for task assignee nicknames */}
+      {Object.keys(assigneeMappings).length > 0 && (
+        <div className="bg-gradient-to-br from-sky-50 to-cyan-50 border border-sky-200 rounded-xl p-4 md:p-5">
+          <div className="flex items-center justify-between mb-3 md:mb-4">
+            <h3 className="flex items-center gap-2 text-base md:text-lg font-semibold text-gray-900">
+              <UserCircle className="w-4 h-4 md:w-5 md:h-5 text-sky-600" />
+              Assignee Nicknames
+            </h3>
+            {!editingAssignees ? (
+              <button
+                onClick={() => {
+                  setEditingAssignees(true);
+                  setEditedMappings(assigneeMappings);
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs md:text-sm text-sky-600 hover:bg-white/50 rounded-lg transition-colors"
+              >
+                <Edit2 className="w-3.5 h-3.5" />
+                Edit
+              </button>
+            ) : (
+              <div className="flex gap-2">
+                <button
+                  onClick={handleCancelAssignees}
+                  disabled={savingAssignees}
+                  className="px-3 py-1.5 text-xs md:text-sm text-gray-600 hover:bg-white/50 rounded-lg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSaveAssignees}
+                  disabled={savingAssignees}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs md:text-sm bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors disabled:opacity-50"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  {savingAssignees ? 'Saving...' : 'Save'}
+                </button>
+              </div>
+            )}
+          </div>
+          
+          <p className="text-xs text-gray-500 mb-3">
+            Map extracted assignee names to nicknames (e.g., Emily → emily22 for Jira)
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+            {Object.entries(assigneeMappings).sort().map(([name, nickname]) => (
+              <div key={name} className="flex items-center gap-2 md:gap-3 bg-white/70 rounded-lg p-2 md:p-3">
+                <span className="px-2 md:px-2.5 py-1 bg-sky-100 text-sky-700 rounded text-xs font-medium flex-shrink-0">
+                  {name}
+                </span>
+                <span className="text-gray-400">→</span>
+                {editingAssignees ? (
+                  <input
+                    type="text"
+                    value={editedMappings[name] || ''}
+                    onChange={(e) => updateAssigneeName(name, e.target.value)}
+                    placeholder="Enter nickname..."
+                    className="flex-1 px-2 md:px-3 py-1 md:py-1.5 border border-sky-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-xs md:text-sm"
+                  />
+                ) : (
+                  <span className="flex-1 text-xs md:text-sm font-medium text-gray-900">
+                    {nickname || <span className="text-gray-400 italic">No nickname</span>}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Jira Integration Banner */}
       {!jiraConfig?.configured && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 md:gap-3">
@@ -389,7 +493,9 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                       {task.assignee && (
                         <span className="inline-flex items-center gap-1 px-1.5 md:px-2 py-0.5 md:py-1 bg-gray-100 text-gray-700 rounded">
                           <User className="w-3 h-3" />
-                          <span className="truncate max-w-[80px] md:max-w-none">{task.assignee}</span>
+                          <span className="truncate max-w-[80px] md:max-w-none">
+                            {assigneeMappings[task.assignee] || task.assignee}
+                          </span>
                         </span>
                       )}
                       

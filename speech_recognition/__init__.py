@@ -1,11 +1,17 @@
 """
-Audio/Video Transcription Module
-Supports: MP3, WAV, MP4, M4A, WEBM, OGG, FLAC and more
-Output formats: JSON (with timestamps & speakers), SRT (subtitles), TXT (plain text), VTT (web subtitles)
+Speech Recognition package for transcribing audio files.
 """
 
-from .transcriber import Transcriber
-from .formatters import JSONFormatter, SRTFormatter, TXTFormatter, VTTFormatter
+import os
+from speech_recognition.utils.env_setup import setup_environment
 
 __version__ = "1.0.0"
-__all__ = ["Transcriber", "JSONFormatter", "SRTFormatter", "TXTFormatter", "VTTFormatter"]
+
+# Set up environment variables when package is imported
+setup_environment()
+
+# Export main classes and functions for easy access
+from speech_recognition.core.meeting_transcriber import MeetingTranscriber
+from speech_recognition.transcriber import transcribe_meeting
+
+__all__ = ['MeetingTranscriber', 'transcribe_meeting']

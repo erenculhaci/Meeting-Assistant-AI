@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Upload as UploadIcon, 
@@ -17,6 +17,7 @@ import { uploadFile, getJobStatus } from '../api';
 import type { JobStatus } from '../types';
 
 const ALLOWED_EXTENSIONS = ['.mp3', '.mp4', '.wav', '.m4a', '.webm', '.ogg', '.flac'];
+const PENDING_JOB_KEY = 'meeting_assistant_pending_job';
 
 const stepInfo = {
   upload: { icon: UploadIcon, label: 'Uploading', color: 'text-sky-600' },
@@ -33,6 +34,15 @@ export default function UploadPage() {
   const [error, setError] = useState<string | null>(null);
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Check for pending job on mount
+  useEffect(() => {
+    const pendingJobId = localStorage.getItem(PENDING_JOB_KEY);
+    if (pendingJobId) {
+      setIsProcessing(true);
+      pollJobStatus(pendingJobId);
+    }
+  }, []);
 
   const validateFile = (file: File): boolean => {
     const ext = '.' + file.name.split('.').pop()?.toLowerCase();
@@ -83,12 +93,14 @@ export default function UploadPage() {
 
       if (status.status === 'completed') {
         setIsProcessing(false);
+        localStorage.removeItem(PENDING_JOB_KEY);
         // Navigate to results after a brief delay
         setTimeout(() => {
           navigate(`/meetings/${jobId}`);
         }, 1500);
       } else if (status.status === 'failed') {
         setIsProcessing(false);
+        localStorage.removeItem(PENDING_JOB_KEY);
         setError(status.error || 'Processing failed');
       } else {
         // Continue polling
@@ -96,6 +108,7 @@ export default function UploadPage() {
       }
     } catch (err) {
       setIsProcessing(false);
+      localStorage.removeItem(PENDING_JOB_KEY);
       setError('Failed to check job status');
     }
   };
@@ -109,6 +122,8 @@ export default function UploadPage() {
     try {
       const status = await uploadFile(file);
       setJobStatus(status);
+      // Save jobId to localStorage to persist across page changes
+      localStorage.setItem(PENDING_JOB_KEY, status.job_id);
       pollJobStatus(status.job_id);
     } catch (err: any) {
       setIsProcessing(false);

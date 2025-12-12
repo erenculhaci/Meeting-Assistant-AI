@@ -7,9 +7,11 @@ import {
   ArrowRight,
   Search,
   Calendar,
-  FileText
+  FileText,
+  Trash2,
+  Loader2
 } from 'lucide-react';
-import { listResults } from '../api';
+import { listResults, deleteMeeting } from '../api';
 import type { MeetingListItem } from '../types';
 
 function formatDuration(seconds: number): string {
@@ -32,6 +34,7 @@ export default function MeetingsList() {
   const [meetings, setMeetings] = useState<MeetingListItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadMeetings() {
@@ -46,6 +49,26 @@ export default function MeetingsList() {
     }
     loadMeetings();
   }, []);
+
+  const handleDelete = async (e: React.MouseEvent, jobId: string, filename: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!confirm(`Are you sure you want to delete "${filename}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    setDeletingId(jobId);
+    try {
+      await deleteMeeting(jobId);
+      setMeetings(meetings.filter(m => m.job_id !== jobId));
+    } catch (error) {
+      console.error('Failed to delete meeting:', error);
+      alert('Failed to delete meeting. Please try again.');
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const filteredMeetings = meetings.filter((m) =>
     m.filename.toLowerCase().includes(searchQuery.toLowerCase())
@@ -113,17 +136,19 @@ export default function MeetingsList() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredMeetings.map((meeting) => (
-            <Link
+            <div
               key={meeting.job_id}
-              to={`/meetings/${meeting.job_id}`}
-              className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative"
             >
-              <div className="p-4 md:p-6">
+              <Link
+                to={`/meetings/${meeting.job_id}`}
+                className="block p-4 md:p-6"
+              >
                 <div className="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-sky-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
                     <FileAudio className="w-5 h-5 md:w-6 md:h-6 text-sky-600" />
                   </div>
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0 flex-1 pr-8">
                     <h3 className="font-semibold text-gray-900 truncate group-hover:text-sky-600 transition-colors text-sm md:text-base">
                       {meeting.filename}
                     </h3>
@@ -147,11 +172,25 @@ export default function MeetingsList() {
                   </div>
                   <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-300 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
                 </div>
-              </div>
+              </Link>
+
+              {/* Delete Button */}
+              <button
+                onClick={(e) => handleDelete(e, meeting.job_id, meeting.filename)}
+                disabled={deletingId === meeting.job_id}
+                className="absolute top-3 right-3 p-2 bg-white/80 hover:bg-red-50 rounded-lg border border-gray-200 hover:border-red-300 transition-colors group/delete"
+                title="Delete meeting"
+              >
+                {deletingId === meeting.job_id ? (
+                  <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
+                ) : (
+                  <Trash2 className="w-4 h-4 text-gray-400 group-hover/delete:text-red-600" />
+                )}
+              </button>
 
               {/* Bottom accent */}
               <div className="h-1 bg-gradient-to-r from-sky-500 via-blue-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            </Link>
+            </div>
           ))}
         </div>
       )}
