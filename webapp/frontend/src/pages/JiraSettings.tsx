@@ -12,6 +12,7 @@ import {
   Save
 } from 'lucide-react';
 import { clsx } from 'clsx';
+import Swal from 'sweetalert2';
 import {
   getJiraConfig,
   saveJiraConfig,
@@ -102,7 +103,18 @@ export default function JiraSettings() {
   }
 
   async function handleDisconnect() {
-    if (!confirm('Are you sure you want to disconnect Jira?')) return;
+    const result = await Swal.fire({
+      title: 'Disconnect Jira?',
+      text: 'Are you sure you want to disconnect Jira integration?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Yes, disconnect',
+      cancelButtonText: 'Cancel'
+    });
+    
+    if (!result.isConfirmed) return;
 
     try {
       await deleteJiraConfig();

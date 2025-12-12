@@ -11,6 +11,7 @@ import {
   Trash2,
   Loader2
 } from 'lucide-react';
+import Swal from 'sweetalert2';
 import { listResults, deleteMeeting } from '../api';
 import type { MeetingListItem } from '../types';
 
@@ -54,7 +55,18 @@ export default function MeetingsList() {
     e.preventDefault();
     e.stopPropagation();
     
-    if (!confirm(`Are you sure you want to delete "${filename}"? This action cannot be undone.`)) {
+    const result = await Swal.fire({
+      title: 'Delete Meeting?',
+      html: `Are you sure you want to delete <strong>"${filename}"</strong>?<br>This action cannot be undone.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (!result.isConfirmed) {
       return;
     }
 
@@ -62,9 +74,21 @@ export default function MeetingsList() {
     try {
       await deleteMeeting(jobId);
       setMeetings(meetings.filter(m => m.job_id !== jobId));
+      await Swal.fire({
+        title: 'Deleted!',
+        text: 'Meeting has been deleted successfully.',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false
+      });
     } catch (error) {
       console.error('Failed to delete meeting:', error);
-      alert('Failed to delete meeting. Please try again.');
+      await Swal.fire({
+        title: 'Error!',
+        text: 'Failed to delete meeting. Please try again.',
+        icon: 'error',
+        confirmButtonColor: '#0ea5e9'
+      });
     } finally {
       setDeletingId(null);
     }
