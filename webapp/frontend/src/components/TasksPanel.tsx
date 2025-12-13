@@ -132,10 +132,10 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
   };
 
   const selectAllTasks = () => {
-    if (selectedTasks.size === tasks.filter(t => !t.jira_created).length) {
+    if (selectedTasks.size === tasks.length) {
       setSelectedTasks(new Set());
     } else {
-      setSelectedTasks(new Set(tasks.filter(t => !t.jira_created).map(t => t.id)));
+      setSelectedTasks(new Set(tasks.map(t => t.id)));
     }
   };
 
@@ -376,7 +376,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
               onClick={selectAllTasks}
               className="text-xs md:text-sm text-sky-600 hover:text-sky-700 font-medium"
             >
-              {selectedTasks.size === tasks.filter(t => !t.jira_created).length
+              {selectedTasks.size === tasks.length
                 ? 'Deselect All'
                 : 'Select All'}
             </button>

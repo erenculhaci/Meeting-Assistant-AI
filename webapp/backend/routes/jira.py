@@ -397,6 +397,9 @@ async def create_jira_issues(
     if not meeting:
         raise HTTPException(status_code=404, detail="Meeting not found")
     
+    # Get assignee mappings from the meeting
+    assignee_mappings = meeting.assignee_mappings or {}
+    
     # Fetch Jira users for auto-assignment
     jira_users = []
     async with httpx.AsyncClient() as client:
@@ -423,8 +426,16 @@ async def create_jira_issues(
             # Auto-find assignee if not specified
             assignee_id = task_draft.assignee_id
             if not assignee_id and task_draft.description:
-                # Try to extract name from description and match
-                assignee_id = find_best_matching_user(task_draft.description.split(':')[0] if ':' in task_draft.description else None, jira_users)
+                # Try to extract name from description
+                extracted_name = task_draft.description.split(':')[0] if ':' in task_draft.description else None
+                
+                # Apply nickname mapping if available
+                if extracted_name and extracted_name in assignee_mappings:
+                    mapped_name = assignee_mappings[extracted_name]
+                    assignee_id = find_best_matching_user(mapped_name, jira_users)
+                else:
+                    # Use original name if no mapping
+                    assignee_id = find_best_matching_user(extracted_name, jira_users)
             
             # Build Jira issue payload
             issue_data = {

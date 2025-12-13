@@ -2,6 +2,7 @@ from typing import Optional, Dict
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from sqlalchemy.orm import attributes
 
 from database import get_db
 from db_models import User, Meeting, Task
@@ -65,8 +66,8 @@ async def update_assignee_mappings(
     if not meeting:
         raise HTTPException(status_code=404, detail="Meeting not found")
     
-    # Update mappings
-    current_mappings = meeting.assignee_mappings or {}
+    # Update mappings - create a NEW dict object so SQLAlchemy detects the change
+    current_mappings = dict(meeting.assignee_mappings or {})
     
     for name, nickname in mappings.items():
         if nickname is not None and nickname.strip():
@@ -74,7 +75,8 @@ async def update_assignee_mappings(
         elif name in current_mappings:
             del current_mappings[name]
     
+    # Assign the new dict object to trigger SQLAlchemy change detection
     meeting.assignee_mappings = current_mappings
-    await db.flush()
+    attributes.flag_modified(meeting, "assignee_mappings")
     
     return {"status": "success", "mappings": current_mappings}
