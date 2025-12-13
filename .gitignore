@@ -5,6 +5,12 @@
 # Backup folder (unused scripts)
 backup/
 
+# evaluation folder
+evaluation/
+
+# old versions
+speech_recognition_old/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

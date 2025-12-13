@@ -30,7 +30,7 @@ class LLMActionItemExtractor:
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "llama-3.3-70b-versatile"  # Updated to latest model
+        model: str = "llama-3.3-70b-versatile"
     ):
         """
         Initialize LLM extractor.

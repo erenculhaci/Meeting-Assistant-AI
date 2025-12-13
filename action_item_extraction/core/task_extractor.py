@@ -18,20 +18,8 @@ logger = logging.getLogger(__name__)
 
 
 class TaskExtractor:
+    """ Extract action items from meeting transcripts.
     """
-    Advanced task extraction from meeting transcripts.
-    
-    Handles:
-    - Explicit task assignments
-    - Implicit tasks and commitments
-    - Deadline extraction (explicit and relative dates)
-    - Person/speaker assignment
-    - Task prioritization with urgency detection
-    - Context-aware extraction
-    - Semantic deduplication
-    - LLM fallback (optional)
-    """
-    
     def __init__(
         self,
         reference_date: Optional[datetime] = None,
@@ -42,18 +30,6 @@ class TaskExtractor:
         llm_confidence_threshold: float = 0.7,
         llm_provider: str = "auto"
     ):
-        """
-        Initialize the task extractor.
-        
-        Args:
-            reference_date: Reference date for date parsing (default: today)
-            use_semantic_dedup: Use semantic similarity for deduplication
-            similarity_threshold: Threshold for semantic duplicate detection (0-1)
-            use_llm_fallback: Use LLM to clarify ambiguous tasks
-            llm_model: LLM model to use (gpt-4o-mini, gpt-4, etc.)
-            llm_confidence_threshold: Use LLM for tasks below this confidence
-            llm_provider: LLM provider ("auto", "groq", "openai")
-        """
         self.date_parser = DateParser(reference_date)
         self.person_extractor = PersonExtractor()
         self.confidence_model = TaskConfidenceModel()
@@ -89,15 +65,6 @@ class TaskExtractor:
         logger.info(f"TaskExtractor initialized (semantic_dedup={use_semantic_dedup}, llm_fallback={use_llm_fallback})")
     
     def extract_tasks(self, transcript_data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """
-        Extract all tasks from the transcript.
-        
-        Args:
-            transcript_data: Transcript data in JSON format
-            
-        Returns:
-            List of task dictionaries with metadata
-        """
         logger.info("Starting task extraction")
         
         # First, map speakers to names
@@ -397,7 +364,7 @@ class TaskExtractor:
                 'language': metadata.get('language', 'en')
             }
             
-            # Format dates nicely
+            # Format dates
             if task.get('start_date'):
                 task['start_date_formatted'] = task['start_date'].strftime('%B %d, %Y')
             if task.get('due_date'):

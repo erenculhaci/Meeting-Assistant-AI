@@ -15,7 +15,7 @@ def load_env_file(env_path: str = None):
         env_path: Path to .env file (default: project root/.env)
     """
     if env_path is None:
-        # Find project root (where .env should be)
+        # Find project root (.env location)
         current_dir = Path(__file__).parent.parent
         env_path = current_dir / '.env'
     else:
@@ -51,7 +51,7 @@ def load_env_file(env_path: str = None):
                 os.environ[key] = value
                 loaded_count += 1
     
-    print(f"✅ Loaded {loaded_count} environment variables from .env")
+    print(f"Loaded {loaded_count} environment variables from .env")
     return True
 
 

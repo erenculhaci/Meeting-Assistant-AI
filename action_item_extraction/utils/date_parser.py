@@ -9,7 +9,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Try to import dateparser for advanced parsing
 try:
     import dateparser
     DATEPARSER_AVAILABLE = True
@@ -109,7 +108,7 @@ class DateParser:
             except ValueError as e:
                 logger.warning(f"Failed to parse ISO date: {match.group(0)} - {e}")
         
-        # Pattern: MM/DD or MM-DD (current year assumed)
+        # Pattern: MM/DD or MM-DD (current year)
         pattern3 = r'\b(\d{1,2})[-/](\d{1,2})\b'
         for match in re.finditer(pattern3, text):
             try:
