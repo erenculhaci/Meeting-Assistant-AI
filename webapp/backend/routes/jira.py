@@ -271,7 +271,8 @@ async def create_jira_issues(
                 response = await client.post(
                     f"https://{jira_conf.domain}/rest/api/3/issue",
                     auth=(jira_conf.email, jira_conf.api_token),
-                    json=issue_data
+                    json=issue_data,
+                    headers={"Accept": "application/json", "Content-Type": "application/json"}
                 )
                 
                 if response.status_code == 201:
@@ -294,13 +295,23 @@ async def create_jira_issues(
                         task.jira_created = True
                         task.jira_key = issue["key"]
                 else:
+                    error_detail = response.text
+                    try:
+                        error_json = response.json()
+                        error_detail = str(error_json)
+                    except:
+                        pass
+                    
                     errors.append({
                         "task_id": task_draft.task_id,
-                        "error": response.text
+                        "summary": task_draft.summary,
+                        "error": error_detail,
+                        "status_code": response.status_code
                     })
             except Exception as e:
                 errors.append({
                     "task_id": task_draft.task_id,
+                    "summary": task_draft.summary,
                     "error": str(e)
                 })
     
