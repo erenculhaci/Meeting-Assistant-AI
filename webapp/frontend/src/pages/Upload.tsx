@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Upload as UploadIcon, 
@@ -34,15 +34,49 @@ export default function UploadPage() {
   const [error, setError] = useState<string | null>(null);
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const pollingRef = useRef<NodeJS.Timeout | null>(null);
+  const isMountedRef = useRef(true);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      if (pollingRef.current) {
+        clearTimeout(pollingRef.current);
+      }
+    };
+  }, []);
 
   // Check for pending job on mount
   useEffect(() => {
     const pendingJobId = localStorage.getItem(PENDING_JOB_KEY);
     if (pendingJobId) {
       setIsProcessing(true);
-      pollJobStatus(pendingJobId);
+      // Immediately fetch current status
+      getJobStatus(pendingJobId).then((status) => {
+        if (!isMountedRef.current) return;
+        setJobStatus(status);
+        if (status.status === 'completed') {
+          setIsProcessing(false);
+          localStorage.removeItem(PENDING_JOB_KEY);
+          setTimeout(() => navigate(`/meetings/${pendingJobId}`), 1500);
+        } else if (status.status === 'failed') {
+          setIsProcessing(false);
+          localStorage.removeItem(PENDING_JOB_KEY);
+          setError(status.error || 'Processing failed');
+        } else {
+          // Start polling
+          pollJobStatus(pendingJobId);
+        }
+      }).catch(() => {
+        if (!isMountedRef.current) return;
+        setIsProcessing(false);
+        localStorage.removeItem(PENDING_JOB_KEY);
+        setError('Failed to check job status');
+      });
     }
-  }, []);
+  }, [navigate]);
 
   const validateFile = (file: File): boolean => {
     const ext = '.' + file.name.split('.').pop()?.toLowerCase();
@@ -87,8 +121,12 @@ export default function UploadPage() {
   };
 
   const pollJobStatus = async (jobId: string) => {
+    if (!isMountedRef.current) return;
+    
     try {
       const status = await getJobStatus(jobId);
+      if (!isMountedRef.current) return;
+      
       setJobStatus(status);
 
       if (status.status === 'completed') {
@@ -104,9 +142,10 @@ export default function UploadPage() {
         setError(status.error || 'Processing failed');
       } else {
         // Continue polling
-        setTimeout(() => pollJobStatus(jobId), 1000);
+        pollingRef.current = setTimeout(() => pollJobStatus(jobId), 1000);
       }
     } catch (err) {
+      if (!isMountedRef.current) return;
       setIsProcessing(false);
       localStorage.removeItem(PENDING_JOB_KEY);
       setError('Failed to check job status');
