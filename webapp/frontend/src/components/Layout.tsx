@@ -9,9 +9,12 @@ import {
   ChevronRight,
   Sparkles,
   Menu,
-  X
+  X,
+  LogOut,
+  User
 } from 'lucide-react';
 import { clsx } from 'clsx';
+import { useAuth } from '../context/AuthContext';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
@@ -23,6 +26,7 @@ const navigation = [
 export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const closeSidebar = () => setSidebarOpen(false);
 
@@ -118,11 +122,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           })}
         </nav>
 
-        {/* Version Badge */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <div className="text-center">
-            <span className="text-xs text-gray-400">v1.0.0</span>
-          </div>
+        {/* User Info & Logout */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100/50 bg-white/50">
+          {user && (
+            <div className="mb-3 px-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate">{user.full_name || user.username}</p>
+                  <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          <button
+            onClick={logout}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-300"
+          >
+            <LogOut className="w-4 h-4" />
+            <span>Sign Out</span>
+          </button>
         </div>
       </aside>
 

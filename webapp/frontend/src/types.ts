@@ -136,3 +136,30 @@ export interface AssigneeMappings {
 
 // Keep SpeakerMappings as alias for backward compatibility
 export type SpeakerMappings = AssigneeMappings;
+
+// Authentication Types
+export interface User {
+  id: string;
+  email: string;
+  username: string;
+  full_name?: string;
+  created_at: string;
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface SignupRequest {
+  email: string;
+  username: string;
+  password: string;
+  full_name?: string;
+}
+
+export interface AuthResponse {
+  access_token: string;
+  token_type: string;
+  user: User;
+}

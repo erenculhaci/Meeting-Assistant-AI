@@ -12,7 +12,26 @@ import type {
   TaskItem,
   UserMapping,
   SpeakerMappings,
+  LoginRequest,
+  SignupRequest,
+  AuthResponse,
+  User,
 } from './types';
+
+// Token management
+const TOKEN_KEY = 'meeting_assistant_token';
+
+export function getStoredToken(): string | null {
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function setStoredToken(token: string): void {
+  localStorage.setItem(TOKEN_KEY, token);
+}
+
+export function removeStoredToken(): void {
+  localStorage.removeItem(TOKEN_KEY);
+}
 
 const api = axios.create({
   baseURL: '/api',
@@ -20,6 +39,53 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Add auth token to all requests
+api.interceptors.request.use((config) => {
+  const token = getStoredToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Handle 401 errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      removeStoredToken();
+      // Redirect to login if not already there
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/signup') {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Authentication
+export async function login(credentials: LoginRequest): Promise<AuthResponse> {
+  const response = await api.post<AuthResponse>('/auth/login', credentials);
+  setStoredToken(response.data.access_token);
+  return response.data;
+}
+
+export async function signup(data: SignupRequest): Promise<AuthResponse> {
+  const response = await api.post<AuthResponse>('/auth/signup', data);
+  setStoredToken(response.data.access_token);
+  return response.data;
+}
+
+export async function getCurrentUser(): Promise<User> {
+  const response = await api.get<User>('/auth/me');
+  return response.data;
+}
+
+export function logout(): void {
+  removeStoredToken();
+  window.location.href = '/login';
+}
 
 // Meeting Processing
 export async function uploadFile(file: File): Promise<JobStatus> {

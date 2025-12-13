@@ -5,50 +5,84 @@ Endpoints for managing task assignee nickname mappings.
 """
 
 from typing import Optional, Dict
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
-from storage import results, assignee_mappings
+from database import get_db
+from db_models import User, Meeting, Task
+from auth import get_current_user
 
 router = APIRouter()
 
 
 @router.get("/meetings/{job_id}/assignees")
-async def get_assignee_mappings(job_id: str):
+async def get_assignee_mappings(
+    job_id: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
     """Get assignee name mappings for a meeting's tasks"""
-    if job_id not in results:
+    result = await db.execute(
+        select(Meeting).where(
+            Meeting.job_id == job_id,
+            Meeting.user_id == current_user.id
+        )
+    )
+    meeting = result.scalar_one_or_none()
+    
+    if not meeting:
         raise HTTPException(status_code=404, detail="Meeting not found")
     
     # Get unique assignees from tasks
+    tasks_result = await db.execute(
+        select(Task).where(Task.meeting_id == meeting.id)
+    )
+    tasks = tasks_result.scalars().all()
+    
     assignees = set()
-    for task in results[job_id]["tasks"]:
-        assignee = task.get("assignee")
-        if assignee and assignee.lower() != 'unassigned':
-            assignees.add(assignee)
+    for task in tasks:
+        if task.assignee and task.assignee.lower() != 'unassigned':
+            assignees.add(task.assignee)
     
     # Return mappings with current nicknames
+    stored_mappings = meeting.assignee_mappings or {}
     mappings = {}
     for assignee in sorted(assignees):
-        mappings[assignee] = assignee_mappings.get(job_id, {}).get(assignee, None)
+        mappings[assignee] = stored_mappings.get(assignee, None)
     
     return mappings
 
 
 @router.put("/meetings/{job_id}/assignees")
-async def update_assignee_mappings(job_id: str, mappings: Dict[str, Optional[str]]):
-    """Update assignee name mappings for a meeting's tasks (e.g., Emily -> emily22)"""
-    if job_id not in results:
+async def update_assignee_mappings(
+    job_id: str,
+    mappings: Dict[str, Optional[str]],
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """Update assignee name mappings for a meeting's tasks"""
+    result = await db.execute(
+        select(Meeting).where(
+            Meeting.job_id == job_id,
+            Meeting.user_id == current_user.id
+        )
+    )
+    meeting = result.scalar_one_or_none()
+    
+    if not meeting:
         raise HTTPException(status_code=404, detail="Meeting not found")
     
     # Update mappings
-    if job_id not in assignee_mappings:
-        assignee_mappings[job_id] = {}
+    current_mappings = meeting.assignee_mappings or {}
     
-    # Update only non-null values
     for name, nickname in mappings.items():
         if nickname is not None and nickname.strip():
-            assignee_mappings[job_id][name] = nickname
-        elif name in assignee_mappings[job_id]:
-            # Remove mapping if cleared
-            del assignee_mappings[job_id][name]
+            current_mappings[name] = nickname
+        elif name in current_mappings:
+            del current_mappings[name]
     
-    return {"status": "success", "mappings": assignee_mappings[job_id]}
+    meeting.assignee_mappings = current_mappings
+    await db.flush()
+    
+    return {"status": "success", "mappings": current_mappings}

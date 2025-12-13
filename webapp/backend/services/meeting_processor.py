@@ -2,9 +2,11 @@
 Meeting Processing Service
 ==========================
 Background processing for meeting transcription, summarization, and task extraction.
+Uses PostgreSQL for persistence.
 """
 
 import sys
+import asyncio
 from pathlib import Path
 from datetime import datetime
 
@@ -17,24 +19,50 @@ from action_item_extraction.ml_extractor import LLMActionItemExtractor
 from llm_diarization import LLMDiarizer
 
 from config import WHISPER_MODEL
-from storage import jobs, results, user_mappings, assignee_mappings
-from models import MeetingResult, TranscriptSegment, TaskItem
+from database import async_session
+from db_models import Meeting, Task
+from sqlalchemy import select
+
+# Import processing_jobs from meetings route
+from routes.meetings import processing_jobs
 
 
-def process_meeting(job_id: str, file_path: Path, filename: str):
-    """Background task to process meeting file"""
+async def update_job_status(job_id: str, **kwargs):
+    """Update job status in memory and database"""
+    # Update in-memory status
+    if job_id in processing_jobs:
+        processing_jobs[job_id].update(kwargs)
+    
+    # Update in database
+    async with async_session() as session:
+        result = await session.execute(
+            select(Meeting).where(Meeting.job_id == job_id)
+        )
+        meeting = result.scalar_one_or_none()
+        if meeting:
+            for key, value in kwargs.items():
+                if hasattr(meeting, key):
+                    setattr(meeting, key, value)
+            await session.commit()
+
+
+async def process_meeting_db(job_id: str, file_path: Path, filename: str, user_id: str):
+    """Async background task to process meeting file"""
     start_time = datetime.now()
     
     try:
-        # Step 1: Transcription with local Whisper (no diarization)
-        jobs[job_id]["step"] = "transcription"
-        jobs[job_id]["progress"] = 10
-        jobs[job_id]["message"] = "Transcribing audio with Whisper..."
+        # Step 1: Transcription with local Whisper
+        await update_job_status(
+            job_id, 
+            step="transcription", 
+            progress=10, 
+            message="Transcribing audio with Whisper..."
+        )
         
         transcriber = MeetingTranscriber(
             model_name=WHISPER_MODEL,
-            language=None,  # Auto-detect language
-            enable_speaker_diarization=False  # Diarization disabled
+            language=None,
+            enable_speaker_diarization=False
         )
         
         transcript_result = transcriber.transcribe_audio(
@@ -45,10 +73,13 @@ def process_meeting(job_id: str, file_path: Path, filename: str):
         if transcript_result.get("status") == "error":
             raise Exception(transcript_result.get("message", "Transcription failed"))
         
-        jobs[job_id]["progress"] = 35
-        jobs[job_id]["message"] = "Transcription complete. Generating summary..."
+        await update_job_status(
+            job_id, 
+            progress=35, 
+            message="Transcription complete. Generating summary..."
+        )
         
-        # Convert to standard format (without speaker for task extraction)
+        # Convert to standard format
         raw_transcript = [
             {
                 "text": seg.get("text", ""),
@@ -68,55 +99,46 @@ def process_meeting(job_id: str, file_path: Path, filename: str):
         }
         
         # Step 2: Summarization
-        jobs[job_id]["step"] = "summarization"
-        jobs[job_id]["progress"] = 40
-        jobs[job_id]["message"] = "Generating summary..."
+        await update_job_status(
+            job_id, 
+            step="summarization", 
+            progress=40, 
+            message="Generating summary..."
+        )
         
         summarizer = LLMSummarizer()
         summary_result = summarizer.summarize(transcript_data)
         summary_dict = summarizer.to_dict(summary_result)
         
-        jobs[job_id]["progress"] = 55
-        jobs[job_id]["message"] = "Summary generated. Extracting tasks..."
+        await update_job_status(
+            job_id, 
+            progress=55, 
+            message="Summary generated. Extracting tasks..."
+        )
         
-        # Step 3: Task Extraction (without speaker field - LLM extracts names from text)
-        jobs[job_id]["step"] = "extraction"
-        jobs[job_id]["progress"] = 60
+        # Step 3: Task Extraction
+        await update_job_status(
+            job_id, 
+            step="extraction", 
+            progress=60
+        )
         
         extractor = LLMActionItemExtractor()
         tasks_result = extractor.extract_action_items(transcript_data)
         
-        # Convert tasks to our format with IDs
-        tasks = []
-        unique_assignees = set()
-        for i, task in enumerate(tasks_result.get('action_items', [])):
-            task_item = TaskItem(
-                id=f"{job_id}-task-{i}",
-                description=task.get('description', ''),
-                assignee=task.get('assignee'),
-                due_date=task.get('due_date'),
-                priority=task.get('priority', 'Medium'),
-                speaker=task.get('speaker'),
-                confidence=task.get('confidence')
-            )
-            # Track unique assignees for mapping
-            if task_item.assignee and task_item.assignee.lower() != 'unassigned':
-                unique_assignees.add(task_item.assignee)
-            # Try to auto-map assignee
-            if task_item.assignee and task_item.assignee in user_mappings:
-                task_item.jira_assignee_id = user_mappings[task_item.assignee]
-            tasks.append(task_item)
+        await update_job_status(
+            job_id, 
+            progress=80, 
+            message="Tasks extracted. Identifying speakers..."
+        )
         
-        # Initialize assignee mappings for this job
-        assignee_mappings[job_id] = {name: None for name in unique_assignees}
-        
-        jobs[job_id]["progress"] = 80
-        jobs[job_id]["message"] = "Tasks extracted. Identifying speakers..."
-        
-        # Step 4: LLM-based Speaker Diarization (for transcript display only)
-        jobs[job_id]["step"] = "diarization"
-        jobs[job_id]["progress"] = 90
-        jobs[job_id]["message"] = "Analyzing speakers with AI..."
+        # Step 4: LLM-based Speaker Diarization
+        await update_job_status(
+            job_id, 
+            step="diarization", 
+            progress=90, 
+            message="Analyzing speakers with AI..."
+        )
         
         # Add speaker field for diarization
         transcript_for_diarization = [
@@ -132,35 +154,69 @@ def process_meeting(job_id: str, file_path: Path, filename: str):
         diarizer = LLMDiarizer()
         diarized_transcript = diarizer.diarize_transcript(transcript_for_diarization)
         
-        # Update transcript_data with diarized version
-        transcript_data["transcript"] = diarized_transcript
-        
-        # Step 5: Complete
-        jobs[job_id]["step"] = "done"
-        jobs[job_id]["progress"] = 100
-        jobs[job_id]["status"] = "completed"
-        jobs[job_id]["message"] = "Processing complete!"
-        jobs[job_id]["completed_at"] = datetime.now().isoformat()
-        
+        # Step 5: Save to database
         processing_time = (datetime.now() - start_time).total_seconds()
         
-        # Store result
-        results[job_id] = MeetingResult(
-            job_id=job_id,
-            filename=filename,
-            duration=transcript_data["metadata"]["duration"],
-            language=transcript_data["metadata"]["language"],
-            transcript=[TranscriptSegment(**seg) for seg in transcript_data["transcript"]],
-            summary=summary_dict,
-            tasks=tasks,
-            created_at=jobs[job_id]["created_at"],
-            processing_time=processing_time
-        ).model_dump()
+        async with async_session() as session:
+            # Get meeting
+            result = await session.execute(
+                select(Meeting).where(Meeting.job_id == job_id)
+            )
+            meeting = result.scalar_one_or_none()
+            
+            if meeting:
+                # Update meeting with results
+                meeting.status = "completed"
+                meeting.step = "done"
+                meeting.progress = 100
+                meeting.message = "Processing complete!"
+                meeting.completed_at = datetime.utcnow()
+                meeting.duration = transcript_data["metadata"]["duration"]
+                meeting.language = transcript_data["metadata"]["language"]
+                meeting.processing_time = processing_time
+                meeting.transcript = diarized_transcript
+                meeting.summary = summary_dict
+                
+                # Create tasks
+                for i, task_data in enumerate(tasks_result.get('action_items', [])):
+                    task = Task(
+                        task_id=f"{job_id}-task-{i}",
+                        meeting_id=meeting.id,
+                        description=task_data.get('description', ''),
+                        assignee=task_data.get('assignee'),
+                        due_date=task_data.get('due_date'),
+                        priority=task_data.get('priority', 'Medium'),
+                        speaker=task_data.get('speaker'),
+                        confidence=task_data.get('confidence'),
+                    )
+                    session.add(task)
+                
+                await session.commit()
+        
+        # Update in-memory status
+        if job_id in processing_jobs:
+            processing_jobs[job_id].update({
+                "status": "completed",
+                "step": "done",
+                "progress": 100,
+                "message": "Processing complete!",
+                "completed_at": datetime.now().isoformat()
+            })
         
     except Exception as e:
-        jobs[job_id]["status"] = "failed"
-        jobs[job_id]["error"] = str(e)
-        jobs[job_id]["message"] = f"Error: {str(e)}"
+        # Update error status
+        await update_job_status(
+            job_id,
+            status="failed",
+            error=str(e),
+            message=f"Error: {str(e)}"
+        )
+        if job_id in processing_jobs:
+            processing_jobs[job_id].update({
+                "status": "failed",
+                "error": str(e),
+                "message": f"Error: {str(e)}"
+            })
         raise
     
     finally:
