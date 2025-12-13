@@ -2,7 +2,7 @@
 # Meeting Assistant AI
 A complete AI-powered system for transcribing, summarizing, and extracting action items from meetings, with seamless Jira integration and modern web interface.
 
-![system_arch](https://github.com/user-attachments/assets/e2cb3a7e-58e6-4b5c-9719-7126bc5dcab4)<img width="2501" height="1263" alt="image" src="https://github.com/user-attachments/assets/7cce6a39-475e-4725-b631-8d94eaa8659d" />
+<img width="2501" height="1263" alt="image" src="https://github.com/user-attachments/assets/7cce6a39-475e-4725-b631-8d94eaa8659d" />
 
 ## 🎯 Overview
 
@@ -52,149 +52,7 @@ outputs/
 ```
 
 ## 🏗 Architecture
-
-![Uploading <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Gradients -->
-    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.2" />
-    </linearGradient>
-    <linearGradient id="appGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.2" />
-    </linearGradient>
-    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:0.2" />
-    </linearGradient>
-    <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.2" />
-    </linearGradient>
-    
-    <!-- Arrow marker -->
-    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#a855f7" />
-    </marker>
-  </defs>
-  
-  <!-- Background -->
-  <rect width="1200" height="800" fill="#0f172a"/>
-  
-  <!-- Title -->
-  <text x="600" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">
-    Meeting Assistant AI - System Architecture
-  </text>
-  
-  <!-- CLIENT LAYER -->
-  <rect x="50" y="80" width="1100" height="120" rx="12" fill="url(#clientGrad)" stroke="#06b6d4" stroke-width="2"/>
-  <text x="70" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#06b6d4">CLIENT LAYER</text>
-  
-  <rect x="80" y="125" width="310" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
-  <text x="235" y="150" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">React 19 Frontend</text>
-  <text x="235" y="168" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">TypeScript • Vite • Tailwind CSS 4</text>
-  <text x="235" y="182" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">React Router • Axios</text>
-  
-  <rect x="420" y="125" width="310" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
-  <text x="575" y="150" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Authentication</text>
-  <text x="575" y="168" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">JWT • Google OAuth 2.0</text>
-  <text x="575" y="182" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Token Management</text>
-  
-  <rect x="760" y="125" width="310" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
-  <text x="915" y="150" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">UI Components</text>
-  <text x="915" y="168" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Meeting Upload • Results View</text>
-  <text x="915" y="182" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Jira Configuration</text>
-  
-  <!-- Arrow 1 -->
-  <line x1="600" y1="210" x2="600" y2="240" stroke="#a855f7" stroke-width="3" marker-end="url(#arrowhead)"/>
-  <text x="640" y="228" font-family="Arial, sans-serif" font-size="12" fill="#a855f7" font-weight="bold">REST API</text>
-  
-  <!-- APPLICATION LAYER -->
-  <rect x="50" y="250" width="1100" height="120" rx="12" fill="url(#appGrad)" stroke="#a855f7" stroke-width="2"/>
-  <text x="70" y="280" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#a855f7">APPLICATION LAYER</text>
-  
-  <rect x="80" y="295" width="250" height="60" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
-  <text x="205" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">FastAPI Backend</text>
-  <text x="205" y="338" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">SQLAlchemy 2.0 • Async</text>
-  <text x="205" y="352" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Uvicorn ASGI</text>
-  
-  <rect x="360" y="295" width="250" height="60" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
-  <text x="485" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">API Routes</text>
-  <text x="485" y="338" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Auth • Meetings • Jira</text>
-  <text x="485" y="352" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Assignees • CRUD</text>
-  
-  <rect x="640" y="295" width="250" height="60" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
-  <text x="765" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Services Layer</text>
-  <text x="765" y="338" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Meeting Processor</text>
-  <text x="765" y="352" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Background Jobs</text>
-  
-  <rect x="920" y="295" width="230" height="60" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
-  <text x="1035" y="320" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Security</text>
-  <text x="1035" y="338" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">JWT • bcrypt</text>
-  <text x="1035" y="352" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">CORS Protection</text>
-  
-  <!-- Arrow 2 -->
-  <line x1="600" y1="380" x2="600" y2="410" stroke="#10b981" stroke-width="3" marker-end="url(#arrowhead)"/>
-  <text x="640" y="398" font-family="Arial, sans-serif" font-size="12" fill="#10b981" font-weight="bold">Processing Pipeline</text>
-  
-  <!-- AI PROCESSING LAYER -->
-  <rect x="50" y="420" width="1100" height="150" rx="12" fill="url(#aiGrad)" stroke="#10b981" stroke-width="2"/>
-  <text x="70" y="450" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#10b981">AI PROCESSING LAYER</text>
-  
-  <rect x="80" y="465" width="330" height="90" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-  <text x="245" y="488" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">🎤 Speech Recognition</text>
-  <text x="245" y="506" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">① Whisper Model</text>
-  <text x="245" y="520" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">② Speaker Diarization (Pyannote)</text>
-  <text x="245" y="534" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">③ SRT Generation</text>
-  <text x="245" y="550" font-family="Arial, sans-serif" font-size="10" fill="#10b981" text-anchor="middle" font-weight="bold">→ Transcripts (JSON, SRT)</text>
-  
-  <rect x="435" y="465" width="330" height="90" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-  <text x="600" y="488" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">🧠 Summarization</text>
-  <text x="600" y="506" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">① Groq LLaMA 3.3</text>
-  <text x="600" y="520" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">② Key Topics Extraction</text>
-  <text x="600" y="534" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">③ Action Items Identification</text>
-  <text x="600" y="550" font-family="Arial, sans-serif" font-size="10" fill="#10b981" text-anchor="middle" font-weight="bold">→ Summaries (MD, JSON)</text>
-  
-  <rect x="790" y="465" width="330" height="90" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-  <text x="955" y="488" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">⚙️ Task Extraction</text>
-  <text x="955" y="506" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">① 45+ Task Patterns</text>
-  <text x="955" y="520" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">② NER (spaCy) + Confidence Scoring</text>
-  <text x="955" y="534" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">③ Semantic Deduplication</text>
-  <text x="955" y="550" font-family="Arial, sans-serif" font-size="10" fill="#10b981" text-anchor="middle" font-weight="bold">→ Tasks (MD, JSON, TXT)</text>
-  
-  <!-- Arrow 3 -->
-  <line x1="600" y1="580" x2="600" y2="610" stroke="#f97316" stroke-width="3" marker-end="url(#arrowhead)"/>
-  <text x="640" y="598" font-family="Arial, sans-serif" font-size="12" fill="#f97316" font-weight="bold">Data Persistence</text>
-  
-  <!-- DATA & INTEGRATION LAYER -->
-  <rect x="50" y="620" width="1100" height="120" rx="12" fill="url(#dataGrad)" stroke="#f97316" stroke-width="2"/>
-  <text x="70" y="650" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f97316">DATA &amp; INTEGRATION LAYER</text>
-  
-  <rect x="80" y="665" width="330" height="60" rx="8" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
-  <text x="245" y="690" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">🐘 PostgreSQL Database</text>
-  <text x="245" y="708" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Users • Meetings • Action Items</text>
-  <text x="245" y="722" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Jira Config • Auth Tokens</text>
-  
-  <rect x="435" y="665" width="330" height="60" rx="8" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
-  <text x="600" y="690" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">📁 File Storage</text>
-  <text x="600" y="708" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Audio/Video Files • Transcripts</text>
-  <text x="600" y="722" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Summaries • Output Files</text>
-  
-  <rect x="790" y="665" width="330" height="60" rx="8" fill="#0f172a" stroke="#f97316" stroke-width="1.5"/>
-  <text x="955" y="690" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">☁️ External APIs</text>
-  <text x="955" y="708" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Jira REST API • Groq AI</text>
-  <text x="955" y="722" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Google OAuth</text>
-  
-  <!-- Footer -->
-  <text x="600" y="770" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">
-    🐍 Python 3.11+ • ⚡ Node.js 18+ • 🐘 PostgreSQL 12+ • 🐳 Docker Ready
-  </text>
-  <text x="600" y="790" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">
-    Made with ❤️ by Eren Culhaci | MIT License
-  </text>
-</svg>system_arch.svg…]()
-
+![system_arch](https://github.com/user-attachments/assets/e2cb3a7e-58e6-4b5c-9719-7126bc5dcab4)
 ### Components
 
 1. **Web Application** (`webapp/`)
