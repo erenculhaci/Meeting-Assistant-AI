@@ -139,12 +139,57 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
     }
   };
 
+  const findBestMatchingUser = (name: string): string | undefined => {
+    if (!name || jiraUsers.length === 0) return undefined;
+    
+    const nameLower = name.toLowerCase().trim();
+    
+    // Exact match
+    for (const user of jiraUsers) {
+      if (user.display_name.toLowerCase() === nameLower) {
+        return user.account_id;
+      }
+    }
+    
+    // Partial match (first name or any word matches)
+    const nameParts = nameLower.split(/\s+/);
+    for (const user of jiraUsers) {
+      const userParts = user.display_name.toLowerCase().split(/\s+/);
+      for (const namePart of nameParts) {
+        if (namePart.length >= 3) {
+          for (const userPart of userParts) {
+            if (userPart === namePart || userPart.startsWith(namePart) || namePart.startsWith(userPart)) {
+              return user.account_id;
+            }
+          }
+        }
+      }
+    }
+    
+    return undefined;
+  };
+
   const getJiraAssigneeId = (task: TaskItem): string | undefined => {
     if (task.jira_assignee_id) return task.jira_assignee_id;
     if (task.assignee && userMappings[task.assignee]) {
       return userMappings[task.assignee];
     }
+    // Try to find a match from assignee name
+    if (task.assignee) {
+      const match = findBestMatchingUser(task.assignee);
+      if (match) return match;
+    }
     return undefined;
+  };
+
+  // Split assignee string into individual names (e.g., "Eren and Azra" -> ["Eren", "Azra"])
+  const splitAssignees = (assignee: string | null | undefined): string[] => {
+    if (!assignee) return [];
+    // Split by "and", "&", ",", "/"
+    return assignee
+      .split(/\s+(?:and|&)\s+|,\s*|\/\s*/i)
+      .map(name => name.trim())
+      .filter(name => name.length > 0);
   };
 
   const handleCreateJiraIssues = async () => {
@@ -153,27 +198,56 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
     setIsCreatingJira(true);
     setJiraResults(null);
 
-    const taskDrafts: JiraTaskDraft[] = tasks
+    // Expand tasks with multiple assignees into separate tasks
+    const taskDrafts: JiraTaskDraft[] = [];
+    
+    tasks
       .filter(t => selectedTasks.has(t.id))
-      .map(task => ({
-        task_id: task.id,
-        summary: task.description.slice(0, 100),
-        description: task.description,
-        assignee_id: getJiraAssigneeId(task),
-        due_date: task.due_date,
-        priority: task.priority || 'Medium',
-        issue_type: 'Task',
-        labels: ['meeting-assistant'],
-      }));
+      .forEach(task => {
+        const assignees = splitAssignees(task.assignee);
+        
+        if (assignees.length <= 1) {
+          // Single assignee or no assignee - create one task
+          taskDrafts.push({
+            task_id: task.id,
+            summary: task.description.slice(0, 100),
+            description: task.description,
+            assignee_id: getJiraAssigneeId(task),
+            due_date: task.due_date,
+            priority: task.priority || 'Medium',
+            issue_type: 'Task',
+            labels: ['meeting-assistant'],
+          });
+        } else {
+          // Multiple assignees - create separate task for each
+          assignees.forEach((assigneeName, index) => {
+            const assigneeId = findBestMatchingUser(assigneeName) || userMappings[assigneeName];
+            taskDrafts.push({
+              task_id: `${task.id}-${index}`,
+              summary: `${task.description.slice(0, 80)} [${assigneeName}]`,
+              description: `${task.description}\n\nAssigned to: ${assigneeName}`,
+              assignee_id: assigneeId,
+              due_date: task.due_date,
+              priority: task.priority || 'Medium',
+              issue_type: 'Task',
+              labels: ['meeting-assistant'],
+            });
+          });
+        }
+      });
 
     try {
       const result = await createJiraIssues({ job_id: jobId, tasks: taskDrafts });
       
-      // Update tasks with Jira info
+      // Update tasks with Jira info (handle split tasks)
       const newTasks = tasks.map(t => {
-        const created = result.created.find(c => c.task_id === t.id);
+        // Check if this task or any of its split versions were created
+        const created = result.created.find(c => c.task_id === t.id || c.task_id.startsWith(`${t.id}-`));
         if (created) {
-          return { ...t, jira_created: true, jira_key: created.jira_key };
+          // For split tasks, show all created jira keys
+          const allCreated = result.created.filter(c => c.task_id === t.id || c.task_id.startsWith(`${t.id}-`));
+          const jiraKeys = allCreated.map(c => c.jira_key).join(', ');
+          return { ...t, jira_created: true, jira_key: jiraKeys };
         }
         return t;
       });
