@@ -172,6 +172,12 @@ export async function createJiraIssues(request: JiraCreateRequest): Promise<Jira
   return response.data;
 }
 
+// Verify Jira tasks status
+export async function verifyJiraTasks(jobId: string): Promise<{ status: string; updated_count: number; message: string }> {
+  const response = await api.post(`/jira/verify-tasks/${jobId}`);
+  return response.data;
+}
+
 // Assignee Mappings (for task assignee nicknames)
 export async function getAssigneeMappings(jobId: string): Promise<SpeakerMappings> {
   const response = await api.get<SpeakerMappings>(`/meetings/${jobId}/assignees`);

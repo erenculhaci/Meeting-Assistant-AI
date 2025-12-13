@@ -554,3 +554,74 @@ async def get_jira_projects(
             {"key": p["key"], "name": p["name"]}
             for p in response.json()
         ]
+
+
+@router.post("/verify-tasks/{job_id}")
+async def verify_jira_tasks(
+    job_id: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Verify which tasks still exist in Jira and update their status accordingly.
+    Returns updated task statuses.
+    """
+    # Get Jira config
+    config_result = await db.execute(
+        select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
+    )
+    jira_conf = config_result.scalar_one_or_none()
+    
+    if not jira_conf:
+        raise HTTPException(status_code=400, detail="Jira not configured")
+    
+    # Get meeting and its tasks
+    meeting_result = await db.execute(
+        select(Meeting).where(
+            Meeting.job_id == job_id,
+            Meeting.user_id == current_user.id
+        )
+    )
+    meeting = meeting_result.scalar_one_or_none()
+    
+    if not meeting:
+        raise HTTPException(status_code=404, detail="Meeting not found")
+    
+    # Get all tasks that were marked as created in Jira
+    tasks_result = await db.execute(
+        select(Task).where(
+            Task.meeting_id == meeting.id,
+            Task.jira_created == True
+        )
+    )
+    tasks = tasks_result.scalars().all()
+    
+    updated_count = 0
+    async with httpx.AsyncClient() as client:
+        for task in tasks:
+            if not task.jira_key:
+                continue
+                
+            try:
+                # Check if the issue still exists in Jira
+                response = await client.get(
+                    f"https://{jira_conf.domain}/rest/api/3/issue/{task.jira_key}",
+                    auth=(jira_conf.email, jira_conf.api_token)
+                )
+                
+                # If issue doesn't exist (404), mark as not created
+                if response.status_code == 404:
+                    task.jira_created = False
+                    task.jira_key = None
+                    updated_count += 1
+            except:
+                # On any error, assume the issue is gone
+                task.jira_created = False
+                task.jira_key = None
+                updated_count += 1
+    
+    return {
+        "status": "success",
+        "updated_count": updated_count,
+        "message": f"Verified {len(tasks)} tasks, updated {updated_count}"
+    }

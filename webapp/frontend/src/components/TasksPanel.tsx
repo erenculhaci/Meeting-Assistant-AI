@@ -14,6 +14,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { clsx } from 'clsx';
+import Swal from 'sweetalert2';
 import { 
   getJiraConfig, 
   getJiraUsers, 
@@ -21,7 +22,8 @@ import {
   updateTask,
   createJiraIssues,
   getAssigneeMappings,
-  updateAssigneeMappings
+  updateAssigneeMappings,
+  verifyJiraTasks
 } from '../api';
 import type { TaskItem, JiraUser, JiraConfigStatus, JiraTaskDraft, AssigneeMappings } from '../types';
 
@@ -46,6 +48,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
   const [editedTask, setEditedTask] = useState<TaskItem | null>(null);
   const [selectedTasks, setSelectedTasks] = useState<Set<string>>(new Set());
   const [isCreatingJira, setIsCreatingJira] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
   const [jiraResults, setJiraResults] = useState<{ created: string[]; errors: string[] } | null>(null);
   
   // Assignee nickname mappings (e.g., Emily → emily22 for Jira)
@@ -76,6 +79,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
   const handleEditTask = (task: TaskItem) => {
     setEditingTask(task.id);
+    // Keep original assignee in edit mode - mapping is only for Jira display/sending
     setEditedTask({ ...task });
   };
 
@@ -171,13 +175,21 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
 
   const getJiraAssigneeId = (task: TaskItem): string | undefined => {
     if (task.jira_assignee_id) return task.jira_assignee_id;
-    if (task.assignee && userMappings[task.assignee]) {
-      return userMappings[task.assignee];
-    }
-    // Try to find a match from assignee name
-    if (task.assignee) {
-      const match = findBestMatchingUser(task.assignee);
+    
+    // First check if there's a mapping for this assignee
+    const originalAssignee = task.assignee;
+    if (originalAssignee) {
+      // Apply mapping if exists
+      const mappedName = assigneeMappings[originalAssignee] || originalAssignee;
+      
+      // Try to find Jira user with mapped name first
+      const match = findBestMatchingUser(mappedName);
       if (match) return match;
+      
+      // Try with user mappings (Jira config mappings)
+      if (userMappings[mappedName]) {
+        return userMappings[mappedName];
+      }
     }
     return undefined;
   };
@@ -221,11 +233,13 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
         } else {
           // Multiple assignees - create separate task for each
           assignees.forEach((assigneeName, index) => {
-            const assigneeId = findBestMatchingUser(assigneeName) || userMappings[assigneeName];
+            // Apply mapping if exists
+            const mappedName = assigneeMappings[assigneeName] || assigneeName;
+            const assigneeId = findBestMatchingUser(mappedName) || userMappings[mappedName];
             taskDrafts.push({
               task_id: `${task.id}-${index}`,
-              summary: `${task.description.slice(0, 80)} [${assigneeName}]`,
-              description: `${task.description}\n\nAssigned to: ${assigneeName}`,
+              summary: `${task.description.slice(0, 80)} [${mappedName}]`,
+              description: `${task.description}\n\nAssigned to: ${mappedName}`,
               assignee_id: assigneeId,
               due_date: task.due_date,
               priority: task.priority || 'Medium',
@@ -263,6 +277,40 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
       setJiraResults({ created: [], errors: ['Failed to create issues'] });
     } finally {
       setIsCreatingJira(false);
+    }
+  };
+
+  const handleVerifyJiraTasks = async () => {
+    setIsVerifying(true);
+    try {
+      const result = await verifyJiraTasks(jobId);
+      if (result.updated_count > 0) {
+        await Swal.fire({
+          icon: 'success',
+          title: 'Tasks Synced!',
+          text: `${result.updated_count} task${result.updated_count > 1 ? 's' : ''} successfully synced with Jira`,
+          confirmButtonColor: '#0ea5e9',
+        });
+        // Refresh tasks from parent to get updated status
+        window.location.reload();
+      } else {
+        await Swal.fire({
+          icon: 'success',
+          title: 'All In Sync!',
+          text: 'All tasks are in sync with Jira',
+          confirmButtonColor: '#0ea5e9',
+        });
+      }
+    } catch (error) {
+      console.error('Failed to verify Jira tasks:', error);
+      await Swal.fire({
+        icon: 'error',
+        title: 'Sync Failed',
+        text: 'Failed to verify tasks with Jira',
+        confirmButtonColor: '#0ea5e9',
+      });
+    } finally {
+      setIsVerifying(false);
     }
   };
 
@@ -371,7 +419,7 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
       {/* Bulk Actions */}
       {jiraConfig?.configured && (
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-gray-50 rounded-xl p-3 md:p-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={selectAllTasks}
               className="text-xs md:text-sm text-sky-600 hover:text-sky-700 font-medium"
@@ -385,6 +433,31 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                 {selectedTasks.size} selected
               </span>
             )}
+            
+            {/* Verify Button */}
+            <button
+              onClick={handleVerifyJiraTasks}
+              disabled={isVerifying}
+              className={clsx(
+                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs md:text-sm font-medium transition-colors',
+                isVerifying
+                  ? 'bg-purple-100 text-purple-400 cursor-not-allowed'
+                  : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+              )}
+              title="Check if Jira tasks still exist and sync status"
+            >
+              {isVerifying ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  Syncing...
+                </>
+              ) : (
+                <>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Sync with Jira
+                </>
+              )}
+            </button>
           </div>
           
           <button
@@ -464,12 +537,18 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
                   <div>
                     <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                       Assignee
+                      {editedTask.assignee && assigneeMappings[editedTask.assignee] && (
+                        <span className="ml-2 text-xs text-purple-600 font-normal">
+                          → {assigneeMappings[editedTask.assignee]}
+                        </span>
+                      )}
                     </label>
                     <input
                       type="text"
                       value={editedTask.assignee || ''}
                       onChange={(e) => setEditedTask({ ...editedTask, assignee: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent text-sm"
+                      placeholder={editedTask.assignee && assigneeMappings[editedTask.assignee] ? `Will be mapped to: ${assigneeMappings[editedTask.assignee]}` : ''}
                     />
                   </div>
                   
@@ -545,8 +624,8 @@ export default function TasksPanel({ jobId, tasks, onTasksUpdate }: TasksPanelPr
               /* View Mode */
               <div className="p-3 md:p-4">
                 <div className="flex items-start gap-2 md:gap-3">
-                  {/* Selection Checkbox */}
-                  {jiraConfig?.configured && !task.jira_created && (
+                  {/* Selection Checkbox - Allow re-selection even for created tasks */}
+                  {jiraConfig?.configured && (
                     <button
                       onClick={() => toggleTaskSelection(task.id)}
                       className="mt-0.5 flex-shrink-0"
