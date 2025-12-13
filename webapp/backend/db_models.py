@@ -1,9 +1,3 @@
-"""
-Database Models
-===============
-SQLAlchemy models for User, Meeting, Task, and JiraConfig.
-"""
-
 import uuid
 from datetime import datetime
 from typing import Optional, List
@@ -15,7 +9,6 @@ from database import Base
 
 
 class User(Base):
-    """User model for authentication"""
     __tablename__ = "users"
     
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -33,7 +26,6 @@ class User(Base):
 
 
 class Meeting(Base):
-    """Meeting model for storing transcription results"""
     __tablename__ = "meetings"
     
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -70,7 +62,6 @@ class Meeting(Base):
 
 
 class Task(Base):
-    """Task model for action items extracted from meetings"""
     __tablename__ = "tasks"
     
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -99,7 +90,6 @@ class Task(Base):
 
 
 class JiraConfiguration(Base):
-    """Jira configuration per user"""
     __tablename__ = "jira_configurations"
     
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)

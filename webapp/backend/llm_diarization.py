@@ -1,9 +1,3 @@
-"""
-LLM-based Speaker Diarization using Groq
-=========================================
-Analyzes transcript text to identify and assign speakers to each segment.
-"""
-
 import os
 import json
 import logging
@@ -14,23 +8,13 @@ logger = logging.getLogger(__name__)
 
 
 class LLMDiarizer:
-    """
-    Uses Groq LLM to analyze transcript and identify speakers.
-    """
     
     def __init__(self, model: str = "llama-3.3-70b-versatile"):
-        """
-        Initialize the LLM diarizer.
-        
-        Args:
-            model: Groq model to use for diarization
-        """
         self.model = model
         self.client = None
         self._initialize_client()
     
     def _initialize_client(self) -> bool:
-        """Initialize Groq client."""
         api_key = os.environ.get("GROQ_API_KEY")
         if not api_key:
             logger.warning("GROQ_API_KEY not found. LLM diarization will be disabled.")
@@ -44,15 +28,6 @@ class LLMDiarizer:
             return False
     
     def diarize_transcript(self, transcript: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """
-        Analyze transcript and assign speakers to each segment.
-        
-        Args:
-            transcript: List of transcript segments with text, start, end
-            
-        Returns:
-            Updated transcript with speaker assignments
-        """
         if not self.client:
             logger.warning("Groq client not available. Returning transcript without diarization.")
             return transcript
@@ -78,7 +53,6 @@ class LLMDiarizer:
             return transcript
     
     def _format_transcript_for_analysis(self, transcript: List[Dict[str, Any]]) -> str:
-        """Format transcript segments for LLM analysis."""
         lines = []
         for i, seg in enumerate(transcript):
             text = seg.get("text", "").strip()
@@ -88,12 +62,6 @@ class LLMDiarizer:
         return "\n".join(lines)
     
     def _analyze_speakers(self, transcript_text: str, segment_count: int) -> Dict[int, str]:
-        """
-        Use Groq LLM to analyze transcript and identify speakers.
-        
-        Returns:
-            Dictionary mapping segment index to speaker identifier
-        """
         system_prompt = """You are an expert at analyzing conversation transcripts and identifying different speakers.
 
 Your task is to analyze the transcript and identify which segments belong to which speaker.
@@ -161,7 +129,6 @@ Use actual names if mentioned in the conversation, otherwise use Speaker_A, Spea
         transcript: List[Dict[str, Any]], 
         assignments: Dict[int, str]
     ) -> List[Dict[str, Any]]:
-        """Apply speaker assignments to transcript segments."""
         updated = []
         for i, seg in enumerate(transcript):
             new_seg = seg.copy()
@@ -174,7 +141,6 @@ Use actual names if mentioned in the conversation, otherwise use Speaker_A, Spea
         return updated
     
     def get_unique_speakers(self, transcript: List[Dict[str, Any]]) -> List[str]:
-        """Get list of unique speakers from transcript."""
         speakers = set()
         for seg in transcript:
             speaker = seg.get("speaker", "Unknown")

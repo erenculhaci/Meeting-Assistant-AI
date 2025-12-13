@@ -1,8 +1,3 @@
-"""
-Pydantic Models for Meeting Assistant AI
-=========================================
-"""
-
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 

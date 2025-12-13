@@ -1,9 +1,3 @@
-"""
-Authentication Routes
-=====================
-Login, signup, and user management endpoints.
-"""
-
 import os
 from datetime import timedelta
 from typing import Optional
@@ -75,7 +69,6 @@ class PasswordChangeRequest(BaseModel):
 
 @router.post("/signup", response_model=TokenResponse)
 async def signup(request: SignupRequest, db: AsyncSession = Depends(get_db)):
-    """Register a new user"""
     # Check if email already exists
     result = await db.execute(select(User).where(User.email == request.email))
     if result.scalar_one_or_none():
@@ -122,7 +115,6 @@ async def signup(request: SignupRequest, db: AsyncSession = Depends(get_db)):
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: LoginRequest, db: AsyncSession = Depends(get_db)):
-    """Login with email and password"""
     # Find user by email
     result = await db.execute(select(User).where(User.email == request.email))
     user = result.scalar_one_or_none()
@@ -160,7 +152,6 @@ async def login(request: LoginRequest, db: AsyncSession = Depends(get_db)):
 
 @router.get("/me", response_model=UserResponse)
 async def get_me(current_user: User = Depends(get_current_user)):
-    """Get current user info"""
     return UserResponse(
         id=str(current_user.id),
         email=current_user.email,
@@ -176,7 +167,6 @@ async def update_me(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Update current user info"""
     if request.username:
         # Check if username is taken
         result = await db.execute(
@@ -209,7 +199,6 @@ async def change_password(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Change current user password"""
     if not verify_password(request.current_password, current_user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -224,7 +213,6 @@ async def change_password(
 
 @router.get("/google")
 async def google_login():
-    """Initiate Google OAuth flow"""
     if not GOOGLE_CLIENT_ID:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -244,7 +232,6 @@ async def google_login():
 
 @router.get("/google/callback")
 async def google_callback(code: str, db: AsyncSession = Depends(get_db)):
-    """Handle Google OAuth callback"""
     if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,

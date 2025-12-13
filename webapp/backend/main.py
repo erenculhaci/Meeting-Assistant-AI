@@ -1,10 +1,3 @@
-"""
-Meeting Assistant AI - Main Application
-=======================================
-Modular FastAPI application for meeting transcription, summarization, and task extraction.
-With PostgreSQL database and user authentication.
-"""
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -17,13 +10,12 @@ from routes.auth import router as auth_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application lifecycle management"""
     # Startup: Create database tables
     await create_tables()
-    print("✅ Database tables created/verified")
+    print("Database tables created/verified")
     yield
     # Shutdown: Nothing to do
-    print("👋 Shutting down...")
+    print("Shutting down...")
 
 
 # Initialize FastAPI app

@@ -1,10 +1,3 @@
-"""
-Jira Routes
-===========
-Endpoints for Jira integration - config, users, projects, issue creation.
-All endpoints are user-aware and use PostgreSQL storage.
-"""
-
 from typing import List
 from datetime import datetime, timedelta
 import re
@@ -34,7 +27,6 @@ DAY_NAMES = {
 
 
 def get_next_weekday(reference_date: datetime, target_weekday: int, next_week: bool = False) -> datetime:
-    """Get the next occurrence of a weekday from reference date."""
     current_weekday = reference_date.weekday()
     days_ahead = target_weekday - current_weekday
     
@@ -52,7 +44,7 @@ def normalize_date_to_jira_format(date_str: str, reference_date: datetime = None
     Convert various date formats to Jira's required yyyy-MM-dd format.
     Handles vague dates like "Saturday", "next Monday", "tomorrow", etc.
     
-    Examples: 
+    For example: 
       - "December 20" -> "2025-12-20"
       - "Dec 20, 2025" -> "2025-12-20"
       - "Saturday" -> next Saturday from today
@@ -164,10 +156,6 @@ def normalize_date_to_jira_format(date_str: str, reference_date: datetime = None
 
 
 def find_best_matching_user(assignee_name: str, jira_users: List[dict]) -> str:
-    """
-    Find the best matching Jira user based on name similarity.
-    Returns account_id or None.
-    """
     if not assignee_name or not jira_users:
         return None
     
@@ -214,7 +202,6 @@ async def save_jira_config(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Save Jira configuration for current user"""
     # Check if config exists
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
@@ -255,7 +242,6 @@ async def get_jira_config(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get current user's Jira configuration (without token)"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )
@@ -277,7 +263,6 @@ async def delete_jira_config(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Delete current user's Jira configuration"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )
@@ -290,7 +275,6 @@ async def delete_jira_config(
 
 
 async def fetch_jira_users_internal(jira_conf: JiraConfiguration) -> List[JiraUser]:
-    """Fetch users from Jira using stored configuration"""
     async with httpx.AsyncClient() as client:
         response = await client.get(
             f"https://{jira_conf.domain}/rest/api/3/users/search",
@@ -318,7 +302,6 @@ async def get_jira_users(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get Jira users for assignment"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )
@@ -336,7 +319,6 @@ async def save_user_mapping(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Save meeting name to Jira user mapping"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )
@@ -358,7 +340,6 @@ async def get_user_mappings(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get all user mappings"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )
@@ -376,7 +357,6 @@ async def delete_user_mapping(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Delete a user mapping"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )
@@ -396,7 +376,6 @@ async def create_jira_issues(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Create Jira issues from tasks"""
     # Get Jira config
     config_result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
@@ -543,7 +522,6 @@ async def get_jira_projects(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get available Jira projects"""
     result = await db.execute(
         select(JiraConfiguration).where(JiraConfiguration.user_id == current_user.id)
     )

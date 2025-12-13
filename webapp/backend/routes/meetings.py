@@ -1,10 +1,3 @@
-"""
-Meeting Routes
-==============
-Upload, job status, results, and deletion endpoints.
-All endpoints are user-aware and use PostgreSQL storage.
-"""
-
 import uuid
 import shutil
 from pathlib import Path
@@ -33,7 +26,6 @@ async def upload_file(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Upload audio/video file and start processing"""
     
     # Validate file type
     file_ext = Path(file.filename).suffix.lower()
@@ -96,7 +88,6 @@ async def get_job_status(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get processing job status"""
     # First check in-memory for active processing
     if job_id in processing_jobs:
         job = processing_jobs[job_id]
@@ -134,7 +125,6 @@ async def get_results(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get processing results"""
     result = await db.execute(
         select(Meeting).where(
             Meeting.job_id == job_id,
@@ -187,7 +177,6 @@ async def list_results(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """List all available results for current user"""
     result = await db.execute(
         select(Meeting).where(
             Meeting.user_id == current_user.id,
@@ -221,7 +210,6 @@ async def delete_meeting(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Delete a meeting and its associated files"""
     result = await db.execute(
         select(Meeting).where(
             Meeting.job_id == job_id,
@@ -258,7 +246,6 @@ async def update_task(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Update a task item"""
     # Verify meeting belongs to user
     meeting_result = await db.execute(
         select(Meeting).where(

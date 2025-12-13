@@ -1,7 +1,3 @@
-"""
-Date parsing utilities for extracting and normalizing dates from text.
-"""
-
 import re
 from datetime import datetime, timedelta
 from typing import Optional, Tuple, List
@@ -17,16 +13,8 @@ except ImportError:
     logger.warning("dateparser not installed. Advanced date parsing will be limited.")
 
 
-class DateParser:
-    """Parse and normalize dates from natural language text."""
-    
+class DateParser:    
     def __init__(self, reference_date: Optional[datetime] = None):
-        """
-        Initialize the date parser.
-        
-        Args:
-            reference_date: Reference date for relative date parsing (default: today)
-        """
         self.reference_date = reference_date or datetime.now()
         
         # Month mappings
@@ -46,15 +34,6 @@ class DateParser:
         }
         
     def extract_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
-        """
-        Extract all dates from text.
-        
-        Args:
-            text: Input text
-            
-        Returns:
-            List of tuples (original_text, parsed_date, date_type)
-        """
         dates = []
         
         # Pattern 1: Explicit dates (November 5th, Nov 5, 11/5, 2024-11-05)
@@ -77,7 +56,6 @@ class DateParser:
         return dates
     
     def _extract_explicit_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
-        """Extract explicitly mentioned dates."""
         dates = []
         
         # Pattern: Month Day(st/nd/rd/th), Year (optional)
@@ -123,7 +101,6 @@ class DateParser:
         return dates
     
     def _extract_relative_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
-        """Extract relative date expressions with comprehensive patterns."""
         dates = []
         text_lower = text.lower()
         
@@ -311,7 +288,6 @@ class DateParser:
         return dates
     
     def _extract_advanced_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
-        """Extract dates using advanced dateparser library."""
         dates = []
         
         # Common date phrases in meetings
@@ -345,7 +321,6 @@ class DateParser:
         return dates
     
     def _extract_weekday_dates(self, text: str) -> List[Tuple[str, datetime, str]]:
-        """Extract dates specified by day of week."""
         dates = []
         text_lower = text.lower()
         
@@ -397,15 +372,6 @@ class DateParser:
         return dates
     
     def parse_date_range(self, text: str) -> Optional[Tuple[datetime, datetime]]:
-        """
-        Parse a date range from text.
-        
-        Args:
-            text: Text potentially containing date range
-            
-        Returns:
-            Tuple of (start_date, end_date) or None
-        """
         dates = self.extract_dates(text)
         
         if len(dates) >= 2:

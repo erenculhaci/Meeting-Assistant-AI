@@ -1,7 +1,3 @@
-"""
-Command-line interface for the Meeting Assistant AI summarization module.
-"""
-
 import argparse
 import json
 import os
@@ -18,7 +14,6 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    """Command-line interface for meeting summarization."""
     parser = argparse.ArgumentParser(description="Meeting Assistant AI - Summarization Module")
 
     # Required arguments

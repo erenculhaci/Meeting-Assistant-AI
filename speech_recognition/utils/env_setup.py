@@ -1,19 +1,9 @@
-"""
-Environment setup for the speech recognition package.
-"""
-
 import os
 import logging
 from dotenv import load_dotenv
 
 
 def setup_environment():
-    """
-    Load environment variables from .env file and set up necessary configurations.
-
-    Returns:
-        True if the environment was successfully set up, False otherwise
-    """
     # Try to locate .env file in parent directory of the package
     try:
         # Get the speech_recognition package directory

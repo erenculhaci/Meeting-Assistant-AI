@@ -1,9 +1,3 @@
-"""
-Assignee Routes
-===============
-Endpoints for managing task assignee nickname mappings.
-"""
-
 from typing import Optional, Dict
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -22,7 +16,6 @@ async def get_assignee_mappings(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get assignee name mappings for a meeting's tasks"""
     result = await db.execute(
         select(Meeting).where(
             Meeting.job_id == job_id,
@@ -61,7 +54,6 @@ async def update_assignee_mappings(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    """Update assignee name mappings for a meeting's tasks"""
     result = await db.execute(
         select(Meeting).where(
             Meeting.job_id == job_id,

@@ -4,7 +4,7 @@ Summarization Module
 Provides meeting summarization capabilities using both local BART and cloud LLM.
 
 Usage:
-    # LLM-based (recommended - fast and high quality)
+    # LLM-based
     from summarization.llm_summarizer import LLMSummarizer, summarize_meeting_llm
     
     # Local BART-based (offline capable)

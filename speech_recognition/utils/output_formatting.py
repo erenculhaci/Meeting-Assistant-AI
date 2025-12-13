@@ -1,7 +1,3 @@
-"""
-Output formatting utilities for the speech recognition package.
-"""
-
 import os
 import json
 from typing import Dict, List, Any
@@ -12,14 +8,6 @@ logger = setup_logger("OutputFormatting")
 
 
 def save_output(result: Dict[str, Any], output_format: str, output_file: str) -> None:
-    """
-    Save the transcription result to a file.
-
-    Args:
-        result: Transcription result
-        output_format: Format for the output file
-        output_file: Path to save the output file
-    """
     try:
         # Create directory if it doesn't exist
         output_dir = os.path.dirname(output_file)
@@ -61,29 +49,10 @@ def save_output(result: Dict[str, Any], output_format: str, output_file: str) ->
 
 
 def format_timestamp(start_time: float, end_time: float) -> str:
-    """
-    Format start and end times into a readable timestamp.
-
-    Args:
-        start_time: Start time in seconds
-        end_time: End time in seconds
-
-    Returns:
-        Formatted timestamp string [HH:MM:SS.mmm - HH:MM:SS.mmm]
-    """
     return f"[{format_time(start_time)} - {format_time(end_time)}]"
 
 
 def format_time(seconds: float) -> str:
-    """
-    Format seconds into HH:MM:SS.mmm format.
-
-    Args:
-        seconds: Time in seconds
-
-    Returns:
-        Formatted time string
-    """
     hours = int(seconds // 3600)
     minutes = int((seconds % 3600) // 60)
     seconds_remainder = seconds % 60
@@ -91,15 +60,6 @@ def format_time(seconds: float) -> str:
 
 
 def format_srt_time(seconds: float) -> str:
-    """
-    Format seconds into SRT timestamp format (00:00:00,000).
-
-    Args:
-        seconds: Time in seconds
-
-    Returns:
-        Formatted time string for SRT
-    """
     hours = int(seconds // 3600)
     minutes = int((seconds % 3600) // 60)
     seconds_int = int(seconds % 60)
@@ -108,15 +68,6 @@ def format_srt_time(seconds: float) -> str:
 
 
 def format_vtt_time(seconds: float) -> str:
-    """
-    Format seconds into WebVTT timestamp format (00:00:00.000).
-
-    Args:
-        seconds: Time in seconds
-
-    Returns:
-        Formatted time string for WebVTT
-    """
     hours = int(seconds // 3600)
     minutes = int((seconds % 3600) // 60)
     seconds_int = int(seconds % 60)
@@ -125,13 +76,6 @@ def format_vtt_time(seconds: float) -> str:
 
 
 def write_srt(transcript: List[Dict[str, Any]], output_file: str) -> None:
-    """
-    Write transcript in SRT subtitle format with timestamps.
-
-    Args:
-        transcript: Formatted transcript
-        output_file: Path to save the SRT file
-    """
     with open(output_file, 'w', encoding='utf-8') as f:
         for i, segment in enumerate(transcript, 1):
             # Add speaker label if available
@@ -149,13 +93,6 @@ def write_srt(transcript: List[Dict[str, Any]], output_file: str) -> None:
 
 
 def write_vtt(transcript: List[Dict[str, Any]], output_file: str) -> None:
-    """
-    Write transcript in WebVTT subtitle format with timestamps.
-
-    Args:
-        transcript: Formatted transcript
-        output_file: Path to save the VTT file
-    """
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("WEBVTT\n\n")
 
@@ -178,16 +115,6 @@ def format_transcript(
         result: Dict[str, Any],
         speaker_segments: List[Dict[str, Any]] = None
 ) -> List[Dict[str, Any]]:
-    """
-    Format transcript with speaker labels and timestamps.
-
-    Args:
-        result: Whisper transcription result
-        speaker_segments: Speaker diarization segments (optional)
-
-    Returns:
-        Formatted transcript with speaker information and timestamps
-    """
     formatted_transcript = []
 
     # Process based on whether speaker segments are available
@@ -221,7 +148,6 @@ def format_transcript(
 
 
 def create_error_response(error_message: str) -> Dict[str, Any]:
-    """Create an error response dictionary."""
     return {
         "status": "error",
         "message": error_message

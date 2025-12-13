@@ -1,8 +1,3 @@
-"""
-Configuration for Meeting Assistant AI
-======================================
-"""
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv

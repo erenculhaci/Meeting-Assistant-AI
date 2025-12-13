@@ -1,7 +1,3 @@
-"""
-Core implementation of the meeting summarizer.
-"""
-
 import os
 import json
 import logging
@@ -27,18 +23,8 @@ logger = logging.getLogger(__name__)
 
 
 class MeetingSummarizer:
-    """
-    A class to generate summaries of meeting transcripts using
-    both extractive and abstractive summarization techniques.
-    """
 
     def __init__(self, model_path: str = "facebook/bart-large-cnn"):
-        """
-        Initialize the summarizer with a BART model.
-
-        Args:
-            model_path: Path to the fine-tuned BART model or model name
-        """
         logger.info(f"Initializing MeetingSummarizer with model: {model_path}")
 
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -59,15 +45,6 @@ class MeetingSummarizer:
         logger.info("MeetingSummarizer initialized successfully")
 
     def _clean_summary_text(self, text: str) -> str:
-        """
-        Clean and improve the quality of generated summary text.
-        
-        Args:
-            text: Raw summary text
-            
-        Returns:
-            Cleaned and improved summary text
-        """
         if not text:
             return text
             
@@ -108,16 +85,6 @@ class MeetingSummarizer:
         return result
 
     def _preprocess_transcript(self, transcript_data: Dict[str, Any]) -> Tuple[str, Dict[str, List[Dict[str, Any]]]]:
-        """
-        Preprocess the transcript data for summarization.
-
-        Args:
-            transcript_data: Transcript data in JSON format
-
-        Returns:
-            full_text: The complete transcript text
-            speakers_utterances: Dictionary mapping speakers to their utterances
-        """
         logger.info("Preprocessing transcript data")
 
         # Extract the transcript segments
@@ -144,16 +111,6 @@ class MeetingSummarizer:
         return full_text, speakers_utterances
 
     def _generate_extractive_summary(self, transcript_segments: List[Dict[str, Any]], n_sentences: int = 5) -> List[Dict[str, Any]]:
-        """
-        Generate an extractive summary by selecting the most important sentences.
-
-        Args:
-            transcript_segments: List of transcript segments
-            n_sentences: Number of sentences to extract
-
-        Returns:
-            List of important segments with their metadata
-        """
         logger.info(f"Generating extractive summary with {n_sentences} sentences")
 
         # Filter out segments from the instruction speaker (typically Speaker_00)
@@ -240,17 +197,6 @@ class MeetingSummarizer:
             return content_segments[:n_sentences]
 
     def _generate_abstractive_summary(self, text: str, max_length: int = 150, min_length: int = 30) -> str:
-        """
-        Generate an abstractive summary of the text using the BART model.
-
-        Args:
-            text: Text to summarize
-            max_length: Maximum summary length
-            min_length: Minimum summary length
-
-        Returns:
-            Abstractive summary
-        """
         logger.info("Generating abstractive summary")
 
         # Check if text is too short
@@ -279,17 +225,6 @@ class MeetingSummarizer:
 
     def _generate_abstractive_summary_for_long_text(self, text: str, max_length: int = 150,
                                                     min_length: int = 30) -> str:
-        """
-        Generate an abstractive summary of long text by chunking and summarizing iteratively.
-
-        Args:
-            text: Long text to summarize
-            max_length: Maximum final summary length
-            min_length: Minimum final summary length
-
-        Returns:
-            Abstractive summary of the entire text
-        """
         logger.info("Generating abstractive summary for long text using chunking approach")
 
         # Check if text is too short for chunking
@@ -354,16 +289,6 @@ class MeetingSummarizer:
             return "Failed to generate abstractive summary. Please check the extractive summary instead."
 
     def _identify_key_topics(self, text: str, num_topics: int = 5) -> List[str]:
-        """
-        Identify key topics in the transcript using improved NLP techniques.
-
-        Args:
-            text: The transcript text
-            num_topics: Number of topics to identify
-
-        Returns:
-            List of key topics
-        """
         logger.info(f"Identifying {num_topics} key topics")
 
         try:
@@ -463,15 +388,6 @@ class MeetingSummarizer:
             return ["Error identifying topics"]
 
     def _extract_action_items(self, transcript_segments: List[Dict[str, Any]]) -> List[str]:
-        """
-        Extract potential action items from the transcript with improved filtering.
-
-        Args:
-            transcript_segments: List of transcript segments
-
-        Returns:
-            List of potential action items
-        """
         logger.info("Extracting action items")
 
         action_items = []
@@ -555,19 +471,6 @@ class MeetingSummarizer:
             min_summary_length: int = 30,
             num_extractive_sentences: int = 5
     ) -> Dict[str, Any]:
-        """
-        Generate a comprehensive summary of the meeting.
-
-        Args:
-            transcript_data: Transcript data in JSON format
-            include_action_items: Whether to extract action items
-            max_summary_length: Maximum length of the abstractive summary
-            min_summary_length: Minimum length of the abstractive summary
-            num_extractive_sentences: Number of sentences to include in extractive summary
-
-        Returns:
-            Dictionary containing various summary components
-        """
         logger.info("Starting summarization process")
 
         # Preprocess transcript
@@ -647,13 +550,6 @@ class MeetingSummarizer:
         return summary_results
 
     def save_summary(self, summary_results: Dict[str, Any], output_path: str) -> None:
-        """
-        Save the summary results to a JSON file.
-
-        Args:
-            summary_results: Summary results dictionary
-            output_path: Path to save the summary
-        """
         logger.info(f"Saving summary to {output_path}")
 
         try:
@@ -670,13 +566,6 @@ class MeetingSummarizer:
             logger.error(f"Error saving summary: {e}")
 
     def save_text_summary(self, summary_results: Dict[str, Any], output_path: str) -> None:
-        """
-        Save the summary results as a plain text file.
-
-        Args:
-            summary_results: Summary results dictionary
-            output_path: Path to save the text summary
-        """
         logger.info(f"Saving text summary to {output_path}")
 
         try:
@@ -730,13 +619,6 @@ class MeetingSummarizer:
             logger.error(f"Error saving text summary: {e}")
 
     def save_markdown_summary(self, summary_results: Dict[str, Any], output_path: str) -> None:
-        """
-        Save the summary results as a markdown file.
-
-        Args:
-            summary_results: Summary results dictionary
-            output_path: Path to save the markdown summary
-        """
         logger.info(f"Saving markdown summary to {output_path}")
 
         try:

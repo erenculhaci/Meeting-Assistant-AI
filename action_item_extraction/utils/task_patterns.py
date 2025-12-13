@@ -1,22 +1,11 @@
-"""
-Enhanced task patterns and urgency detection for task extraction.
-"""
-
 from typing import List, Tuple
 import re
 
 
 class TaskPatternLibrary:
-    """Comprehensive library of task patterns for meeting transcripts."""
     
     @staticmethod
     def get_task_patterns() -> List[Tuple[str, str, str]]:
-        """
-        Get comprehensive task patterns.
-        
-        Returns:
-            List of tuples (regex_pattern, priority, task_type)
-        """
         return [
             # ========== HIGH PRIORITY PATTERNS ==========
             
@@ -98,12 +87,6 @@ class TaskPatternLibrary:
     
     @staticmethod
     def get_urgency_indicators() -> List[Tuple[str, float]]:
-        """
-        Get urgency indicators and their weight multipliers.
-        
-        Returns:
-            List of tuples (pattern, priority_boost)
-        """
         return [
             (r'\bASAP\b', 1.5),
             (r'\bas soon as possible\b', 1.5),
@@ -142,15 +125,6 @@ class TaskPatternLibrary:
     
     @staticmethod
     def detect_urgency_level(text: str) -> Tuple[str, float]:
-        """
-        Detect urgency level from text.
-        
-        Args:
-            text: Text to analyze
-            
-        Returns:
-            Tuple of (urgency_level, boost_factor)
-        """
         text_lower = text.lower()
         max_boost = 1.0
         urgency_level = 'normal'

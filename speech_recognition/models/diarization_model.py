@@ -1,7 +1,3 @@
-"""
-Speaker diarization model implementation.
-"""
-
 import os
 import tempfile
 from typing import List, Dict, Any, Optional
@@ -16,22 +12,11 @@ logger = setup_logger("DiarizationModel")
 
 
 class SpeakerDiarizer:
-    """
-    Speaker diarization using PyAnnote.
-    """
-
     def __init__(
             self,
             model_name: str = "pyannote/speaker-diarization",
             device: Optional[str] = None
     ):
-        """
-        Initialize the speaker diarizer.
-
-        Args:
-            model_name: PyAnnote model to use
-            device: Device to run the model on
-        """
         self.model_name = model_name
 
         # Auto-detect device if not specified
@@ -45,7 +30,6 @@ class SpeakerDiarizer:
         self._initialize_diarizer()
 
     def _initialize_diarizer(self) -> None:
-        """Initialize the PyAnnote diarizer."""
         try:
             # Get token from environment variable
             hf_token = os.environ.get("HF_ACCESS_TOKEN")
@@ -65,12 +49,6 @@ class SpeakerDiarizer:
             return False
 
     def is_available(self) -> bool:
-        """
-        Check if the diarizer is available.
-
-        Returns:
-            True if the diarizer is available, False otherwise
-        """
         return self.diarizer is not None
 
     def process_audio(
@@ -78,16 +56,6 @@ class SpeakerDiarizer:
             audio_file_path: str,
             whisper_segments: List[Dict[str, Any]]
     ) -> Optional[List[Dict[str, Any]]]:
-        """
-        Process speaker diarization for the audio using PyAnnote.
-
-        Args:
-            audio_file_path: Path to the audio file
-            whisper_segments: Whisper transcription segments
-
-        Returns:
-            List of speaker segments
-        """
         try:
             # Check if diarizer is initialized
             if not self.is_available():

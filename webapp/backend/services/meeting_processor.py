@@ -1,10 +1,3 @@
-"""
-Meeting Processing Service
-==========================
-Background processing for meeting transcription, summarization, and task extraction.
-Uses PostgreSQL for persistence.
-"""
-
 import sys
 import asyncio
 from pathlib import Path
@@ -28,7 +21,6 @@ from routes.meetings import processing_jobs
 
 
 async def update_job_status(job_id: str, **kwargs):
-    """Update job status in memory and database"""
     # Update in-memory status
     if job_id in processing_jobs:
         processing_jobs[job_id].update(kwargs)
@@ -47,7 +39,6 @@ async def update_job_status(job_id: str, **kwargs):
 
 
 async def process_meeting_db(job_id: str, file_path: Path, filename: str, user_id: str):
-    """Async background task to process meeting file"""
     start_time = datetime.now()
     
     try:

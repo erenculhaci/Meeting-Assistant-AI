@@ -1,19 +1,8 @@
-"""
-Load environment variables from .env file.
-Call this at the start of your scripts.
-"""
-
 import os
 from pathlib import Path
 
 
 def load_env_file(env_path: str = None):
-    """
-    Load environment variables from .env file.
-    
-    Args:
-        env_path: Path to .env file (default: project root/.env)
-    """
     if env_path is None:
         # Find project root (.env location)
         current_dir = Path(__file__).parent.parent

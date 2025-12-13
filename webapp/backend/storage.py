@@ -1,9 +1,3 @@
-"""
-Data Storage for Meeting Assistant AI
-=====================================
-In-memory storage with JSON persistence.
-"""
-
 import json
 from typing import Dict, Any
 from pathlib import Path
@@ -19,7 +13,6 @@ assignee_mappings: Dict[str, Dict[str, str]] = {}  # job_id -> {extracted_name: 
 
 
 def load_storage():
-    """Load saved data from disk"""
     if CONFIG_FILE.exists():
         with open(CONFIG_FILE, 'r') as f:
             data = json.load(f)
@@ -29,7 +22,6 @@ def load_storage():
 
 
 def save_storage():
-    """Save data to disk"""
     with open(CONFIG_FILE, 'w') as f:
         json.dump({
             'jira_config': jira_config,

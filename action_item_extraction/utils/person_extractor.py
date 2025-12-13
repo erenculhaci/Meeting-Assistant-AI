@@ -1,7 +1,3 @@
-"""
-Person extraction utilities for identifying people in meeting transcripts.
-"""
-
 import re
 from typing import List, Dict, Set, Tuple, Optional
 import logging
@@ -18,10 +14,8 @@ except ImportError:
 
 
 class PersonExtractor:
-    """Extract and normalize person names from meeting transcripts."""
     
     def __init__(self):
-        """Initialize the person extractor."""
         self.common_names = {
             # Male names
             'alex', 'andrew', 'adam', 'aaron', 'anthony', 'austin',
@@ -90,15 +84,6 @@ class PersonExtractor:
 
     
     def extract_persons(self, transcript_data: Dict) -> Dict[str, str]:
-        """
-        Extract person names and map them to speaker IDs.
-        
-        Args:
-            transcript_data: Transcript data with segments
-            
-        Returns:
-            Dictionary mapping speaker IDs to names
-        """
         transcript_segments = transcript_data.get('transcript', [])
         
         # Try spacy-based extraction first
@@ -122,7 +107,6 @@ class PersonExtractor:
         return self.speaker_name_map
     
     def _extract_with_spacy(self, segments: List[Dict]) -> None:
-        """Extract person names using spacy NER."""
         for i, segment in enumerate(segments):
             text = segment.get('text', '')
             speaker = segment.get('speaker', '')
@@ -153,7 +137,6 @@ class PersonExtractor:
                             break
     
     def _extract_direct_address(self, text: str) -> List[str]:
-        """Extract names from direct address patterns."""
         names = []
         
         # Pattern: "Name, ..." at the beginning
@@ -173,7 +156,6 @@ class PersonExtractor:
         return names
     
     def _extract_third_person_mention(self, text: str) -> List[str]:
-        """Extract names mentioned in third person."""
         names = []
         
         # Patterns: "have Tom/Sarah/etc do...", "Tom will...", "Sarah can..."
@@ -196,7 +178,6 @@ class PersonExtractor:
         return names
     
     def _map_names_to_speakers(self, names: List[str], segments: List[Dict], current_idx: int):
-        """Map extracted names to speaker IDs based on context."""
         if not names:
             return
         
@@ -221,28 +202,9 @@ class PersonExtractor:
                         break
     
     def get_person_for_speaker(self, speaker_id: str) -> str:
-        """
-        Get the person name for a speaker ID.
-        
-        Args:
-            speaker_id: Speaker ID (e.g., "Speaker_01")
-            
-        Returns:
-            Person name or speaker ID if not found
-        """
         return self.speaker_name_map.get(speaker_id, speaker_id)
     
     def extract_assignee_from_text(self, text: str, context_segments: List[Dict] = None) -> List[str]:
-        """
-        Extract potential assignees from a single text segment with comprehensive patterns.
-        
-        Args:
-            text: Text to analyze
-            context_segments: Surrounding segments for context
-            
-        Returns:
-            List of potential assignees (names or speaker IDs)
-        """
         assignees = []
         
         # Pattern 1: Direct assignment "Name, you will/should/need to..."

@@ -1,10 +1,3 @@
-"""
-LLM-based Meeting Summarizer
-============================
-Uses cloud LLM API for fast, high-quality meeting summarization.
-Much faster than local BART and produces better structured output.
-"""
-
 import os
 import json
 import logging
@@ -22,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class MeetingSummaryResult:
-    """Structured meeting summary result"""
     title: str
     overview: str
     key_points: List[str]
@@ -37,28 +29,12 @@ class MeetingSummaryResult:
 
 
 class LLMSummarizer:
-    """
-    Meeting summarizer using cloud LLM API.
-    
-    Features:
-    - Fast inference (~2-5 seconds)
-    - Structured output with key points, decisions, topics
-    - Participant extraction
-    - Markdown and JSON export
-    """
     
     def __init__(
         self,
         api_key: Optional[str] = None,
         model: str = "llama-3.3-70b-versatile"
     ):
-        """
-        Initialize LLM Summarizer.
-        
-        Args:
-            api_key: API key (or set GROQ_API_KEY env variable)
-            model: LLM model to use
-        """
         self.api_key = api_key or os.getenv("GROQ_API_KEY")
         if not self.api_key:
             raise ValueError(
@@ -70,7 +46,6 @@ class LLMSummarizer:
         logger.info(f"LLMSummarizer initialized with model: {model}")
     
     def _build_transcript_text(self, transcript_data: Dict) -> str:
-        """Convert transcript JSON to readable text format."""
         segments = transcript_data.get('transcript', [])
         
         lines = []
@@ -83,7 +58,6 @@ class LLMSummarizer:
         return "\n".join(lines)
     
     def _build_prompt(self, transcript_text: str) -> str:
-        """Build the summarization prompt."""
         return f"""You are an expert meeting analyst. Analyze this meeting transcript and provide a comprehensive summary.
 
 ## Meeting Transcript:
@@ -136,17 +110,6 @@ Important:
         max_tokens: int = 2000,
         temperature: float = 0.3
     ) -> MeetingSummaryResult:
-        """
-        Summarize a meeting transcript.
-        
-        Args:
-            transcript_data: Transcript data dictionary (from transcription)
-            max_tokens: Maximum tokens in response
-            temperature: LLM temperature (lower = more focused)
-            
-        Returns:
-            MeetingSummaryResult with structured summary
-        """
         start_time = datetime.now()
         
         # Build transcript text
@@ -223,7 +186,6 @@ Important:
         return result
     
     def to_dict(self, result: MeetingSummaryResult) -> Dict:
-        """Convert result to dictionary."""
         return {
             "status": "success",
             "title": result.title,
@@ -242,7 +204,6 @@ Important:
         }
     
     def to_markdown(self, result: MeetingSummaryResult) -> str:
-        """Convert result to markdown format."""
         md = f"""# {result.title}
 
 ## 📋 Overview
@@ -298,7 +259,6 @@ Important:
         return md
     
     def save_json(self, result: MeetingSummaryResult, output_path: str) -> str:
-        """Save result as JSON file."""
         from pathlib import Path
         
         output_path = Path(output_path)
@@ -311,7 +271,6 @@ Important:
         return str(output_path)
     
     def save_markdown(self, result: MeetingSummaryResult, output_path: str) -> str:
-        """Save result as Markdown file."""
         from pathlib import Path
         
         output_path = Path(output_path)
@@ -330,18 +289,6 @@ Important:
         base_name: str,
         formats: List[str] = ["json", "md"]
     ) -> Dict[str, str]:
-        """
-        Summarize and save to multiple formats.
-        
-        Args:
-            transcript_data: Transcript data dictionary
-            output_dir: Output directory
-            base_name: Base name for output files
-            formats: List of formats ('json', 'md')
-            
-        Returns:
-            Dictionary mapping format to output file path
-        """
         from pathlib import Path
         
         result = self.summarize(transcript_data)
@@ -368,19 +315,6 @@ def summarize_meeting_llm(
     output_format: str = "json",
     model: str = "llama-3.3-70b-versatile"
 ) -> Dict[str, Any]:
-    """
-    Summarize a meeting using cloud LLM.
-    
-    Args:
-        transcript_file_path: Path to transcript JSON file
-        transcript_data: Direct transcript data (alternative to file)
-        output_file: Path to save output
-        output_format: Output format ('json' or 'md')
-        model: LLM model to use
-        
-    Returns:
-        Summary result dictionary
-    """
     # Load transcript if file path provided
     if transcript_data is None:
         if transcript_file_path is None:

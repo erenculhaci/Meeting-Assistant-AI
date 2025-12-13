@@ -1,7 +1,3 @@
-"""
-Audio processing utilities for the speech recognition package.
-"""
-
 import os
 import tempfile
 import numpy as np
@@ -16,15 +12,6 @@ logger = setup_logger("AudioProcessing")
 
 
 def process_audio_file(audio_file_path: str) -> Tuple[Optional[np.ndarray], int, float]:
-    """
-    Process the audio file and convert it to the required format.
-
-    Args:
-        audio_file_path: Path to the audio file
-
-    Returns:
-        Tuple of (audio_array, sampling_rate, duration) or (None, None, None) on failure
-    """
     file_ext = os.path.splitext(audio_file_path)[1].lower()
 
     if file_ext not in SUPPORTED_FORMATS:
@@ -60,16 +47,6 @@ def process_audio_file(audio_file_path: str) -> Tuple[Optional[np.ndarray], int,
 
 
 def detect_audio_issues(audio_array: np.ndarray, sampling_rate: int) -> bool:
-    """
-    Detect common audio quality issues.
-
-    Args:
-        audio_array: Audio data as numpy array
-        sampling_rate: Audio sampling rate
-
-    Returns:
-        True if issues were detected, False otherwise
-    """
     issues_detected = False
 
     # Check for very low volume
@@ -93,15 +70,6 @@ def detect_audio_issues(audio_array: np.ndarray, sampling_rate: int) -> bool:
 
 
 def create_temp_wav_file(audio_file_path: str) -> str:
-    """
-    Create a temporary WAV file from the provided audio file.
-
-    Args:
-        audio_file_path: Path to the audio file
-
-    Returns:
-        Path to the temporary WAV file, or None on failure
-    """
     try:
         temp_wav = tempfile.NamedTemporaryFile(suffix='.wav', delete=False)
         temp_wav_path = temp_wav.name

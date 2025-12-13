@@ -1,8 +1,3 @@
-"""
-Output formatters for transcription results
-Supports: JSON, SRT, VTT, TXT formats
-"""
-
 import json
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
@@ -12,19 +7,13 @@ if TYPE_CHECKING:
 
 
 class BaseFormatter(ABC):
-    """Base class for output formatters"""
     
     @abstractmethod
     def format(self, result: "TranscriptionResult") -> str:
-        """Format transcription result to string"""
         pass
 
 
 class JSONFormatter(BaseFormatter):
-    """
-    JSON formatter with full metadata, timestamps, and speaker information
-    Compatible with the example format in meeting_transcript.json
-    """
     
     def format(self, result: "TranscriptionResult") -> str:
         output = {
@@ -52,12 +41,6 @@ class JSONFormatter(BaseFormatter):
 
 
 class SRTFormatter(BaseFormatter):
-    """
-    SRT (SubRip Subtitle) formatter
-    Standard subtitle format compatible with most video players
-    Format: [Speaker] Text with timestamps in HH:MM:SS,mmm format
-    """
-    
     def _format_timestamp(self, seconds: float) -> str:
         """Convert seconds to SRT timestamp format HH:MM:SS,mmm"""
         hours = int(seconds // 3600)
@@ -85,11 +68,6 @@ class SRTFormatter(BaseFormatter):
 
 
 class VTTFormatter(BaseFormatter):
-    """
-    WebVTT (Web Video Text Tracks) formatter
-    Standard format for web video subtitles
-    """
-    
     def _format_timestamp(self, seconds: float) -> str:
         """Convert seconds to VTT timestamp format HH:MM:SS.mmm"""
         hours = int(seconds // 3600)
@@ -117,10 +95,6 @@ class VTTFormatter(BaseFormatter):
 
 
 class TXTFormatter(BaseFormatter):
-    """
-    Plain text formatter
-    Simple text output with optional speaker labels and timestamps
-    """
     
     def __init__(self, include_speakers: bool = True, include_timestamps: bool = False):
         self.include_speakers = include_speakers

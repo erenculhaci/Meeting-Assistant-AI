@@ -1,7 +1,3 @@
-"""
-Main interface for action item extraction.
-"""
-
 import json
 import os
 import logging

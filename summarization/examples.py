@@ -1,7 +1,3 @@
-"""
-Example usage for the Meeting Assistant AI summarization module.
-"""
-
 from summarization.summarizer import summarize_meeting
 from summarization.core.meeting_summarizer import MeetingSummarizer
 

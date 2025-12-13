@@ -1,7 +1,3 @@
-"""
-Task confidence scoring model.
-"""
-
 import re
 from typing import Dict, Any
 import logging
@@ -10,10 +6,6 @@ logger = logging.getLogger(__name__)
 
 
 class TaskConfidenceModel:
-    """
-    Calculate confidence scores for extracted tasks using multiple features.
-    """
-    
     def __init__(self):
         """Initialize the confidence model."""
         self.feature_weights = {
@@ -62,16 +54,7 @@ class TaskConfidenceModel:
         task: Dict[str, Any],
         context_segments: list = None
     ) -> float:
-        """
-        Calculate confidence score for a task.
         
-        Args:
-            task: Task dictionary with description, assignee, dates, etc.
-            context_segments: Optional surrounding transcript segments for context
-            
-        Returns:
-            Confidence score between 0 and 1
-        """
         features = self._extract_features(task, context_segments)
         confidence = self._compute_weighted_score(features)
         
@@ -82,7 +65,6 @@ class TaskConfidenceModel:
         task: Dict[str, Any],
         context_segments: list = None
     ) -> Dict[str, float]:
-        """Extract features from task for scoring."""
         features = {}
         
         description = task.get('description', '').lower()
@@ -135,7 +117,6 @@ class TaskConfidenceModel:
         return features
     
     def _compute_weighted_score(self, features: Dict[str, float]) -> float:
-        """Compute weighted confidence score."""
         total_score = 0.0
         
         for feature_name, weight in self.feature_weights.items():
@@ -148,7 +129,6 @@ class TaskConfidenceModel:
         return base_confidence + (total_score * 0.7)
     
     def _evaluate_context_quality(self, text: str) -> float:
-        """Evaluate quality of context around the task."""
         score = 0.5  # Base score
         
         # Check for specific context indicators
@@ -172,7 +152,6 @@ class TaskConfidenceModel:
         return min(max(score, 0.0), 1.0)
     
     def _evaluate_urgency(self, text: str) -> float:
-        """Evaluate urgency level."""
         score = 0.5  # Base
         
         urgent_keywords = [
@@ -188,7 +167,6 @@ class TaskConfidenceModel:
         return score
     
     def _evaluate_sentence_structure(self, text: str) -> float:
-        """Evaluate sentence structure for task likelihood."""
         score = 0.5
         
         # Imperative sentences (commands) are strong task indicators
@@ -214,12 +192,6 @@ class TaskConfidenceModel:
         task: Dict[str, Any],
         context_segments: list = None
     ) -> Dict[str, Any]:
-        """
-        Get detailed explanation of confidence score.
-        
-        Returns:
-            Dictionary with confidence score and feature breakdown
-        """
         features = self._extract_features(task, context_segments)
         confidence = self._compute_weighted_score(features)
         

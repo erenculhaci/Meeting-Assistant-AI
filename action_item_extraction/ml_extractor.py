@@ -1,9 +1,3 @@
-"""
-LLM-based Action Item Extractor using Few-Shot Learning.
-
-Uses Groq API with few-shot examples for accurate action item extraction.
-"""
-
 import os
 import json
 import logging
@@ -24,21 +18,12 @@ except ImportError:
     logger.warning("groq not installed. LLM extraction will be disabled.")
 
 
-class LLMActionItemExtractor:
-    """Extract action items using LLM with few-shot learning."""
-    
+class LLMActionItemExtractor:    
     def __init__(
         self,
         api_key: Optional[str] = None,
         model: str = "llama-3.3-70b-versatile"
     ):
-        """
-        Initialize LLM extractor.
-        
-        Args:
-            api_key: Groq API key (uses env var if not provided)
-            model: Model to use
-        """
         self.model = model
         self.client = None
         self.enabled = False
@@ -65,15 +50,6 @@ class LLMActionItemExtractor:
         self,
         transcript_data: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """
-        Extract action items from transcript using LLM.
-        
-        Args:
-            transcript_data: Transcript with segments
-            
-        Returns:
-            Extraction results with action items
-        """
         if not self.enabled:
             return {
                 'status': 'error',
@@ -110,7 +86,6 @@ class LLMActionItemExtractor:
             }
     
     def _build_conversation_text(self, segments: List[Dict]) -> str:
-        """Build formatted conversation text from segments."""
         lines = []
         for seg in segments:
             speaker = seg.get('speaker', 'Unknown').replace('Speaker_', '')
@@ -120,10 +95,6 @@ class LLMActionItemExtractor:
         return '\n'.join(lines)
     
     def _build_conversation_text_with_map(self, segments: List[Dict]) -> tuple:
-        """
-        Build formatted conversation text with segment mapping.
-        Returns (conversation_text, segment_map) where segment_map maps line numbers to segment indices.
-        """
         lines = []
         segment_map = {}  # line_number -> segment_index
         
@@ -143,7 +114,6 @@ class LLMActionItemExtractor:
         segments: List[Dict],
         segment_map: Dict[int, int]
     ) -> List[Dict[str, Any]]:
-        """Extract action items using LLM with few-shot prompting."""
         
         prompt = self._build_few_shot_prompt(conversation, speakers)
         
@@ -339,7 +309,6 @@ OUTPUT:
 Now extract action items from the given transcript above. Return ONLY the JSON, no additional text."""
     
     def _clean_action_item(self, item: Dict, segments: List[Dict], conversation: str) -> Optional[Dict]:
-        """Clean and validate an action item, find speaker from transcript."""
         description = item.get('description', '').strip()
         assignee = item.get('assignee', 'Unassigned').strip()
         due_date = item.get('due_date')
@@ -379,14 +348,6 @@ Now extract action items from the given transcript above. Return ONLY the JSON, 
         segments: List[Dict],
         conversation: str
     ) -> str:
-        """
-        Find the speaker who mentioned this action item.
-        
-        Strategy:
-        1. Look for segment where assignee is mentioned
-        2. Look for segment containing key words from description
-        3. Return the speaker of that segment
-        """
         desc_lower = description.lower()
         assignee_lower = assignee.lower()
         

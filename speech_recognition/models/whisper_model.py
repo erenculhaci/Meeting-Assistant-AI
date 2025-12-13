@@ -1,7 +1,3 @@
-"""
-Whisper model implementation for speech recognition.
-"""
-
 import torch
 import whisper
 from typing import Dict, Any, Optional
@@ -13,9 +9,6 @@ logger = setup_logger("WhisperModel")
 
 
 class WhisperTranscriber:
-    """
-    Wrapper for the Whisper ASR model.
-    """
 
     def __init__(
             self,
@@ -23,14 +16,6 @@ class WhisperTranscriber:
             device: Optional[str] = None,
             language: str = "en",
     ):
-        """
-        Initialize the Whisper transcriber.
-
-        Args:
-            model_name: Whisper model size
-            device: Device to run inference on ("cpu", "cuda", or None for auto-detection)
-            language: Language code for transcription
-        """
         # Auto-detect device if not specified
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -53,16 +38,6 @@ class WhisperTranscriber:
             raise RuntimeError(f"Failed to initialize Whisper model: {e}")
 
     def transcribe(self, audio_array, **options) -> Dict[str, Any]:
-        """
-        Transcribe audio using Whisper.
-
-        Args:
-            audio_array: Audio data as numpy array
-            **options: Additional options for Whisper transcription
-
-        Returns:
-            Transcription result dictionary
-        """
         # Set default options if not provided
         if "language" not in options:
             options["language"] = self.language

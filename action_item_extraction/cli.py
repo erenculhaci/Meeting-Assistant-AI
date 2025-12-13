@@ -1,7 +1,3 @@
-"""
-Command-line interface for action item extraction.
-"""
-
 import argparse
 import sys
 import logging
@@ -18,7 +14,6 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    """Command-line interface for action item extraction."""
     parser = argparse.ArgumentParser(
         description="Extract action items and tasks from meeting transcripts"
     )

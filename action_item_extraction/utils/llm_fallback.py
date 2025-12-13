@@ -1,8 +1,3 @@
-"""
-LLM Fallback for ambiguous task extraction.
-Uses OpenAI API to clarify unclear tasks, assignees, and descriptions.
-"""
-
 import os
 import json
 import logging
@@ -28,10 +23,6 @@ except ImportError:
 
 
 class LLMTaskClarifier:
-    """
-    Uses LLM to clarify ambiguous or low-confidence tasks.
-    """
-    
     def __init__(
         self,
         api_key: Optional[str] = None,
@@ -40,16 +31,6 @@ class LLMTaskClarifier:
         confidence_threshold: float = 0.7,
         provider: str = "auto"  # "auto", "openai", "groq"
     ):
-        """
-        Initialize LLM clarifier.
-        
-        Args:
-            api_key: API key (uses env var if not provided)
-            model: Model to use
-            enabled: Whether to use LLM fallback
-            confidence_threshold: Use LLM for tasks below this confidence
-            provider: LLM provider ("auto", "openai", "groq")
-        """
         self.enabled = enabled
         self.model = model
         self.confidence_threshold = confidence_threshold
@@ -84,7 +65,6 @@ class LLMTaskClarifier:
             logger.info(f"LLM clarifier enabled with {self.provider} ({self.model})")
     
     def _init_groq(self, api_key: Optional[str] = None):
-        """Initialize Groq client."""
         try:
             from groq import Groq
             
@@ -110,7 +90,6 @@ class LLMTaskClarifier:
             self.enabled = False
     
     def _init_openai(self, api_key: Optional[str] = None):
-        """Initialize OpenAI client."""
         try:
             key = api_key or os.getenv("OPENAI_API_KEY")
             if not key:
@@ -125,15 +104,6 @@ class LLMTaskClarifier:
             self.enabled = False
     
     def should_clarify(self, task: Dict[str, Any]) -> bool:
-        """
-        Determine if a task needs LLM clarification.
-        
-        Args:
-            task: Task dictionary
-            
-        Returns:
-            True if task should be clarified
-        """
         if not self.enabled:
             return False
         
@@ -167,17 +137,6 @@ class LLMTaskClarifier:
         context: List[Dict[str, str]],
         speakers: Optional[List[str]] = None
     ) -> Dict[str, Any]:
-        """
-        Use LLM to clarify an ambiguous task.
-        
-        Args:
-            task: Task to clarify
-            context: Surrounding segments for context
-            speakers: List of known speakers
-            
-        Returns:
-            Clarified task or original if clarification fails
-        """
         if not self.enabled:
             return task
         
@@ -284,16 +243,6 @@ RULES:
         original: Dict[str, Any],
         clarified: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """
-        Merge LLM clarification with original task.
-        
-        Args:
-            original: Original task
-            clarified: LLM clarification
-            
-        Returns:
-            Merged task
-        """
         # If LLM says not a valid task, mark for removal
         if not clarified.get('is_valid_task', True):
             original['llm_marked_invalid'] = True
@@ -328,17 +277,6 @@ RULES:
         transcript_segments: List[Dict[str, str]],
         speakers: Optional[List[str]] = None
     ) -> List[Dict[str, Any]]:
-        """
-        Clarify multiple tasks in batch.
-        
-        Args:
-            tasks: List of tasks to potentially clarify
-            transcript_segments: Full transcript for context
-            speakers: List of known speakers
-            
-        Returns:
-            List of clarified tasks with invalid ones removed
-        """
         if not self.enabled:
             return tasks
         

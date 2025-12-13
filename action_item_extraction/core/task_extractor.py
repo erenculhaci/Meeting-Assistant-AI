@@ -1,7 +1,3 @@
-"""
-Core task extraction engine using NLP and pattern matching.
-"""
-
 import re
 import logging
 from typing import Dict, List, Any, Optional, Tuple
@@ -18,8 +14,6 @@ logger = logging.getLogger(__name__)
 
 
 class TaskExtractor:
-    """ Extract action items from meeting transcripts.
-    """
     def __init__(
         self,
         reference_date: Optional[datetime] = None,
@@ -117,7 +111,6 @@ class TaskExtractor:
     def _extract_tasks_from_segment(
         self, text: str, speaker: str, idx: int, all_segments: List[Dict]
     ) -> List[Dict[str, Any]]:
-        """Extract tasks from a single segment with context."""
         tasks = []
         
         # Try each pattern
@@ -171,7 +164,6 @@ class TaskExtractor:
         return tasks
     
     def _clean_task_description(self, description: str) -> str:
-        """Clean and normalize task description."""
         # Remove trailing punctuation and conjunctions
         for end_pattern in self.task_end_indicators:
             match = re.search(end_pattern, description)
@@ -191,7 +183,6 @@ class TaskExtractor:
         return description
     
     def _adjust_priority(self, base_priority: str, urgency_boost: float) -> str:
-        """Adjust priority based on urgency indicators."""
         if urgency_boost >= 1.4:
             return 'high'
         elif urgency_boost >= 1.2 and base_priority == 'medium':
@@ -204,7 +195,6 @@ class TaskExtractor:
     def _extract_task_dates(
         self, text: str, all_segments: List[Dict], current_idx: int
     ) -> Dict[str, Any]:
-        """Extract dates related to a task from text and context."""
         dates = {}
         all_found_dates = []
         
@@ -246,7 +236,6 @@ class TaskExtractor:
         self, text: str, speaker: str, task_type: str, 
         all_segments: List[Dict], idx: int
     ) -> str:
-        """Determine who is assigned to the task."""
         # Try to extract from text
         assignees = self.person_extractor.extract_assignee_from_text(text)
         
@@ -300,7 +289,6 @@ class TaskExtractor:
         return 'Unassigned'
     
     def _is_greeting_or_closing(self, text: str) -> bool:
-        """Check if text is a greeting or closing."""
         text_lower = text.lower().strip()
         
         # Use exclusion patterns from TaskPatternLibrary
@@ -313,7 +301,6 @@ class TaskExtractor:
         return False
     
     def _deduplicate_tasks(self, tasks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Remove duplicate or very similar tasks."""
         if not tasks:
             return tasks
         
@@ -353,7 +340,6 @@ class TaskExtractor:
     def _enhance_tasks(
         self, tasks: List[Dict[str, Any]], transcript_data: Dict[str, Any]
     ) -> List[Dict[str, Any]]:
-        """Enhance tasks with additional metadata."""
         metadata = transcript_data.get('metadata', {})
         
         for task in tasks:
@@ -399,7 +385,6 @@ class TaskExtractor:
         return tasks
     
     def _extract_speaker_list(self, transcript_data: Dict[str, Any]) -> List[str]:
-        """Extract unique speaker names/IDs from transcript."""
         speakers = set()
         for segment in transcript_data.get('transcript', []):
             speaker = segment.get('speaker')

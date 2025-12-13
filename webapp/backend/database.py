@@ -1,9 +1,3 @@
-"""
-Database Configuration
-======================
-PostgreSQL connection with async SQLAlchemy.
-"""
-
 import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
@@ -13,9 +7,7 @@ load_dotenv()
 
 # Database URL from environment
 DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql+asyncpg://postgres:1234@localhost:5432/meeting_assistant"
-)
+    "DATABASE_URL")
 
 # Create async engine
 engine = create_async_engine(
@@ -40,7 +32,6 @@ class Base(DeclarativeBase):
 
 
 async def get_db():
-    """Dependency to get database session"""
     async with async_session() as session:
         try:
             yield session
@@ -53,12 +44,10 @@ async def get_db():
 
 
 async def create_tables():
-    """Create all tables"""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 
 async def drop_tables():
-    """Drop all tables (use with caution!)"""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)

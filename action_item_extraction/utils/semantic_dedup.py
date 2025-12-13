@@ -1,7 +1,3 @@
-"""
-Semantic similarity utilities for task deduplication.
-"""
-
 import logging
 from typing import List, Dict, Any, Tuple
 import numpy as np
@@ -18,16 +14,8 @@ except ImportError:
 
 
 class SemanticDeduplicator:
-    """Deduplicate tasks using semantic similarity."""
     
     def __init__(self, model_name: str = 'all-MiniLM-L6-v2', similarity_threshold: float = 0.8):
-        """
-        Initialize the semantic deduplicator.
-        
-        Args:
-            model_name: Name of the sentence transformer model
-            similarity_threshold: Cosine similarity threshold for duplicates (0-1)
-        """
         self.similarity_threshold = similarity_threshold
         self.model = None
         
@@ -43,15 +31,6 @@ class SemanticDeduplicator:
             logger.info("Using fallback deduplication (word-based)")
     
     def deduplicate_tasks(self, tasks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """
-        Remove duplicate tasks using semantic similarity.
-        
-        Args:
-            tasks: List of task dictionaries
-            
-        Returns:
-            List of unique tasks
-        """
         if not tasks:
             return tasks
         
@@ -61,7 +40,6 @@ class SemanticDeduplicator:
             return self._fallback_deduplicate(tasks)
     
     def _semantic_deduplicate(self, tasks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Deduplicate using sentence embeddings."""
         # Extract descriptions
         descriptions = [task['description'] for task in tasks]
         
@@ -106,7 +84,6 @@ class SemanticDeduplicator:
         return unique_tasks
     
     def _fallback_deduplicate(self, tasks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Fallback deduplication using word overlap."""
         import re
         
         unique_tasks = []
@@ -150,7 +127,6 @@ class SemanticDeduplicator:
         return unique_tasks
     
     def _cosine_similarity_matrix(self, embeddings: np.ndarray) -> np.ndarray:
-        """Calculate cosine similarity matrix for embeddings."""
         # Normalize embeddings
         norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
         normalized = embeddings / (norms + 1e-8)
@@ -165,15 +141,6 @@ class SemanticDeduplicator:
         tasks: List[Dict[str, Any]],
         indices: List[int]
     ) -> int:
-        """
-        Select the best task from a group of similar tasks.
-        
-        Priority:
-        1. Task with assignee
-        2. Task with due date
-        3. Highest confidence
-        4. Longest description
-        """
         candidates = [(i, tasks[i]) for i in indices]
         
         # Score each candidate
@@ -191,16 +158,6 @@ class SemanticDeduplicator:
         return candidates[0][0]
     
     def get_similarity_score(self, text1: str, text2: str) -> float:
-        """
-        Get semantic similarity score between two texts.
-        
-        Args:
-            text1: First text
-            text2: Second text
-            
-        Returns:
-            Similarity score (0-1)
-        """
         if self.model is not None:
             embeddings = self.model.encode([text1, text2], convert_to_numpy=True)
             similarity = np.dot(embeddings[0], embeddings[1]) / (

@@ -5,7 +5,6 @@ Configuration constants for the speech recognition package.
 # Supported audio formats
 SUPPORTED_FORMATS = [".wav", ".mp3", ".ogg", ".flac", ".m4a", ".aac", ".mp4", ".webm", ".mkv", ".avi", ".mov"]
 
-# Available Whisper models (ordered by speed: fastest to most accurate)
 # tiny: ~1GB RAM, fastest
 # base: ~1GB RAM, good balance
 # small: ~2GB RAM, better accuracy

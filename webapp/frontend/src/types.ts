@@ -1,5 +1,3 @@
-// API Types for Meeting Assistant
-
 export interface JobStatus {
   job_id: string;
   status: 'pending' | 'processing' | 'completed' | 'failed';
