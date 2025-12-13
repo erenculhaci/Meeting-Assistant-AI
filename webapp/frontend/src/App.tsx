@@ -9,6 +9,7 @@ import MeetingDetail from './pages/MeetingDetail';
 import JiraSettings from './pages/JiraSettings';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import AuthCallback from './pages/AuthCallback';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           
           {/* Protected routes */}
           <Route

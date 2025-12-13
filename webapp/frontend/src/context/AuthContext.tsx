@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { User, LoginRequest, SignupRequest } from '../types';
-import { login as apiLogin, signup as apiSignup, getCurrentUser, logout as apiLogout, getStoredToken } from '../api';
+import { login as apiLogin, signup as apiSignup, getCurrentUser, logout as apiLogout, getStoredToken, setStoredToken } from '../api';
 
 interface AuthContextType {
   user: User | null;
@@ -9,6 +9,8 @@ interface AuthContextType {
   login: (credentials: LoginRequest) => Promise<void>;
   signup: (data: SignupRequest) => Promise<void>;
   logout: () => void;
+  setUser: (user: User) => void;
+  setToken: (token: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -51,6 +53,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     apiLogout();
   };
 
+  const setToken = async (token: string) => {
+    setStoredToken(token);
+    // Fetch user info with the new token
+    try {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    } catch (error) {
+      console.error('Failed to get user info:', error);
+      setUser(null);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -60,6 +74,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         login,
         signup,
         logout,
+        setUser,
+        setToken,
       }}
     >
       {children}
