@@ -6,7 +6,7 @@ import { Loader2 } from 'lucide-react';
 export default function AuthCallback() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { setUser, setToken } = useAuth();
+  const { setToken } = useAuth();
 
   useEffect(() => {
     const handleAuth = async () => {
