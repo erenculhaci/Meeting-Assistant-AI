@@ -35,6 +35,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Health check endpoint (for Docker healthcheck)
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+
 # Register routers
 app.include_router(auth_router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(meetings.router, prefix="/api", tags=["Meetings"])
