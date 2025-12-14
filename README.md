@@ -139,8 +139,13 @@ Create `.env` file in the project root:
 # Groq API Key (FREE - get from https://console.groq.com/keys)
 GROQ_API_KEY=gsk_your_api_key_here
 
-# Database Configuration
-DATABASE_URL=postgresql+asyncpg://postgres:your_password@localhost:5432/meeting_assistant
+# Hugging Face Token (for pyannote models)
+HF_ACCESS_TOKEN=hf_your_token_here
+
+# Database Configuration (for Docker)
+POSTGRES_USER=meeting_user
+POSTGRES_PASSWORD=meeting_password
+POSTGRES_DB=meeting_assistant
 
 # JWT Authentication
 SECRET_KEY=your-secret-key-here
@@ -149,8 +154,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES=1440
 # Google OAuth (optional)
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_REDIRECT_URI=http://localhost:8000/api/auth/google/callback
-FRONTEND_URL=http://localhost:5173
+GOOGLE_REDIRECT_URI=http://localhost/api/auth/google/callback
+FRONTEND_URL=http://localhost
 
 # Application Settings
 DEBUG=false
@@ -158,36 +163,47 @@ ENVIRONMENT=production
 WHISPER_MODEL=base
 ```
 
-### 4. Backend Setup
+### 4. Run with Docker (Recommended)
+```bash
+# Start all services (backend, frontend, database)
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+```
+
+### 5. Access Application
+- **Frontend**: http://localhost
+- **Backend API**: http://localhost/api
+- **API Docs**: http://localhost/api/docs
+
+### 6. Manual Setup (Alternative)
+<details>
+<summary>Click to expand manual installation steps</summary>
+
+**Backend:**
 ```bash
 cd webapp/backend
-
-# Create virtual environment
 python -m venv ../../venv
 source ../../venv/bin/activate  # Windows: ..\..\venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Start server
 uvicorn main:app --reload --port 8000
 ```
 
-### 5. Frontend Setup
+**Frontend:**
 ```bash
 cd webapp/frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-### 6. Access Application
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
+**Access:**
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8000
+</details>
 
 ## 🎯 Usage
 
@@ -240,8 +256,9 @@ Meeting-Assistant-AI/
 │   │   │   ├── meetings.py          # Meeting CRUD
 │   │   │   ├── jira.py              # Jira integration
 │   │   │   └── assignees.py         # Assignee mappings
-│   │   └── services/
-│   │       └── meeting_processor.py # Background processing
+│   │   ├── services/
+│   │   │   └── meeting_processor.py # Background processing
+│   │   └── requirements.txt         # Python dependencies
 │   └── frontend/                    # React application
 │       ├── src/
 │       │   ├── main.tsx             # Entry point
@@ -286,6 +303,11 @@ Meeting-Assistant-AI/
 │   ├── summarization/               # Summaries
 │   └── action_items/                # Tasks
 │
+├── docker-compose.yml               # Docker orchestration
+├── Dockerfile.backend               # Backend + ML container
+├── Dockerfile.frontend              # Frontend + Nginx container
+├── nginx.conf                       # Nginx configuration
+├── .dockerignore                    # Docker ignore patterns
 ├── .env                             # Environment variables
 ├── requirements.txt                 # Python dependencies
 └── README.md                        # This file
