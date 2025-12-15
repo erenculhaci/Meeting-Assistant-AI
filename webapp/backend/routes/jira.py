@@ -413,6 +413,12 @@ async def create_jira_issues(
         except:
             pass
     
+    # Fetch all tasks for this meeting at once to prevent N+1
+    all_tasks_result = await db.execute(
+        select(Task).where(Task.meeting_id == meeting.id)
+    )
+    tasks_by_id = {task.task_id: task for task in all_tasks_result.scalars().all()}
+    
     created_issues = []
     errors = []
     
@@ -486,14 +492,8 @@ async def create_jira_issues(
                         "jira_url": f"https://{jira_conf.domain}/browse/{issue['key']}"
                     })
                     
-                    # Update task in database
-                    task_result = await db.execute(
-                        select(Task).where(
-                            Task.meeting_id == meeting.id,
-                            Task.task_id == task_draft.task_id
-                        )
-                    )
-                    task = task_result.scalar_one_or_none()
+                    # Update task in database using pre-fetched dictionary
+                    task = tasks_by_id.get(task_draft.task_id)
                     if task:
                         task.jira_created = True
                         task.jira_key = issue["key"]

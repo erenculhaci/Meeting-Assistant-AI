@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Dict
 from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, func
 
 from config import ALLOWED_EXTENSIONS, UPLOAD_DIR
 from database import get_db
@@ -177,29 +177,34 @@ async def list_results(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
+    # Query with LEFT JOIN to get task counts in a single query
     result = await db.execute(
-        select(Meeting).where(
+        select(
+            Meeting.job_id,
+            Meeting.filename,
+            Meeting.created_at,
+            Meeting.duration,
+            func.count(Task.id).label('task_count')
+        )
+        .outerjoin(Task, Meeting.id == Task.meeting_id)
+        .where(
             Meeting.user_id == current_user.id,
             Meeting.status == "completed"
-        ).order_by(Meeting.created_at.desc())
-    )
-    meetings = result.scalars().all()
-    
-    # Get task counts
-    meeting_list = []
-    for meeting in meetings:
-        tasks_result = await db.execute(
-            select(Task).where(Task.meeting_id == meeting.id)
         )
-        task_count = len(tasks_result.scalars().all())
-        
-        meeting_list.append({
-            "job_id": meeting.job_id,
-            "filename": meeting.filename,
-            "created_at": meeting.created_at.isoformat(),
-            "duration": meeting.duration,
-            "task_count": task_count
-        })
+        .group_by(Meeting.id, Meeting.job_id, Meeting.filename, Meeting.created_at, Meeting.duration)
+        .order_by(Meeting.created_at.desc())
+    )
+    
+    meeting_list = [
+        {
+            "job_id": row.job_id,
+            "filename": row.filename,
+            "created_at": row.created_at.isoformat(),
+            "duration": row.duration,
+            "task_count": row.task_count
+        }
+        for row in result.all()
+    ]
     
     return meeting_list
 
