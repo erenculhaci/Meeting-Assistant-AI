@@ -26,15 +26,35 @@ DAY_NAMES = {
 }
 
 
-def get_next_weekday(reference_date: datetime, target_weekday: int, next_week: bool = False) -> datetime:
+def get_next_weekday(reference_date: datetime, target_weekday: int, next_week: bool = False, include_today: bool = True) -> datetime:
+    """
+    Get the next occurrence of a specific weekday.
+    
+    Args:
+        reference_date: Starting date
+        target_weekday: Target day (0=Monday, 6=Sunday)
+        next_week: If True, skip to next week even if day is this week
+        include_today: If True and today is the target day, return today. If False, return next occurrence.
+    """
     current_weekday = reference_date.weekday()
     days_ahead = target_weekday - current_weekday
     
-    if days_ahead <= 0:  # Target day already happened this week
-        days_ahead += 7
+    # If it's today and we include today, return today (days_ahead = 0)
+    if days_ahead == 0 and include_today:
+        return reference_date
     
+    # If we want next week, always add 7 days first
     if next_week:
-        days_ahead += 7
+        # Go to next week and find the target day
+        if days_ahead <= 0:
+            days_ahead += 7
+        else:
+            # Target day is later this week, but we want next week
+            days_ahead += 7
+    else:
+        # For "this" week, if day already passed, go to next week
+        if days_ahead < 0:
+            days_ahead += 7
     
     return reference_date + timedelta(days=days_ahead)
 
@@ -100,14 +120,14 @@ def normalize_date_to_jira_format(date_str: str, reference_date: datetime = None
         day_name = this_match.group(1).lower()
         day_name = re.sub(r'\s*(night|morning|evening|afternoon)$', '', day_name)
         if day_name in DAY_NAMES:
-            return get_next_weekday(reference_date, DAY_NAMES[day_name]).strftime("%Y-%m-%d")
+            return get_next_weekday(reference_date, DAY_NAMES[day_name], next_week=False, include_today=True).strftime("%Y-%m-%d")
     
-    # Handle standalone day names: "Saturday", "Monday night", "Friday evening"
+    # Handle standalone day names: "Saturday", "Monday night", "Friday evening" 
     for day_pattern, weekday_num in DAY_NAMES.items():
         # Match day name with optional time of day suffix
         pattern = rf'^{day_pattern}(\s*(night|morning|evening|afternoon|noon))?$'
         if re.match(pattern, date_lower):
-            return get_next_weekday(reference_date, weekday_num).strftime("%Y-%m-%d")
+            return get_next_weekday(reference_date, weekday_num, next_week=False, include_today=True).strftime("%Y-%m-%d")
     
     # Handle "in X days"
     in_days_match = re.match(r'^in\s+(\d+)\s+days?$', date_lower)
