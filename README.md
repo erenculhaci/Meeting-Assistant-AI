@@ -381,6 +381,13 @@ curl https://api.groq.com/openai/v1/models \
 - Check project key exists and is accessible
 - Ensure user has "Create Issues" permission
 
+## 🎥 Demo
+
+You can watch a demo of the system in the video below:
+
+ [YouTube Demo](https://youtu.be/j7fsJ7cB9f0)
+
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
