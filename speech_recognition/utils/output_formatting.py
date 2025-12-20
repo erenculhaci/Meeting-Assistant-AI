@@ -111,6 +111,39 @@ def write_vtt(transcript: List[Dict[str, Any]], output_file: str) -> None:
             f.write(f"{text}\n\n")
 
 
+def merge_consecutive_speaker_segments(segments: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    if not segments:
+        return []
+    
+    merged = []
+    current_segment = None
+    
+    for segment in segments:
+        speaker = segment.get("speaker")
+        
+        # If no current segment or speaker changed, start a new merged segment
+        if current_segment is None or current_segment.get("speaker") != speaker:
+            if current_segment:
+                merged.append(current_segment)
+            
+            current_segment = {
+                "text": segment["text"],
+                "speaker": speaker,
+                "start": segment["start"],
+                "end": segment["end"]
+            }
+        else:
+            # Same speaker, merge with current segment
+            current_segment["text"] += " " + segment["text"]
+            current_segment["end"] = segment["end"]  # Update end time to latest
+    
+    # Add the last segment
+    if current_segment:
+        merged.append(current_segment)
+    
+    return merged
+
+
 def format_transcript(
         result: Dict[str, Any],
         speaker_segments: List[Dict[str, Any]] = None
@@ -127,6 +160,9 @@ def format_transcript(
                 "start": segment["start"],
                 "end": segment["end"]
             })
+        
+        # Merge consecutive segments from the same speaker
+        formatted_transcript = merge_consecutive_speaker_segments(formatted_transcript)
     else:
         # Without speaker diarization, use Whisper segments
         if "segments" in result:

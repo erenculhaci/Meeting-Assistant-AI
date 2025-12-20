@@ -57,6 +57,8 @@ export interface MeetingResult {
   tasks: TaskItem[];
   created_at: string;
   processing_time: number;
+  transcript_before_task_extraction?: any;
+  transcript_after_llm_diarization?: any;
 }
 
 export interface MeetingListItem {

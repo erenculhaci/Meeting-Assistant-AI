@@ -145,6 +145,19 @@ async def get_results(
     )
     tasks = tasks_result.scalars().all()
     
+    import json
+    transcript_before_task_extraction = None
+    transcript_after_llm_diarization = None
+    summary_obj = meeting.summary
+    if summary_obj:
+        if isinstance(summary_obj, str):
+            try:
+                summary_obj = json.loads(summary_obj)
+            except Exception:
+                summary_obj = {}
+        if isinstance(summary_obj, dict):
+            transcript_before_task_extraction = summary_obj.get("transcript_before_task_extraction")
+    transcript_after_llm_diarization = meeting.transcript or []
     return {
         "job_id": meeting.job_id,
         "filename": meeting.filename,
@@ -169,6 +182,8 @@ async def get_results(
         ],
         "created_at": meeting.created_at.isoformat(),
         "processing_time": meeting.processing_time,
+        "transcript_before_task_extraction": transcript_before_task_extraction,
+        "transcript_after_llm_diarization": transcript_after_llm_diarization,
     }
 
 

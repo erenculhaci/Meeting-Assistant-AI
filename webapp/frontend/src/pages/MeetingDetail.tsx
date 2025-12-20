@@ -42,10 +42,20 @@ export default function MeetingDetail() {
   useEffect(() => {
     async function loadResult() {
       if (!jobId) return;
-      
       try {
         const data = await getResults(jobId);
         setResult(data);
+        // task extraction'a giden ve LLM diarization sonrası transcriptleri logla
+        /* if (data.transcript_before_task_extraction) {
+          console.log('Task extraction\'a giden transcript (speaker\'sız):', data.transcript_before_task_extraction);
+        }
+        if (data.transcript_after_llm_diarization) {
+          console.log('LLM diarization sonrası transcript:', data.transcript_after_llm_diarization);
+        }
+        // Ana transcripti de logla
+        if (data.transcript) {
+          console.log('Frontend\'e gelen transcript:', data.transcript);
+        } */
       } catch (err: any) {
         setError(err.response?.data?.detail || 'Failed to load meeting');
       } finally {
@@ -295,23 +305,29 @@ export default function MeetingDetail() {
           {/* Transcript Tab */}
           {activeTab === 'transcript' && (
             <div className="space-y-3 md:space-y-4 max-h-[400px] md:max-h-[600px] overflow-y-auto pr-2 md:pr-4">
-              {result.transcript.map((segment, i) => (
-                <div key={i} className="flex gap-2 md:gap-4">
-                  <div className="flex-shrink-0 w-12 md:w-20 text-right">
-                    <span className="text-xs text-gray-400 font-mono">
-                      {formatTime(segment.start)}
-                    </span>
+              {(() => {
+                // Transcript tabı render edilirken transcript segmentlerini console'a logla
+                /* if (result.transcript) {
+                  console.log('Transcript tabında gösterilen segmentler:', result.transcript);
+                } */
+                return result.transcript.map((segment, i) => (
+                  <div key={i} className="flex gap-2 md:gap-4">
+                    <div className="flex-shrink-0 w-12 md:w-20 text-right">
+                      <span className="text-xs text-gray-400 font-mono">
+                        {formatTime(segment.start)}
+                      </span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span 
+                        className="inline-block px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-medium rounded mb-1"
+                      >
+                        {segment.speaker}
+                      </span>
+                      <p className="text-sm md:text-base text-gray-700">{segment.text}</p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <span 
-                      className="inline-block px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-medium rounded mb-1"
-                    >
-                      {segment.speaker}
-                    </span>
-                    <p className="text-sm md:text-base text-gray-700">{segment.text}</p>
-                  </div>
-                </div>
-              ))}
+                ));
+              })()}
             </div>
           )}
 

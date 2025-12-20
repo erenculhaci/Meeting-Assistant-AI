@@ -20,14 +20,22 @@ RUN pip install --upgrade pip
 # Using compatible versions to avoid torchvision::nms error
 RUN pip install torch==2.1.0 torchaudio==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cpu
 
+# Pin numpy to 1.x to avoid compatibility issues
+RUN pip install "numpy<2"
+
 # Copy and install backend requirements
 COPY webapp/backend/requirements.txt /app/backend_requirements.txt
 RUN pip install --no-cache-dir -r /app/backend_requirements.txt
 
-# Install ML dependencies (without torch since it's already installed)
+# Install ML dependencies
+# Pin pyannote.audio to 3.1.1 and compatible dependencies
+# Pin numpy<2 AFTER all installations to ensure compatibility
 RUN pip install --no-cache-dir \
     openai-whisper \
-    pyannote.audio \
+    "pyannote.audio==3.1.1" \
+    "pytorch-lightning==2.1.0" \
+    "lightning==2.1.0" \
+    "transformers>=4.30.0,<4.40.0" \
     librosa \
     soundfile \
     pydub \
@@ -36,7 +44,9 @@ RUN pip install --no-cache-dir \
     sentence-transformers \
     dateparser \
     spacy \
-    pydantic[email]
+    pydantic[email] \
+    matplotlib \
+    && pip install --no-cache-dir "numpy<2" --force-reinstall
 
 # Download spacy model
 RUN python -m spacy download en_core_web_sm

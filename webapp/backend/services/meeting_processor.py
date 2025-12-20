@@ -42,23 +42,23 @@ async def process_meeting_db(job_id: str, file_path: Path, filename: str, user_i
     start_time = datetime.now()
     
     try:
-        # Step 1: Transcription with local Whisper
+        # Step 1: Transcription with local Whisper + Speaker Diarization
         await update_job_status(
             job_id, 
             step="transcription", 
             progress=10, 
-            message="Transcribing audio with Whisper..."
+            message="Transcribing audio and segmenting by speaker..."
         )
         
         transcriber = MeetingTranscriber(
             model_name=WHISPER_MODEL,
             language=None,
-            enable_speaker_diarization=False
+            enable_speaker_diarization=True  # Use Pyannote for speaker segmentation
         )
         
         transcript_result = transcriber.transcribe_audio(
             str(file_path),
-            segment_by_speaker=False
+            segment_by_speaker=True  # Merge consecutive same-speaker segments
         )
         
         if transcript_result.get("status") == "error":
@@ -70,7 +70,8 @@ async def process_meeting_db(job_id: str, file_path: Path, filename: str, user_i
             message="Transcription complete. Generating summary..."
         )
         
-        # Convert to standard format
+        # Convert to standard format WITHOUT speaker info (its going to be added later by groq)
+        # Pyannote diarization is used for segmentation, but speaker labels are not included here
         raw_transcript = [
             {
                 "text": seg.get("text", ""),
@@ -100,6 +101,7 @@ async def process_meeting_db(job_id: str, file_path: Path, filename: str, user_i
         summarizer = LLMSummarizer()
         summary_result = summarizer.summarize(transcript_data)
         summary_dict = summarizer.to_dict(summary_result)
+        summary_dict["transcript_before_task_extraction"] = raw_transcript
         
         await update_job_status(
             job_id, 
@@ -123,15 +125,15 @@ async def process_meeting_db(job_id: str, file_path: Path, filename: str, user_i
             message="Tasks extracted. Identifying speakers..."
         )
         
-        # Step 4: LLM-based Speaker Diarization
+        # Step 4: LLM-based Speaker Name Identification
         await update_job_status(
             job_id, 
             step="diarization", 
-            progress=90, 
-            message="Analyzing speakers with AI..."
+            progress=85, 
+            message="Analyzing speaker names..."
         )
         
-        # Add speaker field for diarization
+        # Add temporary speaker field for speaker identification
         transcript_for_diarization = [
             {
                 "speaker": "Unknown",

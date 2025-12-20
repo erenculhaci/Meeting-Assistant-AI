@@ -26,17 +26,17 @@ class SpeakerDiarizer:
         self.device = device
         self.diarizer = None
 
-        # Initialize the diarizer
         self._initialize_diarizer()
 
     def _initialize_diarizer(self) -> None:
         try:
-            # Get token from environment variable
             hf_token = os.environ.get("HF_ACCESS_TOKEN")
 
             if hf_token:
-                self.diarizer = Pipeline.from_pretrained(self.model_name, use_auth_token=hf_token)
-                # Move to appropriate device if successfully loaded
+                try:
+                    self.diarizer = Pipeline.from_pretrained(self.model_name, use_auth_token=hf_token)
+                except TypeError:
+                    self.diarizer = Pipeline.from_pretrained(self.model_name, token=hf_token)
                 if self.device == "cuda" and torch.cuda.is_available():
                     self.diarizer = self.diarizer.to(torch.device("cuda"))
                 return True
@@ -57,22 +57,18 @@ class SpeakerDiarizer:
             whisper_segments: List[Dict[str, Any]]
     ) -> Optional[List[Dict[str, Any]]]:
         try:
-            # Check if diarizer is initialized
             if not self.is_available():
                 logger.warning("Speaker diarization requested but diarizer is not initialized")
                 return None
 
-            # Convert audio to a temporary WAV file with consistent parameters
             temp_wav_path = create_temp_wav_file(audio_file_path)
             if not temp_wav_path:
                 return None
 
             try:
-                # Run diarization on the normalized audio file
                 diarization = self.diarizer(temp_wav_path)
             except Exception as e:
                 logger.error(f"Audio preprocessing for diarization failed: {str(e)}", exc_info=True)
-                # If preprocessing fails, try running directly on the original file as fallback
                 try:
                     diarization = self.diarizer(audio_file_path)
                 except Exception as inner_e:
@@ -86,27 +82,38 @@ class SpeakerDiarizer:
                     except:
                         pass
 
-            # Create a dictionary of speaker turns
             speaker_turns = []
-            for turn, _, speaker in diarization.itertracks(yield_label=True):
-                speaker_turns.append({
-                    "speaker": f"Speaker_{speaker.replace('SPEAKER_', '')}",
-                    "start": turn.start,
-                    "end": turn.end
-                })
+            try:
+                annotation = None
+                
+                if hasattr(diarization, 'speaker_diarization'):
+                    annotation = diarization.speaker_diarization
+                elif hasattr(diarization, 'itertracks'):
+                    annotation = diarization
+                
+                if annotation is not None and hasattr(annotation, 'itertracks'):
+                    for turn, _, speaker in annotation.itertracks(yield_label=True):
+                        speaker_turns.append({
+                            "speaker": f"Speaker_{speaker.replace('SPEAKER_', '')}",
+                            "start": turn.start,
+                            "end": turn.end
+                        })
+                else:
+                    logger.error(f"Could not find a way to iterate diarization output. Type: {type(diarization)}")
+                    return None
+            except Exception as e:
+                logger.error(f"Failed to iterate diarization output: {e}", exc_info=True)
+                return None
 
-            # Assign speakers to transcription segments
             speaker_segments = []
             for segment in whisper_segments:
                 segment_start = segment["start"]
                 segment_end = segment["end"]
 
-                # Find the speaker who speaks the most during this segment
                 best_overlap = 0
                 best_speaker = None
 
                 for turn in speaker_turns:
-                    # Calculate overlap
                     overlap_start = max(segment_start, turn["start"])
                     overlap_end = min(segment_end, turn["end"])
                     overlap = max(0, overlap_end - overlap_start)
@@ -115,7 +122,6 @@ class SpeakerDiarizer:
                         best_overlap = overlap
                         best_speaker = turn["speaker"]
 
-                # If no clear speaker found, use "Unknown"
                 if not best_speaker:
                     best_speaker = "Unknown"
 
