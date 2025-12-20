@@ -252,6 +252,20 @@ Jira users: ["Emily Johnson", "emily@company.com"]
 → Automatically matches and assigns to Emily Johnson
 ```
 
+## 🔀 Speaker Diarization Options
+
+- **Default (main branch):**
+  - Speaker identification is performed using Groq LLM. This is extremely fast (results in seconds).
+  - Does not require a GPU, suitable for all users.
+
+- **Advanced (diarization-feature-upgrade branch):**
+  - Speaker identification is performed using pyannote.audio. This is more accurate and robust, but much slower on CPU (about 7 minutes).
+  - If you have an NVIDIA GPU, it will run much faster.
+  - To use this, simply switch to the branch:
+    `git checkout diarization-feature-upgrade`
+
+In summary, stay on the main branch for fast and practical usage. If you want more powerful and detailed speaker diarization (or have a GPU), use the diarization-feature-upgrade branch.
+
 ## 📂 Project Structure
 
 ```
